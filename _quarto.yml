@@ -34,10 +34,9 @@ book:
         href:  https://github.com/Daniele-PyBECTN/Computational_quantum_optics_lectures
   chapters:
     - index.qmd
+    - introduction.qmd
     - lecture1/lecture1.qmd
-    # - intro.qmd
-    # - summary.qmd
-    # - references.qmd
+    - bibliography.qmd
 
 number-depth: 3
 bibliography: bibliography.bib
@@ -61,7 +60,12 @@ format:
   pdf:
     documentclass: scrreprt
     toc: true
-    keep-tex: true            # lets you inspect the .tex if you need to
+    # keep-tex: true            # lets you inspect the .tex if you need to
+    margin-left: 1.2in
+    margin-right: 1.2in
+    margin-top: 1.2in
+    margin-bottom: 1.8in
+    link-citations: true
     template-partials:
       - partials/title.tex    # our custom title block
     include-in-header:
