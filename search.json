@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Numerical Methods for Quantum Optics and Open Quantum Systems",
+    "section": "",
+    "text": "1 Introduction\nCiao",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "lecture1/lecture1.html",
+    "href": "lecture1/lecture1.html",
+    "title": "2  Introduction to Python",
+    "section": "",
+    "text": "2.1 Main Differences with C++\nPython differs from C++ in several key ways: - Dynamic Typing: Variables don’t need explicit type declarations - List Comprehensions: Concise way to create and manipulate lists - High-Level Data Structures: Lists, dictionaries, sets, and arrays are core tools - Minimal Syntax: Indentation-based structure avoids boilerplate code - Functional Features: Support for lambda functions, map, filter, etc.\n# Dynamic Typing Example\na = 5          # integer\nb = \"hello\"    # now a string\nc = [1, 2, 3]  # now a list\nprint(a,b,c)\n\n# List Comprehension Example\nsquares = [x**2 for x in range(5)]  # [0, 1, 4, 9, 16]\nprint(squares)\n# High-Level Data Structures\nmy_dict = {'a': 1, 'b': 2}  # dictionary\nmy_set = {1, 2, 3}          # set\nprint(my_dict, my_set)\n# Functional Features\nadd = lambda x, y: x + y\nresult = list(map(lambda x: x*2, [1, 2, 3]))  # [2, 4, 6]\nprint(result)\n\n5 hello [1, 2, 3]\n[0, 1, 4, 9, 16]\n{'a': 1, 'b': 2} {1, 2, 3}\n[2, 4, 6]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Python</span>"
+    ]
+  },
+  {
+    "objectID": "lecture1/lecture1.html#focus-sets-and-dictionaries-in-python",
+    "href": "lecture1/lecture1.html#focus-sets-and-dictionaries-in-python",
+    "title": "2  Introduction to Python",
+    "section": "2.2 Focus: sets and Dictionaries in Python",
+    "text": "2.2 Focus: sets and Dictionaries in Python\nA set is an unordered collection of unique elements. Sets are useful when you want to remove duplicates or perform mathematical set operations like union, intersection, and difference.\nKey features: • Unordered • No duplicate elements • Elements must be immutable (e.g., numbers, strings, tuples)\nCommon set operations: • a | b → union • a & b → intersection • a - b → difference • a ^ b → symmetric difference\n🔹 Dictionaries\nA dictionary is a mapping of keys to values. It is one of Python’s most powerful built-in data types, allowing for fast lookups and structured data storage.\nKey features: • Key-value pairs • Keys must be immutable and unique • Values can be any type\nTypical use cases: • Storing configuration settings • Mapping labels to data • Counting occurrences (collections.Counter is a specialized dictionary)\nPython 3.7+ guarantees insertion order is preserved in dictionaries.\n\n# Working with sets\na = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\n\nprint(\"Set A:\", a)\nprint(\"Set B:\", b)\n\n# Basic operations\nprint(\"Union (A | B):\", a | b)\nprint(\"Intersection (A & B):\", a & b)\nprint(\"Difference (A - B):\", a - b)\nprint(\"Symmetric Difference (A ^ B):\", a ^ b)\n\n# Removing duplicates using a set\nnums = [1, 2, 2, 3, 4, 4, 4, 5]\nunique_nums = set(nums)\nprint(\"Unique numbers:\", unique_nums)\n\n# Working with dictionaries\nperson = {\n    \"name\": \"Alice\",\n    \"age\": 30,\n    \"is_physicist\": True\n}\n\n# Accessing and updating\nprint(\"Name:\", person[\"name\"])\nperson[\"age\"] += 1\nprint(\"Updated age:\", person[\"age\"])\n\n# Adding a new key\nperson[\"field\"] = \"Quantum Optics\"\nprint(\"Updated dictionary:\", person)\n\n# Iterating\nfor key, value in person.items():\n    print(f\"{key} -&gt; {value}\")\n\n# Dictionary comprehension\nsquares = {x: x**2 for x in range(5)}\nprint(\"Squares dict:\", squares)\n\nSet A: {1, 2, 3, 4}\nSet B: {3, 4, 5, 6}\nUnion (A | B): {1, 2, 3, 4, 5, 6}\nIntersection (A & B): {3, 4}\nDifference (A - B): {1, 2}\nSymmetric Difference (A ^ B): {1, 2, 5, 6}\nUnique numbers: {1, 2, 3, 4, 5}\nName: Alice\nUpdated age: 31\nUpdated dictionary: {'name': 'Alice', 'age': 31, 'is_physicist': True, 'field': 'Quantum Optics'}\nname -&gt; Alice\nage -&gt; 31\nis_physicist -&gt; True\nfield -&gt; Quantum Optics\nSquares dict: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Python</span>"
+    ]
+  },
+  {
+    "objectID": "lecture1/lecture1.html#sets-vs-lists",
+    "href": "lecture1/lecture1.html#sets-vs-lists",
+    "title": "2  Introduction to Python",
+    "section": "2.3 Sets vs Lists",
+    "text": "2.3 Sets vs Lists\nWhile lists preserve order and allow duplicates, sets are optimized for fast membership testing (x in my_set) and automatically eliminate duplicates. This makes sets ideal for operations like deduplication or checking intersections between collections.\nDictionaries vs Arrays (Lists)\nIn C++ or lower-level languages, associative containers like std::map or unordered_map are used for fast key-value mapping. Python dictionaries serve a similar purpose but with simpler syntax and dynamic typing.\nPython dictionaries are hash tables under the hood, making average-case lookups and insertions O(1) (constant in time). They’re highly optimized for real-world use cases, which is why they are ubiquitous in Python programming.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Python</span>"
+    ]
+  }
+]
