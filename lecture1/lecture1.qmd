@@ -1,0 +1,115 @@
+# Introduction to Python
+
+## Main Differences with C++
+
+Python differs from C++ in several key ways:
+- **Dynamic Typing**: Variables don't need explicit type declarations
+- **List Comprehensions**: Concise way to create and manipulate lists
+- **High-Level Data Structures**: Lists, dictionaries, sets, and arrays are core tools
+- **Minimal Syntax**: Indentation-based structure avoids boilerplate code
+- **Functional Features**: Support for lambda functions, map, filter, etc.
+
+```{python}
+# Dynamic Typing Example
+a = 5          # integer
+b = "hello"    # now a string
+c = [1, 2, 3]  # now a list
+print(a,b,c)
+
+# List Comprehension Example
+squares = [x**2 for x in range(5)]  # [0, 1, 4, 9, 16]
+print(squares)
+# High-Level Data Structures
+my_dict = {'a': 1, 'b': 2}  # dictionary
+my_set = {1, 2, 3}          # set
+print(my_dict, my_set)
+# Functional Features
+add = lambda x, y: x + y
+result = list(map(lambda x: x*2, [1, 2, 3]))  # [2, 4, 6]
+print(result)
+```
+
+## Focus: sets and Dictionaries in Python
+
+A set is an unordered collection of unique elements. Sets are useful when you want to remove duplicates or perform mathematical set operations like union, intersection, and difference.
+
+Key features:
+	•	Unordered
+	•	No duplicate elements
+	•	Elements must be immutable (e.g., numbers, strings, tuples)
+
+Common set operations:
+	•	a | b → union
+	•	a & b → intersection
+	•	a - b → difference
+	•	a ^ b → symmetric difference
+
+🔹 Dictionaries
+
+A dictionary is a mapping of keys to values. It is one of Python’s most powerful built-in data types, allowing for fast lookups and structured data storage.
+
+Key features:
+	•	Key-value pairs
+	•	Keys must be immutable and unique
+	•	Values can be any type
+
+Typical use cases:
+	•	Storing configuration settings
+	•	Mapping labels to data
+	•	Counting occurrences (collections.Counter is a specialized dictionary)
+
+Python 3.7+ guarantees insertion order is preserved in dictionaries.
+
+```{python}
+# Working with sets
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print("Set A:", a)
+print("Set B:", b)
+
+# Basic operations
+print("Union (A | B):", a | b)
+print("Intersection (A & B):", a & b)
+print("Difference (A - B):", a - b)
+print("Symmetric Difference (A ^ B):", a ^ b)
+
+# Removing duplicates using a set
+nums = [1, 2, 2, 3, 4, 4, 4, 5]
+unique_nums = set(nums)
+print("Unique numbers:", unique_nums)
+
+# Working with dictionaries
+person = {
+    "name": "Alice",
+    "age": 30,
+    "is_physicist": True
+}
+
+# Accessing and updating
+print("Name:", person["name"])
+person["age"] += 1
+print("Updated age:", person["age"])
+
+# Adding a new key
+person["field"] = "Quantum Optics"
+print("Updated dictionary:", person)
+
+# Iterating
+for key, value in person.items():
+    print(f"{key} -> {value}")
+
+# Dictionary comprehension
+squares = {x: x**2 for x in range(5)}
+print("Squares dict:", squares)
+```
+
+## Sets vs Lists
+
+While lists preserve order and allow duplicates, sets are optimized for fast membership testing (x in my_set) and automatically eliminate duplicates. This makes sets ideal for operations like deduplication or checking intersections between collections.
+
+Dictionaries vs Arrays (Lists)
+
+In C++ or lower-level languages, associative containers like std::map or unordered_map are used for fast key-value mapping. Python dictionaries serve a similar purpose but with simpler syntax and dynamic typing.
+
+Python dictionaries are hash tables under the hood, making average-case lookups and insertions O(1) (constant in time). They’re highly optimized for real-world use cases, which is why they are ubiquitous in Python programming.

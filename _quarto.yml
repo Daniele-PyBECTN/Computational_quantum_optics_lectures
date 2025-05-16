@@ -1,0 +1,80 @@
+project:
+  type: book
+  output-dir: _output
+
+book:
+  title: "Numerical Methods for Quantum Optics and Open Quantum Systems"
+  author:
+    - name: Alberto Mercurio
+      orcid: 0000-0001-7814-1936
+      email: alberto.mercurio@epfl.ch
+      affiliations:
+        - id: 1
+          name: École Polytechnique Fédérale de Lausanne (EPFL)
+          address: Rte Cantonale
+          city: Lausanne
+          state: Switzerland
+          postal-code: 1015
+    - name: Daniele De Bernardis
+      orcid: 0000-0002-9618-0389
+      email: daniele.debernardis@cnr.it
+      affiliations:
+        - id: 2
+          name: Istituto Nazionale di Ottica (INO-CNR)
+          address: Largo Enrico Fermi, 6
+          city: Firenze
+          state: Italia
+          postal-code: 50125
+  date: "15/05/2025"
+  downloads: [pdf]
+  navbar:
+    search: true
+    tools:
+      - icon: github
+        href:  https://github.com/Daniele-PyBECTN/Computational_quantum_optics_lectures
+  chapters:
+    - index.qmd
+    - lecture1/lecture1.qmd
+    # - intro.qmd
+    # - summary.qmd
+    # - references.qmd
+
+number-depth: 3
+bibliography: bibliography.bib
+
+# default format for all files
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    highlight-style: atom-one
+    css: styles.css
+    toc: true
+    published-title: Last Update
+    date-format: iso
+    code-line-numbers: true
+    colorlinks: true
+    footnotes-hover: true
+    fig-align: center
+    fig-responsive: true
+  pdf:
+    documentclass: scrreprt
+    toc: true
+    keep-tex: true            # lets you inspect the .tex if you need to
+    template-partials:
+      - partials/title.tex    # our custom title block
+    include-in-header:
+      text: |
+        \usepackage[noblocks]{authblk}   % author–affiliation macros
+        \usepackage{orcidlink}
+        \usepackage{hyperref}            % clickable e-mails
+        \renewcommand\Authfont{\Large}
+        \renewcommand\Affilfont{\small}
+
+jupyter: python3
+
+execute:
+  eval: true
+  cache: true
+  freeze: false
