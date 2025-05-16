@@ -1,0 +1,29 @@
+% Title
+$if(title)$
+\title{$title$}
+$endif$
+
+% ----------  authors  ----------
+$for(by-author)$
+  \author[$for(it.affiliations)$$it.id$$sep$,$endfor$]{
+    $it.name.literal$%
+    $if(it.orcid)$\orcidlink{$it.orcid$}$endif$%
+    $if(it.email)$\thanks{\href{mailto:$it.email$}{$it.email$}}$endif$%
+  }
+$endfor$
+
+% ----------  affiliations (one per id) ----------
+$for(by-affiliation)$
+  \affil[$it.id$]{%
+    $it.name$%
+    $if(it.address)$, $it.address$ $endif$%
+    $if(it.city)$, $it.city$ $endif$%
+    $if(it.region)$, $it.region$ $endif$%  ← ‘state’ became ‘region’
+    $if(it.postal-code)$, $it.postal-code$ $endif$%
+  }
+$endfor$
+
+% Date, if any
+$if(date)$
+  \date{$date$}
+$endif$
