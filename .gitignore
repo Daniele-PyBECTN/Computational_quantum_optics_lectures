@@ -210,7 +210,6 @@ deps/src/
 .config
 .local
 .yarn
-.jupyter
 .jupyter-server-log.txt
 .profile
 .bashrc
