@@ -204,3 +204,16 @@ deps/src/
 *.gif
 *.json
 /site_libs/
+
+# Files generated from Binder
+.TinyTeX
+.code-server
+.config
+.local
+.yarn
+.jupyter
+.jupyter-server-log.txt
+.profile
+.bashrc
+.bash_logout
+.wget-hsts
