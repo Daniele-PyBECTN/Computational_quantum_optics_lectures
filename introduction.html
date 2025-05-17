@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -65,6 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./lecture1/lecture1.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -81,11 +102,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-dark-a0c47a2a2ca7178ac58db054a666cf6b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-6adb2acee0f6d8dc73381d6900cdd9ee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -112,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -278,6 +299,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Numerical Methods for Quantum Optics and Open Quantum Systems</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="./Numerical-Methods-for-Quantum-Optics-and-Open-Quantum-Systems.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -286,29 +321,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Numerical Methods for Quantum Optics and Open Quantum Systems</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -321,6 +340,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture1/lecture1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bibliography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliography</span></a>
   </div>
 </li>
     </ul>
@@ -391,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Rich ecosystem</strong> – Numpy, SciPy, Jupyter, Matplotlib, and data‑analysis libraries coexist seamlessly, providing everything from linear algebra kernels to publication‑quality plots.</li>
 <li><strong>Community &amp; portability</strong> – Tutorials, StackOverflow answers, CI pipelines, and cloud platforms such as Google Colab enable beginners to run the same notebooks locally or on GPUs in the cloud with negligible setup.</li>
 </ol>
-<p>Most importantly, Python hosts <strong>QuTiP (Quantum Toolbox in Python)</strong><span class="citation" data-cites="QuTiP2012 QuTiP2024">[@QuTiP2012; @QuTiP2024]</span> the de‑facto standard library for simulating open quantum systems. QuTiP wraps efficient C and Fortran back‑ends behind a high‑level interface: you manipulate <code>Qobj</code> instances instead of raw matrices, and you call solvers such as <code>mesolve</code> or <code>mcsolve</code> for Lindblad‑master equations and quantum trajectory simulations, respectively. The package is actively maintained, well documented, and battle‑tested across thousands of research papers.</p>
+<p>Most importantly, Python hosts <strong>QuTiP (Quantum Toolbox in Python)</strong><span class="citation" data-cites="QuTiP2012 QuTiP2024">(<a href="bibliography.html#ref-QuTiP2012" role="doc-biblioref">Johansson, Nation, and Nori 2012</a>; <a href="bibliography.html#ref-QuTiP2024" role="doc-biblioref">Lambert et al. 2024</a>)</span> the de‑facto standard library for simulating open quantum systems. QuTiP wraps efficient C and Fortran back‑ends behind a high‑level interface: you manipulate <code>Qobj</code> instances instead of raw matrices, and you call solvers such as <code>mesolve</code> or <code>mcsolve</code> for Lindblad‑master equations and quantum trajectory simulations, respectively. The package is actively maintained, well documented, and battle‑tested across thousands of research papers.</p>
 </section>
 <section id="how-does-python-differ-from-other-mainstream-languages" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="how-does-python-differ-from-other-mainstream-languages"><span class="header-section-number">2.3</span> How does Python differ from other mainstream languages?</h2>
@@ -442,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="a-glance-at-julia-and-quantumtoolbox.jl" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="a-glance-at-julia-and-quantumtoolbox.jl"><span class="header-section-number">2.4</span> A glance at Julia and <em>QuantumToolbox.jl</em></h2>
 <p>While Python dominates current scientific computing, it is not the only contender. In recent years, researchers and engineers have been exploring the need for a new programming language—one that combines the performance of compiled languages like C or Fortran with the ease of use and readability of scripting languages like Python or MATLAB. This is the motivation behind Julia.</p>
-<p>Julia promises “<em>C‑like speed with Python‑like syntax</em>” by using just‑in‑time (JIT) compilation and a multiple‑dispatch programming model. Within this language, the package <em>QuantumToolbox.jl</em><span class="citation" data-cites="QuantumToolbox-jl2025">[@QuantumToolbox-jl2025]</span> has emerged as a high‑performance analog to QuTiP. It mirrors QuTiP’s API but benefits from Julia’s performance model and native automatic differentiation. Benchmarks already demonstrate significant speed‑ups, especially for large Hilbert spaces and GPU‑accelerated workloads.</p>
+<p>Julia promises “<em>C‑like speed with Python‑like syntax</em>” by using just‑in‑time (JIT) compilation and a multiple‑dispatch programming model. Within this language, the package <em>QuantumToolbox.jl</em><span class="citation" data-cites="QuantumToolbox-jl2025">(<a href="bibliography.html#ref-QuantumToolbox-jl2025" role="doc-biblioref">Mercurio et al. 2025</a>)</span> has emerged as a high‑performance analog to QuTiP. It mirrors QuTiP’s API but benefits from Julia’s performance model and native automatic differentiation. Benchmarks already demonstrate significant speed‑ups, especially for large Hilbert spaces and GPU‑accelerated workloads.</p>
 <p>Nevertheless, Julia’s ecosystem is still maturing. Its tooling, package stability, and IDE support are evolving rapidly but are not yet as robust as Python’s. Similarly, QuantumToolbox.jl, while powerful, has a smaller user base and fewer educational resources compared to QuTiP. For a course focused on accessibility and broad applicability, we therefore choose to prioritize Python and QuTiP as the more mature and stable learning platform.</p>
 </section>
 <section id="course-scope" class="level2" data-number="2.5">
@@ -465,7 +496,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="2.6.1" class="anchored" data-anchor-id="creating-and-using-lists"><span class="header-section-number">2.6.1</span> Creating and using lists</h3>
 <p>Before diving into numerical simulations, it’s useful to get acquainted with the basic syntax and features of Python. One of the simplest and most commonly used data structures is the <strong>list</strong>, which stores a sequence of elements. Lists are flexible—they can contain numbers, strings, or even other lists.</p>
 <p>Here’s how to create and access elements in a list:</p>
-<div id="377a1dfa" class="cell" data-execution_count="1">
+<div id="5bb09fdd" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>fruits <span class="op">=</span> [<span class="st">'apple'</span>, <span class="st">'banana'</span>, <span class="st">'cherry'</span>]</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="bu">print</span>(<span class="ss">f'First fruit: </span><span class="sc">{</span>fruits[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -476,7 +507,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="for-loops" class="level3" data-number="2.6.2">
 <h3 data-number="2.6.2" class="anchored" data-anchor-id="for-loops"><span class="header-section-number">2.6.2</span> For loops</h3>
 <p>A <code>for</code> loop allows us to <em>iterate</em> through each item in a collection and execute the same block of code for every element. You will use loops constantly—whether you are sweeping parameter values, accumulating results, or analysing datasets—so it is worth seeing the syntax early.</p>
-<div id="84a9ba9a" class="cell" data-execution_count="2">
+<div id="2e788118" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">for</span> fruit <span class="kw">in</span> fruits:</span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="bu">print</span>(<span class="ss">f'I like </span><span class="sc">{</span>fruit<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -489,7 +520,7 @@ I like cherry</code></pre>
 <section id="defining-functions" class="level3" data-number="2.6.3">
 <h3 data-number="2.6.3" class="anchored" data-anchor-id="defining-functions"><span class="header-section-number">2.6.3</span> Defining functions</h3>
 <p>Functions bundle reusable logic behind a descriptive name. In quantum‑optics simulations, well‑structured functions help keep notebooks tidy—for instance, collecting the code that builds a Hamiltonian or evaluates an observable in one place. Below is a minimal example that squares a number.</p>
-<div id="5b7bfb85" class="cell" data-execution_count="3">
+<div id="6c00b40b" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> square(x):</span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">return</span> x <span class="op">*</span> x</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
@@ -502,7 +533,7 @@ I like cherry</code></pre>
 <section id="lambda-anonymous-functions" class="level3" data-number="2.6.4">
 <h3 data-number="2.6.4" class="anchored" data-anchor-id="lambda-anonymous-functions"><span class="header-section-number">2.6.4</span> Lambda (anonymous) functions</h3>
 <p>Occasionally we only need a <em>small, throw‑away</em> function—say, as a callback or key in a sort operation. Python’s <code>lambda</code> syntax lets us declare such anonymous functions in a single line, without the ceremony of <code>def</code>.</p>
-<div id="9c903626" class="cell" data-execution_count="4">
+<div id="e6617427" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>square_lambda <span class="op">=</span> <span class="kw">lambda</span> x: x <span class="op">*</span> x</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(square_lambda(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -524,7 +555,7 @@ I like cherry</code></pre>
 <h3 data-number="2.6.6" class="anchored" data-anchor-id="enter-numpy"><span class="header-section-number">2.6.6</span> Enter <code>numpy</code></h3>
 <p>To overcome the performance limits of pure‑Python lists, we turn to <strong>NumPy</strong>, which stores data in contiguous, fixed‑type arrays and dispatches mathematical operations to highly‑optimised C (and often SIMD/GPU) kernels. The example below shows how you can express a million‑element computation in just two vectorised lines.</p>
 <p><code>numpy</code> provides fixed‑type, contiguous arrays backed by efficient C (or SIMD/GPU) loops. Operations are dispatched <strong>once</strong> for the whole array, eliminating Python‑level overhead and unlocking BLAS/LAPACK acceleration.</p>
-<div id="4b6be443" class="cell" data-execution_count="5">
+<div id="fed60fed" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="co"># Vectorized array operations</span></span>
@@ -538,6 +569,17 @@ I like cherry</code></pre>
 <p>One line performs a million floating‑point operations in compiled code—often orders of magnitude faster than an explicit Python loop.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-QuTiP2012" class="csl-entry" role="listitem">
+Johansson, J. R., P. D. Nation, and Franco Nori. 2012. <span>“<span class="nocase">QuTiP: An open-source Python framework for the dynamics of open quantum systems</span>.”</span> <em>Computer Physics Communications</em> 183 (8): 1760–72. <a href="https://doi.org/10.1016/j.cpc.2012.02.021">https://doi.org/10.1016/j.cpc.2012.02.021</a>.
+</div>
+<div id="ref-QuTiP2024" class="csl-entry" role="listitem">
+Lambert, Neill, Eric Giguère, Paul Menczel, Boxi Li, Patrick Hopf, Gerardo Suárez, Marc Gali, et al. 2024. <span>“<span class="nocase">QuTiP 5: The Quantum Toolbox in Python</span>.”</span> <em>arXiv:2412.04705</em>. <a href="https://arxiv.org/abs/2412.04705">https://arxiv.org/abs/2412.04705</a>.
+</div>
+<div id="ref-QuantumToolbox-jl2025" class="csl-entry" role="listitem">
+Mercurio, Alberto, Yi-Te Huang, Li-Xun Cai, Yueh-Nan Chen, Vincenzo Savona, and Franco Nori. 2025. <span>“<span class="nocase">QuantumToolbox.jl</span>: An Efficient <span>Julia</span> Framework for Simulating Open Quantum Systems.”</span> <em>arXiv Preprint arXiv:2504.21440</em>. <a href="https://doi.org/10.48550/arXiv.2504.21440">https://doi.org/10.48550/arXiv.2504.21440</a>.
+</div>
+</div>
 </section>
 </section>
 
@@ -961,6 +1003,9 @@ I like cherry</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./lecture1/lecture1.html" class="pagination-link" aria-label="Introduction to Python">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to Python</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
