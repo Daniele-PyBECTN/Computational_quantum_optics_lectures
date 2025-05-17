@@ -78,6 +78,14 @@ format:
 
 jupyter: python3
 
+colab:
+  gh-user: "Daniele-PyBECTN"    # Your GitHub username
+  gh-repo: "Computational_quantum_optics_lectures"    # Your repository name
+  gh-branch: "test"      # Optional, defaults to "main"
+
+filters:
+  - colab
+
 execute:
   eval: true
   cache: true
