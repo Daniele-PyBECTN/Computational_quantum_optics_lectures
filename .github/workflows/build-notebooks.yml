@@ -41,7 +41,7 @@ jobs:
       - name: Install Python deps from requirements.txt
         run: pip install -r requirements.txt
 
-      - name: Convert QMD → IPYNB
+      - name: Render QMD → IPYNB
         run: |
           set -euo pipefail
           shopt -s globstar nullglob
