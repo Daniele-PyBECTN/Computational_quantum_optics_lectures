@@ -215,3 +215,5 @@ deps/src/
 .bashrc
 .bash_logout
 .wget-hsts
+
+/.luarc.json

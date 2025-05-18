@@ -35,7 +35,7 @@ book:
   chapters:
     - index.qmd
     - introduction.qmd
-    - lecture1/lecture1.qmd
+    # - lecture1/lecture1.qmd
     - bibliography.qmd
 
 number-depth: 3

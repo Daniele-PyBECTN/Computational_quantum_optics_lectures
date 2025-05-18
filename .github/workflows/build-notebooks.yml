@@ -1,0 +1,65 @@
+name: Build notebooks
+
+on:
+  push:
+    branches: [main]                            # authoring branch
+    paths:
+      - 'notebooks/**/*.qmd'                    # QMD-to-notebook changes
+      - '.github/workflows/build-notebooks.yml' # run again if you edit this file
+  workflow_dispatch:                            # manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1 ─ full checkout so we can switch branches later
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      # 2 ─ install Quarto (official action from the Quarto team)
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      # 3 ─ convert notebooks/**/*.qmd  ➜  <root>/…/*.ipynb
+      - name: Convert QMD → IPYNB
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob
+          for src in notebooks/**/*.qmd; do
+            rel="${src#notebooks/}"          # drop leading “notebooks/”
+            out="${rel%.qmd}.ipynb"
+            mkdir -p "$(dirname "$out")"
+            quarto convert "$src" -o "$out"
+          done
+
+      # 4 ─ copy Binder / Colab helper files from main
+      - name: Copy helper assets (Binder / Colab)
+        run: |
+          # add or remove paths in this single line as needed
+          cp -r requirements.txt apt.txt postBuild .jupyter . 2>/dev/null || true
+
+      # 5 ─ commit and push to the notebooks branch
+      - name: Commit notebooks to notebooks branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          echo "--- generated files"; find . -name '*.ipynb'
+          git check-ignore $(find . -name '*.ipynb')
+
+          git config user.name  "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+
+          # fetch remote state, then switch (or create) branch
+          git fetch origin notebooks || true
+          git switch --force-create notebooks || git switch notebooks
+
+          # stage only *.ipynb + the helper files we just copied
+          git add $(find . -name '*.ipynb') requirements.txt apt.txt postBuild .jupyter 2>/dev/null || true
+
+          # skip commit if nothing changed
+          git diff --cached --quiet && { echo "No changes to commit"; exit 0; }
+
+          git commit -m "Auto-update notebooks from ${GITHUB_SHA}"
+          git push --force-with-lease origin notebooks
