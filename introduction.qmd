@@ -60,19 +60,13 @@ Before diving into numerical simulations, it's useful to get acquainted with the
 
 Here’s how to create and access elements in a list:
 
-```{python}
-fruits = ['apple', 'banana', 'cherry']
-print(f'First fruit: {fruits[0]}')
-```
+{{< embed notebooks/lecture1/introduction.qmd#python-list echo=true >}}
 
 ### For loops
 
 A `for` loop allows us to *iterate* through each item in a collection and execute the same block of code for every element. You will use loops constantly—whether you are sweeping parameter values, accumulating results, or analysing datasets—so it is worth seeing the syntax early.
 
-```{python}
-for fruit in fruits:
-    print(f'I like {fruit}')
-```
+{{< embed notebooks/lecture1/introduction.qmd#python-for-loop echo=true >}}
 
 ### Defining functions
 

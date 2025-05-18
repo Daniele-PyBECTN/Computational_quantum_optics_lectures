@@ -78,6 +78,11 @@ format:
 
 jupyter: python3
 
+github:
+  user: Daniele-PyBECTN
+  repo: Computational_quantum_optics_lectures
+  branch: notebooks
+
 execute:
   eval: true
   cache: true

@@ -1,0 +1,22 @@
+---
+format:
+    html:
+        other-links:
+            - text: Run notebook in Binder
+              href: https://mybinder.org/v2/gh/{{< meta github.user >}}/{{< meta github.repo >}}/{{< meta github.branch >}}?filepath=notebooks/lecture1/introduction.ipynb
+              icon: file-code
+---
+
+# Introduction to Python
+
+```{python}
+#| label: python-list
+fruits = ['apple', 'banana', 'cherry']
+print(f'First fruit: {fruits[0]}')
+```
+
+```{python}
+#| label: python-for-loop
+for fruit in fruits:
+    print(f'I like {fruit}')
+```
