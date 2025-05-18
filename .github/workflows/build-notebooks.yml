@@ -44,23 +44,24 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-
           git config user.name  "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
 
-          # stay in sync with remote, then switch
           git fetch origin notebooks
           git switch notebooks
 
-          # prune notebooks/helper files that disappeared since last run
+          # restore helper assets from main so they exist in this branch
+          git checkout main -- requirements.txt apt.txt postBuild .jupyter
+
+          # prune artefacts that vanished since last build
           git rm -r --cached --quiet --ignore-unmatch notebooks \
-                                     requirements.txt apt.txt postBuild .jupyter
+                                        requirements.txt apt.txt postBuild .jupyter
 
-          # stage fresh artefacts
+          # stage fresh notebooks + helper files
           find notebooks -name '*.ipynb' -print0 | xargs -0 git add
-          git add requirements.txt apt.txt postBuild .jupyter 2>/dev/null || true
+          git add requirements.txt apt.txt postBuild .jupyter
 
-          # commit & push (skip if nothing changed)
+          # commit & push
           git diff --cached --quiet && { echo "No changes to commit"; exit 0; }
           git commit -m "Auto-update notebooks from ${GITHUB_SHA}"
           git push --force-with-lease
