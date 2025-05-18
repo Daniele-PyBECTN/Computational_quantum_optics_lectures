@@ -47,19 +47,20 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-
           git config user.name  "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
 
-          # fetch remote state, then switch (or create) branch
-          git fetch origin notebooks || true
-          git switch --force-create notebooks || git switch notebooks
+          # fetch and switch; the branch already exists after your manual orphan step
+          git fetch origin notebooks
+          git switch notebooks
 
-          # stage only *.ipynb + the helper files we just copied
-          git add $(find . -name '*.ipynb') requirements.txt apt.txt postBuild .jupyter 2>/dev/null || true
+          # --- remove any files that used to exist but are no longer produced
+          git rm -r --quiet --cached .
 
-          # skip commit if nothing changed
-          git diff --cached --quiet && { echo "No changes to commit"; exit 0; }
+          # --- stage the current build
+          find . -name '*.ipynb' -print0 | xargs -0 git add
+          git add requirements.txt apt.txt postBuild .jupyter 2>/dev/null || true
 
-          git commit -m "Auto-update notebooks from ${GITHUB_SHA}"
-          git push --force-with-lease origin notebooks
+          # commit if something is staged
+          git diff --cached --quiet || git commit -m "Auto-update notebooks from ${GITHUB_SHA}"
+          git push --force-with-lease
