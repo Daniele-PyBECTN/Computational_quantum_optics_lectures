@@ -17,7 +17,6 @@ jobs:
 
       # 2 ─ install Quarto (official action from the Quarto team)
       - uses: quarto-dev/quarto-actions/setup@v2
-        with: { version: stable }
 
       # 3 ─ convert notebooks/**/*.qmd  ➜  <root>/…/*.ipynb
       - name: Convert QMD → IPYNB
