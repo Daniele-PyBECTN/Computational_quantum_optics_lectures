@@ -19,20 +19,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1 Checkout main
       - name: Checkout main
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2 Setup Quarto
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          # Pip’s default cache directory
+          path: ~/.cache/pip
+          # Bust the cache whenever requirements.txt changes
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          # Fallback: any pip cache on this OS
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install Python deps from requirements.txt
         run: pip install -r requirements.txt
 
-      # 3 Convert QMD → IPYNB
       - name: Convert QMD → IPYNB
         run: |
           set -euo pipefail
@@ -41,7 +49,6 @@ jobs:
             quarto render "$src" --to ipynb
           done
 
-      # 4 Checkout notebooks branch into `branch-out/`
       - name: Checkout notebooks branch
         uses: actions/checkout@v4
         with:
@@ -49,7 +56,7 @@ jobs:
           path: branch-out
           fetch-depth: 0
 
-      # 5 (Optional) Prune stale files
+      # Prune stale files
       # This looks at every tracked notebooks/*.ipynb, checks whether ../notebooks/*.qmd still exists in main, and removes it from the index if not.
       - name: Remove stale notebooks
         run: |
@@ -61,7 +68,7 @@ jobs:
             fi
           done
           cd ..
-      # 6 Copy the converted notebooks + helper files
+
       - name: Copy artifacts
         run: |
           # helper files at root
@@ -72,7 +79,6 @@ jobs:
           mkdir -p branch-out/notebooks
           cp notebooks/*.ipynb branch-out/notebooks/
 
-      # 7 Commit & push
       - name: Commit & Push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -84,6 +90,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "✅ No changes to push"
           else
-            git commit -m "ci: update notebooks from ${{ github.sha }}"
+            git commit -m "Update notebooks from ${{ github.sha }}"
             git push origin notebooks
           fi
