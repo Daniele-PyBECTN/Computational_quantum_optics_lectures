@@ -518,7 +518,7 @@ I like cherry</code></pre>
 <section id="defining-functions" class="level3" data-number="2.6.3">
 <h3 data-number="2.6.3" class="anchored" data-anchor-id="defining-functions"><span class="header-section-number">2.6.3</span> Defining functions</h3>
 <p>Functions bundle reusable logic behind a descriptive name. In quantum‑optics simulations, well‑structured functions help keep notebooks tidy—for instance, collecting the code that builds a Hamiltonian or evaluates an observable in one place. Below is a minimal example that squares a number.</p>
-<div id="0488de37" class="cell" data-execution_count="2">
+<div id="ef16b9db" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> square(x):</span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">return</span> x <span class="op">*</span> x</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
@@ -531,7 +531,7 @@ I like cherry</code></pre>
 <section id="lambda-anonymous-functions" class="level3" data-number="2.6.4">
 <h3 data-number="2.6.4" class="anchored" data-anchor-id="lambda-anonymous-functions"><span class="header-section-number">2.6.4</span> Lambda (anonymous) functions</h3>
 <p>Occasionally we only need a <em>small, throw‑away</em> function—say, as a callback or key in a sort operation. Python’s <code>lambda</code> syntax lets us declare such anonymous functions in a single line, without the ceremony of <code>def</code>.</p>
-<div id="414a06a9" class="cell" data-execution_count="3">
+<div id="38ae2253" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>square_lambda <span class="op">=</span> <span class="kw">lambda</span> x: x <span class="op">*</span> x</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(square_lambda(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -553,7 +553,7 @@ I like cherry</code></pre>
 <h3 data-number="2.6.6" class="anchored" data-anchor-id="enter-numpy"><span class="header-section-number">2.6.6</span> Enter <code>numpy</code></h3>
 <p>To overcome the performance limits of pure‑Python lists, we turn to <strong>NumPy</strong>, which stores data in contiguous, fixed‑type arrays and dispatches mathematical operations to highly‑optimised C (and often SIMD/GPU) kernels. The example below shows how you can express a million‑element computation in just two vectorised lines.</p>
 <p><code>numpy</code> provides fixed‑type, contiguous arrays backed by efficient C (or SIMD/GPU) loops. Operations are dispatched <strong>once</strong> for the whole array, eliminating Python‑level overhead and unlocking BLAS/LAPACK acceleration.</p>
-<div id="67816169" class="cell" data-execution_count="4">
+<div id="d4502171" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="co"># Vectorized array operations</span></span>
