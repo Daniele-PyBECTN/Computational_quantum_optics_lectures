@@ -29,6 +29,9 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install Python deps from requirements.txt
+        run: pip install -r requirements.txt
+
       # 3 Convert QMD → IPYNB
       - name: Convert QMD → IPYNB
         run: |
