@@ -9,6 +9,7 @@ on:
       - 'apt.txt'
       - 'postBuild'
       - '.jupyter/**'
+      - '.github/workflows/build-notebooks.yml'
   workflow_dispatch:
 
 permissions:
