@@ -55,7 +55,7 @@ jobs:
           git switch notebooks
 
           # --- remove any files that used to exist but are no longer produced
-          git rm -r --quiet --cached .
+          git rm -r --quiet --cached --ignore-unmatch .
 
           # --- stage the current build
           find . -name '*.ipynb' -print0 | xargs -0 git add
