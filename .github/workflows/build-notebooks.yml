@@ -27,7 +27,6 @@ jobs:
           for src in notebooks/**/*.qmd; do
             rel="${src#notebooks/}"          # drop leading “notebooks/”
             out="${rel%.qmd}.ipynb"
-            echo "• $src → $out"
             mkdir -p "$(dirname "$out")"
             quarto convert "$src" -o "$out"
           done
