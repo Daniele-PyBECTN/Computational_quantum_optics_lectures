@@ -29,10 +29,7 @@ jobs:
           set -euo pipefail
           shopt -s globstar nullglob
           for src in notebooks/**/*.qmd; do
-            rel="${src#notebooks/}"          # drop leading “notebooks/”
-            out="${rel%.qmd}.ipynb"
-            mkdir -p "$(dirname "$out")"
-            quarto convert "$src" -o "$out"
+            quarto convert "$src"
           done
 
       # 4 ─ copy Binder / Colab helper files from main
@@ -47,20 +44,23 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
+
           git config user.name  "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
 
-          # fetch and switch; the branch already exists after your manual orphan step
+          # stay in sync with remote, then switch
           git fetch origin notebooks
           git switch notebooks
 
-          # --- remove any files that used to exist but are no longer produced
-          git rm -r --quiet --cached --ignore-unmatch .
+          # prune notebooks/helper files that disappeared since last run
+          git rm -r --cached --quiet --ignore-unmatch notebooks \
+                                     requirements.txt apt.txt postBuild .jupyter
 
-          # --- stage the current build
-          find . -name '*.ipynb' -print0 | xargs -0 git add
+          # stage fresh artefacts
+          find notebooks -name '*.ipynb' -print0 | xargs -0 git add
           git add requirements.txt apt.txt postBuild .jupyter 2>/dev/null || true
 
-          # commit if something is staged
-          git diff --cached --quiet || git commit -m "Auto-update notebooks from ${GITHUB_SHA}"
+          # commit & push (skip if nothing changed)
+          git diff --cached --quiet && { echo "No changes to commit"; exit 0; }
+          git commit -m "Auto-update notebooks from ${GITHUB_SHA}"
           git push --force-with-lease
