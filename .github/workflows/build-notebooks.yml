@@ -33,7 +33,7 @@ jobs:
       - name: Convert QMD → IPYNB
         run: |
           set -euo pipefail
-          shopt -s globstar nullglob     # ⬅️ enable ** and ignore “no match”
+          shopt -s globstar nullglob
           for src in notebooks/**/*.qmd; do
             quarto convert "$src"
           done
@@ -47,12 +47,17 @@ jobs:
           fetch-depth: 0
 
       # 5 (Optional) Prune stale files
-      - name: Prune branch-out
+      # This looks at every tracked notebooks/*.ipynb, checks whether ../notebooks/*.qmd still exists in main, and removes it from the index if not.
+      - name: Remove stale notebooks
         run: |
           cd branch-out
-          git reset --hard origin/notebooks
+          git ls-files "notebooks/*.ipynb" | while read ipynb; do
+            src="../${ipynb%.ipynb}.qmd"
+            if [ ! -f "$src" ]; then
+              git rm --ignore-unmatch "$ipynb"
+            fi
+          done
           cd ..
-
       # 6 Copy the converted notebooks + helper files
       - name: Copy artifacts
         run: |
