@@ -68,19 +68,18 @@ jobs:
           git ls-files "*.ipynb" | while read ipynb; do
             src="../${ipynb%.ipynb}.qmd"
             if [ ! -f "$src" ]; then
-              echo "Removing stale $ipynb"
               git rm --ignore-unmatch "$ipynb"
             fi
           done
           cd ..
 
-      - name: Copy artifacts
-        run: |
-          # helper files at root
-          cp requirements.txt apt.txt postBuild branch-out/ 2>/dev/null || true
-          cp -r .jupyter    branch-out/ 2>/dev/null || true
+      # - name: Copy artifacts
+      #   run: |
+      #     # helper files at root
+      #     cp requirements.txt apt.txt postBuild branch-out/ 2>/dev/null || true
+      #     cp -r .jupyter    branch-out/ 2>/dev/null || true
 
-          rsync -av --include='*/' --include='*.ipynb' --exclude='*' --prune-empty-dirs . branch-out/
+      #     rsync -av --include='*/' --include='*.ipynb' --exclude='*' --prune-empty-dirs . branch-out/
 
       - name: Commit & Push
         env:
