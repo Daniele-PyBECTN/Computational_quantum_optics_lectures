@@ -2,9 +2,11 @@ name: Build notebooks
 
 on:
   push:
-    branches: [main]                   # authoring branch
-    paths: ['notebooks/**/*.qmd']      # rebuild only when these change
-  workflow_dispatch:                   # manual trigger
+    branches: [main]                            # authoring branch
+    paths:
+      - 'notebooks/**/*.qmd'                    # QMD-to-notebook changes
+      - '.github/workflows/build-notebooks.yml' # run again if you edit this file
+  workflow_dispatch:                            # manual trigger
 
 jobs:
   build:
