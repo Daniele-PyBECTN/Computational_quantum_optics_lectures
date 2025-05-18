@@ -2,6 +2,7 @@
 
 ## Main Differences with C++
 
+
 Python differs from C++ in several key ways:
 - **Dynamic Typing**: Variables don't need explicit type declarations
 - **List Comprehensions**: Concise way to create and manipulate lists
