@@ -1,12 +1,15 @@
-name: Build notebooks
+name: Sync Notebooks
 
 on:
   push:
-    branches: [main]                            # authoring branch
+    branches: [ main ]
     paths:
-      - 'notebooks/**/*.qmd'                    # QMD-to-notebook changes
-      - '.github/workflows/build-notebooks.yml' # run again if you edit this file
-  workflow_dispatch:                            # manual trigger
+      - 'notebooks/**/*.qmd'
+      - 'requirements.txt'
+      - 'apt.txt'
+      - 'postBuild'
+      - '.jupyter/**'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,53 +17,59 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # 1 ─ full checkout so we can switch branches later
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+      # 1 Checkout main
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # 2 ─ install Quarto (official action from the Quarto team)
-      - uses: quarto-dev/quarto-actions/setup@v2
+      # 2 Setup Quarto
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
 
-      # 3 ─ convert notebooks/**/*.qmd  ➜  <root>/…/*.ipynb
+      # 3 Convert QMD → IPYNB
       - name: Convert QMD → IPYNB
-        run: |
-          set -euo pipefail
-          shopt -s globstar nullglob
-          for src in notebooks/**/*.qmd; do
-            rel="${src#notebooks/}"          # drop leading “notebooks/”
-            out="${rel%.qmd}.ipynb"
-            mkdir -p "$(dirname "$out")"
-            quarto convert "$src" -o "$out"
-          done
+        run: quarto convert notebooks/**/*.qmd
 
-      # 4 ─ copy Binder / Colab helper files from main
-      - name: Copy helper assets (Binder / Colab)
-        run: |
-          # add or remove paths in this single line as needed
-          cp -r requirements.txt apt.txt postBuild .jupyter . 2>/dev/null || true
+      # 4 Checkout notebooks branch into `branch-out/`
+      - name: Checkout notebooks branch
+        uses: actions/checkout@v4
+        with:
+          ref: notebooks
+          path: branch-out
+          fetch-depth: 0
 
-      # 5 ─ commit and push to the notebooks branch
-      - name: Commit notebooks to notebooks branch
+      # 5 (Optional) Prune stale files
+      - name: Prune branch-out
+        run: |
+          cd branch-out
+          git reset --hard origin/notebooks
+          cd ..
+
+      # 6 Copy the converted notebooks + helper files
+      - name: Copy artifacts
+        run: |
+          # helper files at root
+          cp requirements.txt apt.txt postBuild branch-out/ 2>/dev/null || true
+          cp -r .jupyter    branch-out/ 2>/dev/null || true
+
+          # notebooks into the notebooks/ subfolder
+          mkdir -p branch-out/notebooks
+          cp notebooks/*.ipynb branch-out/notebooks/
+
+      # 7 Commit & push
+      - name: Commit & Push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set -euo pipefail
+          cd branch-out
           git config user.name  "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-
-          # fetch and switch; the branch already exists after your manual orphan step
-          git fetch origin notebooks
-          git switch notebooks
-
-          # --- remove any files that used to exist but are no longer produced
-          git rm -r --quiet --cached --ignore-unmatch .
-
-          # --- stage the current build
-          find . -name '*.ipynb' -print0 | xargs -0 git add
-          git add requirements.txt apt.txt postBuild .jupyter 2>/dev/null || true
-
-          # commit if something is staged
-          git diff --cached --quiet || git commit -m "Auto-update notebooks from ${GITHUB_SHA}"
-          git push --force-with-lease
+          git add .
+          if git diff --cached --quiet; then
+            echo "✅ No changes to push"
+          else
+            git commit -m "ci: update notebooks from ${{ github.sha }}"
+            git push origin notebooks
+          fi
