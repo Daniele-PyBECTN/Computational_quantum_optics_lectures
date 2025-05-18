@@ -1,10 +1,8 @@
 ---
-format:
-    html:
-        other-links:
-            - text: Run notebook in Binder
-              href: https://mybinder.org/v2/gh/{{< meta github.user >}}/{{< meta github.repo >}}/{{< meta github.branch >}}/?urlpath=lab/tree/notebooks/lecture1/introduction.ipynb
-              icon: file-code
+other-links:
+  - text: Run notebook in Binder
+    href: https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/introduction.ipynb
+    icon: file-code
 ---
 
 # Introduction to Python

@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'notebooks/**/*.qmd'
+      - 'lecture1/**/*.qmd'
       - 'requirements.txt'
       - 'apt.txt'
       - 'postBuild'
@@ -48,6 +49,9 @@ jobs:
           for src in notebooks/**/*.qmd; do
             quarto render "$src" --to ipynb
           done
+          for src in lecture1/**/*.qmd; do
+            quarto render "$src" --to ipynb
+          done
 
       - name: Checkout notebooks branch
         uses: actions/checkout@v4
@@ -57,11 +61,11 @@ jobs:
           fetch-depth: 0
 
       # Prune stale files
-      # This looks at every tracked notebooks/*.ipynb, checks whether ../notebooks/*.qmd still exists in main, and removes it from the index if not.
+      # This looks at every tracked *.ipynb, checks whether *.qmd still exists in main, and removes it from the index if not.
       - name: Remove stale notebooks
         run: |
           cd branch-out
-          git ls-files "notebooks/*.ipynb" | while read ipynb; do
+          git ls-files "*.ipynb" | while read ipynb; do
             src="../${ipynb%.ipynb}.qmd"
             if [ ! -f "$src" ]; then
               git rm --ignore-unmatch "$ipynb"
@@ -76,8 +80,7 @@ jobs:
           cp -r .jupyter    branch-out/ 2>/dev/null || true
 
           # notebooks into the notebooks/ subfolder
-          mkdir -p branch-out/notebooks
-          cp notebooks/*.ipynb branch-out/notebooks/
+          rsync -av --include='*/' --include='*.ipynb' --exclude='*' . branch-out/
 
       - name: Commit & Push
         env:

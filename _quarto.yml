@@ -34,7 +34,7 @@ book:
         href:  https://github.com/Daniele-PyBECTN/Computational_quantum_optics_lectures
   chapters:
     - index.qmd
-    - introduction.qmd
+    - lecture1/introduction.qmd
     # - lecture1/lecture1.qmd
     - bibliography.qmd
 
@@ -77,11 +77,6 @@ format:
         \renewcommand\Affilfont{\small}
 
 jupyter: python3
-
-github:
-  user: Daniele-PyBECTN
-  repo: Computational_quantum_optics_lectures
-  branch: notebooks
 
 execute:
   eval: true
