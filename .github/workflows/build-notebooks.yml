@@ -31,7 +31,12 @@ jobs:
 
       # 3 Convert QMD → IPYNB
       - name: Convert QMD → IPYNB
-        run: quarto convert notebooks/**/*.qmd
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob     # ⬅️ enable ** and ignore “no match”
+          for src in notebooks/**/*.qmd; do
+            quarto convert "$src"
+          done
 
       # 4 Checkout notebooks branch into `branch-out/`
       - name: Checkout notebooks branch
