@@ -1,6 +1,5 @@
 project:
   type: book
-  output-dir: _output
 
 book:
   title: "Numerical Methods for Quantum Optics and Open Quantum Systems"

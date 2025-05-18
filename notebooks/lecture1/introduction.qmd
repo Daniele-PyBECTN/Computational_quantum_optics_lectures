@@ -18,3 +18,27 @@ print(f'First fruit: {fruits[0]}')
 for fruit in fruits:
     print(f'I like {fruit}')
 ```
+
+```{python}
+#| label: python-function
+def square(x):
+    return x * x
+
+print(square(5))
+```
+
+```{python}
+#| label: python-lambda
+square_lambda = lambda x: x * x
+print(square_lambda(5))
+```
+
+```{python}
+#| label: python-numpy
+import numpy as np
+
+# Vectorized array operations
+x = np.linspace(0, 0.01, 1_000_000)
+y = np.sin(x) + 0.5 * x**2
+print(y[:5])  # show first five results
+```

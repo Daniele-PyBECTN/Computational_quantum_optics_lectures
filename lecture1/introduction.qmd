@@ -1,8 +1,10 @@
 ---
-other-links:
-  - text: Run notebook in Binder
-    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/lecture1/introduction.ipynb"
-    icon: file-code
+format:
+  html:
+    other-links:
+      - text: Run notebook in Binder
+        href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/lecture1/introduction.ipynb"
+        icon: file-code
 ---
 
 # Introduction
@@ -79,21 +81,13 @@ A `for` loop allows us to *iterate* through each item in a collection and execut
 
 Functions bundle reusable logic behind a descriptive name.  In quantum‑optics simulations, well‑structured functions help keep notebooks tidy—for instance, collecting the code that builds a Hamiltonian or evaluates an observable in one place.  Below is a minimal example that squares a number.
 
-```{python}
-def square(x):
-    return x * x
-
-print(square(5))
-```
+{{< embed /notebooks/lecture1/introduction.qmd#python-function echo=true >}}
 
 ### Lambda (anonymous) functions
 
 Occasionally we only need a *small, throw‑away* function—say, as a callback or key in a sort operation.  Python’s `lambda` syntax lets us declare such anonymous functions in a single line, without the ceremony of `def`.
 
-```{python}
-square_lambda = lambda x: x * x
-print(square_lambda(5))
-```
+{{< embed /notebooks/lecture1/introduction.qmd#python-lambda echo=true >}}
 
 ### Why plain Python lists can be slow
 
@@ -111,13 +105,6 @@ To overcome the performance limits of pure‑Python lists, we turn to **NumPy**,
 
 `numpy` provides fixed‑type, contiguous arrays backed by efficient C (or SIMD/GPU) loops. Operations are dispatched **once** for the whole array, eliminating Python‑level overhead and unlocking BLAS/LAPACK acceleration.
 
-```{python}
-import numpy as np
-
-# Vectorized array operations
-x = np.linspace(0, 0.01, 1_000_000)
-y = np.sin(x) + 0.5 * x**2
-print(y[:5])  # show first five results
-```
+{{< embed /notebooks/lecture1/introduction.qmd#python-numpy echo=true >}}
 
 One line performs a million floating‑point operations in compiled code—often orders of magnitude faster than an explicit Python loop.
