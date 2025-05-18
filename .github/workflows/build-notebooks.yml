@@ -45,9 +45,6 @@ jobs:
         run: |
           set -euo pipefail
 
-          echo "--- generated files"; find . -name '*.ipynb'
-          git check-ignore $(find . -name '*.ipynb')
-
           git config user.name  "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
 
@@ -57,6 +54,9 @@ jobs:
 
           # stage only *.ipynb + the helper files we just copied
           git add $(find . -name '*.ipynb') requirements.txt apt.txt postBuild .jupyter 2>/dev/null || true
+
+          echo "--- generated files"; find . -name '*.ipynb'
+          git check-ignore $(find . -name '*.ipynb')
 
           # skip commit if nothing changed
           git diff --cached --quiet && { echo "No changes to commit"; exit 0; }
