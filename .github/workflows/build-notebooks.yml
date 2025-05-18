@@ -53,7 +53,8 @@ jobs:
           git switch notebooks
 
           # prune notebooks/helper files that disappeared since last run
-          git rm -r --cached --quiet --ignore-unmatch .
+          git rm -r --cached --quiet --ignore-unmatch notebooks \
+                                     requirements.txt apt.txt postBuild .jupyter
 
           # stage fresh artefacts
           find notebooks -name '*.ipynb' -print0 | xargs -0 git add
