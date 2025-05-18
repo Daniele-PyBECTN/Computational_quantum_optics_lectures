@@ -1,7 +1,3 @@
----
-code-links: binder
----
-
 # Introduction
 
 ## Why simulate open quantum systems?
@@ -118,7 +114,7 @@ To overcome the performance limits of pure‑Python lists, we turn to **NumPy**,
 import numpy as np
 
 # Vectorized array operations
-x = np.linspace(0, 10, 20)
+x = np.linspace(0, 0.01, 1_000_000)
 y = np.sin(x) + 0.5 * x**2
 print(y[:5])  # show first five results
 ```

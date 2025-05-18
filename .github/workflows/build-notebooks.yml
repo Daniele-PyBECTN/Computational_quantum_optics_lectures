@@ -35,7 +35,7 @@ jobs:
           set -euo pipefail
           shopt -s globstar nullglob
           for src in notebooks/**/*.qmd; do
-            quarto convert "$src"
+            quarto render "$src" --to ipynb
           done
 
       # 4 Checkout notebooks branch into `branch-out/`
