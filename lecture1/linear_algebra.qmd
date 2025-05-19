@@ -1,0 +1,243 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/linear_algebra.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/linear_algebra.ipynb"
+    icon: google
+---
+# Linear Algebra with NumPy and SciPy
+
+Quantum systems are described by vectors and operators in complex Hilbert spaces. States $\vert \psi \rangle$ correspond to column vectors, and observables—like the Hamiltonian $\hat{H}$ or spin operators—are represented by matrices. Tasks such as finding energy spectra via eigenvalue decompositions, simulating time evolution through operator exponentials, and building composite systems with tensor (Kronecker) products all reduce to core linear‐algebra operations.
+
+In this chapter, we will leverage NumPy’s and SciPy’s routines (backed by optimized BLAS/LAPACK) to perform matrix–matrix products, eigen-decompositions, vector norms, and more. When system size grows, SciPy’s sparse data structures and Krylov‐subspace solvers will let us handle very large, structured operators efficiently.
+
+By blending physical intuition (Schrödinger’s equation, expectation values, operator algebra) with hands‐on Python code, you’ll see how powerful and intuitive modern linear‐algebra libraries can be for quantum‐mechanics simulations. Let’s get started!
+
+## NumPy: The Foundation of Dense Linear Algebra
+
+NumPy provides the `ndarray` type, an efficient, N-dimensional array stored in contiguous memory. This layout makes vectorized operations and low-level BLAS calls blazing fast. At its simplest, a 2D `ndarray` represents a matrix:
+
+$$
+A = \begin{pmatrix}a_{11} & a_{12}\\ a_{21} & a_{22}\end{pmatrix},
+$$
+
+and a 1D `ndarray` represents a column vector:
+
+$$
+\mathbf{v} = \begin{pmatrix}v_1\\ v_2\end{pmatrix}.
+$$
+
+NumPy’s dense arrays form the backbone of many quantum‐simulation tasks—building Hamiltonians, computing overlaps, and propagating states all reduce to these core operations. Having a quick reference for them can speed up both writing and reading simulation code.
+
+### Summary of Core Functions
+
+| Operation                    | Equation                                          | NumPy call                |
+| ---------------------------- | -----------------------------------               | ------------------------- |
+| Matrix–matrix product        | $C = A B$                                         | `C = A.dot(B)` or `A @ B` |
+| Matrix–vector product        | $\mathbf{w} = A \mathbf{v}$                       | `w = A.dot(v)`            |
+| Eigenvalues and eigenvectors | $A \mathbf{x} = \lambda \mathbf{x}$               | `w, v = np.linalg.eig(A)` |
+| Determinant                  | $\det(A)$                                         | `np.linalg.det(A)`        |
+| Inverse                      | $A^{-1}$                                          | `np.linalg.inv(A)`        |
+| Norm (Frobenius)             | $\|A\|_F = \sqrt{\sum_{ij} \vert a_{ij} \vert^2}$ | `np.linalg.norm(A)`       |
+| Kronecker product            | $A \otimes B$                                     | `np.kron(A, B)`           |
+
+In the table above, each abstract operation is paired with its NumPy call. Notice how intuitive the syntax is: the `@` operator reads like the usual linear-algebra notation.
+
+### Matrix–Matrix and Matrix–Vector Multiplication
+
+Let's consider a simple example of a 2×2 matrix $A$ and a 2-vector $\mathbf{v}$. This captures key ideas: operator composition via matrix–matrix products and state evolution via matrix–vector products. Indeed, in quantum mechanics, applying one operator after another corresponds to a matrix–matrix product, while acting on a quantum state uses a matrix–vector product. Consider the following:
+
+{{< embed /notebooks/lecture1/linear_algebra.qmd#numpy-matrix-matrix-vector echo=true >}}
+
+Here, `A @ A` computes $A^2$, and `A @ v` computes $A\mathbf{v}$.
+
+### Diagonalization
+
+The eigenvalue problem is one of the cornerstones of both applied mathematics and quantum mechanics.  Given a square matrix $A \in \mathbb{C}^{n\times n}$, we seek scalars $\lambda\in\mathbb{C}$ (eigenvalues) and nonzero vectors $\mathbf{x}\in\mathbb{C}^n$ (eigenvectors) such that
+
+$$
+A \,\mathbf{x} = \lambda\,\mathbf{x}.
+$$
+
+Physically, in quantum mechanics, $A$ might be the Hamiltonian operator $\hat H$, its eigenvalues $\lambda$ correspond to allowed energy levels, and the eigenvectors $\mathbf{x}$ represent stationary states.  Mathematically, diagonalizing $A$ transforms it into a simple form
+
+$$
+A = V \,\Lambda\, V^{-1},
+$$
+
+where $\Lambda$ is the diagonal matrix of eigenvalues and the columns of $V$ are the corresponding eigenvectors.  Once in diagonal form, many operations—such as computing matrix exponentials for time evolution, powers of $A$, or resolving a system of differential equations—become trivial:
+
+<!-- TODO: Make reference to the ODE Section -->
+
+$$
+f(A) = V\,f(\Lambda)\,V^{-1},\quad
+f(\Lambda) = \mathrm{diag}\bigl(f(\lambda_1),\dots,f(\lambda_n)\bigr).
+$$
+
+In practice, NumPy’s [`np.linalg.eig`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) calls optimized LAPACK routines to compute all eigenpairs of a dense matrix:
+
+{{< embed /notebooks/lecture1/linear_algebra.qmd#numpy-eigenvalues echo=true >}}
+
+Under the hood, NumPy calls optimized LAPACK routines to diagonalize dense matrices.
+
+### Kronecker Product
+
+In quantum mechanics, the state space of a composite system is the tensor product of the state spaces of its subsystems.  If system 1 has Hilbert space $\mathcal H_A$ of dimension $m$ and system 2 has $\mathcal H_B$ of dimension $p$, then the joint space is $\mathcal H_A\otimes\mathcal H_B$ of dimension $m p$.  Operators on the composite system factorize as tensor (Kronecker) products of subsystem operators.  For example, if $A$ acts on system 1 and $B$ on system 2, then
+$$
+A\otimes B\;:\;\mathcal H_A\otimes\mathcal H_B\to \mathcal H_A\otimes\mathcal H_B
+$$
+has matrix elements
+$$
+(A\otimes B)_{(i\,,\,\alpha),(j\,,\,\beta)}
+    = A_{ij}\,B_{\alpha\beta},
+$$
+and in block form
+$$
+A \otimes B
+= \begin{pmatrix}
+    a_{11}\,B & a_{12}\,B & \cdots & a_{1n}\,B \\
+    \vdots    &        &        & \vdots     \\
+    a_{m1}\,B & a_{m2}\,B & \cdots & a_{mn}\,B
+\end{pmatrix},
+$$
+yielding an $mp\times nq$ matrix when $A\in\mathbb C^{m\times n}$ and $B\in\mathbb C^{p\times q}$.
+
+Why is this useful?  In later chapters we will build multi‐qubit gates (e.g.\ CNOT, controlled-phase), couple different oscillators, and assemble large Hamiltonians by taking tensor products of single‐mode operators.  The Kronecker product lets us lift any local operator into the full, composite Hilbert space.
+
+In NumPy, the Kronecker product is computed with [`np.kron`](https://numpy.org/doc/stable/reference/generated/numpy.kron.html):
+
+{{< embed /notebooks/lecture1/linear_algebra.qmd#numpy-kron echo=true >}}
+
+Kronecker products build composite quantum-system operators from single-subsystem operators.
+
+## SciPy: Advanced Algorithms and Sparse Data
+
+While NumPy covers dense linear algebra, SciPy complements it with:
+
+| Module                | Purpose                                             |
+| --------------------- | --------------------------------------------------- |
+| `scipy.linalg`        | Alternative LAPACK-based routines for dense ops     |
+| `scipy.sparse`        | Data structures (COO, CSR, CSC) for sparse matrices |
+| `scipy.sparse.linalg` | Iterative solvers (e.g. Arnoldi, Lanczos)           |
+| `scipy.integrate`     | ODE and quadrature routines                         |
+| `scipy.optimize`      | Root-finding and minimization                       |
+| `scipy.special`       | Special mathematical functions                      |
+
+Compared to NumPy, SciPy’s routines often expose extra options (e.g. choosing solvers) and can handle very large, sparse systems efficiently.
+
+## Some Useful Functions
+
+Below are a few handy SciPy routines:
+
+- Determinant: [`scipy.linalg.det`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.det.html#scipy.linalg.det) 
+- Inverse: [`scipy.linalg.inv`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.inv.html#scipy.linalg.inv)
+- Frobenius norm: [`scipy.linalg.norm`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.norm.html#scipy.linalg.norm)
+
+{{< embed /notebooks/lecture1/linear_algebra.qmd#scipy-functions echo=true >}}
+
+## Solving Linear Systems
+
+A linear system has the form
+
+$$
+A\,\mathbf{x} = \mathbf{b},
+$$
+
+where $A\in\mathbb R^{n\times n}$ and $\mathbf b\in\mathbb R^n$ is known.  For small $n$ you can even solve by hand.  For example, consider the $2\times2$ system
+
+$$
+\begin{cases}
+x_1 + 2x_2 = 5,\\
+3x_1 + 4x_2 = 11.
+\end{cases}
+\quad\Longrightarrow\quad
+A = \begin{pmatrix}1 & 2\\ 3 & 4\end{pmatrix},\;
+\mathbf b = \begin{pmatrix}5\\11\end{pmatrix}.
+$$
+
+We can reproduce this with NumPy:
+
+{{< embed /notebooks/lecture1/linear_algebra.qmd#scipy-linear-systems echo=true >}}
+
+SciPy’s sparse module also offers [`scipy.sparse.linalg.spsolve`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.spsolve.html#scipy.sparse.linalg.spsolve) for large, sparse $A$.
+
+## Sparse Matrices
+
+As quantum systems scale to many degrees of freedom, the underlying operators—such as Hamiltonians or Liouvillian superoperators—grow exponentially in dimension but often remain highly structured and sparse. Instead of storing dense arrays with mostly zeros, sparse-matrix formats only record nonzero entries and their indices, dramatically reducing memory requirements. Common physical models, like spin chains with nearest-neighbor couplings or lattice Hamiltonians, have only $\mathcal{O}(N)$ or $\mathcal{O}(N \log N)$ nonzero elements, making sparse representations essential for large-scale simulations.
+
+In the following sections, we will:
+
+- Construct sparse matrices in COO formats with SciPy.
+- Illustrate basic sparse-matrix operations (matrix–vector products, format conversions).
+- Use [`scipy.sparse.linalg.eigs`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigs.html#scipy.sparse.linalg.eigs) (Arnoldi) to compute a few eigenvalues of a sparse Hamiltonian.
+
+The Coordinate (COO) format is a simple way to store sparse matrices. Instead of storing all entries, the COO format only keeps nonzero entries of the form $(i, j, a_{ij})$, which saves memory and speeds up computations. Graphically, a 5×5 example with 4 nonzeros might look like:
+
+$$
+A = \begin{pmatrix}
+7 & \cdot & \cdot & \cdot & 1 \\
+\cdot & \cdot & 2      & \cdot & \cdot \\
+\cdot & 3      & \cdot & \cdot & \cdot \\
+\cdot & \cdot & \cdot & \cdot & \cdot \\
+4      & \cdot & \cdot & \cdot & \cdot
+\end{pmatrix}
+$$
+
+Here each number shows a location and its value. COO is very simple and intuitive, but not the most efficient. For larger matrices, we can use the Compressed Sparse Row (CSR) or Compressed Sparse Column (CSC) formats, which store the nonzero entries in a more compact way. The CSR format is very efficient for matrix–vector products.
+
+Such matrix can be created in SciPy using the [`coo_matrix`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html#scipy.sparse.coo_matrix) class:
+
+{{< embed /notebooks/lecture1/linear_algebra.qmd#scipy-sparse-coo echo=true >}}
+
+It is also possible to convert between different sparse formats. For example, to convert a COO matrix to CSR format, you can use the `tocsc()` method:
+
+{{< embed /notebooks/lecture1/linear_algebra.qmd#scipy-sparse-coo-tocsr echo=true >}}
+
+And the matrix–vector product is as simple as:
+
+{{< embed /notebooks/lecture1/linear_algebra.qmd#scipy-sparse-matrix-vector echo=true >}}
+
+### Eigenvalues of Sparse Matrices
+
+Even with sparse storage, direct methods (dense diagonalization or full factorization) become intractable when the matrix dimension exceeds millions. To extract a few extremal eigenvalues or approximate time evolution, Krylov-subspace approaches (like the Arnoldi algorithm) build a low-dimensional orthonormal basis that captures the action of the operator on a subspace. By repeatedly applying the sparse matrix to basis vectors and orthogonalizing, Arnoldi produces a small Hessenberg matrix whose eigenpairs approximate those of the full operator. This hybrid strategy leverages both memory-efficient storage and iterative linear algebra to access spectral properties of huge quantum systems.
+
+To approximate a few eigenvalues of a large, sparse matrix $A$, SciPy’s `eigs` implements the Arnoldi algorithm. Under the hood it builds an $m$-dimensional Krylov basis. More precisely, given a starting vector $v_1$ with $\|v_1\|_2 = 1$, the $m$‑dimensional Krylov subspace is
+
+$$
+\mathcal{K}_m(A, v_1) = \operatorname{span}\{v_1, Av_1, A^{2}v_1, \dots, A^{m-1}v_1\}.
+$$
+
+The Arnoldi iteration produces the decomposition
+
+$$
+A V_m = V_m H_m + h_{m+1,m}\, v_{m+1} e_m^{\top},
+$$
+
+where
+
+* $V_m = [v_1, \dots, v_m]$ has orthonormal columns,
+* $H_m$ is an $m \times m$ upper‑Hessenberg matrix,
+* $e_m$ is the $m$‑th canonical basis vector.
+
+The eigenvalues of $H_m$ are called **Ritz values**; they approximate eigenvalues of $A$. As $m$ grows, the approximation improves. In practice we combine Arnoldi with a **restart** strategy (after reaching a given $m$ we keep the most accurate Ritz vectors and build a fresh Krylov basis). SciPy’s [`scipy.sparse.linalg.eigs`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigs.html#scipy.sparse.linalg.eigs) wrapper uses the implicitly restarted Arnoldi method from ARPACK.
+
+As a pseudo-code, the Arnoldi algorithm can be summarized as follows:
+
+1. Pick a random vector $v$ and **normalize** it.
+2. For $j = 1, \dots, m$
+   1. $w = A v_j$
+   2. **Orthogonalize**:
+      $$h_{i,j} = v_i^{\dagger} w, \quad w \leftarrow w - h_{i,j} v_i \quad (i = 1, \dots, j)$$
+   3. $h_{j+1,j} = \|w\|_2$.
+   4. If $h_{j+1,j} = 0$, stop (the Krylov subspace is invariant).
+   5. $v_{j+1} = w / h_{j+1,j}$.
+
+The cost is $m$ sparse matrix–vector products and $\mathcal{O}(m^2 n)$ scalar operations for orthogonalization (which stays moderate when $m \ll n$).
+
+Here’s a concrete example:
+
+{{< embed /notebooks/lecture1/linear_algebra.qmd#scipy-sparse-eigenvalues echo=true >}}
+
+

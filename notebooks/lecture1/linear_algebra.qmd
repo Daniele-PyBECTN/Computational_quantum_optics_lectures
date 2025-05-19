@@ -1,0 +1,138 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/linear_algebra.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/linear_algebra.ipynb"
+    icon: google
+---
+# Linear Algebra with NumPy and SciPy
+
+## Numpy
+
+NumPy offers efficient dense-array operations that underpin many quantum-simulation tasks.
+
+### Matrix–Matrix and Matrix–Vector Multiplication
+
+Understanding an operator's action on itself and on quantum states is key: matrix–matrix products show operator composition, while matrix–vector products illustrate state evolution.
+
+```{python}
+#| label: numpy-matrix-matrix-vector
+import numpy as np
+
+# Define a 2×2 matrix and a 2-vector
+A = np.array([[1, 2], [3, 4]])
+v = np.array([5, 6])
+
+# Matrix–matrix product
+c = A @ A  # same as A.dot(A)
+display("A @ A =", c)
+
+# Matrix–vector product
+w = A @ v  # same as A.dot(v)
+display("A @ v =", w)
+```
+
+### Eigenvalues and Eigenvectors of a dense matrix
+
+Eigen-decomposition reveals the energy spectrum and stationary states of a quantum system, making it fundamental for analysis.
+
+```{python}
+#| label: numpy-eigenvalues
+w, v = np.linalg.eig(A)
+display("Eigenvalues:", w)
+display("Eigenvectors (as columns):\n", v)
+```
+
+### Kronecker Product
+
+The Kronecker product builds operators on composite systems by combining subsystem operators into a larger Hilbert space.
+
+```{python}
+#| label: numpy-kron
+B = np.array([[0, 1], [1, 0]])  # Pauli-X matrix
+kron = np.kron(A, B)
+display("A ⊗ B =", kron)
+```
+
+## SciPy
+
+SciPy extends NumPy with advanced routines and sparse data structures, enabling efficient handling of larger, structured problems.
+
+### Some Useful Functions
+
+Determinant, inverse, and norm computations provide quick diagnostics on operator properties.
+
+```{python}
+#| label: scipy-functions
+import scipy.linalg as la
+
+det = la.det(A)
+inv = la.inv(A)
+norm_f = la.norm(A)
+display(det, inv, norm_f)
+```
+
+### Solving Linear Systems
+
+Solving linear systems (Ax = b) appears in contexts from steady states to implicit integration schemes.
+
+```{python}
+#| label: scipy-linear-systems
+A = np.array([[1, 2], [3, 4]])
+b = np.array([5, 11])
+x = np.linalg.solve(A, b)
+display("Solution x=", x)
+```
+
+### Sparse Matrices
+
+Sparse formats store only nonzeros, saving memory and accelerating matrix–vector operations for large systems. Here we use the **COO** (coordinate) format, which is simple and efficient for constructing sparse matrices.
+
+```{python}
+#| label: scipy-sparse-coo
+from scipy import sparse
+
+# Create a sparse COO matrix
+i = [0, 0, 1, 2, 4] # row indices
+j = [0, 4, 2, 1, 0] # column indices
+data = [7, 1, 2, 3, 4] # nonzero values
+coo = sparse.coo_matrix((data, (i, j)), shape=(5, 5))
+coo
+```
+
+We can convert the COO matrix to other formats, such as **CSR** (Compressed Sparse Row), which is more efficient for matrix–vector products.
+
+```{python}
+#| label: scipy-sparse-coo-tocsr
+# Convert COO to CSR format
+csr = coo.tocsr()
+csr
+```
+
+Matrix–vector products are efficient with sparse matrices, as they only compute the nonzero contributions.
+
+```{python}
+#| label: scipy-sparse-matrix-vector
+# Matrix–vector product
+v = np.array([1, 2, 3, 4, 5])
+w = coo @ v  # same as coo.dot(v)
+w
+```
+
+### Eigenvalues of Sparse Matrices
+
+Krylov-subspace methods extract a few extremal eigenvalues from large sparse operators, essential when full diagonalization is infeasible.
+
+```{python}
+#| label: scipy-sparse-eigenvalues
+from scipy.sparse.linalg import eigs
+
+# Compute the 2 largest-magnitude eigenvalues of coo
+vals, vecs = eigs(coo, k=2)
+display("Sparse eigenvalues:", vals)
+```
+
+
+
