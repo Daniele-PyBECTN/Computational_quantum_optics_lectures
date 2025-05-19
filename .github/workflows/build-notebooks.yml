@@ -10,6 +10,7 @@ on:
       - 'postBuild'
       - '.jupyter/**'
       - '.github/workflows/build-notebooks.yml'
+      - '.github/workflows/build-notebooks-container.yml'
   workflow_dispatch:
 
 permissions:
