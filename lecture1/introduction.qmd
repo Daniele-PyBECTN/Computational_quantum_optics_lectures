@@ -89,6 +89,12 @@ Occasionally we only need a *small, throw‑away* function—say, as a callback 
 
 {{< embed /notebooks/lecture1/introduction.qmd#python-lambda echo=true >}}
 
+### Complex numbers
+
+Python has built‑in support for complex numbers, which are represented as `a + bj`, where `a` is the real part and `b` is the imaginary part. This is particularly useful in quantum mechanics, where complex numbers are ubiquitous.
+
+{{< embed /notebooks/lecture1/introduction.qmd#python-complex-number echo=true >}}
+
 ### Why plain Python lists can be slow
 
 Python lists store **references** to arbitrary Python objects. Each element carries its own type information and reference count. When you perform arithmetic on list elements, the interpreter must
@@ -104,6 +110,12 @@ This per‑element overhead dominates runtime in numerical workloads.
 To overcome the performance limits of pure‑Python lists, we turn to **NumPy**, which stores data in contiguous, fixed‑type arrays and dispatches mathematical operations to highly‑optimised C (and often SIMD/GPU) kernels.  The example below shows how you can express a million‑element computation in just two vectorised lines.
 
 `numpy` provides fixed‑type, contiguous arrays backed by efficient C (or SIMD/GPU) loops. Operations are dispatched **once** for the whole array, eliminating Python‑level overhead and unlocking BLAS/LAPACK acceleration.
+
+As an example, we can compute the sum of all the elements of a python list, comparing the performance with a numpy array. 
+
+{{< embed /notebooks/lecture1/introduction.qmd#python-sum-list-vs-numpy echo=true >}}
+
+NumPy is also able to perform vectorized operations, which let us express complex computations in a few lines of code.  For example, we can compute a function of all elements in an array without writing explicit loops.  This is not only more readable but also significantly faster, as the underlying C code can be optimised for performance.
 
 {{< embed /notebooks/lecture1/introduction.qmd#python-numpy echo=true >}}
 

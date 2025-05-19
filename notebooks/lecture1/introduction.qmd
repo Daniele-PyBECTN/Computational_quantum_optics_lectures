@@ -26,11 +26,15 @@ fruits = ['apple', 'banana', 'cherry']
 print(f'First fruit: {fruits[0]}')
 ```
 
+## For loops
+
 ```{python}
 #| label: python-for-loop
 for fruit in fruits:
     print(f'I like {fruit}')
 ```
+
+## Functions
 
 ```{python}
 #| label: python-function
@@ -40,16 +44,52 @@ def square(x):
 print(square(5))
 ```
 
+## Lambda functions
+
 ```{python}
 #| label: python-lambda
 square_lambda = lambda x: x * x
 print(square_lambda(5))
 ```
 
+## Complex numbers
+
+```{python}
+#| label: python-complex-number
+
+z = 1 + 2j
+print(f'Complex number: {z}')
+print(f'Real part: {z.real}')
+print(f'Magnitude: {abs(z)}')
+```
+
+## Numpy arrays
+
+```{python}
+#| label: python-sum-list-vs-numpy
+import numpy as np
+import time # Only for benchmarking
+
+my_list = [i / 1_000_000 for i in range(1_000_000)]
+
+start = time.time() # start timer
+sum_list = sum(my_list)  # sum using Python list
+end = time.time()  # end timer
+print(f'Sum using list: {sum_list}, '
+      f'Time taken: {1e3*(end - start):.4f} milliseconds')
+
+my_list_numpy = np.array(my_list)
+start = time.time()  # start timer
+sum_numpy = np.sum(my_list_numpy)  # sum using numpy array
+end = time.time()  # end timer
+print(f'Sum using numpy: {sum_numpy}, '
+      f'Time taken: {1e3*(end - start):.4f} milliseconds')
+```
+
+## Vectorized Numpy operations
+
 ```{python}
 #| label: python-numpy
-import numpy as np
-
 # Vectorized array operations
 x = np.linspace(0, 100, 1_000_000)
 y = np.sin(x) + 0.5 * x**2
