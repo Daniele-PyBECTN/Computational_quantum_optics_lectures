@@ -1,5 +1,9 @@
 name: Build container image
 
+permissions:
+  contents: read        # still let the workflow read the repo
+  packages: write       # <-- this is the missing bit
+
 on:
   push:
     branches:
