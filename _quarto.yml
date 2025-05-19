@@ -24,7 +24,8 @@ book:
           city: Firenze
           state: Italia
           postal-code: 50125
-  date: "15/05/2025"
+  date: today
+  date-format: "DD-MM-YYYY"
   downloads: [pdf]
   navbar:
     search: true
