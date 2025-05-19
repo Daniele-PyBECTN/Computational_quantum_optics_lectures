@@ -1,6 +1,9 @@
 name: Build container image
 
-on: [push]
+on:
+  push:
+    branches:
+      - notebooks
 
 jobs:
   build:
@@ -17,4 +20,4 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.GITHUB_TOKEN}}
         BINDER_CACHE: true
         DOCKER_REGISTRY: "ghcr.io"
-        IMAGE_NAME: "${{ github.repository }}/binder"
+        IMAGE_NAME: "daniele-pybectn/comp-qoptics-binder"
