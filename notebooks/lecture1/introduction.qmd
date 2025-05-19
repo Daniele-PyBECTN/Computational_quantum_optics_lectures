@@ -7,6 +7,19 @@ other-links:
 
 # Introduction to Python
 
+This notebook provides a brief introduction to Python, covering the basics of the language and its ecosystem.
+
+## Colab Setup
+
+Run this cell only if you are using Google Colab. It installs the required packages and sets up the environment.
+
+```{python}
+#| label: colab-setup
+!pip install -r https://raw.githubusercontent.com/Daniele-PyBECTN/Computational_quantum_optics_lectures/refs/heads/notebooks/requirements.txt
+```
+
+## Python Lists
+
 ```{python}
 #| label: python-list
 fruits = ['apple', 'banana', 'cherry']
@@ -38,7 +51,7 @@ print(square_lambda(5))
 import numpy as np
 
 # Vectorized array operations
-x = np.linspace(0, 0.01, 1_000_000)
+x = np.linspace(0, 100, 1_000_000)
 y = np.sin(x) + 0.5 * x**2
 print(y[:5])  # show first five results
 ```
