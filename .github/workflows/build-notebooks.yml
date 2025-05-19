@@ -76,7 +76,7 @@ jobs:
           cp requirements.txt apt.txt postBuild branch-out/ 2>/dev/null || true
           cp -r .jupyter    branch-out/ 2>/dev/null || true
 
-          rsync -av --exclude='branch-out/' --include='*/' --include='*.ipynb' --exclude='*'  --prune-empty-dirs ./ branch-out/
+          rsync -avc --exclude='branch-out/' --include='*/' --include='*.ipynb' --exclude='*'  --prune-empty-dirs ./ branch-out/
 
       - name: Commit & Push
         env:
