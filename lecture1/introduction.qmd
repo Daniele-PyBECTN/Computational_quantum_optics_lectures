@@ -7,7 +7,6 @@ other-links:
     href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/introduction.ipynb"
     icon: google
 ---
-
 # Introduction
 
 ## Why simulate open quantum systems?

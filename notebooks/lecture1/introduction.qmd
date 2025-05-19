@@ -4,7 +4,6 @@ other-links:
     href: https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/introduction.ipynb
     icon: file-code
 ---
-
 # Introduction to Python
 
 This notebook provides a brief introduction to Python, covering the basics of the language and its ecosystem.
