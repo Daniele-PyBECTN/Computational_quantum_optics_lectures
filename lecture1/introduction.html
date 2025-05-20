@@ -98,9 +98,9 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6adb2acee0f6d8dc73381d6900cdd9ee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-a0c47a2a2ca7178ac58db054a666cf6b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-6adb2acee0f6d8dc73381d6900cdd9ee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4b115c0fd6cb1daaadb3aa5fc133da80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3a128d666f95c3138e5df6f52c99551d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4b115c0fd6cb1daaadb3aa5fc133da80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -542,7 +542,7 @@ Figure&nbsp;2.1: Description of an open quantum system and its practical applica
 <h3 data-number="2.6.1" class="anchored" data-anchor-id="creating-and-using-lists"><span class="header-section-number">2.6.1</span> Creating and using lists</h3>
 <p>Before diving into numerical simulations, it’s useful to get acquainted with the basic syntax and features of Python. One of the simplest and most commonly used data structures is the <strong>list</strong>, which stores a sequence of elements. Lists are flexible—they can contain numbers, strings, or even other lists.</p>
 <p>Here’s how to create and access elements in a list:</p>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-list">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-list">
 <div id="python-list" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>fruits <span class="op">=</span> [<span class="st">'apple'</span>, <span class="st">'banana'</span>, <span class="st">'cherry'</span>]</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="bu">print</span>(<span class="ss">f'First fruit: </span><span class="sc">{</span>fruits[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -555,7 +555,7 @@ Figure&nbsp;2.1: Description of an open quantum system and its practical applica
 <section id="for-loops" class="level3" data-number="2.6.2">
 <h3 data-number="2.6.2" class="anchored" data-anchor-id="for-loops"><span class="header-section-number">2.6.2</span> For loops</h3>
 <p>A <code>for</code> loop allows us to <em>iterate</em> through each item in a collection and execute the same block of code for every element. You will use loops constantly—whether you are sweeping parameter values, accumulating results, or analysing datasets—so it is worth seeing the syntax early.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-for-loop">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-for-loop">
 <div id="python-for-loop" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">for</span> fruit <span class="kw">in</span> fruits:</span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="bu">print</span>(<span class="ss">f'I like </span><span class="sc">{</span>fruit<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -570,7 +570,7 @@ I like cherry</code></pre>
 <section id="defining-functions" class="level3" data-number="2.6.3">
 <h3 data-number="2.6.3" class="anchored" data-anchor-id="defining-functions"><span class="header-section-number">2.6.3</span> Defining functions</h3>
 <p>Functions bundle reusable logic behind a descriptive name. In quantum‑optics simulations, well‑structured functions help keep notebooks tidy—for instance, collecting the code that builds a Hamiltonian or evaluates an observable in one place. Below is a minimal example that squares a number.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-function">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-function">
 <div id="python-function" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> square(x):</span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">return</span> x <span class="op">*</span> x</span>
@@ -585,7 +585,7 @@ I like cherry</code></pre>
 <section id="lambda-anonymous-functions" class="level3" data-number="2.6.4">
 <h3 data-number="2.6.4" class="anchored" data-anchor-id="lambda-anonymous-functions"><span class="header-section-number">2.6.4</span> Lambda (anonymous) functions</h3>
 <p>Occasionally we only need a <em>small, throw‑away</em> function—say, as a callback or key in a sort operation. Python’s <code>lambda</code> syntax lets us declare such anonymous functions in a single line, without the ceremony of <code>def</code>.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-lambda">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-lambda">
 <div id="python-lambda" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>square_lambda <span class="op">=</span> <span class="kw">lambda</span> x: x <span class="op">*</span> x</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(square_lambda(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -598,7 +598,7 @@ I like cherry</code></pre>
 <section id="complex-numbers" class="level3" data-number="2.6.5">
 <h3 data-number="2.6.5" class="anchored" data-anchor-id="complex-numbers"><span class="header-section-number">2.6.5</span> Complex numbers</h3>
 <p>Python has built‑in support for complex numbers, which are represented as <code>a + bj</code>, where <code>a</code> is the real part and <code>b</code> is the imaginary part. This is particularly useful in quantum mechanics, where complex numbers are ubiquitous.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-complex-number">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-complex-number">
 <div id="python-complex-number" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>z <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="ot">2j</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(<span class="ss">f'Complex number: </span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">'</span>)</span>
@@ -627,7 +627,7 @@ Magnitude: 2.23606797749979</code></pre>
 <p>To overcome the performance limits of pure‑Python lists, we turn to <strong>NumPy</strong>, which stores data in contiguous, fixed‑type arrays and dispatches mathematical operations to highly‑optimised C (and often SIMD/GPU) kernels. The example below shows how you can express a million‑element computation in just two vectorised lines.</p>
 <p><code>numpy</code> provides fixed‑type, contiguous arrays backed by efficient C (or SIMD/GPU) loops. Operations are dispatched <strong>once</strong> for the whole array, eliminating Python‑level overhead and unlocking BLAS/LAPACK acceleration.</p>
 <p>As an example, we can compute the sum of all the elements of a python list, comparing the performance with a numpy array.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-sum-list-vs-numpy">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-sum-list-vs-numpy">
 <div id="python-sum-list-vs-numpy" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="im">import</span> time <span class="co"># Only for benchmarking</span></span>
@@ -647,13 +647,13 @@ Magnitude: 2.23606797749979</code></pre>
 <span id="cb11-16"><a href="#cb11-16"></a><span class="bu">print</span>(<span class="ss">f'Sum using numpy: </span><span class="sc">{</span>sum_numpy<span class="sc">}</span><span class="ss">, '</span></span>
 <span id="cb11-17"><a href="#cb11-17"></a>      <span class="ss">f'Time taken: </span><span class="sc">{</span><span class="fl">1e3</span><span class="op">*</span>(end <span class="op">-</span> start)<span class="sc">:.4f}</span><span class="ss"> milliseconds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sum using list: 499999.50000000006, Time taken: 2.8501 milliseconds
-Sum using numpy: 499999.5, Time taken: 0.2210 milliseconds</code></pre>
+<pre><code>Sum using list: 499999.5, Time taken: 7.7295 milliseconds
+Sum using numpy: 499999.5, Time taken: 0.4494 milliseconds</code></pre>
 </div>
 </div>
 </div>
 <p>NumPy is also able to perform vectorized operations, which let us express complex computations in a few lines of code. For example, we can compute a function of all elements in an array without writing explicit loops. This is not only more readable but also significantly faster, as the underlying C code can be optimised for performance.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-numpy">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-numpy">
 <div id="python-numpy" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Vectorized array operations</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">1_000_000</span>)</span>
