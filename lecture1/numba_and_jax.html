@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -384,7 +404,8 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#a-quick-overview-of-automatic-differentiation" id="toc-a-quick-overview-of-automatic-differentiation" class="nav-link" data-scroll-target="#a-quick-overview-of-automatic-differentiation"><span class="header-section-number">4.2.1</span> A Quick Overview of Automatic Differentiation</a></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.3</span> Summary</a></li>
+  <li><a href="#why-computing-gradients-is-important-in-quantum-physics" id="toc-why-computing-gradients-is-important-in-quantum-physics" class="nav-link" data-scroll-target="#why-computing-gradients-is-important-in-quantum-physics"><span class="header-section-number">4.3</span> Why Computing Gradients Is Important in Quantum Physics</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.4</span> Summary</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/numba_and_jax.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/numba_and_jax.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
@@ -431,7 +452,7 @@ window.Quarto = {
 </blockquote>
 <p><strong>Example: Matrix–Vector Multiplication</strong></p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/numba_and_jax.qmd" data-notebook-title="Speeding up Python for Linear Algebra Tasks" data-notebook-cellid="cell-numba">
-<div id="numba" class="cell" data-execution_count="1">
+<div id="numba" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> numba <span class="im">import</span> njit</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> time <span class="co"># for timing</span></span>
@@ -466,8 +487,8 @@ window.Quarto = {
 <span id="cb1-32"><a href="#cb1-32"></a>end <span class="op">=</span> time.time()</span>
 <span id="cb1-33"><a href="#cb1-33"></a><span class="bu">print</span>(<span class="st">"Numba time (ms): "</span>, <span class="fl">1e3</span><span class="op">*</span>(end <span class="op">-</span> start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumPy time (ms):  0.049114227294921875
-Numba time (ms):  0.1678466796875</code></pre>
+<pre><code>NumPy time (ms):  0.08606910705566406
+Numba time (ms):  0.1571178436279297</code></pre>
 </div>
 </div>
 </div>
@@ -526,7 +547,7 @@ v = h(u),\quad u = g(x),\quad y = f(v),
 <h4 class="anchored" data-anchor-id="comparing-accuracy-ad-vs-finite-differences">Comparing Accuracy: AD vs Finite Differences</h4>
 <p>Below is a Quarto code cell that plots the error of finite differences (varying step size <span class="math inline">\(h\)</span>) and automatic differentiation against the true derivative of <span class="math inline">\(f(x) = e^{\sin(x)}\)</span> at <span class="math inline">\(x=1.0\)</span>.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/numba_and_jax.qmd" data-notebook-title="Speeding up Python for Linear Algebra Tasks" data-notebook-cellid="cell-jax">
-<div id="cell-jax" class="cell" data-execution_count="2">
+<div id="cell-jax" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> jax</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># for plotting</span></span>
@@ -559,10 +580,10 @@ v = h(u),\quad u = g(x),\quad y = f(v),
 <span id="cb3-30"><a href="#cb3-30"></a><span class="bu">print</span>(<span class="ss">f"FD minimum error: </span><span class="sc">{</span><span class="bu">min</span>(errors_fd)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb3-31"><a href="#cb3-31"></a></span>
 <span id="cb3-32"><a href="#cb3-32"></a><span class="co"># Plot</span></span>
-<span id="cb3-33"><a href="#cb3-33"></a>plt.loglog(hs, errors_fd)</span>
-<span id="cb3-34"><a href="#cb3-34"></a>plt.xlabel(<span class="st">"Step size $h$"</span>)</span>
-<span id="cb3-35"><a href="#cb3-35"></a>plt.ylabel(<span class="st">"Finite Difference Error"</span>)</span>
-<span id="cb3-36"><a href="#cb3-36"></a>plt.title(<span class="vs">r"Error vs Step Size for </span><span class="dv">$</span><span class="vs">f</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="vs"> = e</span><span class="dv">^</span><span class="vs">{</span><span class="dv">\s</span><span class="vs">in</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="vs">}</span><span class="dv">$</span><span class="vs"> at </span><span class="dv">$</span><span class="vs">x=1</span><span class="dv">.</span><span class="vs">0</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb3-33"><a href="#cb3-33"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.122</span>, <span class="fl">2.5</span>))</span>
+<span id="cb3-34"><a href="#cb3-34"></a>ax.loglog(hs, errors_fd, marker<span class="op">=</span><span class="st">"o"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35"></a>ax.set_xlabel(<span class="st">"Step size $h$"</span>)</span>
+<span id="cb3-36"><a href="#cb3-36"></a>ax.set_ylabel(<span class="st">"Error of Finite Differences"</span>)</span>
 <span id="cb3-37"><a href="#cb3-37"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>AD error: 0.0
@@ -581,14 +602,52 @@ FD minimum error: 7.006839553014288e-12</code></pre>
 </section>
 </section>
 </section>
-<section id="summary" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.3</span> Summary</h2>
+<section id="why-computing-gradients-is-important-in-quantum-physics" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="why-computing-gradients-is-important-in-quantum-physics"><span class="header-section-number">4.3</span> Why Computing Gradients Is Important in Quantum Physics</h2>
+<p>In quantum physics, many problems reduce to optimizing parameters in a model or a control protocol. Computing gradients of a cost function with respect to these parameters is essential for efficient and reliable optimization.</p>
+<ol type="1">
+<li><p><strong>Variational quantum algorithms</strong>: In methods like the variational quantum eigensolver (VQE)<span class="citation" data-cites="Peruzzo2014A">(<a href="../bibliography.html#ref-Peruzzo2014A" role="doc-biblioref">Peruzzo et al. 2014</a>)</span>, a parametrised quantum state <span class="math inline">\(|\psi(\boldsymbol{\theta})\rangle\)</span> depends on parameters <span class="math inline">\(\boldsymbol{\theta}=(\theta_1,\dots,\theta_n)\)</span>. One minimises the expectation <span class="math display">\[
+E(\boldsymbol{\theta}) = \langle\psi(\boldsymbol{\theta})|\hat H|\psi(\boldsymbol{\theta})\rangle.
+\]</span></p>
+<p>Gradient-based methods require</p>
+<p><span class="math display">\[
+\frac{\partial E}{\partial \theta_i} = \frac{\partial}{\partial \theta_i} \langle\psi(\boldsymbol{\theta})|\hat H|\psi(\boldsymbol{\theta})\rangle.
+\]</span></p>
+<p>AD enables exact evaluation of these derivatives through the quantum circuit parameters, improving convergence compared to gradient-free methods.</p></li>
+<li><p><strong>Quantum optimal control</strong><span class="citation" data-cites="DAlessandro2021Introduction Khaneja2005Optimal">(<a href="../bibliography.html#ref-DAlessandro2021Introduction" role="doc-biblioref">D’Alessandro 2021</a>; <a href="../bibliography.html#ref-Khaneja2005Optimal" role="doc-biblioref">Khaneja et al. 2005</a>)</span>: One shapes control fields <span class="math inline">\(u(t)\)</span> in the Hamiltonian <span class="math display">\[
+\hat H(t; u) = \hat H_0 + \sum_i u_i(t) \hat H_i
+\]</span></p>
+<p>to drive the system from an initial state <span class="math inline">\(|\psi_0\rangle\)</span> to a target <span class="math inline">\(|\psi_T\rangle\)</span>. A typical cost function is</p>
+<p><span class="math display">\[
+J[u] = 1 - |\langle\psi_T|\mathcal U_T[u]|\psi_0\rangle|^2,
+\]</span></p>
+<p>where <span class="math inline">\(\mathcal U_T[u]\)</span> is the time-ordered evolution. Computing gradients <span class="math inline">\(\delta J/\delta u_i(t)\)</span> is needed for gradient-ascent pulse engineering (GRAPE) algorithms. AD can differentiate through time-discretised propagators and ODE solvers, automating derivation of <span class="math inline">\(\delta J/\delta u_i(t)\)</span> and providing machine-precision gradients for faster convergence.</p></li>
+<li><p><strong>Parameter estimation and tomography</strong><span class="citation" data-cites="Lvovsky2009Continuous">(<a href="../bibliography.html#ref-Lvovsky2009Continuous" role="doc-biblioref">Lvovsky and Raymer 2009</a>)</span>: Maximum-likelihood estimation for quantum states or processes often involves maximising a log-likelihood <span class="math inline">\(L(\boldsymbol{\theta})\)</span>. Gradients speed up estimation and enable standard optimisers (e.g.&nbsp;L-BFGS).</p></li>
+</ol>
+<p>By providing exact, efficient gradients even through complex quantum simulations (time evolution, measurement models, noise), automatic differentiation (via JAX or similar frameworks) has become a key tool in modern quantum physics research.</p>
+</section>
+<section id="summary" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.4</span> Summary</h2>
 <ul>
 <li><strong>Numba</strong>: Best for speeding up existing NumPy loops with minimal code changes. Ideal when you do not need gradients or accelerators.</li>
 <li><strong>JAX</strong>: Ideal for optimisation tasks requiring gradients, large-scale batch operations, or GPU/TPU acceleration. The XLA compiler often outperforms loop-based JIT for fused kernels.</li>
 </ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-DAlessandro2021Introduction" class="csl-entry" role="listitem">
+D’Alessandro, Domenico. 2021. <em><span class="nocase">Introduction to Quantum Control and Dynamics</span></em>. Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9781003051268">https://doi.org/10.1201/9781003051268</a>.
+</div>
+<div id="ref-Khaneja2005Optimal" class="csl-entry" role="listitem">
+Khaneja, Navin, Timo Reiss, Cindie Kehlet, Thomas Schulte-Herbrüggen, and Steffen J. Glaser. 2005. <span>“Optimal Control of Coupled Spin Dynamics: Design of NMR Pulse Sequences by Gradient Ascent Algorithms.”</span> <em>Journal of Magnetic Resonance</em> 172 (2): 296–305. <a href="https://doi.org/10.1016/j.jmr.2004.11.004">https://doi.org/10.1016/j.jmr.2004.11.004</a>.
+</div>
+<div id="ref-Lvovsky2009Continuous" class="csl-entry" role="listitem">
+Lvovsky, A. I., and M. G. Raymer. 2009. <span>“Continuous-Variable Optical Quantum-State Tomography.”</span> <em>Rev. Mod. Phys.</em> 81 (March): 299–332. <a href="https://doi.org/10.1103/RevModPhys.81.299">https://doi.org/10.1103/RevModPhys.81.299</a>.
+</div>
+<div id="ref-Peruzzo2014A" class="csl-entry" role="listitem">
+Peruzzo, Alberto, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. 2014. <span>“A Variational Eigenvalue Solver on a Photonic Quantum Processor.”</span> <em>Nature Communications</em> 5 (1). <a href="https://doi.org/10.1038/ncomms5213">https://doi.org/10.1038/ncomms5213</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
