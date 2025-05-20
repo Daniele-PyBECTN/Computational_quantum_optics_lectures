@@ -1,0 +1,181 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/numba_and_jax.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/numba_and_jax.ipynb"
+    icon: google
+---
+# Speeding up Python for Linear Algebra Tasks
+
+Python is easy to read, but pure-Python loops can be slow if you do not leverage optimized libraries (BLAS, LAPACK). Here we explore two tools—Numba and JAX—to accelerate common linear algebra operations.
+
+## Numba: Just-In-Time Compilation
+
+Numba uses LLVM to compile Python functions to machine code at runtime. Key points:
+
+- **Decorators**: Use `@njit` (nopython mode) for best speed.  
+- **Type inference**: Numba infers types on first run, then compiles specialized code.  
+- **Compilation overhead**: The first call incurs compilation time; subsequent calls are fast.  
+- **Object mode vs nopython mode**: Always aim for nopython mode to avoid Python object overhead.
+
+> **JIT Workflow**
+> 1. Call function → type inference → LLVM IR generation.  
+> 2. LLVM IR → machine code (cached).  
+> 3. Subsequent calls use cached machine code.
+
+**Example: Matrix–Vector Multiplication**
+
+```{python}
+from numba import njit
+import numpy as np
+import time # for timing
+
+@njit
+def matvec(A, x):
+    m, n = A.shape
+    y = np.zeros(m)
+    for i in range(m):
+        temp = 0.0
+        for j in range(n):
+            temp += A[i, j] * x[j]
+        y[i] = temp
+    return y
+
+# Prepare data
+dim = 500
+A = np.random.rand(dim, dim)
+x = np.random.rand(dim)
+
+# Using NumPy's dot product
+start = time.time()
+y0 = A @ x
+end = time.time()
+print("NumPy time (ms): ", 1e3*(end - start))
+
+# Using Numba's compiled function
+y0 = matvec(A, x) # First call for compilation
+
+start = time.time()
+y1 = matvec(A, x)
+end = time.time()
+print("Numba time (ms): ", 1e3*(end - start))
+```
+
+In practice, Numba can speed up this looped version by 10×–100× compared to pure Python, approaching the speed of NumPy's optimized routines. The reader is encouraged to try the code without the `@njit` decorator to see the difference in performance.
+
+## JAX: XLA Compilation and Automatic Differentiation
+
+JAX is a high-performance library from Google Research that extends NumPy with just-in-time compilation and automatic differentiation. It
+- Compiles array operations via XLA, fusing kernels and reducing Python overhead.
+- Supports GPU and TPU backends with minimal code changes.
+- Provides `grad` for gradients of scalar functions, enabling optimisation and machine-learning tasks.
+- Offers advanced transformations like `vmap` (vectorisation) and `pmap` (parallelism on multiple devices).
+
+JAX is widely used in deep learning frameworks (e.g. Flax, Haiku), reinforcement learning, and scientific research (including physics simulations), thanks to its blend of speed and flexibility.
+
+### A Quick Overview of Automatic Differentiation
+
+Automatic differentiation (AD) is a family of techniques to compute exact derivatives of functions defined by computer programs. Unlike symbolic differentiation (which can lead to expression swell) or numerical finite-difference (which suffers from truncation and round-off error), AD exploits the fact that any complex function is ultimately composed of a finite set of elementary operations (addition, multiplication, sin, exp, …) whose derivatives are known exactly.  
+
+#### The Limitations of Finite Differences
+
+A common way to approximate a derivative is via finite differences. For a scalar function $f(x)$, a central-difference estimate of its derivative at $x$ is
+$$
+f'(x)\approx \frac{f(x+h)-f(x-h)}{2h}\,,
+$$
+where $h$ is a small step.  Its local truncation error scales like $O(h^2)$.  However:
+
+1. **Truncation error vs round-off**: if $h$ is too large, the $O(h^2)$ term dominates; if $h$ is too small, floating-point cancellation makes the numerator $f(x+h)-f(x-h)$ inaccurate.  
+2. **Cost**: each gradient evaluation of an $n$-dimensional function requires $2n$ evaluations of $f$. For large $n$ this becomes prohibitive.  
+3. **Non-smoothness**: when $f$ involves control flow or non-differentiable operations, finite differences may give misleading results.  
+
+In contrast, AD computes exact derivatives up to machine precision (no $O(h)$ or $O(h^2)$ bias) and can exploit program structure to reduce the number of function evaluations.
+
+#### The Chain Rule in Automatic Differentiation
+
+AD applies the chain rule mechanically to every elementary operation.  If
+$$
+y = f(u), \quad u = g(x),
+$$
+then by the chain rule
+$$
+\frac{dy}{dx}
+= \frac{df}{du}\,\frac{dg}{dx}.
+$$
+For a more complex composition
+$$
+z = h(v),\  
+v = f(u),\  
+u = g(x),
+$$
+we have
+$$
+\frac{dz}{dx}
+= \frac{dh}{dv}\,\frac{df}{du}\,\frac{dg}{dx}.
+$$
+
+AD comes in two “modes”:
+
+- **Forward mode**: propagate derivatives from inputs to outputs. Efficient when the input dimension is small.  
+- **Reverse mode**: propagate sensitivities from outputs back to inputs. Efficient when the output dimension is small (e.g. scalar loss in ML).  
+
+JAX implements both under the hood and chooses the most efficient strategy.
+
+Consider the quadratic form
+
+$$
+f(\mathbf{x}) = \mathbf{x}^T \mathbf{A} \mathbf{x}, \quad \mathbf{x} \in \mathbb{R}^n, \; \mathbf{A} \in \mathbb{R}^{n\times n}.
+$$
+
+We can compile this function with `jit` and measure its performance:
+
+```{python}
+import jax
+import jax.numpy as jnp
+import numpy as np
+import time
+
+# Quadratic form definition
+def quad_form(x, A):
+    return x @ (A @ x)
+
+# JIT-compile
+jit_qf = jax.jit(quad_form)
+
+# Prepare data
+dim = 500
+A = jnp.array(np.random.rand(dim, dim))
+A = (A + A.T) / 2
+x0 = jnp.ones(dim)
+
+# Warm-up compilation
+_ = jit_qf(x0, A)
+
+# Measure JIT execution time
+start = time.time()
+_ = jit_qf(x0, A)
+end = time.time()
+print("JAX JIT time (ms):", 1e3 * (end - start))
+
+# Gradient timing (optional)
+grad_qf = jax.jit(jax.grad(lambda x: quad_form(x, A)))
+_ = grad_qf(x0)
+start = time.time()
+_ = grad_qf(x0)
+end = time.time()
+print("JAX grad JIT time (ms):", 1e3 * (end - start))
+```
+
+By comparing these timings to NumPy and Numba, readers can see where JAX offers advantages, especially when targeting accelerators or needing gradients.
+
+## When to Use Which
+
+- **Numba**: Best for speeding up existing NumPy loops with minimal code changes. Ideal when you do not need gradients or accelerators.
+- **JAX**: Ideal for optimisation tasks requiring gradients, large-scale batch operations, or GPU/TPU acceleration. The XLA compiler often outperforms loop-based JIT for fused kernels.
+
+## Summary
+
+- **Numba** remains a simple, effective way to JIT-compile Python loops into fast machine code.
+- **JAX** leverages XLA and auto-differentiation, making it powerful for modern ML and scientific workflows.

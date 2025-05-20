@@ -36,6 +36,7 @@ book:
     - index.qmd
     - lecture1/introduction.qmd
     - lecture1/linear_algebra.qmd
+    - lecture1/numba_and_jax.qmd
     - bibliography.qmd
 
 number-depth: 3
