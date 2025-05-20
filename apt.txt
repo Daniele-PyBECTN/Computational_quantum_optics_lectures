@@ -1,6 +1,6 @@
 zip
 ffmpeg
-texlive-latex-base
+texlive-latex-full
 texlive-latex-extra
 texlive-fonts-recommended
 dvipng
