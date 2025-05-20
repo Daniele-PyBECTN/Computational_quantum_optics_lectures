@@ -106,6 +106,40 @@ Below is a Quarto code cell that plots the error of finite differences (varying 
 
 This plot illustrates that finite differences achieve minimal error at an optimal $h$, but degrade for too large or too small $h$, while AD remains accurate to machine precision regardless of step size.
 
+## Why Computing Gradients Is Important in Quantum Physics
+
+In quantum physics, many problems reduce to optimizing parameters in a model or a control protocol. Computing gradients of a cost function with respect to these parameters is essential for efficient and reliable optimization.
+
+1. **Variational quantum algorithms**: In methods like the variational quantum eigensolver (VQE)[@Peruzzo2014A], a parametrised quantum state $|\psi(\boldsymbol{\theta})\rangle$ depends on parameters $\boldsymbol{\theta}=(\theta_1,\dots,\theta_n)$. One minimises the expectation
+    $$
+    E(\boldsymbol{\theta}) = \langle\psi(\boldsymbol{\theta})|\hat H|\psi(\boldsymbol{\theta})\rangle.
+    $$
+
+    Gradient-based methods require
+
+    $$
+    \frac{\partial E}{\partial \theta_i} = \frac{\partial}{\partial \theta_i} \langle\psi(\boldsymbol{\theta})|\hat H|\psi(\boldsymbol{\theta})\rangle.
+    $$
+
+    AD enables exact evaluation of these derivatives through the quantum circuit parameters, improving convergence compared to gradient-free methods.
+
+2. **Quantum optimal control**[@DAlessandro2021Introduction; @Khaneja2005Optimal]: One shapes control fields $u(t)$ in the Hamiltonian
+    $$
+    \hat H(t; u) = \hat H_0 + \sum_i u_i(t) \hat H_i
+    $$
+
+    to drive the system from an initial state $|\psi_0\rangle$ to a target $|\psi_T\rangle$. A typical cost function is
+
+    $$
+    J[u] = 1 - |\langle\psi_T|\mathcal U_T[u]|\psi_0\rangle|^2,
+    $$
+
+    where $\mathcal U_T[u]$ is the time-ordered evolution. Computing gradients $\delta J/\delta u_i(t)$ is needed for gradient-ascent pulse engineering (GRAPE) algorithms. AD can differentiate through time-discretised propagators and ODE solvers, automating derivation of $\delta J/\delta u_i(t)$ and providing machine-precision gradients for faster convergence.
+
+3. **Parameter estimation and tomography**[@Lvovsky2009Continuous]: Maximum-likelihood estimation for quantum states or processes often involves maximising a log-likelihood $L(\boldsymbol{\theta})$. Gradients speed up estimation and enable standard optimisers (e.g. L-BFGS).
+
+By providing exact, efficient gradients even through complex quantum simulations (time evolution, measurement models, noise), automatic differentiation (via JAX or similar frameworks) has become a key tool in modern quantum physics research.
+
 ## Summary
 
 - **Numba**: Best for speeding up existing NumPy loops with minimal code changes. Ideal when you do not need gradients or accelerators.
