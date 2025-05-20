@@ -19,6 +19,8 @@ Numerical methods allow us to:
 -   **Prototype control protocols** (e.g., pulse shaping or feedback) that can stabilize fragile quantum states.
 -   **Explore parameter regimes** that are inaccessible analytically, revealing new phenomena like dissipative phase transitions or non‑Markovian memory effects.
 
+![Description of an open quantum system and its practical applications. A quantum system interacts with a macroscopic environment, leading to decoherence and dissipation. The evolution of the system is described the master equation $\dot{\hat{\rho}} = \mathcal{L}_T(t) [\hat{\rho}]$, where $\hat{\rho}$ is the density matrix and $\mathcal{L}_T(t)$ is the Liouville superoperator. The solution can be used to study the steady state and non-equilibrium properties of the system. The theoretical study of open quantum systems offers several tools for modeling spin resonance, optical spectra, and quantum information processing, and their use is certainly not limited to these fields and applications. Reproduced from [@Campaioli2024Quantum] under a [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.](/assets/lecture1/open_quantum_sketch.svg){#fig-open-quantum-sketch width=100%}
+
 ## Why Python?
 
 Python is *not* the fastest language for floating‑point arithmetic—compiled languages like C or Fortran still win raw speed benchmarks—but it has become the lingua franca of modern scientific computing. Three qualities make it particularly compelling for our purposes:

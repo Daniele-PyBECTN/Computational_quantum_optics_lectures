@@ -81,5 +81,5 @@ jupyter: python3
 
 execute:
   eval: true
-  cache: true
+  cache: false
   freeze: false
