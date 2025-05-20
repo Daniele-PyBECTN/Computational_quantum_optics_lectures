@@ -1,5 +1,6 @@
 zip
 ffmpeg
+librsvg2-bin
 texlive-science
 texlive-latex-extra
 texlive-fonts-recommended
