@@ -57,15 +57,6 @@ jobs:
           path: branch-out
           fetch-depth: 0
 
-      - name: Install TeX Live and dvipng
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-latex-base \
-                                  texlive-latex-extra \
-                                  texlive-fonts-recommended \
-                                  cm-super \
-                                  dvipng
-
       # Prune stale files
       # This looks at every tracked *.ipynb, checks whether *.qmd still exists in main, and removes it from the index if not.
       - name: Remove stale notebooks
