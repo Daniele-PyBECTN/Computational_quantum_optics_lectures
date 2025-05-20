@@ -37,6 +37,7 @@ book:
     - lecture1/introduction.qmd
     - lecture1/linear_algebra.qmd
     - lecture1/numba_and_jax.qmd
+    - lecture1/ordinary_differential_equations.qmd
     - bibliography.qmd
 
 number-depth: 3
@@ -74,6 +75,7 @@ format:
         \usepackage[noblocks]{authblk}   % author–affiliation macros
         \usepackage{orcidlink}
         \usepackage{hyperref}            % clickable e-mails
+        \usepackage{physics}
         \renewcommand\Authfont{\Large}
         \renewcommand\Affilfont{\small}
 
