@@ -8,6 +8,7 @@ on:
       - 'requirements.txt'
       - 'apt.txt'
       - 'postBuild'
+      - 'runtime.txt'
       - '.jupyter/**'
       - '.github/workflows/build-notebooks.yml'
       - '.github/workflows/build-notebooks-container.yml'
@@ -77,7 +78,7 @@ jobs:
       - name: Copy artifacts
         run: |
           # helper files at root
-          cp requirements.txt apt.txt postBuild branch-out/ 2>/dev/null || true
+          cp requirements.txt runtime.txt apt.txt postBuild branch-out/ 2>/dev/null || true
           cp -r .jupyter    branch-out/ 2>/dev/null || true
 
           rsync -avc --exclude='branch-out/' --include='*/' --include='*.ipynb' --exclude='*'  --prune-empty-dirs ./ branch-out/
