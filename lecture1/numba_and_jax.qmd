@@ -27,41 +27,7 @@ Numba uses LLVM to compile Python functions to machine code at runtime. Key poin
 
 **Example: Matrix–Vector Multiplication**
 
-```{python}
-from numba import njit
-import numpy as np
-import time # for timing
-
-@njit
-def matvec(A, x):
-    m, n = A.shape
-    y = np.zeros(m)
-    for i in range(m):
-        temp = 0.0
-        for j in range(n):
-            temp += A[i, j] * x[j]
-        y[i] = temp
-    return y
-
-# Prepare data
-dim = 500
-A = np.random.rand(dim, dim)
-x = np.random.rand(dim)
-
-# Using NumPy's dot product
-start = time.time()
-y0 = A @ x
-end = time.time()
-print("NumPy time (ms): ", 1e3*(end - start))
-
-# Using Numba's compiled function
-y0 = matvec(A, x) # First call for compilation
-
-start = time.time()
-y1 = matvec(A, x)
-end = time.time()
-print("Numba time (ms): ", 1e3*(end - start))
-```
+{{< embed /notebooks/lecture1/numba_and_jax.qmd#numba echo=true >}}
 
 In practice, Numba can speed up this looped version by 10×–100× compared to pure Python, approaching the speed of NumPy's optimized routines. The reader is encouraged to try the code without the `@njit` decorator to see the difference in performance.
 
@@ -79,103 +45,68 @@ JAX is widely used in deep learning frameworks (e.g. Flax, Haiku), reinforcement
 
 Automatic differentiation (AD) is a family of techniques to compute exact derivatives of functions defined by computer programs. Unlike symbolic differentiation (which can lead to expression swell) or numerical finite-difference (which suffers from truncation and round-off error), AD exploits the fact that any complex function is ultimately composed of a finite set of elementary operations (addition, multiplication, sin, exp, …) whose derivatives are known exactly.  
 
-#### The Limitations of Finite Differences
+#### Limitations of Finite Differences
 
-A common way to approximate a derivative is via finite differences. For a scalar function $f(x)$, a central-difference estimate of its derivative at $x$ is
-$$
-f'(x)\approx \frac{f(x+h)-f(x-h)}{2h}\,,
-$$
-where $h$ is a small step.  Its local truncation error scales like $O(h^2)$.  However:
-
-1. **Truncation error vs round-off**: if $h$ is too large, the $O(h^2)$ term dominates; if $h$ is too small, floating-point cancellation makes the numerator $f(x+h)-f(x-h)$ inaccurate.  
-2. **Cost**: each gradient evaluation of an $n$-dimensional function requires $2n$ evaluations of $f$. For large $n$ this becomes prohibitive.  
-3. **Non-smoothness**: when $f$ involves control flow or non-differentiable operations, finite differences may give misleading results.  
-
-In contrast, AD computes exact derivatives up to machine precision (no $O(h)$ or $O(h^2)$ bias) and can exploit program structure to reduce the number of function evaluations.
-
-#### The Chain Rule in Automatic Differentiation
-
-AD applies the chain rule mechanically to every elementary operation.  If
-$$
-y = f(u), \quad u = g(x),
-$$
-then by the chain rule
-$$
-\frac{dy}{dx}
-= \frac{df}{du}\,\frac{dg}{dx}.
-$$
-For a more complex composition
-$$
-z = h(v),\  
-v = f(u),\  
-u = g(x),
-$$
-we have
-$$
-\frac{dz}{dx}
-= \frac{dh}{dv}\,\frac{df}{du}\,\frac{dg}{dx}.
-$$
-
-AD comes in two “modes”:
-
-- **Forward mode**: propagate derivatives from inputs to outputs. Efficient when the input dimension is small.  
-- **Reverse mode**: propagate sensitivities from outputs back to inputs. Efficient when the output dimension is small (e.g. scalar loss in ML).  
-
-JAX implements both under the hood and chooses the most efficient strategy.
-
-Consider the quadratic form
+A common finite-difference formula for a scalar function $f(x)$ is the central difference
 
 $$
-f(\mathbf{x}) = \mathbf{x}^T \mathbf{A} \mathbf{x}, \quad \mathbf{x} \in \mathbb{R}^n, \; \mathbf{A} \in \mathbb{R}^{n\times n}.
+\frac{df}{dx}(x)\approx \frac{f(x+h)-f(x-h)}{2h},
 $$
 
-We can compile this function with `jit` and measure its performance:
+with local truncation error $\mathcal{O}(h^2)$. However, this approach has important limitations:
 
-```{python}
-import jax
-import jax.numpy as jnp
-import numpy as np
-import time
+1. **Truncation vs. round-off**: If $h$ is too large, the $\mathcal{O}(h^2)$ term dominates. If $h$ is too small, floating-point cancellation makes the numerator $f(x+h)-f(x-h)$ inaccurate.
+2. **Cost with many parameters**: For $f:\mathbb{R}^n\to\mathbb{R}$, the gradient component $i$ is
 
-# Quadratic form definition
-def quad_form(x, A):
-    return x @ (A @ x)
+   $$
+   \frac{\partial f}{\partial x_i}(\mathbf{x})\approx \frac{f(\mathbf{x}+h\mathbf{e}_i)-f(\mathbf{x}-h\mathbf{e}_i)}{2h}.
+   $$
 
-# JIT-compile
-jit_qf = jax.jit(quad_form)
+   Computing all $n$ components requires $2n$ evaluations of $f$, so the cost scales as $\mathcal{O}(n)$ in $f$-calls. For large $n$ (many parameters), this becomes prohibitive.
+3. **Non-smooth or branching code**: When $f$ contains control flow or non-differentiable operations, finite differences may give misleading or undefined results.
 
-# Prepare data
-dim = 500
-A = jnp.array(np.random.rand(dim, dim))
-A = (A + A.T) / 2
-x0 = jnp.ones(dim)
+#### Automatic Differentiation and the Chain Rule
 
-# Warm-up compilation
-_ = jit_qf(x0, A)
+Automatic differentiation (AD) applies the chain rule to each elementary operation in code (addition, multiplication, sin, exp, etc.), yielding exact derivatives up to floating-point precision. For a composition
 
-# Measure JIT execution time
-start = time.time()
-_ = jit_qf(x0, A)
-end = time.time()
-print("JAX JIT time (ms):", 1e3 * (end - start))
+$$
+u = g(x),\quad y = f(u),
+$$
 
-# Gradient timing (optional)
-grad_qf = jax.jit(jax.grad(lambda x: quad_form(x, A)))
-_ = grad_qf(x0)
-start = time.time()
-_ = grad_qf(x0)
-end = time.time()
-print("JAX grad JIT time (ms):", 1e3 * (end - start))
-```
+AD uses the chain rule:
 
-By comparing these timings to NumPy and Numba, readers can see where JAX offers advantages, especially when targeting accelerators or needing gradients.
+$$
+\frac{dy}{dx} = \frac{df}{du}\frac{dg}{dx}.
+$$
 
-## When to Use Which
+In more complex nests, e.g.
 
-- **Numba**: Best for speeding up existing NumPy loops with minimal code changes. Ideal when you do not need gradients or accelerators.
-- **JAX**: Ideal for optimisation tasks requiring gradients, large-scale batch operations, or GPU/TPU acceleration. The XLA compiler often outperforms loop-based JIT for fused kernels.
+$$
+v = h(u),\quad u = g(x),\quad y = f(v),
+$$
+
+we get
+
+$$
+\frac{dy}{dx} = \frac{df}{dv}\frac{dh}{du}\frac{dg}{dx}.
+$$
+
+AD comes in two modes:
+
+* **Forward mode** (propagate derivatives from inputs to outputs).
+* **Reverse mode** (propagate sensitivities from outputs back to inputs).
+
+JAX implements both and selects the most efficient strategy automatically.
+
+#### Comparing Accuracy: AD vs Finite Differences
+
+Below is a Quarto code cell that plots the error of finite differences (varying step size $h$) and automatic differentiation against the true derivative of $f(x) = e^{\sin(x)}$ at $x=1.0$.
+
+{{< embed /notebooks/lecture1/numba_and_jax.qmd#jax echo=true >}}
+
+This plot illustrates that finite differences achieve minimal error at an optimal $h$, but degrade for too large or too small $h$, while AD remains accurate to machine precision regardless of step size.
 
 ## Summary
 
-- **Numba** remains a simple, effective way to JIT-compile Python loops into fast machine code.
-- **JAX** leverages XLA and auto-differentiation, making it powerful for modern ML and scientific workflows.
+- **Numba**: Best for speeding up existing NumPy loops with minimal code changes. Ideal when you do not need gradients or accelerators.
+- **JAX**: Ideal for optimisation tasks requiring gradients, large-scale batch operations, or GPU/TPU acceleration. The XLA compiler often outperforms loop-based JIT for fused kernels.
