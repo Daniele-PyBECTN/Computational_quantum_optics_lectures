@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../bibliography.html" rel="next">
+<link href="../lecture1/numba_and_jax.html" rel="next">
 <link href="../lecture1/introduction.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -359,6 +359,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../bibliography.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bibliography</span></a>
   </div>
@@ -486,7 +492,7 @@ A = \begin{pmatrix}a_{11} &amp; a_{12}\\ a_{21} &amp; a_{22}\end{pmatrix},
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="matrixmatrix-and-matrixvector-multiplication"><span class="header-section-number">3.1.2</span> Matrix–Matrix and Matrix–Vector Multiplication</h3>
 <p>Let’s consider a simple example of a 2×2 matrix <span class="math inline">\(A\)</span> and a 2-vector <span class="math inline">\(\mathbf{v}\)</span>. This captures key ideas: operator composition via matrix–matrix products and state evolution via matrix–vector products. Indeed, in quantum mechanics, applying one operator after another corresponds to a matrix–matrix product, while acting on a quantum state uses a matrix–vector product. Consider the following:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-numpy-matrix-matrix-vector">
-<div id="numpy-matrix-matrix-vector" class="cell" data-execution_count="1">
+<div id="numpy-matrix-matrix-vector" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Define a 2×2 matrix and a 2-vector</span></span>
@@ -535,7 +541,7 @@ f(\Lambda) = \mathrm{diag}\bigl(f(\lambda_1),\dots,f(\lambda_n)\bigr).
 \]</span></p>
 <p>In practice, NumPy’s <a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html"><code>np.linalg.eig</code></a> calls optimized LAPACK routines to compute all eigenpairs of a dense matrix:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-numpy-eigenvalues">
-<div id="numpy-eigenvalues" class="cell" data-execution_count="2">
+<div id="numpy-eigenvalues" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>w, v <span class="op">=</span> np.linalg.eig(A)</span>
 <span id="cb6-2"><a href="#cb6-2"></a>display(<span class="st">"Eigenvalues:"</span>, w)</span>
 <span id="cb6-3"><a href="#cb6-3"></a>display(<span class="st">"Eigenvectors (as columns):</span><span class="ch">\n</span><span class="st">"</span>, v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -574,7 +580,7 @@ A \otimes B
 <p>Why is this useful? In later chapters we will build multi‐qubit gates (e.g.&nbsp;CNOT, controlled-phase), couple different oscillators, and assemble large Hamiltonians by taking tensor products of single‐mode operators. The Kronecker product lets us lift any local operator into the full, composite Hilbert space.</p>
 <p>In NumPy, the Kronecker product is computed with <a href="https://numpy.org/doc/stable/reference/generated/numpy.kron.html"><code>np.kron</code></a>:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-numpy-kron">
-<div id="numpy-kron" class="cell" data-execution_count="3">
+<div id="numpy-kron" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>B <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]])  <span class="co"># Pauli-X matrix</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>kron <span class="op">=</span> np.kron(A, B)</span>
 <span id="cb11-3"><a href="#cb11-3"></a>display(<span class="st">"A ⊗ B ="</span>, kron)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -644,7 +650,7 @@ A \otimes B
 <li>Frobenius norm: <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.norm.html#scipy.linalg.norm"><code>scipy.linalg.norm</code></a></li>
 </ul>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-scipy-functions">
-<div id="scipy-functions" class="cell" data-execution_count="4">
+<div id="scipy-functions" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> scipy.linalg <span class="im">as</span> la</span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a>det <span class="op">=</span> la.det(A)</span>
@@ -682,7 +688,7 @@ A = \begin{pmatrix}1 &amp; 2\\ 3 &amp; 4\end{pmatrix},\;
 \]</span></p>
 <p>We can reproduce this with NumPy:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-scipy-linear-systems">
-<div id="scipy-linear-systems" class="cell" data-execution_count="5">
+<div id="scipy-linear-systems" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
 <span id="cb18-2"><a href="#cb18-2"></a>b <span class="op">=</span> np.array([<span class="dv">5</span>, <span class="dv">11</span>])</span>
 <span id="cb18-3"><a href="#cb18-3"></a>x <span class="op">=</span> np.linalg.solve(A, b)</span>
@@ -719,7 +725,7 @@ A = \begin{pmatrix}
 <p>Here each number shows a location and its value. COO is very simple and intuitive, but not the most efficient. For larger matrices, we can use the Compressed Sparse Row (CSR) or Compressed Sparse Column (CSC) formats, which store the nonzero entries in a more compact way. The CSR format is very efficient for matrix–vector products.</p>
 <p>Such matrix can be created in SciPy using the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html#scipy.sparse.coo_matrix"><code>coo_matrix</code></a> class:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-scipy-sparse-coo">
-<div id="cell-scipy-sparse-coo" class="cell" data-execution_count="6">
+<div id="cell-scipy-sparse-coo" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="im">from</span> scipy <span class="im">import</span> sparse</span>
 <span id="cb21-2"><a href="#cb21-2"></a></span>
 <span id="cb21-3"><a href="#cb21-3"></a><span class="co"># Create a sparse COO matrix</span></span>
@@ -736,7 +742,7 @@ A = \begin{pmatrix}
 </div>
 <p>It is also possible to convert between different sparse formats. For example, to convert a COO matrix to CSR format, you can use the <code>tocsc()</code> method:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-scipy-sparse-coo-tocsr">
-<div id="cell-scipy-sparse-coo-tocsr" class="cell" data-execution_count="7">
+<div id="cell-scipy-sparse-coo-tocsr" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Convert COO to CSR format</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a>csr <span class="op">=</span> coo.tocsr()</span>
 <span id="cb23-3"><a href="#cb23-3"></a>csr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -748,7 +754,7 @@ A = \begin{pmatrix}
 </div>
 <p>And the matrix–vector product is as simple as:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-scipy-sparse-matrix-vector">
-<div id="cell-scipy-sparse-matrix-vector" class="cell" data-execution_count="8">
+<div id="cell-scipy-sparse-matrix-vector" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Matrix–vector product</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
 <span id="cb25-3"><a href="#cb25-3"></a>w <span class="op">=</span> coo <span class="op">@</span> v  <span class="co"># same as coo.dot(v)</span></span>
@@ -791,7 +797,7 @@ A V_m = V_m H_m + h_{m+1,m}\, v_{m+1} e_m^{\top},
 <p>The cost is <span class="math inline">\(m\)</span> sparse matrix–vector products and <span class="math inline">\(\mathcal{O}(m^2 n)\)</span> scalar operations for orthogonalization (which stays moderate when <span class="math inline">\(m \ll n\)</span>).</p>
 <p>Here’s a concrete example:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/alberto/GitHub/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-scipy-sparse-eigenvalues">
-<div id="scipy-sparse-eigenvalues" class="cell" data-execution_count="9">
+<div id="scipy-sparse-eigenvalues" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> eigs</span>
 <span id="cb27-2"><a href="#cb27-2"></a></span>
 <span id="cb27-3"><a href="#cb27-3"></a><span class="co"># Compute the 2 largest-magnitude eigenvalues of coo</span></span>
@@ -1230,8 +1236,8 @@ A V_m = V_m H_m + h_{m+1,m}\, v_{m+1} e_m^{\top},
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../bibliography.html" class="pagination-link" aria-label="Bibliography">
-        <span class="nav-page-text">Bibliography</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lecture1/numba_and_jax.html" class="pagination-link" aria-label="Speeding up Python for Linear Algebra Tasks">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -140,6 +140,46 @@
     ]
   },
   {
+    "objectID": "lecture1/numba_and_jax.html",
+    "href": "lecture1/numba_and_jax.html",
+    "title": "4  Speeding up Python for Linear Algebra Tasks",
+    "section": "",
+    "text": "4.1 Numba: Just-In-Time Compilation\nPython is easy to read, but pure-Python loops can be slow if you do not leverage optimized libraries (BLAS, LAPACK). Here we explore two tools—Numba and JAX—to accelerate common linear algebra operations.\nNumba uses LLVM to compile Python functions to machine code at runtime. Key points:\nExample: Matrix–Vector Multiplication\nIn practice, Numba can speed up this looped version by 10×–100× compared to pure Python, approaching the speed of NumPy’s optimized routines. The reader is encouraged to try the code without the @njit decorator to see the difference in performance.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Speeding up Python for Linear Algebra Tasks</span>"
+    ]
+  },
+  {
+    "objectID": "lecture1/numba_and_jax.html#numba-just-in-time-compilation",
+    "href": "lecture1/numba_and_jax.html#numba-just-in-time-compilation",
+    "title": "4  Speeding up Python for Linear Algebra Tasks",
+    "section": "",
+    "text": "Decorators: Use @njit (nopython mode) for best speed.\n\nType inference: Numba infers types on first run, then compiles specialized code.\n\nCompilation overhead: The first call incurs compilation time; subsequent calls are fast.\n\nObject mode vs nopython mode: Always aim for nopython mode to avoid Python object overhead.\n\n\nJIT Workflow 1. Call function → type inference → LLVM IR generation.\n2. LLVM IR → machine code (cached).\n3. Subsequent calls use cached machine code.\n\n\n\n\nfrom numba import njit\nimport numpy as np\nimport time # for timing\n\n@njit\ndef matvec(A, x):\n    m, n = A.shape\n    y = np.zeros(m)\n    for i in range(m):\n        temp = 0.0\n        for j in range(n):\n            temp += A[i, j] * x[j]\n        y[i] = temp\n    return y\n\n# Prepare data\ndim = 500\nA = np.random.rand(dim, dim)\nx = np.random.rand(dim)\n\n# Using NumPy's dot product\nstart = time.time()\ny0 = A @ x\nend = time.time()\nprint(\"NumPy time (ms): \", 1e3*(end - start))\n\n# Using Numba's compiled function\ny0 = matvec(A, x) # First call for compilation\n\nstart = time.time()\ny1 = matvec(A, x)\nend = time.time()\nprint(\"Numba time (ms): \", 1e3*(end - start))\n\nNumPy time (ms):  0.049114227294921875\nNumba time (ms):  0.1678466796875",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Speeding up Python for Linear Algebra Tasks</span>"
+    ]
+  },
+  {
+    "objectID": "lecture1/numba_and_jax.html#jax-xla-compilation-and-automatic-differentiation",
+    "href": "lecture1/numba_and_jax.html#jax-xla-compilation-and-automatic-differentiation",
+    "title": "4  Speeding up Python for Linear Algebra Tasks",
+    "section": "4.2 JAX: XLA Compilation and Automatic Differentiation",
+    "text": "4.2 JAX: XLA Compilation and Automatic Differentiation\nJAX is a high-performance library from Google Research that extends NumPy with just-in-time compilation and automatic differentiation. It - Compiles array operations via XLA, fusing kernels and reducing Python overhead. - Supports GPU and TPU backends with minimal code changes. - Provides grad for gradients of scalar functions, enabling optimisation and machine-learning tasks. - Offers advanced transformations like vmap (vectorisation) and pmap (parallelism on multiple devices).\nJAX is widely used in deep learning frameworks (e.g. Flax, Haiku), reinforcement learning, and scientific research (including physics simulations), thanks to its blend of speed and flexibility.\n\n4.2.1 A Quick Overview of Automatic Differentiation\nAutomatic differentiation (AD) is a family of techniques to compute exact derivatives of functions defined by computer programs. Unlike symbolic differentiation (which can lead to expression swell) or numerical finite-difference (which suffers from truncation and round-off error), AD exploits the fact that any complex function is ultimately composed of a finite set of elementary operations (addition, multiplication, sin, exp, …) whose derivatives are known exactly.\n\nLimitations of Finite Differences\nA common finite-difference formula for a scalar function \\(f(x)\\) is the central difference\n\\[\n\\frac{df}{dx}(x)\\approx \\frac{f(x+h)-f(x-h)}{2h},\n\\]\nwith local truncation error \\(\\mathcal{O}(h^2)\\). However, this approach has important limitations:\n\nTruncation vs. round-off: If \\(h\\) is too large, the \\(\\mathcal{O}(h^2)\\) term dominates. If \\(h\\) is too small, floating-point cancellation makes the numerator \\(f(x+h)-f(x-h)\\) inaccurate.\nCost with many parameters: For \\(f:\\mathbb{R}^n\\to\\mathbb{R}\\), the gradient component \\(i\\) is\n\\[\n\\frac{\\partial f}{\\partial x_i}(\\mathbf{x})\\approx \\frac{f(\\mathbf{x}+h\\mathbf{e}_i)-f(\\mathbf{x}-h\\mathbf{e}_i)}{2h}.\n\\]\nComputing all \\(n\\) components requires \\(2n\\) evaluations of \\(f\\), so the cost scales as \\(\\mathcal{O}(n)\\) in \\(f\\)-calls. For large \\(n\\) (many parameters), this becomes prohibitive.\nNon-smooth or branching code: When \\(f\\) contains control flow or non-differentiable operations, finite differences may give misleading or undefined results.\n\n\n\nAutomatic Differentiation and the Chain Rule\nAutomatic differentiation (AD) applies the chain rule to each elementary operation in code (addition, multiplication, sin, exp, etc.), yielding exact derivatives up to floating-point precision. For a composition\n\\[\nu = g(x),\\quad y = f(u),\n\\]\nAD uses the chain rule:\n\\[\n\\frac{dy}{dx} = \\frac{df}{du}\\frac{dg}{dx}.\n\\]\nIn more complex nests, e.g.\n\\[\nv = h(u),\\quad u = g(x),\\quad y = f(v),\n\\]\nwe get\n\\[\n\\frac{dy}{dx} = \\frac{df}{dv}\\frac{dh}{du}\\frac{dg}{dx}.\n\\]\nAD comes in two modes:\n\nForward mode (propagate derivatives from inputs to outputs).\nReverse mode (propagate sensitivities from outputs back to inputs).\n\nJAX implements both and selects the most efficient strategy automatically.\n\n\nComparing Accuracy: AD vs Finite Differences\nBelow is a Quarto code cell that plots the error of finite differences (varying step size \\(h\\)) and automatic differentiation against the true derivative of \\(f(x) = e^{\\sin(x)}\\) at \\(x=1.0\\).\n\n\nimport jax\nimport jax.numpy as jnp\nimport matplotlib.pyplot as plt # for plotting\n\n# Set JAX to use 64-bit floats\njax.config.update(\"jax_enable_x64\", True)\n\n# Define function and true derivative\ndef f_np(x):\n    return np.exp(np.sin(x))\n\ndef df_true(x):\n    return np.cos(x) * np.exp(np.sin(x))\n\n# Point of evaluation\nx0 = 1.0\n\n# Finite-difference errors for varying h\nhs = np.logspace(-8, -1, 50)\nerrors_fd = []\nfor h in hs:\n    df_fd = (f_np(x0 + h) - f_np(x0 - h)) / (2 * h)\n    errors_fd.append(abs(df_fd - df_true(x0)))\n\n# Automatic differentiation error (constant)\ndf_ad = jax.grad(lambda x: jnp.exp(jnp.sin(x)))(x0)\nerror_ad = abs(np.array(df_ad) - df_true(x0))\n\nprint(f\"AD error: {error_ad}\")\nprint(f\"FD minimum error: {min(errors_fd)}\")\n\n# Plot\nplt.loglog(hs, errors_fd)\nplt.xlabel(\"Step size $h$\")\nplt.ylabel(\"Finite Difference Error\")\nplt.title(r\"Error vs Step Size for $f(x) = e^{\\sin(x)}$ at $x=1.0$\")\nplt.show()\n\nAD error: 0.0\nFD minimum error: 7.006839553014288e-12\n\n\n\n\n\n\n\n\n\n\nThis plot illustrates that finite differences achieve minimal error at an optimal \\(h\\), but degrade for too large or too small \\(h\\), while AD remains accurate to machine precision regardless of step size.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Speeding up Python for Linear Algebra Tasks</span>"
+    ]
+  },
+  {
+    "objectID": "lecture1/numba_and_jax.html#summary",
+    "href": "lecture1/numba_and_jax.html#summary",
+    "title": "4  Speeding up Python for Linear Algebra Tasks",
+    "section": "4.3 Summary",
+    "text": "4.3 Summary\n\nNumba: Best for speeding up existing NumPy loops with minimal code changes. Ideal when you do not need gradients or accelerators.\nJAX: Ideal for optimisation tasks requiring gradients, large-scale batch operations, or GPU/TPU acceleration. The XLA compiler often outperforms loop-based JIT for fused kernels.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Speeding up Python for Linear Algebra Tasks</span>"
+    ]
+  },
+  {
     "objectID": "bibliography.html",
     "href": "bibliography.html",
     "title": "Bibliography",
