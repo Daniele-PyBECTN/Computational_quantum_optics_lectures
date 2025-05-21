@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Introduction – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>5&nbsp; Ordinary Differential Equations – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,27 +55,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -85,8 +65,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lecture1/linear_algebra.html" rel="next">
-<link href="../index.html" rel="prev">
+<link href="../bibliography.html" rel="next">
+<link href="../lecture1/numba_and_jax.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -347,7 +327,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/introduction.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/ordinary_differential_equations.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -367,7 +347,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -385,7 +365,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
+  <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
@@ -405,23 +385,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-simulate-open-quantum-systems" id="toc-why-simulate-open-quantum-systems" class="nav-link active" data-scroll-target="#why-simulate-open-quantum-systems"><span class="header-section-number">2.1</span> Why simulate open quantum systems?</a></li>
-  <li><a href="#why-python" id="toc-why-python" class="nav-link" data-scroll-target="#why-python"><span class="header-section-number">2.2</span> Why Python?</a></li>
-  <li><a href="#how-does-python-differ-from-other-mainstream-languages" id="toc-how-does-python-differ-from-other-mainstream-languages" class="nav-link" data-scroll-target="#how-does-python-differ-from-other-mainstream-languages"><span class="header-section-number">2.3</span> How does Python differ from other mainstream languages?</a></li>
-  <li><a href="#a-glance-at-julia-and-quantumtoolbox.jl" id="toc-a-glance-at-julia-and-quantumtoolbox.jl" class="nav-link" data-scroll-target="#a-glance-at-julia-and-quantumtoolbox.jl"><span class="header-section-number">2.4</span> A glance at Julia and <em>QuantumToolbox.jl</em></a></li>
-  <li><a href="#course-scope" id="toc-course-scope" class="nav-link" data-scroll-target="#course-scope"><span class="header-section-number">2.5</span> Course scope</a></li>
-  <li><a href="#first-steps-in-python-lists-loops-and-functions" id="toc-first-steps-in-python-lists-loops-and-functions" class="nav-link" data-scroll-target="#first-steps-in-python-lists-loops-and-functions"><span class="header-section-number">2.6</span> First steps in Python: lists, loops, and functions</a>
+  <li><a href="#general-definition-and-examples" id="toc-general-definition-and-examples" class="nav-link active" data-scroll-target="#general-definition-and-examples"><span class="header-section-number">5.1</span> General Definition and Examples</a></li>
+  <li><a href="#solving-linear-odes-by-diagonalizing-the-system-matrix" id="toc-solving-linear-odes-by-diagonalizing-the-system-matrix" class="nav-link" data-scroll-target="#solving-linear-odes-by-diagonalizing-the-system-matrix"><span class="header-section-number">5.2</span> Solving Linear ODEs by Diagonalizing the System Matrix</a>
   <ul class="collapse">
-  <li><a href="#creating-and-using-lists" id="toc-creating-and-using-lists" class="nav-link" data-scroll-target="#creating-and-using-lists"><span class="header-section-number">2.6.1</span> Creating and using lists</a></li>
-  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><span class="header-section-number">2.6.2</span> For loops</a></li>
-  <li><a href="#defining-functions" id="toc-defining-functions" class="nav-link" data-scroll-target="#defining-functions"><span class="header-section-number">2.6.3</span> Defining functions</a></li>
-  <li><a href="#lambda-anonymous-functions" id="toc-lambda-anonymous-functions" class="nav-link" data-scroll-target="#lambda-anonymous-functions"><span class="header-section-number">2.6.4</span> Lambda (anonymous) functions</a></li>
-  <li><a href="#complex-numbers" id="toc-complex-numbers" class="nav-link" data-scroll-target="#complex-numbers"><span class="header-section-number">2.6.5</span> Complex numbers</a></li>
-  <li><a href="#why-plain-python-lists-can-be-slow" id="toc-why-plain-python-lists-can-be-slow" class="nav-link" data-scroll-target="#why-plain-python-lists-can-be-slow"><span class="header-section-number">2.6.6</span> Why plain Python lists can be slow</a></li>
-  <li><a href="#enter-numpy" id="toc-enter-numpy" class="nav-link" data-scroll-target="#enter-numpy"><span class="header-section-number">2.6.7</span> Enter <code>numpy</code></a></li>
+  <li><a href="#eigenvalue-decomposition" id="toc-eigenvalue-decomposition" class="nav-link" data-scroll-target="#eigenvalue-decomposition"><span class="header-section-number">5.2.1</span> Eigenvalue Decomposition</a></li>
+  <li><a href="#relation-to-the-schrödinger-equation" id="toc-relation-to-the-schrödinger-equation" class="nav-link" data-scroll-target="#relation-to-the-schrödinger-equation"><span class="header-section-number">5.2.2</span> Relation to the Schrödinger Equation</a></li>
   </ul></li>
+  <li><a href="#numerical-solution-via-the-euler-method" id="toc-numerical-solution-via-the-euler-method" class="nav-link" data-scroll-target="#numerical-solution-via-the-euler-method"><span class="header-section-number">5.3</span> Numerical Solution via the Euler Method</a>
+  <ul class="collapse">
+  <li><a href="#forward-euler-method" id="toc-forward-euler-method" class="nav-link" data-scroll-target="#forward-euler-method"><span class="header-section-number">5.3.1</span> Forward Euler Method</a></li>
+  <li><a href="#stability-criterion-for-the-euler-method" id="toc-stability-criterion-for-the-euler-method" class="nav-link" data-scroll-target="#stability-criterion-for-the-euler-method"><span class="header-section-number">5.3.2</span> Stability Criterion for the Euler Method</a></li>
+  </ul></li>
+  <li><a href="#applying-these-methods-to-the-schrödinger-equation" id="toc-applying-these-methods-to-the-schrödinger-equation" class="nav-link" data-scroll-target="#applying-these-methods-to-the-schrödinger-equation"><span class="header-section-number">5.4</span> Applying These Methods to the Schrödinger Equation</a>
+  <ul class="collapse">
+  <li><a href="#time-independent-hamiltonian" id="toc-time-independent-hamiltonian" class="nav-link" data-scroll-target="#time-independent-hamiltonian">Time-Independent Hamiltonian</a></li>
+  <li><a href="#time-dependent-hamiltonian" id="toc-time-dependent-hamiltonian" class="nav-link" data-scroll-target="#time-dependent-hamiltonian"><span class="header-section-number">5.4.1</span> Time-Dependent Hamiltonian</a></li>
+  <li><a href="#open-quantum-systems" id="toc-open-quantum-systems" class="nav-link" data-scroll-target="#open-quantum-systems"><span class="header-section-number">5.4.2</span> Open Quantum Systems</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.5</span> Conclusion</a></li>
   </ul>
-<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/introduction.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/introduction.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
+<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/ordinary_differential_equations.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/ordinary_differential_equations.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -429,7 +412,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></h1>
 </div>
 
 
@@ -446,248 +429,297 @@ window.Quarto = {
 </header>
 
 
-<section id="why-simulate-open-quantum-systems" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="why-simulate-open-quantum-systems"><span class="header-section-number">2.1</span> Why simulate open quantum systems?</h2>
-<p>The experimental frontier of quantum optics increasingly targets systems that cannot be described by perfectly isolated, unitary dynamics. Photons leak from cavities, solid‑state qubits couple to phonons, and measurement back‑action reshapes quantum states in real time. In these scenarios the <em>open</em> character of the system—the interplay between coherent evolution and irreversible processes—becomes the defining feature, not a perturbation. Analytical solutions exist only for a handful of toy models; to design devices, interpret data, and test conceptual ideas we therefore rely on <em>numerical simulation</em> of open quantum dynamics.</p>
-<p>Numerical methods allow us to:</p>
-<ul>
-<li><strong>Predict observables</strong> such as spectra, correlation functions, or entanglement measures before running an experiment.</li>
-<li><strong>Prototype control protocols</strong> (e.g., pulse shaping or feedback) that can stabilize fragile quantum states.</li>
-<li><strong>Explore parameter regimes</strong> that are inaccessible analytically, revealing new phenomena like dissipative phase transitions or non‑Markovian memory effects.</li>
-</ul>
-<div id="fig-open-quantum-sketch" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-open-quantum-sketch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/lecture1/open_quantum_sketch.svg" class="img-fluid figure-img" style="width:100.0%">
+<p>An ordinary differential equation (ODE) is an equation involving functions of one independent variable (for instance, time) and its derivatives. In the simplest scenario, suppose we have an unknown function <span class="math inline">\(y(t)\)</span>. A first-order ODE can be written as:</p>
+<p><span class="math display">\[
+\frac{dy(t)}{dt} = f\bigl(y(t), t\bigr),
+\]</span></p>
+<p>where <span class="math inline">\(f\)</span> is a known function, and <span class="math inline">\(y(t)\)</span> is the unknown to be determined. Higher-order ODEs can often be recast as systems of first-order ODEs by introducing additional variables for the higher derivatives.</p>
+<section id="general-definition-and-examples" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="general-definition-and-examples"><span class="header-section-number">5.1</span> General Definition and Examples</h2>
+<p>To see how ODEs arise in physical scenarios, consider Newton’s second law, <span class="math inline">\(m\,\frac{d^2 x}{dt^2} = F(x,t)\)</span>. This second-order ODE can be reduced to a system of two first-order ODEs by introducing an auxiliary variable for velocity <span class="math inline">\(v(t) = \frac{dx}{dt}\)</span>. Then we have:</p>
+<p><span class="math display">\[
+\begin{cases}
+    \frac{dx}{dt} = v,\\
+    \frac{dv}{dt} = \frac{F(x,t)}{m}.
+  \end{cases}
+\]</span></p>
+<p>In quantum mechanics, the time-dependent Schrödinger equation</p>
+<p><span class="math display">\[
+i\hbar \,\frac{d}{dt}\ket{\psi(t)} = \hat{H}\,\ket{\psi(t)}
+\]</span> can be viewed as a first-order ODE in the Hilbert space: the role of <span class="math inline">\(\ket{\psi(t)}\)</span> is analogous to <span class="math inline">\(y(t)\)</span>, and <span class="math inline">\(-\frac{i}{\hbar}\,\hat{H}\)</span> plays the role of <span class="math inline">\(f(\,\cdot\,,t)\)</span> (assuming a time-independent <span class="math inline">\(\hat{H}\)</span>). This analogy suggests that the Schrödinger equation can be treated using standard ODE solution techniques or, in more complicated cases, numerical integration.</p>
+<p>A <strong>linear</strong> ODE has the form: <span class="math inline">\(\frac{d\mathbf{y}(t)}{dt} = A\,\mathbf{y}(t) + \mathbf{b}(t),\)</span> where <span class="math inline">\(\mathbf{y}(t)\)</span> is a vector function of time, <span class="math inline">\(A\)</span> is a constant (or possibly time-dependent) matrix, and <span class="math inline">\(\mathbf{b}(t)\)</span> is a known inhomogeneous term. If <span class="math inline">\(\mathbf{b}(t) = \mathbf{0}\)</span>, the equation is said to be homogeneous.</p>
+</section>
+<section id="solving-linear-odes-by-diagonalizing-the-system-matrix" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="solving-linear-odes-by-diagonalizing-the-system-matrix"><span class="header-section-number">5.2</span> Solving Linear ODEs by Diagonalizing the System Matrix</h2>
+<p>A common case in quantum mechanics and in classical physics is the linear homogeneous system:</p>
+<p><span id="eq-homogeneous-system"><span class="math display">\[
+\frac{d\mathbf{y}(t)}{dt} = A\,\mathbf{y}(t),
+\quad
+\mathbf{y}(0) = \mathbf{y}_0,
+\tag{5.1}\]</span></span></p>
+<p>where <span class="math inline">\(A\)</span> is a constant <span class="math inline">\(n\times n\)</span> matrix, and <span class="math inline">\(\mathbf{y}_0\)</span> is the initial condition.</p>
+<section id="eigenvalue-decomposition" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="eigenvalue-decomposition"><span class="header-section-number">5.2.1</span> Eigenvalue Decomposition</h3>
+<p>If <span class="math inline">\(A\)</span> is diagonalizable, we can write: <span class="math display">\[A = V \, D \, V^{-1},\]</span> where <span class="math inline">\(D\)</span> is a diagonal matrix whose entries are the eigenvalues <span class="math inline">\(\lambda_i\)</span> of <span class="math inline">\(A\)</span>, and the columns of <span class="math inline">\(V\)</span> are the corresponding eigenvectors. Define: <span class="math display">\[\mathbf{z}(t) = V^{-1}\,\mathbf{y}(t).\]</span> Then, plugging this into <a href="#eq-homogeneous-system" class="quarto-xref">Equation&nbsp;<span>5.1</span></a>, we get</p>
+<p><span class="math display">\[
+\frac{d\mathbf{z}(t)}{dt}
+  = V^{-1}\, \frac{d\mathbf{y}(t)}{dt}
+  = V^{-1}\, A\, \mathbf{y}(t)
+  = V^{-1}\, (V \, D \, V^{-1})\, \mathbf{y}(t)
+  = D \, \mathbf{z}(t).
+\]</span></p>
+<p>Hence, in the <span class="math inline">\(\mathbf{z}\)</span>-coordinates, the system becomes a set of <span class="math inline">\(n\)</span> uncoupled first-order ODEs:</p>
+<p><span class="math display">\[
+\frac{dz_i}{dt} = \lambda_i\, z_i(t),
+  \quad
+  \text{for } i = 1,\dots,n.
+\]</span></p>
+<p>These have the well-known solutions:</p>
+<p><span class="math display">\[
+z_i(t) = z_i(0)\,e^{\lambda_i t}.
+\]</span> To enforce the initial condition <span class="math inline">\(\mathbf{y}(0) = \mathbf{y}_0\)</span>, we note that <span class="math inline">\(\mathbf{z}(0) = V^{-1}\,\mathbf{y}_0\)</span>. Hence, transforming back, we get:</p>
+<p><span class="math display">\[
+\mathbf{y}(t) = V\, \mathbf{z}(t)
+  = V
+  \begin{pmatrix}
+    z_1(0) \, e^{\lambda_1 t}\\
+    z_2(0) \, e^{\lambda_2 t}\\
+    \vdots\\
+    z_n(0) \, e^{\lambda_n t}
+  \end{pmatrix}
+  = V \, e^{D t} \, V^{-1} \, \mathbf{y}_0.
+\]</span></p>
+<p>Therefore, we obtain the compact form:</p>
+<p><span class="math display">\[
+\mathbf{y}(t) = e^{A t}\,\mathbf{y}_0,
+\]</span></p>
+<p>or, equivalently,</p>
+<p><span class="math display">\[
+\mathbf{y}(t) = V
+  \begin{pmatrix}
+  e^{\lambda_1} &amp; &amp; \\
+  &amp; \ddots &amp; \\
+  &amp; &amp; e^{\lambda_n}
+  \end{pmatrix}
+  V^{-1}
+  \mathbf{y}_0 \, .
+\]</span></p>
+<p>In the case of <span class="math inline">\(A\)</span> Hermitian, the time evolution can be expanded as</p>
+<p><span class="math display">\[
+\mathbf{y}(t) = \sum_i (\mathbf{v}_i^\dagger \cdot \mathbf{y}_0) \mathbf{v}_i \, e^{\lambda_i t} \, ,
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{v}_i\)</span> are the eigenvectors of the matrix.</p>
+</section>
+<section id="relation-to-the-schrödinger-equation" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="relation-to-the-schrödinger-equation"><span class="header-section-number">5.2.2</span> Relation to the Schrödinger Equation</h3>
+<p>When dealing with the time-dependent Schrödinger equation for a <em>time-independent</em> Hamiltonian <span class="math inline">\(\hat{H}\)</span>, we can represent <span class="math inline">\(\ket{\psi(t)}\)</span> in a certain basis, turning the Schrödinger equation into:</p>
+<p><span class="math display">\[
+i \hbar \,\frac{d}{dt} \mathbf{c}(t) = H \,\mathbf{c}(t),
+\]</span></p>
+<p>or equivalently,</p>
+<p><span class="math display">\[
+\frac{d\mathbf{c}(t)}{dt} = -\frac{i}{\hbar} \, H \,\mathbf{c}(t).
+\]</span></p>
+<p>We can identify <span class="math inline">\(A = -\frac{i}{\hbar}\, H\)</span>. If <span class="math inline">\(H\)</span> is diagonalizable (e.g., Hermitian matrices always have a complete set of orthonormal eigenvectors), then the above solution technique via diagonalization applies. The resulting exponential solution corresponds to the usual <span class="math inline">\(e^{-\frac{i}{\hbar} H t}\)</span> operator that defines unitary time evolution in quantum mechanics.</p>
+<section id="example-harmonic-oscillator" class="level4">
+<h4 class="anchored" data-anchor-id="example-harmonic-oscillator">Example: Harmonic Oscillator</h4>
+<p>The harmonic oscillator is described by the second-order ODE:</p>
+<p><span class="math display">\[
+\frac{d^2 x}{dt^2} + \omega^2 x = 0,
+\]</span></p>
+<p>which can be rewritten as a first-order system:</p>
+<p><span class="math display">\[
+\begin{cases}
+\frac{dx}{dt} = v, \\
+\frac{dv}{dt} = -\omega^2 x.
+\end{cases}
+\]</span></p>
+<p>or, in matrix form:</p>
+<p><span class="math display">\[
+\frac{d}{dt} \begin{pmatrix} x \\ v \end{pmatrix} = \begin{pmatrix} 0 &amp; 1 \\ -\omega^2 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ v \end{pmatrix}.
+\]</span></p>
+<p>By diagonalizing the matrix, we can find the solution to this system.</p>
+<div id="harmonic-oscillator" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>omega <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># Define the 2x2 matrix A</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>A <span class="op">=</span> np.array([[<span class="fl">0.0</span>,  <span class="fl">1.0</span>],</span>
+<span id="cb1-7"><a href="#cb1-7"></a>              [<span class="op">-</span>omega<span class="op">**</span><span class="dv">2</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># Initial condition: x(0) = 1, v(0) = 0.5</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>x0 <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">0.5</span>])</span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># Diagonalize A</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>eigs, V <span class="op">=</span> np.linalg.eig(A)</span>
+<span id="cb1-14"><a href="#cb1-14"></a>V_inv <span class="op">=</span> np.linalg.inv(V)</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a>z0 <span class="op">=</span> V_inv <span class="op">@</span> x0</span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># Define a time array</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>t_points <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">200</span>)</span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a>X_t <span class="op">=</span> []</span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="cf">for</span> t <span class="kw">in</span> t_points:</span>
+<span id="cb1-23"><a href="#cb1-23"></a>    <span class="co"># Compute the solution at time t</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>    z_t <span class="op">=</span> np.diag(np.exp(eigs <span class="op">*</span> t)) <span class="op">@</span> z0</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    x_t <span class="op">=</span> V <span class="op">@</span> z_t <span class="co"># Transform back to original coordinates</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>    X_t.append(x_t)</span>
+<span id="cb1-27"><a href="#cb1-27"></a></span>
+<span id="cb1-28"><a href="#cb1-28"></a>X_t <span class="op">=</span> np.array(X_t).real</span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="bu">print</span>(<span class="st">"x(2) = "</span>, X_t[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x(2) =  [-0.84284424  1.18678318]</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-open-quantum-sketch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: Description of an open quantum system and its practical applications. A quantum system interacts with a macroscopic environment, leading to decoherence and dissipation. The evolution of the system is described the master equation <span class="math inline">\(\dot{\hat{\rho}} = \mathcal{L}_T(t) [\hat{\rho}]\)</span>, where <span class="math inline">\(\hat{\rho}\)</span> is the density matrix and <span class="math inline">\(\mathcal{L}_T(t)\)</span> is the Liouville superoperator. The solution can be used to study the steady state and non-equilibrium properties of the system. The theoretical study of open quantum systems offers several tools for modeling spin resonance, optical spectra, and quantum information processing, and their use is certainly not limited to these fields and applications. Reproduced from <span class="citation" data-cites="Campaioli2024Quantum">(<a href="../bibliography.html#ref-Campaioli2024Quantum" role="doc-biblioref">Campaioli, Cole, and Hapuarachchi 2024</a>)</span> under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> license.
-</figcaption>
+</div>
+<p>We have: - <code>A</code>: the system matrix. - <code>y0</code>: initial condition <span class="math inline">\(\mathbf{y}(0)\)</span>. - We diagonalize <span class="math inline">\(A\)</span> to find <span class="math inline">\(A = V D V^{-1}\)</span>. - Then <span class="math inline">\(\exp(A t) = V \exp(D t) V^{-1}\)</span>.</p>
+<p>If you run the code, you’ll see the final value of <span class="math inline">\(\mathbf{y}(2)\)</span>.<br>
+We could also visualize the time evolution:</p>
+<div id="cell-plot-harmonic-oscillator" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb3-4"><a href="#cb3-4"></a>ax.plot(t_points, X_t[:, <span class="dv">0</span>], label<span class="op">=</span><span class="st">"$x(t)$"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>ax.plot(t_points, X_t[:, <span class="dv">1</span>], label<span class="op">=</span><span class="st">"$v(t)$"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>ax.plot(t_points, <span class="fl">0.5</span> <span class="op">*</span> omega<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> X_t[:, <span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> X_t[:, <span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>        label<span class="op">=</span><span class="st">"$E(t)$"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a>ax.set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>ax.set_ylabel(<span class="st">"$y(t)$"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>ax.legend()</span>
+<span id="cb3-11"><a href="#cb3-11"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ordinary_differential_equations_files/figure-html/plot-harmonic-oscillator-output-1.png" id="plot-harmonic-oscillator" width="700" height="379" class="figure-img"></p>
 </figure>
 </div>
+</div>
+</div>
 </section>
-<section id="why-python" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="why-python"><span class="header-section-number">2.2</span> Why Python?</h2>
-<p>Python is <em>not</em> the fastest language for floating‑point arithmetic—compiled languages like C or Fortran still win raw speed benchmarks—but it has become the lingua franca of modern scientific computing. Three qualities make it particularly compelling for our purposes:</p>
-<ol type="1">
-<li><strong>Expressiveness</strong> – A succinct, readable syntax lowers cognitive overhead and lets us translate mathematical ideas into code quickly.</li>
-<li><strong>Rich ecosystem</strong> – Numpy, SciPy, Jupyter, Matplotlib, and data‑analysis libraries coexist seamlessly, providing everything from linear algebra kernels to publication‑quality plots.</li>
-<li><strong>Community &amp; portability</strong> – Tutorials, StackOverflow answers, CI pipelines, and cloud platforms such as Google Colab enable beginners to run the same notebooks locally or on GPUs in the cloud with negligible setup.</li>
-</ol>
-<p>Most importantly, Python hosts <strong>QuTiP (Quantum Toolbox in Python)</strong><span class="citation" data-cites="QuTiP2012 QuTiP2024">(<a href="../bibliography.html#ref-QuTiP2012" role="doc-biblioref">Johansson, Nation, and Nori 2012</a>; <a href="../bibliography.html#ref-QuTiP2024" role="doc-biblioref">Lambert et al. 2024</a>)</span> the de‑facto standard library for simulating open quantum systems. QuTiP wraps efficient C and Fortran back‑ends behind a high‑level interface: you manipulate <code>Qobj</code> instances instead of raw matrices, and you call solvers such as <code>mesolve</code> or <code>mcsolve</code> for Lindblad‑master equations and quantum trajectory simulations, respectively. The package is actively maintained, well documented, and battle‑tested across thousands of research papers.</p>
 </section>
-<section id="how-does-python-differ-from-other-mainstream-languages" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="how-does-python-differ-from-other-mainstream-languages"><span class="header-section-number">2.3</span> How does Python differ from other mainstream languages?</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 31%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Language</th>
-<th>Paradigm</th>
-<th>Typical strength</th>
-<th>Typical weakness</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>C / C++</strong></td>
-<td>Compiled, low‑level</td>
-<td>Maximal performance, fine‑grained memory control</td>
-<td>Verbose, higher barrier to entry, manual parallelization</td>
-</tr>
-<tr class="even">
-<td><strong>Fortran</strong></td>
-<td>Compiled, array‑oriented</td>
-<td>Legacy HPC codes, excellent BLAS/LAPACK bindings</td>
-<td>Limited modern features, smaller community</td>
-</tr>
-<tr class="odd">
-<td><strong>MATLAB</strong></td>
-<td>Proprietary, array‑oriented</td>
-<td>Integrated IDE, built‑in plotting, domain‑specific toolboxes</td>
-<td>License cost, closed ecosystem</td>
-</tr>
-<tr class="even">
-<td><strong>Python</strong></td>
-<td>Interpreted, multi‑paradigm</td>
-<td>Readability, vast open‑source libraries, rapid prototyping</td>
-<td>Overhead of interpreter, GIL limits naive multithreading</td>
-</tr>
-</tbody>
-</table>
-<p>Python balances high‑level productivity with the option to call compiled extensions (via Cython, Numba, or Rust bindings) whenever performance matters.</p>
 </section>
-<section id="a-glance-at-julia-and-quantumtoolbox.jl" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="a-glance-at-julia-and-quantumtoolbox.jl"><span class="header-section-number">2.4</span> A glance at Julia and <em>QuantumToolbox.jl</em></h2>
-<p>While Python dominates current scientific computing, it is not the only contender. In recent years, researchers and engineers have been exploring the need for a new programming language—one that combines the performance of compiled languages like C or Fortran with the ease of use and readability of scripting languages like Python or MATLAB. This is the motivation behind Julia.</p>
-<p>Julia promises “<em>C‑like speed with Python‑like syntax</em>” by using just‑in‑time (JIT) compilation and a multiple‑dispatch programming model. Within this language, the package <em>QuantumToolbox.jl</em><span class="citation" data-cites="QuantumToolbox-jl2025">(<a href="../bibliography.html#ref-QuantumToolbox-jl2025" role="doc-biblioref">Mercurio et al. 2025</a>)</span> has emerged as a high‑performance analog to QuTiP. It mirrors QuTiP’s API but benefits from Julia’s performance model and native automatic differentiation. Benchmarks already demonstrate significant speed‑ups, especially for large Hilbert spaces and GPU‑accelerated workloads.</p>
-<p>Nevertheless, Julia’s ecosystem is still maturing. Its tooling, package stability, and IDE support are evolving rapidly but are not yet as robust as Python’s. Similarly, QuantumToolbox.jl, while powerful, has a smaller user base and fewer educational resources compared to QuTiP. For a course focused on accessibility and broad applicability, we therefore choose to prioritize Python and QuTiP as the more mature and stable learning platform.</p>
+<section id="numerical-solution-via-the-euler-method" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="numerical-solution-via-the-euler-method"><span class="header-section-number">5.3</span> Numerical Solution via the Euler Method</h2>
+<p>In many realistic situations (e.g., time-dependent Hamiltonians, nonlinear effects, large dissipative systems described by master equations), finding an exact analytic solution can be very challenging or impossible. We then rely on <em>numerical methods</em> to solve ODEs.</p>
+<section id="forward-euler-method" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="forward-euler-method"><span class="header-section-number">5.3.1</span> Forward Euler Method</h3>
+<p>One of the simplest methods is the <strong>forward Euler method</strong>. Suppose we want to solve: <span class="math display">\[
+\frac{d\mathbf{y}(t)}{dt} = \mathbf{f}(\mathbf{y}(t), t),
+  \quad
+  \mathbf{y}(0) = \mathbf{y}_0.
+\]</span></p>
+<p>We discretize time into steps <span class="math inline">\(t_n = n\,h\)</span> with step size <span class="math inline">\(h\)</span>. The Euler method approximates the derivative at <span class="math inline">\(t_n\)</span> by a difference quotient:</p>
+<p><span class="math display">\[
+\frac{d\mathbf{y}(t_n)}{dt} \approx \frac{\mathbf{y}_{n+1} - \mathbf{y}_n}{h}.
+\]</span></p>
+<p>Hence, the system becomes the algebraic update:</p>
+<p><span class="math display">\[
+\mathbf{y}_{n+1} = \mathbf{y}_n + h\,\mathbf{f}(\mathbf{y}_n, t_n),
+\]</span></p>
+<p>with <span class="math inline">\(\mathbf{y}_0\)</span> known. After iterating this rule for <span class="math inline">\(n=0,1,2,\dots\)</span>, we obtain an approximate solution at discrete times <span class="math inline">\(t_n\)</span>.</p>
 </section>
-<section id="course-scope" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="course-scope"><span class="header-section-number">2.5</span> Course scope</h2>
-<p>In this course we therefore focus on <strong>Python + QuTiP</strong>. You will learn to:</p>
+<section id="stability-criterion-for-the-euler-method" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="stability-criterion-for-the-euler-method"><span class="header-section-number">5.3.2</span> Stability Criterion for the Euler Method</h3>
+<p>While the Euler method is straightforward, it can be susceptible to numerical instability when the system has rapidly decaying or oscillatory modes. For example, consider the test equation <span class="math inline">\(\frac{dy}{dt} = \lambda\, y,\)</span> where <span class="math inline">\(\lambda\)</span> is a (possibly complex) constant. The exact solution is <span class="math inline">\(y(t) = y(0)\,e^{\lambda t}\)</span>. In the Euler scheme, we get</p>
+<p><span class="math display">\[
+y_{n+1} = y_n + h\,\lambda\,y_n = (1 + h\,\lambda)\, y_n.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+y_n = (1 + h\,\lambda)^n\, y_0.
+\]</span></p>
+<p>For the method to be stable (i.e., for <span class="math inline">\(y_n\)</span> to remain bounded in the limit <span class="math inline">\(n\to\infty\)</span> when the exact solution is stable), we require: <span class="math display">\[|1 + h\,\lambda| &lt; 1,\]</span> when the real part of <span class="math inline">\(\lambda\)</span> is negative (dissipative system). If this condition is not met, the numerical solution may diverge even though the true solution decays exponentially. In practice, one must choose the time step <span class="math inline">\(h\)</span> small enough to satisfy such stability constraints.</p>
+<section id="example-harmonic-oscillator-with-euler-method" class="level4">
+<h4 class="anchored" data-anchor-id="example-harmonic-oscillator-with-euler-method">Example: Harmonic Oscillator with Euler Method</h4>
+<p>Let’s now implement the <strong>forward Euler</strong> method for a simpler ODE. Consider the same harmonic oscillator, Euler’s method approximates the evolution as:</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+  x_{n+1} \\ v_{n+1}
+\end{pmatrix} \simeq
+\begin{pmatrix}
+  x_n \\ v_n
+\end{pmatrix} + h \,
+\begin{pmatrix}
+  0 &amp; 1 \\ -\omega^2 &amp; 0
+\end{pmatrix} \,
+\begin{pmatrix}
+  x_n \\ v_n
+\end{pmatrix},
+\]</span></p>
+<p>where <span class="math inline">\(h\)</span> is the time step.</p>
+<div id="cell-euler-method" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>h <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>X_t_euler <span class="op">=</span> np.zeros((<span class="bu">len</span>(t_points), <span class="dv">2</span>))</span>
+<span id="cb4-4"><a href="#cb4-4"></a>X_t_euler[<span class="dv">0</span>] <span class="op">=</span> x0</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(t_points) <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    X_t_euler[n<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> X_t_euler[n] <span class="op">+</span> h <span class="op">*</span> A <span class="op">@</span> X_t_euler[n]</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb4-9"><a href="#cb4-9"></a>ax.plot(t_points, X_t[:, <span class="dv">0</span>], label<span class="op">=</span><span class="st">"$x(t)$ (exact)"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10"></a>ax.plot(t_points, X_t_euler[:, <span class="dv">0</span>], label<span class="op">=</span><span class="st">"$x(t)$ (Euler)"</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>ax.plot(t_points, X_t[:, <span class="dv">1</span>], label<span class="op">=</span><span class="st">"$v(t)$ (exact)"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12"></a>ax.plot(t_points, X_t_euler[:, <span class="dv">1</span>], label<span class="op">=</span><span class="st">"$v(t)$ (Euler)"</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-13"><a href="#cb4-13"></a>ax.set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14"></a>ax.set_ylabel(<span class="st">"$y(t)$"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15"></a>ax.legend()</span>
+<span id="cb4-16"><a href="#cb4-16"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ordinary_differential_equations_files/figure-html/euler-method-output-1.png" id="euler-method" width="700" height="379" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here we see how the Euler solution compares to the exact solution obtained via diagonalization. Notice that using a large time step <span class="math inline">\(h\)</span> can cause the Euler solution to deviate significantly from the exact decay (and may even diverge if <span class="math inline">\(|1 - \lambda h| \ge 1\)</span>).</p>
+</section>
+</section>
+</section>
+<section id="applying-these-methods-to-the-schrödinger-equation" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="applying-these-methods-to-the-schrödinger-equation"><span class="header-section-number">5.4</span> Applying These Methods to the Schrödinger Equation</h2>
+<section id="time-independent-hamiltonian" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="time-independent-hamiltonian">Time-Independent Hamiltonian</h3>
+<p>For a time-independent Hamiltonian <span class="math inline">\(\hat{H}\)</span>, the Schrödinger equation in vector form reads:</p>
+<p><span class="math display">\[
+i\hbar \,\frac{d\mathbf{c}(t)}{dt} = H\,\mathbf{c}(t).
+\]</span></p>
+<p>By setting <span class="math inline">\(A = -\tfrac{i}{\hbar} H\)</span>, we recognize that this is a linear ODE. If <span class="math inline">\(H\)</span> (or <span class="math inline">\(A\)</span>) is diagonalizable, its eigen-decomposition yields an analytic solution. In quantum optics, these solutions describe unitary time evolution of a closed system, often expressed as:</p>
+<p><span class="math display">\[
+\mathbf{c}(t) = e^{-\tfrac{i}{\hbar}H t} \,\mathbf{c}(0).
+\]</span></p>
+</section>
+<section id="time-dependent-hamiltonian" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="time-dependent-hamiltonian"><span class="header-section-number">5.4.1</span> Time-Dependent Hamiltonian</h3>
+<p>When <span class="math inline">\(\hat{H}(t)\)</span> varies explicitly with time, one no longer has a simple exponential solution. Instead, one can divide the time interval of interest into many small sub-intervals and approximate <span class="math inline">\(\hat{H}(t)\)</span> as constant in each interval. This procedure is related to the <em>time-ordered exponential</em>, but from a numerical perspective, we can simply implement a step-by-step integration (e.g., Euler, Runge–Kutta, or other higher-order methods) to construct <span class="math inline">\(\ket{\psi(t_{n+1})}\)</span> from <span class="math inline">\(\ket{\psi(t_n)}\)</span>.</p>
+</section>
+<section id="open-quantum-systems" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="open-quantum-systems"><span class="header-section-number">5.4.2</span> Open Quantum Systems</h3>
+<p>In open quantum systems, the evolution of the density matrix <span class="math inline">\(\rho(t)\)</span> is often governed by the master equation:</p>
+<p><span class="math display">\[
+\frac{d\rho(t)}{dt} = \mathcal{L}[\rho(t)],
+\]</span> where <span class="math inline">\(\mathcal{L}\)</span> is the so-called Liouvillian superoperator, which could contain both Hamiltonian (coherent) parts and dissipative terms. Numerically, one can <em>vectorize</em> <span class="math inline">\(\rho(t)\)</span> (flattening the matrix into a vector) and represent <span class="math inline">\(\mathcal{L}\)</span> as a matrix <span class="math inline">\(\mathcal{L}_{\mathrm{mat}}\)</span>. Then, the equation again has the familiar linear form:</p>
+<p><span class="math display">\[
+\frac{d\mathbf{r}(t)}{dt} = \mathcal{L}_{\mathrm{mat}}\;\mathbf{r}(t).
+\]</span></p>
+<p>Hence, the same techniques (matrix diagonalization for analytical solutions, or time stepping methods like Euler, Runge–Kutta, etc.&nbsp;for numerical solutions) remain valid.</p>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.5</span> Conclusion</h2>
+<p>In summary:</p>
 <ul>
-<li>Build Hamiltonians and collapse operators in a composable way.</li>
-<li>Integrate master equations and unravel them into quantum trajectories.</li>
-<li>Compute expectation values, spectra, and correlation functions.</li>
-<li>Couple simulations to optimisation or machine‑learning workflows within the wider Python ecosystem.</li>
+<li>An Ordinary Differential Equation (ODE) involves a function of one variable and its derivatives.</li>
+<li>When an ODE is linear and time-independent, one can analytically solve it by diagonalizing the system matrix.</li>
+<li>For more complicated (time-dependent or nonlinear) problems, numerical integration methods such as the Euler method can be applied.</li>
+<li>The Euler method is conceptually simple but demands careful choice of time step to ensure stability, particularly when the system matrix has eigenvalues with large negative real parts or when fast decaying/oscillatory modes are present.</li>
+<li>These ideas are directly applicable to quantum mechanical systems such as the Schrödinger equation or master equations for open systems. In the Schrödinger equation, diagonalization corresponds to finding energy eigenstates and frequencies, while in open quantum systems, vectorization plus diagonalization or numerical iteration handles both coherent and dissipative dynamics.</li>
 </ul>
-<p>Where Julia can offer useful perspective we will point out parallels, but all hands‑on examples will run in Python notebooks that you can execute locally or on Colab.</p>
-<blockquote class="blockquote">
-<p><strong>Take‑away:</strong> Numerical simulation is the microscope of modern quantum optics. Python and QuTiP give us a practical, accessible, and well‑supported platform for that microscope—letting us peer into the dynamics of open quantum systems without getting lost in low‑level details.</p>
-</blockquote>
-</section>
-<section id="first-steps-in-python-lists-loops-and-functions" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="first-steps-in-python-lists-loops-and-functions"><span class="header-section-number">2.6</span> First steps in Python: lists, loops, and functions</h2>
-<section id="creating-and-using-lists" class="level3" data-number="2.6.1">
-<h3 data-number="2.6.1" class="anchored" data-anchor-id="creating-and-using-lists"><span class="header-section-number">2.6.1</span> Creating and using lists</h3>
-<p>Before diving into numerical simulations, it’s useful to get acquainted with the basic syntax and features of Python. One of the simplest and most commonly used data structures is the <strong>list</strong>, which stores a sequence of elements. Lists are flexible—they can contain numbers, strings, or even other lists.</p>
-<p>Here’s how to create and access elements in a list:</p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-list">
-<div id="python-list" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>fruits <span class="op">=</span> [<span class="st">'apple'</span>, <span class="st">'banana'</span>, <span class="st">'cherry'</span>]</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">print</span>(<span class="ss">f'First fruit: </span><span class="sc">{</span>fruits[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>First fruit: apple</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="for-loops" class="level3" data-number="2.6.2">
-<h3 data-number="2.6.2" class="anchored" data-anchor-id="for-loops"><span class="header-section-number">2.6.2</span> For loops</h3>
-<p>A <code>for</code> loop allows us to <em>iterate</em> through each item in a collection and execute the same block of code for every element. You will use loops constantly—whether you are sweeping parameter values, accumulating results, or analysing datasets—so it is worth seeing the syntax early.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-for-loop">
-<div id="python-for-loop" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">for</span> fruit <span class="kw">in</span> fruits:</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="bu">print</span>(<span class="ss">f'I like </span><span class="sc">{</span>fruit<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>I like apple
-I like banana
-I like cherry</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="defining-functions" class="level3" data-number="2.6.3">
-<h3 data-number="2.6.3" class="anchored" data-anchor-id="defining-functions"><span class="header-section-number">2.6.3</span> Defining functions</h3>
-<p>Functions bundle reusable logic behind a descriptive name. In quantum‑optics simulations, well‑structured functions help keep notebooks tidy—for instance, collecting the code that builds a Hamiltonian or evaluates an observable in one place. Below is a minimal example that squares a number.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-function">
-<div id="python-function" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> square(x):</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">return</span> x <span class="op">*</span> x</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="bu">print</span>(square(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>25</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="lambda-anonymous-functions" class="level3" data-number="2.6.4">
-<h3 data-number="2.6.4" class="anchored" data-anchor-id="lambda-anonymous-functions"><span class="header-section-number">2.6.4</span> Lambda (anonymous) functions</h3>
-<p>Occasionally we only need a <em>small, throw‑away</em> function—say, as a callback or key in a sort operation. Python’s <code>lambda</code> syntax lets us declare such anonymous functions in a single line, without the ceremony of <code>def</code>.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-lambda">
-<div id="python-lambda" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>square_lambda <span class="op">=</span> <span class="kw">lambda</span> x: x <span class="op">*</span> x</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(square_lambda(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>25</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="complex-numbers" class="level3" data-number="2.6.5">
-<h3 data-number="2.6.5" class="anchored" data-anchor-id="complex-numbers"><span class="header-section-number">2.6.5</span> Complex numbers</h3>
-<p>Python has built‑in support for complex numbers, which are represented as <code>a + bj</code>, where <code>a</code> is the real part and <code>b</code> is the imaginary part. This is particularly useful in quantum mechanics, where complex numbers are ubiquitous.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-complex-number">
-<div id="python-complex-number" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>z <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="ot">2j</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(<span class="ss">f'Complex number: </span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(<span class="ss">f'Real part: </span><span class="sc">{</span>z<span class="sc">.</span>real<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="bu">print</span>(<span class="ss">f'Magnitude: </span><span class="sc">{</span><span class="bu">abs</span>(z)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Complex number: (1+2j)
-Real part: 1.0
-Magnitude: 2.23606797749979</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="why-plain-python-lists-can-be-slow" class="level3" data-number="2.6.6">
-<h3 data-number="2.6.6" class="anchored" data-anchor-id="why-plain-python-lists-can-be-slow"><span class="header-section-number">2.6.6</span> Why plain Python lists can be slow</h3>
-<p>Python lists store <strong>references</strong> to arbitrary Python objects. Each element carries its own type information and reference count. When you perform arithmetic on list elements, the interpreter must</p>
-<ol type="1">
-<li>Look up the byte‑code for each operation.</li>
-<li>Resolve types at runtime.</li>
-<li>Dispatch to the correct C implementation.</li>
-</ol>
-<p>This per‑element overhead dominates runtime in numerical workloads.</p>
-</section>
-<section id="enter-numpy" class="level3" data-number="2.6.7">
-<h3 data-number="2.6.7" class="anchored" data-anchor-id="enter-numpy"><span class="header-section-number">2.6.7</span> Enter <code>numpy</code></h3>
-<p>To overcome the performance limits of pure‑Python lists, we turn to <strong>NumPy</strong>, which stores data in contiguous, fixed‑type arrays and dispatches mathematical operations to highly‑optimised C (and often SIMD/GPU) kernels. The example below shows how you can express a million‑element computation in just two vectorised lines.</p>
-<p><code>numpy</code> provides fixed‑type, contiguous arrays backed by efficient C (or SIMD/GPU) loops. Operations are dispatched <strong>once</strong> for the whole array, eliminating Python‑level overhead and unlocking BLAS/LAPACK acceleration.</p>
-<p>As an example, we can compute the sum of all the elements of a python list, comparing the performance with a numpy array.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-sum-list-vs-numpy">
-<div id="python-sum-list-vs-numpy" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="im">import</span> time <span class="co"># Only for benchmarking</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4"></a>my_list <span class="op">=</span> [i <span class="op">/</span> <span class="dv">1_000_000</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1_000_000</span>)]</span>
-<span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a>start <span class="op">=</span> time.time() <span class="co"># start timer</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a>sum_list <span class="op">=</span> <span class="bu">sum</span>(my_list)  <span class="co"># sum using Python list</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a>end <span class="op">=</span> time.time()  <span class="co"># end timer</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="bu">print</span>(<span class="ss">f'Sum using list: </span><span class="sc">{</span>sum_list<span class="sc">}</span><span class="ss">, '</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a>      <span class="ss">f'Time taken: </span><span class="sc">{</span><span class="fl">1e3</span><span class="op">*</span>(end <span class="op">-</span> start)<span class="sc">:.4f}</span><span class="ss"> milliseconds'</span>)</span>
-<span id="cb11-11"><a href="#cb11-11"></a></span>
-<span id="cb11-12"><a href="#cb11-12"></a>my_list_numpy <span class="op">=</span> np.array(my_list)</span>
-<span id="cb11-13"><a href="#cb11-13"></a>start <span class="op">=</span> time.time()  <span class="co"># start timer</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a>sum_numpy <span class="op">=</span> np.<span class="bu">sum</span>(my_list_numpy)  <span class="co"># sum using numpy array</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a>end <span class="op">=</span> time.time()  <span class="co"># end timer</span></span>
-<span id="cb11-16"><a href="#cb11-16"></a><span class="bu">print</span>(<span class="ss">f'Sum using numpy: </span><span class="sc">{</span>sum_numpy<span class="sc">}</span><span class="ss">, '</span></span>
-<span id="cb11-17"><a href="#cb11-17"></a>      <span class="ss">f'Time taken: </span><span class="sc">{</span><span class="fl">1e3</span><span class="op">*</span>(end <span class="op">-</span> start)<span class="sc">:.4f}</span><span class="ss"> milliseconds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Sum using list: 499999.5, Time taken: 7.7271 milliseconds
-Sum using numpy: 499999.5, Time taken: 0.4506 milliseconds</code></pre>
-</div>
-</div>
-</div>
-<p>NumPy is also able to perform vectorized operations, which let us express complex computations in a few lines of code. For example, we can compute a function of all elements in an array without writing explicit loops. This is not only more readable but also significantly faster, as the underlying C code can be optimised for performance.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/introduction.qmd" data-notebook-title="Introduction to Python" data-notebook-cellid="cell-python-numpy">
-<div id="python-numpy" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Vectorized array operations</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">1_000_000</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>y <span class="op">=</span> np.sin(x) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="bu">print</span>(y[:<span class="dv">5</span>])  <span class="co"># show first five results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[0.         0.00010001 0.00020002 0.00030005 0.00040008]</code></pre>
-</div>
-</div>
-</div>
-<p>One line performs a million floating‑point operations in compiled code—often orders of magnitude faster than an explicit Python loop.</p>
+<p>Throughout the course, we will leverage these fundamental methods—both analytical techniques (e.g., diagonalization) and numerical approaches (e.g., Euler and more sophisticated solvers)—to simulate quantum systems efficiently and accurately.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-Campaioli2024Quantum" class="csl-entry" role="listitem">
-Campaioli, Francesco, Jared H. Cole, and Harini Hapuarachchi. 2024. <span>“Quantum Master Equations: Tips and Tricks for Quantum Optics, Quantum Computing, and Beyond.”</span> <em>PRX Quantum</em> 5 (June): 020202. <a href="https://doi.org/10.1103/PRXQuantum.5.020202">https://doi.org/10.1103/PRXQuantum.5.020202</a>.
-</div>
-<div id="ref-QuTiP2012" class="csl-entry" role="listitem">
-Johansson, J. R., P. D. Nation, and Franco Nori. 2012. <span>“<span class="nocase">QuTiP: An open-source Python framework for the dynamics of open quantum systems</span>.”</span> <em>Computer Physics Communications</em> 183 (8): 1760–72. <a href="https://doi.org/10.1016/j.cpc.2012.02.021">https://doi.org/10.1016/j.cpc.2012.02.021</a>.
-</div>
-<div id="ref-QuTiP2024" class="csl-entry" role="listitem">
-Lambert, Neill, Eric Giguère, Paul Menczel, Boxi Li, Patrick Hopf, Gerardo Suárez, Marc Gali, et al. 2024. <span>“<span class="nocase">QuTiP 5: The Quantum Toolbox in Python</span>.”</span> <em>arXiv:2412.04705</em>. <a href="https://arxiv.org/abs/2412.04705">https://arxiv.org/abs/2412.04705</a>.
-</div>
-<div id="ref-QuantumToolbox-jl2025" class="csl-entry" role="listitem">
-Mercurio, Alberto, Yi-Te Huang, Li-Xun Cai, Yueh-Nan Chen, Vincenzo Savona, and Franco Nori. 2025. <span>“<span class="nocase">QuantumToolbox.jl</span>: An Efficient <span>Julia</span> Framework for Simulating Open Quantum Systems.”</span> <em>arXiv Preprint arXiv:2504.21440</em>. <a href="https://doi.org/10.48550/arXiv.2504.21440">https://doi.org/10.48550/arXiv.2504.21440</a>.
-</div>
-</div>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1105,13 +1137,13 @@ Mercurio, Alberto, Yi-Te Huang, Li-Xun Cai, Yueh-Nan Chen, Vincenzo Savona, and 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="Home Page">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Home Page</span></span>
+      <a href="../lecture1/numba_and_jax.html" class="pagination-link" aria-label="Speeding up Python for Linear Algebra Tasks">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lecture1/linear_algebra.html" class="pagination-link" aria-label="Linear Algebra with NumPy and SciPy">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../bibliography.html" class="pagination-link" aria-label="Bibliography">
+        <span class="nav-page-text">Bibliography</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../bibliography.html" rel="next">
+<link href="../lecture1/ordinary_differential_equations.html" rel="next">
 <link href="../lecture1/linear_algebra.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -385,6 +385,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../bibliography.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bibliography</span></a>
   </div>
@@ -451,8 +457,7 @@ window.Quarto = {
 3. Subsequent calls use cached machine code.</p>
 </blockquote>
 <p><strong>Example: Matrix–Vector Multiplication</strong></p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/numba_and_jax.qmd" data-notebook-title="Speeding up Python for Linear Algebra Tasks" data-notebook-cellid="cell-numba">
-<div id="numba" class="cell" data-execution_count="2">
+<div id="numba" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> numba <span class="im">import</span> njit</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> time <span class="co"># for timing</span></span>
@@ -487,9 +492,8 @@ window.Quarto = {
 <span id="cb1-32"><a href="#cb1-32"></a>end <span class="op">=</span> time.time()</span>
 <span id="cb1-33"><a href="#cb1-33"></a><span class="bu">print</span>(<span class="st">"Numba time (ms): "</span>, <span class="fl">1e3</span><span class="op">*</span>(end <span class="op">-</span> start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumPy time (ms):  0.32258033752441406
-Numba time (ms):  0.29158592224121094</code></pre>
-</div>
+<pre><code>NumPy time (ms):  0.36835670471191406
+Numba time (ms):  0.308990478515625</code></pre>
 </div>
 </div>
 <p>In practice, Numba can speed up this looped version by 10×–100× compared to pure Python, approaching the speed of NumPy’s optimized routines. The reader is encouraged to try the code without the <code>@njit</code> decorator to see the difference in performance.</p>
@@ -546,8 +550,7 @@ v = h(u),\quad u = g(x),\quad y = f(v),
 <section id="comparing-accuracy-ad-vs-finite-differences" class="level4">
 <h4 class="anchored" data-anchor-id="comparing-accuracy-ad-vs-finite-differences">Comparing Accuracy: AD vs Finite Differences</h4>
 <p>Below is a Quarto code cell that plots the error of finite differences (varying step size <span class="math inline">\(h\)</span>) and automatic differentiation against the true derivative of <span class="math inline">\(f(x) = e^{\sin(x)}\)</span> at <span class="math inline">\(x=1.0\)</span>.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/numba_and_jax.qmd" data-notebook-title="Speeding up Python for Linear Algebra Tasks" data-notebook-cellid="cell-jax">
-<div id="cell-jax" class="cell" data-execution_count="3">
+<div id="cell-jax" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> jax</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># for plotting</span></span>
@@ -580,7 +583,7 @@ v = h(u),\quad u = g(x),\quad y = f(v),
 <span id="cb3-30"><a href="#cb3-30"></a><span class="bu">print</span>(<span class="ss">f"FD minimum error: </span><span class="sc">{</span><span class="bu">min</span>(errors_fd)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb3-31"><a href="#cb3-31"></a></span>
 <span id="cb3-32"><a href="#cb3-32"></a><span class="co"># Plot</span></span>
-<span id="cb3-33"><a href="#cb3-33"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.122</span>, <span class="fl">2.5</span>))</span>
+<span id="cb3-33"><a href="#cb3-33"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb3-34"><a href="#cb3-34"></a>ax.loglog(hs, errors_fd, marker<span class="op">=</span><span class="st">"o"</span>)</span>
 <span id="cb3-35"><a href="#cb3-35"></a>ax.set_xlabel(<span class="st">"Step size $h$"</span>)</span>
 <span id="cb3-36"><a href="#cb3-36"></a>ax.set_ylabel(<span class="st">"Error of Finite Differences"</span>)</span>
@@ -592,9 +595,8 @@ FD minimum error: 7.006839553014288e-12</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="numba_and_jax_files/figure-html/-notebooks-lecture1-numba_and_jax-jax-output-2.svg" id="jax" class="img-fluid figure-img"></p>
+<p><img src="numba_and_jax_files/figure-html/jax-output-2.png" id="jax" width="724" height="379" class="figure-img"></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -1070,8 +1072,8 @@ Peruzzo, Alberto, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, P
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../bibliography.html" class="pagination-link" aria-label="Bibliography">
-        <span class="nav-page-text">Bibliography</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lecture1/ordinary_differential_equations.html" class="pagination-link" aria-label="Ordinary Differential Equations">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
