@@ -492,8 +492,8 @@ window.Quarto = {
 <span id="cb1-32"><a href="#cb1-32"></a>end <span class="op">=</span> time.time()</span>
 <span id="cb1-33"><a href="#cb1-33"></a><span class="bu">print</span>(<span class="st">"Numba time (ms): "</span>, <span class="fl">1e3</span><span class="op">*</span>(end <span class="op">-</span> start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumPy time (ms):  0.36835670471191406
-Numba time (ms):  0.308990478515625</code></pre>
+<pre><code>NumPy time (ms):  0.3151893615722656
+Numba time (ms):  0.3094673156738281</code></pre>
 </div>
 </div>
 <p>In practice, Numba can speed up this looped version by 10×–100× compared to pure Python, approaching the speed of NumPy’s optimized routines. The reader is encouraged to try the code without the <code>@njit</code> decorator to see the difference in performance.</p>
