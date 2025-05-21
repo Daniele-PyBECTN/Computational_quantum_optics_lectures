@@ -20,7 +20,7 @@ Numba uses LLVM to compile Python functions to machine code at runtime. Key poin
 
 **Example: Matrix–Vector Multiplication**
 
-{{< include /code_cells/lecture1/numba_and_jax/numba.qmd >}}
+{{< include ../../code_cells/lecture1/numba_and_jax/numba.qmd >}}
 
 ## JAX: XLA Compilation and Automatic Differentiation
 
@@ -36,4 +36,4 @@ JAX is widely used in deep learning frameworks (e.g. Flax, Haiku), reinforcement
 
 Below is a Quarto code cell that plots the error of finite differences (varying step size $h$) and automatic differentiation against the true derivative of $f(x) = e^{\sin(x)}$ at $x=1.0$.
 
-{{< include /code_cells/lecture1/numba_and_jax/jax.qmd >}}
+{{< include ../../code_cells/lecture1/numba_and_jax/jax.qmd >}}

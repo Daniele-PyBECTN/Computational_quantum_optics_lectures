@@ -44,7 +44,7 @@ $$
 
 By diagonalizing the matrix, we can find the solution to this system.
 
-{{< include /code_cells/lecture1/ordinary_differential_equations/harmonic-oscillator.qmd >}}
+{{< include ../../code_cells/lecture1/ordinary_differential_equations/harmonic-oscillator.qmd >}}
 
 We have:
 
@@ -56,7 +56,7 @@ We have:
 If you run the code, you'll see the final value of $\mathbf{y}(2)$.\
 We could also visualize the time evolution:
 
-{{< include /code_cells/lecture1/ordinary_differential_equations/plot-harmonic-oscillator.qmd >}}
+{{< include ../../code_cells/lecture1/ordinary_differential_equations/plot-harmonic-oscillator.qmd >}}
 
 ## 2. Numerical Integration via the Forward Euler Method
 
@@ -79,6 +79,6 @@ $$
 
 where $h$ is the time step.
 
-{{< include /code_cells/lecture1/ordinary_differential_equations/euler-harmonic-oscillator.qmd >}}
+{{< include ../../code_cells/lecture1/ordinary_differential_equations/euler-harmonic-oscillator.qmd >}}
 
 Here we see how the Euler solution compares to the exact solution obtained via diagonalization. Notice that using a large time step $h$ can cause the Euler solution to deviate significantly from the exact decay (and may even diverge if $|1 - \lambda h| \ge 1$).
