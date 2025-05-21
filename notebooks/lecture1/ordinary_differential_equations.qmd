@@ -7,7 +7,6 @@ other-links:
     href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/ordinary_differential_equations.ipynb"
     icon: google
 ---
-
 # Ordinary Differential Equations
 
 In this notebook, we'll explore how to solve ordinary differential equations (ODEs) in practice, focusing on two approaches:

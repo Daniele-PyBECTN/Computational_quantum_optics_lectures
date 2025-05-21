@@ -35,11 +35,24 @@ book:
         href:  https://github.com/Daniele-PyBECTN/Computational_quantum_optics_lectures
   chapters:
     - index.qmd
-    - lecture1/introduction.qmd
+    # - lecture1/ # Introduction to Quantum Systems. The concept of matrices
+    - lecture1/introduction.qmd # Introduction to Python
     - lecture1/linear_algebra.qmd
     - lecture1/numba_and_jax.qmd
     - lecture1/ordinary_differential_equations.qmd
+    # - lecture1/ # Representation of Quantum Operators in Numpy
+    # - lecture1/ # Closed Quantum Systems - Schrodinger Equation
+    # - lecture1/ # Closed Quantum Systems in QuTiP
+    # - lecture2/ # Open Quantum Systems - Lindblad Equation
+    # - lecture2/ # Open Quantum Systems in QuTiP
+    # - lecture3/ # Quantum Observables and Correlation Functions
+    # - lecture3/ # Quantum Observables and Correlation Functions in QuTiP
+    # - lecture3/ # Applications on several systems (trapped ion, optomechanics, etc.)
+    # - lecture4/ # Quantum Monte Carlo - Quantum Trajectories
+    # - lecture4/ # Quantum Monte Carlo in QuTiP
     - bibliography.qmd
+  appendices: 
+    - appendices/quantum-harmonic-oscillator.qmd
 
 number-depth: 3
 bibliography: bibliography.bib
@@ -62,7 +75,7 @@ format:
     fig-align: center
     fig-width: 5
     fig-height: 2.5
-    fig-dpi: 150
+    fig-dpi: 160
   pdf:
     documentclass: scrreprt
     toc: true
