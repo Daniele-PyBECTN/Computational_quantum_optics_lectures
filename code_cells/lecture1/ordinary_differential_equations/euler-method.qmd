@@ -1,0 +1,19 @@
+```{python}
+#| label: euler-method
+h = 0.01
+
+X_t_euler = np.zeros((len(t_points), 2))
+X_t_euler[0] = x0
+for n in range(len(t_points) - 1):
+    X_t_euler[n+1] = X_t_euler[n] + h * A @ X_t_euler[n]
+
+fig, ax = plt.subplots()
+ax.plot(t_points, X_t[:, 0], label="$x(t)$ (exact)")
+ax.plot(t_points, X_t_euler[:, 0], label="$x(t)$ (Euler)", linestyle='--')
+ax.plot(t_points, X_t[:, 1], label="$v(t)$ (exact)")
+ax.plot(t_points, X_t_euler[:, 1], label="$v(t)$ (Euler)", linestyle='--')
+ax.set_xlabel("Time")
+ax.set_ylabel("$y(t)$")
+ax.legend()
+plt.show()
+```

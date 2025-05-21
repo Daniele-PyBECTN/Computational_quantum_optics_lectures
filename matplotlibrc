@@ -1,0 +1,8 @@
+##### CONFIGURATION BEGINS HERE
+
+lines.linewidth: 1.5
+font.size: 10.0
+text.usetex: True
+text.latex.preamble: \usepackage{amsmath} \usepackage{amssymb} \usepackage{physics}
+axes.xmargin: 0.0
+axes.ymargin: 0.0

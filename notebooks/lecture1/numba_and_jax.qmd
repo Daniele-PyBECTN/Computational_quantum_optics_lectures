@@ -9,25 +9,6 @@ other-links:
 ---
 # Speeding up Python for Linear Algebra Tasks
 
-```{python}
-#| echo: false
-
-import matplotlib
-matplotlib.rcParams.update({
-    "figure.figsize": (6.122, 3.784),
-    "figure.dpi": 400,
-    "lines.linewidth": 1.4,
-    "text.usetex": True,
-    "text.latex.preamble": r"""
-        \usepackage{amsmath}
-        \usepackage{amssymb}
-        \usepackage{physics}
-    """,
-})
-
-%config InlineBackend.figure_formats = ['svg']
-```
-
 ## Numba: Just-In-Time Compilation
 
 Numba uses LLVM to compile Python functions to machine code at runtime. Key points:
@@ -39,42 +20,7 @@ Numba uses LLVM to compile Python functions to machine code at runtime. Key poin
 
 **Example: Matrix–Vector Multiplication**
 
-```{python}
-#| label: numba
-from numba import njit
-import numpy as np
-import time # for timing
-
-@njit
-def matvec(A, x):
-    m, n = A.shape
-    y = np.zeros(m)
-    for i in range(m):
-        temp = 0.0
-        for j in range(n):
-            temp += A[i, j] * x[j]
-        y[i] = temp
-    return y
-
-# Prepare data
-dim = 500
-A = np.random.rand(dim, dim)
-x = np.random.rand(dim)
-
-# Using NumPy's dot product
-start = time.time()
-y0 = A @ x
-end = time.time()
-print("NumPy time (ms): ", 1e3*(end - start))
-
-# Using Numba's compiled function
-y0 = matvec(A, x) # First call for compilation
-
-start = time.time()
-y1 = matvec(A, x)
-end = time.time()
-print("Numba time (ms): ", 1e3*(end - start))
-```
+{{< include /code_cells/lecture1/numba_and_jax/numba.qmd >}}
 
 ## JAX: XLA Compilation and Automatic Differentiation
 
@@ -90,43 +36,4 @@ JAX is widely used in deep learning frameworks (e.g. Flax, Haiku), reinforcement
 
 Below is a Quarto code cell that plots the error of finite differences (varying step size $h$) and automatic differentiation against the true derivative of $f(x) = e^{\sin(x)}$ at $x=1.0$.
 
-```{python}
-#| label: jax
-import jax
-import jax.numpy as jnp
-import matplotlib.pyplot as plt # for plotting
-
-# Set JAX to use 64-bit floats
-jax.config.update("jax_enable_x64", True)
-
-# Define function and true derivative
-def f_np(x):
-    return np.exp(np.sin(x))
-
-def df_true(x):
-    return np.cos(x) * np.exp(np.sin(x))
-
-# Point of evaluation
-x0 = 1.0
-
-# Finite-difference errors for varying h
-hs = np.logspace(-8, -1, 50)
-errors_fd = []
-for h in hs:
-    df_fd = (f_np(x0 + h) - f_np(x0 - h)) / (2 * h)
-    errors_fd.append(abs(df_fd - df_true(x0)))
-
-# Automatic differentiation error (constant)
-df_ad = jax.grad(lambda x: jnp.exp(jnp.sin(x)))(x0)
-error_ad = abs(np.array(df_ad) - df_true(x0))
-
-print(f"AD error: {error_ad}")
-print(f"FD minimum error: {min(errors_fd)}")
-
-# Plot
-fig, ax = plt.subplots(figsize=(6.122, 2.5))
-ax.loglog(hs, errors_fd, marker="o")
-ax.set_xlabel("Step size $h$")
-ax.set_ylabel("Error of Finite Differences")
-plt.show()
-```
+{{< include /code_cells/lecture1/numba_and_jax/jax.qmd >}}

@@ -1,5 +1,6 @@
 project:
   type: book
+  execute-dir: project
 
 book:
   title: "Numerical Methods for Quantum Optics and Open Quantum Systems"
@@ -57,8 +58,11 @@ format:
     code-line-numbers: true
     colorlinks: true
     footnotes-hover: true
-    fig-align: center
     fig-responsive: true
+    fig-align: center
+    fig-width: 5
+    fig-height: 2.5
+    fig-dpi: 150
   pdf:
     documentclass: scrreprt
     toc: true
@@ -68,6 +72,9 @@ format:
     margin-top: 1.2in
     margin-bottom: 1.8in
     link-citations: true
+    fig-align: center
+    fig-width: 7
+    fig-height: 3.5
     template-partials:
       - partials/title.tex    # our custom title block
     include-in-header:

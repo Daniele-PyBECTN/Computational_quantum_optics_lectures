@@ -8,16 +8,6 @@ other-links:
 
 This notebook provides a brief introduction to Python, covering the basics of the language and its ecosystem.
 
-## Colab Setup
-
-Run this cell only if you are using Google Colab. It installs the required packages and sets up the environment.
-
-```{python}
-import sys
-if 'google.colab' in sys.modules:
-  !pip install -r https://raw.githubusercontent.com/Daniele-PyBECTN/Computational_quantum_optics_lectures/refs/heads/notebooks/requirements.txt
-```
-
 ## Python Lists
 
 ```{python}

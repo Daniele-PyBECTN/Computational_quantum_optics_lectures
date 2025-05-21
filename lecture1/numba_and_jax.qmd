@@ -27,7 +27,7 @@ Numba uses LLVM to compile Python functions to machine code at runtime. Key poin
 
 **Example: Matrix–Vector Multiplication**
 
-{{< embed /notebooks/lecture1/numba_and_jax.qmd#numba echo=true >}}
+{{< include /code_cells/lecture1/numba_and_jax/numba.qmd >}}
 
 In practice, Numba can speed up this looped version by 10×–100× compared to pure Python, approaching the speed of NumPy's optimized routines. The reader is encouraged to try the code without the `@njit` decorator to see the difference in performance.
 
@@ -102,7 +102,7 @@ JAX implements both and selects the most efficient strategy automatically.
 
 Below is a Quarto code cell that plots the error of finite differences (varying step size $h$) and automatic differentiation against the true derivative of $f(x) = e^{\sin(x)}$ at $x=1.0$.
 
-{{< embed /notebooks/lecture1/numba_and_jax.qmd#jax echo=true >}}
+{{< include /code_cells/lecture1/numba_and_jax/jax.qmd >}}
 
 This plot illustrates that finite differences achieve minimal error at an optimal $h$, but degrade for too large or too small $h$, while AD remains accurate to machine precision regardless of step size.
 
