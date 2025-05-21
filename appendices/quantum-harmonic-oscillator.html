@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bibliography – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>Appendix A — The quantum harmonic oscillator – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,51 +20,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./appendices/quantum-harmonic-oscillator.html" rel="next">
-<link href="./lecture1/ordinary_differential_equations.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4b115c0fd6cb1daaadb3aa5fc133da80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-3a128d666f95c3138e5df6f52c99551d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-4b115c0fd6cb1daaadb3aa5fc133da80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../bibliography.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4b115c0fd6cb1daaadb3aa5fc133da80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3a128d666f95c3138e5df6f52c99551d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4b115c0fd6cb1daaadb3aa5fc133da80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,6 +108,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -266,12 +310,12 @@ div.csl-indent {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Numerical Methods for Quantum Optics and Open Quantum Systems</span>
     </a>
   </div>
         <div class="quarto-navbar-tools tools-end">
-    <a href="./Numerical-Methods-for-Quantum-Optics-and-Open-Quantum-Systems.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="../Numerical-Methods-for-Quantum-Optics-and-Open-Quantum-Systems.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
           <div id="quarto-search" class="" title="Search"></div>
@@ -282,7 +326,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bibliography.html">Bibliography</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/quantum-harmonic-oscillator.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/quantum-harmonic-oscillator.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">The quantum harmonic oscillator</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -296,37 +340,37 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Home Page</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture1/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link">
+  <a href="../lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
+  <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
+  <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bibliography.html" class="sidebar-item-text sidebar-link active">
+  <a href="../bibliography.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bibliography</span></a>
   </div>
 </li>
@@ -341,7 +385,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendices/quantum-harmonic-oscillator.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendices/quantum-harmonic-oscillator.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">The quantum harmonic oscillator</span></span></a>
   </div>
 </li>
@@ -359,9 +403,9 @@ div.csl-indent {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/quantum-harmonic-oscillator.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/quantum-harmonic-oscillator.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">The quantum harmonic oscillator</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Bibliography</h1>
+<h1 class="title">Appendix A — The quantum harmonic oscillator</h1>
 </div>
 
 
@@ -378,52 +422,118 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Campaioli2024Quantum" class="csl-entry" role="listitem">
-Campaioli, Francesco, Jared H. Cole, and Harini Hapuarachchi. 2024.
-<span>“Quantum Master Equations: Tips and Tricks for Quantum Optics,
-Quantum Computing, and Beyond.”</span> <em>PRX Quantum</em> 5 (June):
-020202. <a href="https://doi.org/10.1103/PRXQuantum.5.020202">https://doi.org/10.1103/PRXQuantum.5.020202</a>.
+<p>As an example, here we consider the quantum harmonic oscillator. Classically, the harmonic oscillator is defined as a system subject to the force <span class="math inline">\(\mathbf{F} = - k \mathbf{r}\)</span>, where <span class="math inline">\(k\)</span> is the elastic constant. In other words, the force is proportional to the displacement from a stable point (in this case the origin).</p>
+<p>Following the relation <span class="math inline">\(\mathbf{F} = - \nabla V(\mathbf{r})\)</span>, we can say that the corresponding potential is <span class="math inline">\(V(\mathbf{r}) = k/2 \ \mathbf{r}^2\)</span>. The solution of the Schrodinger equation</p>
+<p><span class="math display">\[
+    i \hbar \frac{\partial}{\partial t} \Psi(\mathbf{r}, t) = -\frac{\hbar^2}{2 m} \nabla^2 \Psi(\mathbf{r}, t) + V(\mathbf{r}) \Psi(\mathbf{r}, t) \, ,
+\]</span></p>
+<p>where <span class="math inline">\(\hbar\)</span> is the reduced Planck constant, <span class="math inline">\(m\)</span> is the mass of the particle, and <span class="math inline">\(\nabla^2\)</span> is the Laplacian operator, gives us the eigenstates of the system. Considering only the one-dimensional case, we obtain the following eigenstates for the quantum harmonic oscillator:</p>
+<p><span id="eq-harmonic-oscillator-solutions"><span class="math display">\[
+\psi_n(x) = \frac{1}{\sqrt{2^n n!}} \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} e^{-\frac{m\omega x^2}{2\hbar}} H_n\left(\sqrt{\frac{m\omega}{\hbar}} x\right) \, ,
+\tag{A.1}\]</span></span></p>
+<p>where <span class="math inline">\(\omega = \sqrt{k / m}\)</span> is the resonance frequency of the oscillator and <span class="math inline">\(H_n\)</span> is the <span class="math inline">\(n\)</span>-th Hermite polynomial.</p>
+<p>A useful way to describe the quantum harmonic oscillator is by using the ladder operators</p>
+<p><span class="math display">\[\begin{eqnarray}
+    \hat{a} &amp;=&amp; \sqrt{\frac{m \omega}{2 \hbar}} \left( \hat{x} + i \frac{1}{m \omega} \hat{p} \right) \\
+    \hat{a}^\dagger &amp;=&amp; \sqrt{\frac{m \omega}{2 \hbar}} \left( \hat{x} - i \frac{1}{m \omega} \hat{p} \right) \, ,
+\end{eqnarray}\]</span></p>
+<p>note that the position <span class="math inline">\(\hat{x}\)</span> and conjugate momentum <span class="math inline">\(\hat{p}\)</span> are operators too. If we now write the eigenstates in <a href="../lecture1/ordinary_differential_equations.html#eq-homogeneous-system" class="quarto-xref">Equation&nbsp;<span>5.1</span></a> in the bra-ket notation (<span class="math inline">\(\psi_n \to \ket{n}\)</span>), the ladder operators allow us to move from one eigenstate to the next or previous one:</p>
+<p><span class="math display">\[\begin{eqnarray}
+    \label{eq1: destroy operator action}
+    \hat{a} \ket{n} &amp;=&amp; \sqrt{n} \ket{n-1} \\
+    \label{eq1: creation operator action}
+    \hat{a}^\dagger \ket{n} &amp;=&amp; \sqrt{n+1} \ket{n+1} \, ,
+\end{eqnarray}\]</span></p>
+<p>and it is straightforward to recognize the creation (<span class="math inline">\(\hat{a}^\dagger\)</span>) and annihilation (<span class="math inline">\(\hat{a}\)</span>) operators. In this framework the system Hamiltonian of the quantum harmonic oscillator becomes <span class="math display">\[
+\hat{H} = \hbar \omega \left( \hat{a}^\dagger \hat{a} + \frac{1}{2} \right) \, .
+\]</span></p>
+<!-- ![First eigenstates of one-dimensional the quantum harmonic oscillator,
+each of them vertically shifted by the corresponding eigenvalue. The
+grey-filled curve corresponds to a coherent state with
+$\alpha=-\sqrt{2}$. The used parameter are $m=1$, $\omega=1$, and
+$\hbar=1$.](/assets/appendices/quantum_harmonic_oscillator.pdf){#fig-harmonic-oscillator-eigenstates width=100%} -->
+<div id="cell-fig-harmonic-oscillator-eigenstates" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> scipy.special <span class="im">import</span> eval_hermite, factorial</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># Physical parameters</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>m <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>k <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>w <span class="op">=</span> np.sqrt(k<span class="op">/</span>m)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>alpha <span class="op">=</span> <span class="op">-</span>np.sqrt(<span class="dv">2</span>)   <span class="co"># coherent‐state parameter</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># Grid</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>bounds <span class="op">=</span> <span class="fl">6.0</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span>bounds, bounds, <span class="dv">1000</span>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co"># n-th eigenfunction of the HO (hbar=1)</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="kw">def</span> psi(n, x):</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    Hn <span class="op">=</span> eval_hermite(n, np.sqrt(m<span class="op">*</span>w) <span class="op">*</span> x)</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    norm <span class="op">=</span> (m<span class="op">*</span>w<span class="op">/</span>np.pi)<span class="op">**</span><span class="fl">0.25</span> <span class="op">/</span> np.sqrt(<span class="dv">2</span><span class="op">**</span>n <span class="op">*</span> factorial(n))</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="cf">return</span> norm <span class="op">*</span> Hn <span class="op">*</span> np.exp(<span class="op">-</span>m<span class="op">*</span>w<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="co"># Build the first six eigenstates and energies</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>psi_n <span class="op">=</span> [psi(n, x) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>)]</span>
+<span id="cb1-23"><a href="#cb1-23"></a>E_n   <span class="op">=</span> [(n <span class="op">+</span> <span class="fl">0.5</span>) <span class="op">*</span> w <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>)]</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co"># Coherent-state wavefunction (real alpha ⇒ no overall phase)</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>psi_coh <span class="op">=</span> (m<span class="op">*</span>w<span class="op">/</span>np.pi)<span class="op">**</span><span class="fl">0.25</span> <span class="op">*</span> np.exp(<span class="op">-</span> (x <span class="op">-</span> np.sqrt(<span class="dv">2</span>)<span class="op">*</span>alpha)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb1-27"><a href="#cb1-27"></a></span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="co"># Plotting</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-30"><a href="#cb1-30"></a></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="co"># 1) potential</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>ax.plot(x, <span class="fl">0.5</span><span class="op">*</span>k<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span>, <span class="st">'k--'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="vs">V</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="vs">=</span><span class="ch">\t</span><span class="vs">frac12 k x</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33"></a></span>
+<span id="cb1-34"><a href="#cb1-34"></a><span class="co"># 2) coherent state</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>ax.fill_between(x, psi_coh, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-36"><a href="#cb1-36"></a>ax.plot(x, psi_coh, color<span class="op">=</span><span class="st">'gray'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Coherent state'</span>)</span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a><span class="co"># 3) eigenstates offset by E_n</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>lines <span class="op">=</span> []</span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>):</span>
+<span id="cb1-41"><a href="#cb1-41"></a>    y <span class="op">=</span> psi_n[n] <span class="op">+</span> E_n[n]</span>
+<span id="cb1-42"><a href="#cb1-42"></a>    line, <span class="op">=</span> ax.plot(x, y, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="vs">fr'</span><span class="dv">$</span><span class="cf">|</span><span class="sc">{</span>n<span class="sc">}</span><span class="ch">\r</span><span class="vs">angle</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb1-43"><a href="#cb1-43"></a>    lines.append(line)</span>
+<span id="cb1-44"><a href="#cb1-44"></a></span>
+<span id="cb1-45"><a href="#cb1-45"></a><span class="co"># Cosmetics</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">7</span>)</span>
+<span id="cb1-47"><a href="#cb1-47"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb1-48"><a href="#cb1-48"></a></span>
+<span id="cb1-49"><a href="#cb1-49"></a><span class="co"># State labels on the right</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a><span class="cf">for</span> n, line <span class="kw">in</span> <span class="bu">enumerate</span>(lines):</span>
+<span id="cb1-51"><a href="#cb1-51"></a>    ax.text(<span class="fl">4.5</span>, E_n[n] <span class="op">+</span> <span class="fl">0.2</span>, <span class="vs">rf'</span><span class="dv">$</span><span class="cf">|</span><span class="sc">{</span>n<span class="sc">}</span><span class="ch">\r</span><span class="vs">angle</span><span class="dv">$</span><span class="vs">'</span>, color<span class="op">=</span>line.get_color())</span>
+<span id="cb1-52"><a href="#cb1-52"></a></span>
+<span id="cb1-53"><a href="#cb1-53"></a>ax.text(<span class="op">-</span><span class="fl">3.5</span>, <span class="fl">6.5</span>, <span class="vs">r"</span><span class="dv">$</span><span class="vs">V</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb1-54"><a href="#cb1-54"></a>ax.text(<span class="op">-</span><span class="dv">3</span>, <span class="fl">0.9</span>, <span class="vs">r"</span><span class="dv">$</span><span class="er">\</span><span class="vs">ket{</span><span class="ch">\a</span><span class="vs">lpha}</span><span class="dv">$</span><span class="vs">"</span>, color<span class="op">=</span><span class="st">"grey"</span>)</span>
+<span id="cb1-55"><a href="#cb1-55"></a>ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(<span class="op">-</span><span class="fl">5.5</span>,<span class="fl">3.5</span>), xytext<span class="op">=</span>(<span class="op">-</span><span class="fl">5.5</span>,<span class="fl">2.5</span>), arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"&lt;-&gt;"</span>))</span>
+<span id="cb1-56"><a href="#cb1-56"></a>ax.text(<span class="op">-</span><span class="fl">5.4</span>, <span class="dv">3</span>, <span class="vs">r"</span><span class="dv">$</span><span class="er">\</span><span class="vs">hbar </span><span class="er">\</span><span class="vs">omega</span><span class="dv">$</span><span class="vs">"</span>, ha<span class="op">=</span><span class="st">"left"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb1-57"><a href="#cb1-57"></a></span>
+<span id="cb1-58"><a href="#cb1-58"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-harmonic-oscillator-eigenstates" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-harmonic-oscillator-eigenstates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quantum-harmonic-oscillator_files/figure-html/fig-harmonic-oscillator-eigenstates-output-1.png" width="684" height="404" class="figure-img">
 </div>
-<div id="ref-DAlessandro2021Introduction" class="csl-entry" role="listitem">
-D’Alessandro, Domenico. 2021. <em><span class="nocase">Introduction to
-Quantum Control and Dynamics</span></em>. Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9781003051268">https://doi.org/10.1201/9781003051268</a>.
-</div>
-<div id="ref-QuTiP2012" class="csl-entry" role="listitem">
-Johansson, J. R., P. D. Nation, and Franco Nori. 2012. <span>“<span class="nocase">QuTiP: An open-source Python framework for the dynamics
-of open quantum systems</span>.”</span> <em>Computer Physics
-Communications</em> 183 (8): 1760–72. <a href="https://doi.org/10.1016/j.cpc.2012.02.021">https://doi.org/10.1016/j.cpc.2012.02.021</a>.
-</div>
-<div id="ref-Khaneja2005Optimal" class="csl-entry" role="listitem">
-Khaneja, Navin, Timo Reiss, Cindie Kehlet, Thomas Schulte-Herbrüggen,
-and Steffen J. Glaser. 2005. <span>“Optimal Control of Coupled Spin
-Dynamics: Design of NMR Pulse Sequences by Gradient Ascent
-Algorithms.”</span> <em>Journal of Magnetic Resonance</em> 172 (2):
-296–305. <a href="https://doi.org/10.1016/j.jmr.2004.11.004">https://doi.org/10.1016/j.jmr.2004.11.004</a>.
-</div>
-<div id="ref-QuTiP2024" class="csl-entry" role="listitem">
-Lambert, Neill, Eric Giguère, Paul Menczel, Boxi Li, Patrick Hopf,
-Gerardo Suárez, Marc Gali, et al. 2024. <span>“<span class="nocase">QuTiP 5: The Quantum Toolbox in Python</span>.”</span>
-<em>arXiv:2412.04705</em>. <a href="https://arxiv.org/abs/2412.04705">https://arxiv.org/abs/2412.04705</a>.
-</div>
-<div id="ref-Lvovsky2009Continuous" class="csl-entry" role="listitem">
-Lvovsky, A. I., and M. G. Raymer. 2009. <span>“Continuous-Variable
-Optical Quantum-State Tomography.”</span> <em>Rev. Mod. Phys.</em> 81
-(March): 299–332. <a href="https://doi.org/10.1103/RevModPhys.81.299">https://doi.org/10.1103/RevModPhys.81.299</a>.
-</div>
-<div id="ref-QuantumToolbox-jl2025" class="csl-entry" role="listitem">
-Mercurio, Alberto, Yi-Te Huang, Li-Xun Cai, Yueh-Nan Chen, Vincenzo
-Savona, and Franco Nori. 2025. <span>“<span class="nocase">QuantumToolbox.jl</span>: An Efficient <span>Julia</span>
-Framework for Simulating Open Quantum Systems.”</span> <em>arXiv
-Preprint arXiv:2504.21440</em>. <a href="https://doi.org/10.48550/arXiv.2504.21440">https://doi.org/10.48550/arXiv.2504.21440</a>.
-</div>
-<div id="ref-Peruzzo2014A" class="csl-entry" role="listitem">
-Peruzzo, Alberto, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi
-Zhou, Peter J. Love, Alán Aspuru-Guzik, and Jeremy L. O’Brien. 2014.
-<span>“A Variational Eigenvalue Solver on a Photonic Quantum
-Processor.”</span> <em>Nature Communications</em> 5 (1). <a href="https://doi.org/10.1038/ncomms5213">https://doi.org/10.1038/ncomms5213</a>.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-harmonic-oscillator-eigenstates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.1: First eigenstates of one-dimensional the quantum harmonic oscillator, each of them vertically shifted by the corresponding eigenvalue. The grey-filled curve corresponds to a coherent state with <span class="math inline">\(\alpha=-\sqrt{2}\)</span>. The used parameter are <span class="math inline">\(m=1\)</span>, <span class="math inline">\(\omega=1\)</span>, and <span class="math inline">\(\hbar=1\)</span>.
+</figcaption>
+</figure>
 </div>
 </div>
+</div>
+<p>It is worth introducing the coherent state <span class="math inline">\(\ket{\alpha}\)</span> of the harmonic oscillator, defined as the eigenstate of the destroy operator, with eigenvalue <span class="math inline">\(\alpha\)</span>, in other words, <span class="math inline">\(\hat{a} \ket{\alpha} = \alpha \ket{\alpha}\)</span>. It can be expressed analytically in terms of the eigenstates of the quantum harmonic oscillator <span class="math display">\[
+\begin{aligned}
+    \ket{\alpha} = e^{-\frac{1}{2} \abs{\alpha}^2} \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n!}} \ket{n} \, ,
+\end{aligned}
+\]</span></p>
+<p>and it can be seen as the most classic-like state since it has the minimum uncertainty <span class="math inline">\(\Delta x \Delta p = \hbar / 2\)</span>.</p>
+<p><a href="#fig-harmonic-oscillator-eigenstates" class="quarto-xref">Figure&nbsp;<span>A.1</span></a> shows the first eigenstates of the quantum harmonic oscillator, each of them vertically shifted by the respective energy, while the grey-filled curve is a coherent state with <span class="math inline">\(\alpha = - \sqrt{2}\)</span>. The black dashed curve is the potential, choosing <span class="math inline">\(k = 1\)</span>, <span class="math inline">\(m = 1\)</span>, and <span class="math inline">\(\hbar = 1\)</span>. It is worth noting that also the groundstate <span class="math inline">\(\ket{0}\)</span> has a nonzero energy (<span class="math inline">\(E_0 = \hbar \omega / 2\)</span>).</p>
 
 
 
@@ -842,14 +952,11 @@ Processor.”</span> <em>Nature Communications</em> 5 (1). <a href="https://doi.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./lecture1/ordinary_differential_equations.html" class="pagination-link" aria-label="Ordinary Differential Equations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span>
+      <a href="../bibliography.html" class="pagination-link" aria-label="Bibliography">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Bibliography</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./appendices/quantum-harmonic-oscillator.html" class="pagination-link" aria-label="The quantum harmonic oscillator">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">The quantum harmonic oscillator</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

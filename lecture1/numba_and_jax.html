@@ -395,6 +395,23 @@ window.Quarto = {
  <span class="menu-text">Bibliography</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/quantum-harmonic-oscillator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">The quantum harmonic oscillator</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -492,8 +509,8 @@ window.Quarto = {
 <span id="cb1-32"><a href="#cb1-32"></a>end <span class="op">=</span> time.time()</span>
 <span id="cb1-33"><a href="#cb1-33"></a><span class="bu">print</span>(<span class="st">"Numba time (ms): "</span>, <span class="fl">1e3</span><span class="op">*</span>(end <span class="op">-</span> start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumPy time (ms):  0.40221214294433594
-Numba time (ms):  0.2913475036621094</code></pre>
+<pre><code>NumPy time (ms):  0.2949237823486328
+Numba time (ms):  0.2994537353515625</code></pre>
 </div>
 </div>
 <p>In practice, Numba can speed up this looped version by 10×–100× compared to pure Python, approaching the speed of NumPy’s optimized routines. The reader is encouraged to try the code without the <code>@njit</code> decorator to see the difference in performance.</p>
@@ -595,7 +612,7 @@ FD minimum error: 7.006839553014288e-12</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="numba_and_jax_files/figure-html/jax-output-2.png" id="jax" width="724" height="379" class="figure-img"></p>
+<p><img src="numba_and_jax_files/figure-html/jax-output-2.png" id="jax" width="772" height="404" class="figure-img"></p>
 </figure>
 </div>
 </div>
