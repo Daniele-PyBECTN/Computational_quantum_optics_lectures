@@ -10,14 +10,17 @@ other-links:
 # Ordinary Differential Equations
 
 An ordinary differential equation (ODE) is an equation involving functions of one independent variable (for instance, time) and its derivatives. In the simplest scenario, suppose we have an unknown function $y(t)$. A first-order ODE can be written as:
+
 $$
 \frac{dy(t)}{dt} = f\bigl(y(t), t\bigr),
 $$
+
 where $f$ is a known function, and $y(t)$ is the unknown to be determined. Higher-order ODEs can often be recast as systems of first-order ODEs by introducing additional variables for the higher derivatives.
 
 ## General Definition and Examples
 
 To see how ODEs arise in physical scenarios, consider Newton's second law, $m\,\frac{d^2 x}{dt^2} = F(x,t)$. This second-order ODE can be reduced to a system of two first-order ODEs by introducing an auxiliary variable for velocity $v(t) = \frac{dx}{dt}$. Then we have:
+
 $$
 \begin{cases}
     \frac{dx}{dt} = v,\\
@@ -26,6 +29,7 @@ $$
 $$
 
 In quantum mechanics, the time-dependent Schrödinger equation
+
 $$
 i\hbar \,\frac{d}{dt}\ket{\psi(t)} = \hat{H}\,\ket{\psi(t)}
 $$
@@ -36,17 +40,20 @@ A **linear** ODE has the form: $\frac{d\mathbf{y}(t)}{dt} = A\,\mathbf{y}(t) + \
 ## Solving Linear ODEs by Diagonalizing the System Matrix
 
 A common case in quantum mechanics and in classical physics is the linear homogeneous system:
+
 $$
 \frac{d\mathbf{y}(t)}{dt} = A\,\mathbf{y}(t),
 \quad
 \mathbf{y}(0) = \mathbf{y}_0,
 $$ {#eq-homogeneous-system}
+
 where $A$ is a constant $n\times n$ matrix, and $\mathbf{y}_0$ is the initial condition.
 
 ### Eigenvalue Decomposition {#eigenvalue-decomposition}
 
 If $A$ is diagonalizable, we can write: $$A = V \, D \, V^{-1},$$ where $D$ is a diagonal matrix whose entries are the eigenvalues $\lambda_i$ of $A$, and the columns of $V$ are the corresponding eigenvectors. Define: $$\mathbf{z}(t) = V^{-1}\,\mathbf{y}(t).$$ Then, plugging this
 into @eq-homogeneous-system, we get
+
 $$
 \frac{d\mathbf{z}(t)}{dt}
   = V^{-1}\, \frac{d\mathbf{y}(t)}{dt}
@@ -54,17 +61,22 @@ $$
   = V^{-1}\, (V \, D \, V^{-1})\, \mathbf{y}(t)
   = D \, \mathbf{z}(t).
 $$
+
 Hence, in the $\mathbf{z}$-coordinates, the system becomes a set of $n$ uncoupled first-order ODEs:
+
 $$
 \frac{dz_i}{dt} = \lambda_i\, z_i(t),
   \quad
   \text{for } i = 1,\dots,n.
 $$
+
 These have the well-known solutions:
+
 $$
 z_i(t) = z_i(0)\,e^{\lambda_i t}.
 $$
 To enforce the initial condition $\mathbf{y}(0) = \mathbf{y}_0$, we note that $\mathbf{z}(0) = V^{-1}\,\mathbf{y}_0$. Hence, transforming back, we get:
+
 $$
 \mathbf{y}(t) = V\, \mathbf{z}(t)
   = V 
@@ -76,7 +88,9 @@ $$
   \end{pmatrix}
   = V \, e^{D t} \, V^{-1} \, \mathbf{y}_0.
 $$
+
 Therefore, we obtain the compact form:
+
 $$
 \mathbf{y}(t) = e^{A t}\,\mathbf{y}_0,
 $$
@@ -96,16 +110,26 @@ $$
 
 In the case of $A$ Hermitian, the time evolution can be expanded as
 
-$$\mathbf{y}(t) = \sum_i (\mathbf{v}_i^\dagger \cdot \mathbf{y}_0) \mathbf{v}_i \, e^{\lambda_i t} \, ,$$
+$$
+\mathbf{y}(t) = \sum_i (\mathbf{v}_i^\dagger \cdot \mathbf{y}_0) \mathbf{v}_i \, e^{\lambda_i t} \, ,
+$$
 
 where $\mathbf{v}_i$ are the eigenvectors of the matrix.
 
 ### Relation to the Schrödinger Equation {#relation-to-the-schrödinger-equation}
 
-When dealing with the time-dependent Schrödinger equation for a *time-independent* Hamiltonian $\hat{H}$, we can represent $\ket{\psi(t)}$ in a certain basis, turning the Schrödinger equation into: $$i \hbar \,\frac{d}{dt} \mathbf{c}(t) = H \,\mathbf{c}(t),$$ or equivalently,
+When dealing with the time-dependent Schrödinger equation for a *time-independent* Hamiltonian $\hat{H}$, we can represent $\ket{\psi(t)}$ in a certain basis, turning the Schrödinger equation into:
+
+$$
+i \hbar \,\frac{d}{dt} \mathbf{c}(t) = H \,\mathbf{c}(t),
+$$
+
+or equivalently,
+
 $$
 \frac{d\mathbf{c}(t)}{dt} = -\frac{i}{\hbar} \, H \,\mathbf{c}(t).
 $$
+
 We can identify $A = -\frac{i}{\hbar}\, H$. If $H$ is diagonalizable (e.g., Hermitian matrices always have a complete set of orthonormal eigenvectors), then the above solution technique via diagonalization applies. The resulting exponential solution corresponds to the usual $e^{-\frac{i}{\hbar} H t}$ operator that defines unitary time evolution in quantum mechanics.
 
 #### Example: Harmonic Oscillator
@@ -160,22 +184,29 @@ $$
 $$
 
 We discretize time into steps $t_n = n\,h$ with step size $h$. The Euler method approximates the derivative at $t_n$ by a difference quotient:
+
 $$
 \frac{d\mathbf{y}(t_n)}{dt} \approx \frac{\mathbf{y}_{n+1} - \mathbf{y}_n}{h}.
 $$
+
 Hence, the system becomes the algebraic update:
+
 $$
 \mathbf{y}_{n+1} = \mathbf{y}_n + h\,\mathbf{f}(\mathbf{y}_n, t_n),
 $$
+
 with $\mathbf{y}_0$ known. After iterating this rule for $n=0,1,2,\dots$, we obtain an approximate solution at discrete times $t_n$.
 
 ### Stability Criterion for the Euler Method {#stability-criterion-for-the-euler-method}
 
 While the Euler method is straightforward, it can be susceptible to numerical instability when the system has rapidly decaying or oscillatory modes. For example, consider the test equation $\frac{dy}{dt} = \lambda\, y,$ where $\lambda$ is a (possibly complex) constant. The exact solution is $y(t) = y(0)\,e^{\lambda t}$. In the Euler scheme, we get
+
 $$
 y_{n+1} = y_n + h\,\lambda\,y_n = (1 + h\,\lambda)\, y_n.
 $$
+
 Thus,
+
 $$
 y_n = (1 + h\,\lambda)^n\, y_0.
 $$
@@ -188,16 +219,16 @@ Let's now implement the **forward Euler** method for a simpler ODE. Consider the
 
 $$
 \begin{pmatrix}
-x_{n+1} \\ v_{n+1}
+  x_{n+1} \\ v_{n+1}
 \end{pmatrix} \simeq
 \begin{pmatrix}
-x_n \\ v_n
+  x_n \\ v_n
 \end{pmatrix} + h \,
 \begin{pmatrix}
-0 & 1 \\ -\omega^2 & 0
+  0 & 1 \\ -\omega^2 & 0
 \end{pmatrix} \,
 \begin{pmatrix}
-x_n \\ v_n
+  x_n \\ v_n
 \end{pmatrix},
 $$
 
@@ -212,11 +243,13 @@ Here we see how the Euler solution compares to the exact solution obtained via d
 ### Time-Independent Hamiltonian {#time-independent-hamiltonian .unnumbered}
 
 For a time-independent Hamiltonian $\hat{H}$, the Schrödinger equation in vector form reads:
+
 $$
 i\hbar \,\frac{d\mathbf{c}(t)}{dt} = H\,\mathbf{c}(t).
 $$
 
 By setting $A = -\tfrac{i}{\hbar} H$, we recognize that this is a linear ODE. If $H$ (or $A$) is diagonalizable, its eigen-decomposition yields an analytic solution. In quantum optics, these solutions describe unitary time evolution of a closed system, often expressed as:
+
 $$
 \mathbf{c}(t) = e^{-\tfrac{i}{\hbar}H t} \,\mathbf{c}(0).
 $$
@@ -228,13 +261,16 @@ When $\hat{H}(t)$ varies explicitly with time, one no longer has a simple expone
 ### Open Quantum Systems {#open-quantum-systems}
 
 In open quantum systems, the evolution of the density matrix $\rho(t)$ is often governed by the master equation:
+
 $$
 \frac{d\rho(t)}{dt} = \mathcal{L}[\rho(t)],
 $$
 where $\mathcal{L}$ is the so-called Liouvillian superoperator, which could contain both Hamiltonian (coherent) parts and dissipative terms. Numerically, one can *vectorize* $\rho(t)$ (flattening the matrix into a vector) and represent $\mathcal{L}$ as a matrix $\mathcal{L}_{\mathrm{mat}}$. Then, the equation again has the familiar linear form:
+
 $$
 \frac{d\mathbf{r}(t)}{dt} = \mathcal{L}_{\mathrm{mat}}\;\mathbf{r}(t).
 $$
+
 Hence, the same techniques (matrix diagonalization for analytical solutions, or time stepping methods like Euler, Runge--Kutta, etc. for numerical solutions) remain valid.
 
 ## Conclusion
