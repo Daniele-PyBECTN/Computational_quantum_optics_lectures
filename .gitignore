@@ -206,6 +206,8 @@ deps/src/
 *.json
 /site_libs/
 
+_tmp_fig.svg
+
 # Files generated from Binder
 .TinyTeX
 .code-server
