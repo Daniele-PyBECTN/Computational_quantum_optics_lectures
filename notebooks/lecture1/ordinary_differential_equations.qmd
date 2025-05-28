@@ -9,6 +9,8 @@ other-links:
 ---
 # Ordinary Differential Equations
 
+{{< include /setup/matplotlib_setup.qmd >}}
+
 In this notebook, we'll explore how to solve ordinary differential equations (ODEs) in practice, focusing on two approaches:
 
 1.  **Matrix Diagonalization** for linear, time-independent systems.\
@@ -43,7 +45,39 @@ $$
 
 By diagonalizing the matrix, we can find the solution to this system.
 
-{{< include ../../code_cells/lecture1/ordinary_differential_equations/harmonic-oscillator.qmd >}}
+```{python}
+#| label: harmonic-oscillator
+import numpy as np
+
+omega = 2.0
+
+# Define the 2x2 matrix A
+A = np.array([[0.0,  1.0],
+              [-omega**2, 0.0]])
+
+# Initial condition: x(0) = 1, v(0) = 0.5
+x0 = np.array([1.0, 0.5])
+
+# Diagonalize A
+eigs, V = np.linalg.eig(A)
+V_inv = np.linalg.inv(V)
+
+z0 = V_inv @ x0
+
+# Define a time array
+t_points = np.linspace(0, 2, 200)
+
+X_t = []
+for t in t_points:
+    # Compute the solution at time t
+    z_t = np.diag(np.exp(eigs * t)) @ z0
+    x_t = V @ z_t # Transform back to original coordinates
+    X_t.append(x_t)
+
+X_t = np.array(X_t).real
+
+print("x(2) = ", X_t[-1])
+```
 
 We have:
 
@@ -55,7 +89,24 @@ We have:
 If you run the code, you'll see the final value of $\mathbf{y}(2)$.\
 We could also visualize the time evolution:
 
-{{< include ../../code_cells/lecture1/ordinary_differential_equations/plot-harmonic-oscillator.qmd >}}
+```{python}
+#| label: plot-harmonic-oscillator
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+ax.plot(t_points, X_t[:, 0], label="$x(t)$")
+ax.plot(t_points, X_t[:, 1], label="$v(t)$")
+ax.plot(t_points, 0.5 * omega**2 * X_t[:, 0]**2 + 0.5 * X_t[:, 1]**2,
+        label="$E(t)$")
+ax.set_xlabel("Time")
+ax.set_ylabel("$y(t)$")
+ax.legend()
+
+# Show in Quarto
+plt.savefig('_tmp_fig.svg')
+plt.close(fig)
+SVG(filename='_tmp_fig.svg')
+```
 
 ## 2. Numerical Integration via the Forward Euler Method
 
@@ -78,6 +129,28 @@ $$
 
 where $h$ is the time step.
 
-{{< include ../../code_cells/lecture1/ordinary_differential_equations/euler-method.qmd >}}
+```{python}
+#| label: euler-method
+h = 0.01
+
+X_t_euler = np.zeros((len(t_points), 2))
+X_t_euler[0] = x0
+for n in range(len(t_points) - 1):
+    X_t_euler[n+1] = X_t_euler[n] + h * A @ X_t_euler[n]
+
+fig, ax = plt.subplots()
+ax.plot(t_points, X_t[:, 0], label="$x(t)$ (exact)")
+ax.plot(t_points, X_t_euler[:, 0], label="$x(t)$ (Euler)", linestyle='--')
+ax.plot(t_points, X_t[:, 1], label="$v(t)$ (exact)")
+ax.plot(t_points, X_t_euler[:, 1], label="$v(t)$ (Euler)", linestyle='--')
+ax.set_xlabel("Time")
+ax.set_ylabel("$y(t)$")
+ax.legend()
+
+# Show in Quarto
+plt.savefig('_tmp_fig.svg')
+plt.close(fig)
+SVG(filename='_tmp_fig.svg')
+```
 
 Here we see how the Euler solution compares to the exact solution obtained via diagonalization. Notice that using a large time step $h$ can cause the Euler solution to deviate significantly from the exact decay (and may even diverge if $|1 - \lambda h| \ge 1$).
