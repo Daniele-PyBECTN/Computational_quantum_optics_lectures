@@ -1,4 +1,6 @@
 ```{python}
+#| echo: false
+
 import matplotlib
 from IPython.display import SVG
 

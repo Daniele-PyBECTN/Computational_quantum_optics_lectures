@@ -1,0 +1,148 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/phase_space_ode.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/phase_space_ode.ipynb"
+    icon: google
+---
+# A quartic non-linear oscillator in phase space
+
+{{< include /setup/matplotlib_setup.qmd >}}
+
+Let us keep the algebra to a minimum and pick the potential
+
+$$
+V(x)=\tfrac 12 k x^{2}+g x^{4},
+$$
+
+with $k>0$ (harmonic part) and $g>0$ (hardening quartic term).
+Its Hamiltonian reads
+
+$$
+H(x,p)=\frac{p^{2}}{2m}+V(x).
+$$
+
+Although the equations of motion are non‑linear, we could still integrate them numerically using `scipy.integrate.solve_ivp`.
+However, this goes out of the scope of this course, as we are interested in linear ordinary differential equations and their matrix equivalents.
+To restore linearity we have to take a step back and study **phase‑space functions** rather than individual trajectories.
+
+We can now construct the matrix operators for the Liouville equation following @eq-central-difference-x, @eq-central-difference-p, and @eq-liouville-matrix.
+We can take advantage of the tools provided by `scipy.sparse` to create the sparse matrices efficiently. We start by importing the necessary libraries
+
+```{python}
+#| label: import-libraries
+
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy as sp
+import scipy.sparse as sparse
+import functools as ft
+
+# Define a Gaussian function, useful for initial conditions
+def gaussian(x, mu, sigma):
+    """Generate a Gaussian function."""
+    return np.exp(-0.5 * ((x - mu) / sigma) ** 2) / (sigma * np.sqrt(2 * np.pi))
+```
+
+And then we define the grid and the operators for the phase space:
+
+```{python}
+#| label: define-operators
+
+N_x = 101 # Number of grid points in position space
+N_px = 101 # Number of grid points in momentum space
+x_bound = 2 # Position space boundary
+px_bound = 2 # Momentum space boundary
+
+# Identity matrices for the different dimensions
+Ix = sparse.eye(N_x)
+Ipx = sparse.eye(N_px)
+
+x_list = np.linspace(-x_bound, x_bound, N_x)
+px_list = np.linspace(-px_bound, px_bound, N_px)
+
+dx = x_list[1] - x_list[0]
+dpx = px_list[1] - px_list[0]
+
+# Define the operators
+x_op = sparse.diags(x_list)
+px_op = sparse.diags(px_list)
+
+# Use central differences for derivatives
+d_x_op = sparse.diags([np.ones(N_x-1)/(2*dx), -np.ones(N_x-1)/(2*dx)], offsets=[1, -1])
+d_px_op = sparse.diags([np.ones(N_px-1)/(2*dpx), -np.ones(N_px-1)/(2*dpx)], offsets=[1, -1])
+
+# Create the full operator for the 4D phase space
+x = ft.reduce(sparse.kron, [x_op, Ipx]).todia()
+px = ft.reduce(sparse.kron, [Ix, px_op]).todia()
+
+d_x = ft.reduce(sparse.kron, [d_x_op, Ipx]).todia()
+d_px = ft.reduce(sparse.kron, [Ix, d_px_op]).todia()
+```
+
+We can now compute the time evolution defined by @eq-liouville-ode by using the Euler method described in @sec-ode-euler-method:
+
+```{python}
+#| label: liouville-euler-method
+
+m = 0.5 # Mass of the particle
+k = 2.0 # Spring constant
+G = 0.3 # Nonlinear constant
+
+dV_dx = k * x + 4 * G * x @ x @ x
+
+# Liouville operator
+L = dV_dx @ d_px - (px / m) @ d_x
+
+t_list = np.linspace(0, 2, 50000)
+
+# Initial state: we will use a Gaussian wave packet to avoid singularities
+x_0 = np.sqrt(gaussian(x_list, 1.0, 0.2)) * np.sqrt(dx)
+p_0 = np.sqrt(gaussian(px_list, 0.1, 0.2)) * np.sqrt(dpx)
+rho_0 = np.kron(x_0, p_0)
+
+x_t = np.zeros(t_list.shape[0])
+v_t = np.zeros(t_list.shape[0])
+E_t = np.zeros(t_list.shape[0])
+
+x_t[0] = rho_0.dot(x.dot(rho_0))
+v_t[0] = rho_0.dot(px.dot(rho_0)) / m
+E_t[0] = (0.5 * m * v_t[0]**2 + 0.5 * k * x_t[0]**2 + G * x_t[0]**4)
+
+rho_t = [rho_0.copy()]
+for i, t in enumerate(t_list[1:], 1):
+    drho_dt = L @ rho_t[-1]
+    rho_t.append(rho_t[-1] + drho_dt * (t_list[1] - t_list[0]))  # Simple Euler integration
+    x_t[i] = rho_t[-1].dot(x.dot(rho_t[-1]))
+    v_t[i] = rho_t[-1].dot(px.dot(rho_t[-1])) / m
+    E_t[i] = (0.5 * m * v_t[i]**2 + 0.5 * k * x_t[i]**2 + G * x_t[i]**4)
+```
+
+And we can finally visualize the evolution of the phase space density $\rho(x, p, t)$ as a 2D plot animation:
+
+```{python}
+#| label: plot-phase-space-density
+
+from IPython.display import HTML
+from matplotlib.animation import FuncAnimation
+
+plt.rcParams.update({'font.size': 8})
+fig, ax = plt.subplots(figsize=(4.6, 2.8))
+
+fig.suptitle(r'Phase space density $\rho(x, p, t)$ evolution')
+
+img = ax.pcolormesh(x_list, px_list, rho_t[0].reshape(N_x, N_px)**2, shading='gouraud', rasterized=True)
+ax.set_xlabel('Position $x$')
+ax.set_ylabel('Momentum $p_x$')
+
+def animate(i):
+    img.set_array(rho_t[i]**2)
+    return img,
+
+ani = FuncAnimation(fig, animate, frames=range(0, len(t_list), 500), interval=50, blit=True)
+
+plt.close(fig)
+HTML(ani.to_jshtml())
+```

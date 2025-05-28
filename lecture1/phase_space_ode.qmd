@@ -1,0 +1,220 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/phase_space_ode.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/phase_space_ode.ipynb"
+    icon: google
+---
+# From Hamilton's equations to the Liouville equation in phase space
+
+In the previous chapter we showed that many *linear* ordinary differential equations (ODEs) that appear in quantum mechanics can be solved elegantly by writing them in **matrix form** and diagonalising the matrix. In classical mechanics, however, the equations of motion
+
+$$
+\begin{cases}
+\dot x \,=\, \dfrac{p}{m},\\
+\dot p \,=\, -\dfrac{\partial V (x)}{\partial x}
+\end{cases}
+$$ {#eq-hamilton_eq}
+
+become *non‑linear* as soon as the potential $V(x)$ is non‑quadratic.
+Consequently the state vector $\mathbf{y} = (x,p)^{\mathsf T}$ no longer satisfies a linear system
+$\dot{\mathbf{y}} = A\,\mathbf{y}$. As an example, we will consider the Duffing-like oscillator with a quartic potential $V(x) = \frac{1}{2} k x^2 + g x^4$.
+
+## From Hamilton’s equations to Liouville’s continuity law
+
+In Hamiltonian mechanics we usually track a *single* phase‑space point $(x(t),p(t))$ by solving the Hamilton equations in @eq-hamilton_eq.
+Yet many physical questions are **statistical**:
+
+- *Given ignorance about the exact initial state*, how does a whole *ensemble* of points evolve?
+- *Which quantities remain constant* under the flow, and why?
+
+Answering these requires an equation for a **phase‑space density** $\rho(x(t),p(t), t)$, not individual trajectories.  The Liouville equation supplies precisely that.
+
+The **Liouville equation** describes how a classical probability density function in phase space evolves over time. It is a fundamental result in classical statistical mechanics and emerges directly from Hamilton’s equations.
+
+We aim to derive:
+$$
+\frac{\partial \rho}{\partial t} + \{ \rho, H \} = 0
+$$
+
+where:
+
+- $\rho(x, p, t)$ is the probability density in phase space,
+- $H(x, p)$ is the Hamiltonian of the system,
+- $\{f, g\} = \frac{\partial f}{\partial x} \frac{\partial g}{\partial p} - \frac{\partial f}{\partial p} \frac{\partial g}{\partial x}$ denotes the Poisson bracket.
+
+We begin with the canonical equations of motion for a 1D system:
+$$
+\begin{cases}
+\dot{x} = \frac{\partial H}{\partial p}\\
+\dot{p} = -\frac{\partial H}{\partial x}
+\end{cases}
+$$
+
+These equations describe the deterministic evolution of a point $(x(t), p(t))$ in phase space.
+
+Let $\rho(x, p, t)$ be the density of an ensemble of classical systems in phase space. To study how this density evolves **along the flow** of the system, we compute the total derivative:
+$$
+\frac{d}{dt} \rho(x(t), p(t), t) =
+\frac{\partial \rho}{\partial t}
++ \frac{\partial \rho}{\partial x} \frac{dx}{dt}
++ \frac{\partial \rho}{\partial p} \frac{dp}{dt}
+$$
+
+Substituting Hamilton’s equations:
+$$
+\frac{d\rho}{dt} =
+\frac{\partial \rho}{\partial t}
++ \frac{\partial \rho}{\partial x} \frac{\partial H}{\partial p}
+- \frac{\partial \rho}{\partial p} \frac{\partial H}{\partial x}
+= \frac{\partial \rho}{\partial t} + \{ \rho, H \}
+$$
+
+In Hamiltonian mechanics, the phase space flow is **incompressible**: it preserves the volume element $dx \wedge dp$. This implies that the density $\rho$ remains constant along each trajectory:
+
+$$
+\frac{d}{dt} \rho(x(t), p(t), t) = 0
+$$
+
+Hence, we obtain:
+$$
+\frac{\partial \rho}{\partial t} + \{ \rho, H \} = 0 \qquad \text{or} \qquad \frac{\partial \rho}{\partial t} = \{H, \rho\}
+$$
+
+This is the **Liouville equation**.
+
+## Physical Interpretation
+
+- The equation describes how a probability distribution in phase space flows under Hamiltonian evolution.
+- The term $\{ \rho, H \}$ encodes the flow of the distribution due to the system's dynamics.
+- The total number of systems is conserved, and the phase-space density is **transported** without compression.
+
+In short: **Liouville’s theorem states that the probability density is constant along the trajectories of the system in phase space**.
+
+## Discretizing the Liouville Operator with Finite Differences
+
+In classical statistical mechanics, the **Liouville equation** governs the time evolution of a probability density in phase space. To simulate this numerically, we can **discretize phase space** and rewrite the Liouville operator as a **sparse matrix**, using **finite difference approximations** for derivatives.
+
+For a 1D system with Hamiltonian $H(x, p) = \frac{p^2}{2m} + V(x)$, we compute:
+
+$$
+\{ H, \rho \} = \frac{\partial H}{\partial x} \frac{\partial \rho}{\partial p} - \frac{\partial H}{\partial p} \frac{\partial \rho}{\partial x} = \frac{\partial V}{\partial x} \frac{\partial \rho}{\partial p} - \frac{p}{m} \frac{\partial \rho}{\partial x}
+$$
+
+### Discretizing Phase Space
+
+We define a **uniform grid** of $N_x$ points over $x$ and $N_p$ points over $p$:
+
+- $x_i = x_0 + i \cdot \Delta x$, for $i = 0, \dots, N_x - 1$
+- $p_j = p_0 + j \cdot \Delta p$, for $j = 0, \dots, N_p - 1$
+
+The phase space density $\rho(x_i, p_j)$ is stored as a 2D array or flattened into a vector $\vec{\rho} \in \mathbb{R}^{N_x N_p}$.
+
+We now define central difference matrices for the derivatives. Using second-order central differences:
+$$
+\left. \frac{\partial \rho}{\partial x} \right|_{x_i} \approx
+\frac{\rho(x_{i+1}) - \rho(x_{i-1})}{2\Delta x}
+$$
+
+This corresponds to a matrix $D_x \in \mathbb{R}^{N_x \times N_x}$ with the stencil:
+$$
+D_x = \frac{1}{2 \Delta x}
+\begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+-1 & 0 & 1 & \cdots & 0 \\
+0 & -1 & 0 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \ddots & 1 \\
+0 & 0 & \cdots & -1 & 0 \\
+\end{pmatrix}
+$$ {#eq-central-difference-x}
+
+Analogously:
+$$
+D_p = \frac{1}{2 \Delta p}
+\begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+-1 & 0 & 1 & \cdots & 0 \\
+0 & -1 & 0 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \ddots & 1 \\
+0 & 0 & \cdots & -1 & 0 \\
+\end{pmatrix}
+$$ {#eq-central-difference-p}
+
+Both matrices are **sparse**, **antisymmetric**, and can be constructed with sparse matrix tools of `scipy.sparse`.
+
+### Building the Liouville Matrix Operator
+
+Once we flatten the 2D array $\rho(x_i, p_j)$ into a vector $\vec{\rho} \in \mathbb{R}^{N_x N_p}$, we define:
+
+- $P = \text{diag}(p_j / m)$ of shape $N_p \times N_p$
+- $\partial_x V = \text{diag}(\partial_x V(x_i))$ of shape $N_x \times N_x$
+
+Then the full Liouville matrix $L$ becomes:
+
+$$
+L = (I_x \otimes D_p) \cdot (\partial_x V \otimes I_p) - (D_x \otimes I_p) \cdot (I_x \otimes P)
+$$ {#eq-liouville-matrix}
+
+Here:
+
+- $I_x$, $I_p$: identity matrices on position and momentum spaces
+- $\otimes$: Kronecker product
+
+This is a sparse matrix acting on $\vec{\rho}$, and encodes the total effect of the classical flow in phase space.
+
+## Time Evolution
+
+We can evolve the discretized density using an ODE solver:
+$$
+\frac{d \vec{\rho}}{dt} = L \vec{\rho}
+$$ {#eq-liouville-ode}
+
+Thus, we have reduced the problem to a linear ordinary differential equation (ODE) system, which can be solved using the standard tools discussed in @sec-ordinary-differential-equations.
+
+Before concluding this section, let us summarize some important points:
+
+- The Liouville operator can be expressed as a sparse matrix using finite differences.
+- Position and momentum derivatives are replaced by central difference matrices.
+- The discretized Liouville equation is a linear ODE system for the phase-space density vector.
+- The phase space grid must be fine enough to resolve the flow.
+- Boundary conditions (periodic, reflecting, absorbing) must be chosen according to the physics.
+- This approach is analogous to how quantum Hamiltonians are discretized into matrices using finite differences.
+
+## Running example: a quartic non-linear oscillator
+
+Let us keep the algebra to a minimum and pick the potential
+
+$$
+V(x)=\tfrac 12 k x^{2}+g x^{4},
+$$
+
+with $k>0$ (harmonic part) and $g>0$ (hardening quartic term).
+Its Hamiltonian reads
+
+$$
+H(x,p)=\frac{p^{2}}{2m}+V(x).
+$$
+
+Although the equations of motion are non‑linear, we could still integrate them numerically using `scipy.integrate.solve_ivp`.
+However, this goes out of the scope of this course, as we are interested in linear ordinary differential equations and their matrix equivalents.
+To restore linearity we have to take a step back and study **phase‑space functions** rather than individual trajectories.
+
+We can now construct the matrix operators for the Liouville equation following @eq-central-difference-x, @eq-central-difference-p, and @eq-liouville-matrix.
+We can take advantage of the tools provided by `scipy.sparse` to create the sparse matrices efficiently. We start by importing the necessary libraries
+
+{{< embed /notebooks/lecture1/phase_space_ode.qmd#import-libraries echo=true >}}
+
+And then we define the grid and the operators for the phase space:
+
+{{< embed /notebooks/lecture1/phase_space_ode.qmd#define-operators echo=true >}}
+
+We can now compute the time evolution defined by @eq-liouville-ode by using the Euler method described in @sec-ode-euler-method:
+
+{{< embed /notebooks/lecture1/phase_space_ode.qmd#liouville-euler-method echo=true >}}
+
+And we can finally visualize the evolution of the phase space density $\rho(x, p, t)$ as a 2D plot animation:
+
+{{< embed /notebooks/lecture1/phase_space_ode.qmd#plot-phase-space-density echo=true >}}
+

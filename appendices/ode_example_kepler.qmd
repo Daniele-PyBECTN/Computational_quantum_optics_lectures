@@ -1,0 +1,96 @@
+---
+jupyter: python3
+---
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from scipy.integrate import solve_ivp
+from IPython.display import HTML
+
+# Set the parameters of the problem
+G = 1.0     #gravitational constant. Here we use rescaled units, as it is often the case in numerical simulations. We must avoid numbers like 10^-9 that are not nice for a computer
+            #numbers like 1,2, 10, 1000 are much better to handle.
+masses = np.array([.1, 10.0, 2000.0])   #these are the masses of our problem. As an example I consider the Earth with mass 10, the sun with mass 2000 and the moon with mass 0.1
+
+#Here we need to specify the initial conditions. To make it simpler I just consider a 2D problem (for gravity force the plane of motion is fixed by angular momentum conservation)
+r1_0 = np.array([15.2, 0.0])    #this is the moon, close to the earth
+r2_0 = np.array([15.0, 0.0])    #earth
+r3_0 = np.array([0.0, 0.0])     #the sun is at the center, good old Galileo was right not the pope.
+v1_0 = np.array([0.0, 1.])      #Initial velocity of the moon...a slow value
+v2_0 = np.array([0.0, 5.])      #initial velocity of the earth...a faster value
+v3_0 = np.array([0.0, 0.0])     #initial velocity of the sun...none
+y0 = np.concatenate((r1_0, r2_0, r3_0, v1_0, v2_0, v3_0))   #let's put all these vectors together in a single array
+```
+
+We cast the problem into something that the computer can handle which is a first order differential equation, like
+$$
+    \partial_t\vec{c} = H\cdot \vec{c}
+$$
+Now $H$ is a matrix, that we call Hamiltonian kernel, which is made combining the forces and the relation between velocities and position time derivative.
+
+```{python}
+
+def three_body_2D(t, y):    #let's define a function describing the Hamiltonian evolving Kernel each time t
+    r = [y[0:2], y[2:4], y[4:6]]
+    v = [y[6:8], y[8:10], y[10:12]]
+    a = []
+    for i in range(3):
+        ai = np.zeros(2)
+        for j in range(3):
+            if i != j:
+                rij = r[j] - r[i]
+                dist = np.linalg.norm(rij)
+                ai += G * masses[j] * rij / dist**3
+        a.append(ai)
+    return np.concatenate((*v, *a))
+
+t_span = (0, 10)    #the time range we want to look at
+t_eval = np.linspace(*t_span, 1000) #we define an array for each time step
+sol = solve_ivp(three_body_2D, t_span, y0, t_eval=t_eval, rtol=1e-9, atol=1e-12)    #we use a numpy default integrator function to solve the time evolution for given initial conditions
+                                                                                    #and for the given Hamiltonian kernel
+
+r1 = sol.y[0:2] #we store the solutions (the trajectory in time)
+r2 = sol.y[2:4]
+r3 = sol.y[4:6]
+
+# Animation setup: let's make a nice movie of the time evolution
+fig, ax = plt.subplots(figsize=(4, 4))
+ax.set_xlim(-20, 20)
+ax.set_ylim(-20, 20)
+ax.set_title("Kepler problem")
+ax.set_aspect('equal')
+ax.grid(True)
+
+# Plotting elements
+trail_len = 50
+line1, = ax.plot([], [], 'g-')
+line2, = ax.plot([], [], 'r-')
+line3, = ax.plot([], [], 'b-')
+point1, = ax.plot([], [], 'go')
+point2, = ax.plot([], [], 'ro')
+point3, = ax.plot([], [], 'bo')
+
+def init():
+    for obj in [line1, line2, line3, point1, point2, point3]:
+        obj.set_data([], [])
+    return line1, line2, line3, point1, point2, point3
+
+plt.close(fig)  # Prevent static figure from displaying
+
+def update(i):
+    start = max(i - trail_len, 0)
+    line1.set_data(r1[0, start:i], r1[1, start:i])
+    line2.set_data(r2[0, start:i], r2[1, start:i])
+    line3.set_data(r3[0, start:i], r3[1, start:i])
+    point1.set_data(r1[0, i], r1[1, i])
+    point2.set_data(r2[0, i], r2[1, i])
+    point3.set_data(r3[0, i], r3[1, i])
+    return line1, line2, line3, point1, point2, point3
+
+ani = FuncAnimation(fig, update, frames=len(t_eval), init_func=init, interval=20, blit=True)
+HTML(ani.to_jshtml())
+```
+
+

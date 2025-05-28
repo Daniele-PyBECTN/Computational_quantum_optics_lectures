@@ -7,7 +7,7 @@ other-links:
     href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/ordinary_differential_equations.ipynb"
     icon: google
 ---
-# Ordinary Differential Equations
+# Ordinary Differential Equations {#sec-ordinary-differential-equations}
 
 An ordinary differential equation (ODE) is an equation involving functions of one independent variable (for instance, time) and its derivatives. In the simplest scenario, suppose we have an unknown function $y(t)$. A first-order ODE can be written as:
 
@@ -116,7 +116,7 @@ $$
 
 where $\mathbf{v}_i$ are the eigenvectors of the matrix.
 
-### Relation to the Schrödinger Equation {#relation-to-the-schrödinger-equation}
+### Relation to the Schrödinger Equation
 
 When dealing with the time-dependent Schrödinger equation for a *time-independent* Hamiltonian $\hat{H}$, we can represent $\ket{\psi(t)}$ in a certain basis, turning the Schrödinger equation into:
 
@@ -170,7 +170,7 @@ We could also visualize the time evolution:
 
 {{< embed /notebooks/lecture1/ordinary_differential_equations.qmd#plot-harmonic-oscillator echo=true >}}
 
-## Numerical Solution via the Euler Method
+## Numerical Solution via the Euler Method {#sec-ode-euler-method}
 
 In many realistic situations (e.g., time-dependent Hamiltonians, nonlinear effects, large dissipative systems described by master equations), finding an exact analytic solution can be very challenging or impossible. We then rely on *numerical methods* to solve ODEs.
 

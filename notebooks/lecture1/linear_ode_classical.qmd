@@ -82,7 +82,7 @@ $$
 $$
 
 ```{python}
-m = 0.5
+m = 0.5 # Mass of the particle
 k = 2.0 # Spring constant
 G = 0.3 # Nonlinear constant
 
