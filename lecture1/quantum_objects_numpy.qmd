@@ -9,37 +9,103 @@ other-links:
 ---
 # Representing Quantum States and Operators with NumPy
 
-In quantum mechanics, states and observables are represented using the mathematics of Hilbert spaces.
+In quantum mechanics, states and observables are represented using the algebra of Hilbert spaces.
 However, their infinite dimensions is incompatible with numerical simulations, that always requires finite elements. 
 Hence, we truncate Hilbert spaces to a finite size, allowing us to run the quantum calculation on a computer.
-We can thus say that the whole problem of numerical quantum mechanics is then reduced to a problem of linear algebra.
+We can thus say that the whole problem of numerical quantum mechanics is then reduced to a problem of linear algebra. However, the intricated tensor structures of many-body Hilbert spaces requires also a powerful organization of the code and an easy way to access relevant information.
 
-The art of numerical quantum optics stands almost entirely in finding algorthms that allows us to arrive to the aimed result with the smallest possible truncated Hilbert space.
-However, beside having efficient algorithms, the intricated tensor structures of many-body Hilbert spaces requires also a powerful organization of the code and an easy way to access relevant information.
+In the following we consider a system with a Hilbert space of dimension $d$. The set of basis states $\{|k\rangle: k=1, \ldots, d\}$ form an orthonormal basis, i.e., $\left\langle k \mid k^{\prime}\right\rangle=\delta_{k, k^{\prime}}$.
+In general there are systems with an infinite dimensional Hilbert space, or systems, where the dimension is too large to be tractable on a computer. In this case $d$ denotes the number of truncated basis states, which is used in the numerical simulation. For a given choice of basis states we can express any state vector and any operator as
 
-## Quantum States and Operators in truncated Hilbert Spaces
+$$
+|\psi\rangle = \sum_{k=1}^{d} c_{k} |k\rangle, \quad \hat{A}=\sum_{k, l} A_{k l}|k\rangle\langle l|, 
+$$
+
+where $c_{k} = \langle k \mid \psi\rangle$ and $A_{k l}=\langle k| \hat{A}|l\rangle$. 
+Therefore, in numerical simulations we represent states by vectors and operators by matrices according to the mapping
+
+$$
+|\psi\rangle \mapsto \vec{\psi}=\left(\begin{array}{c}
+c_{1} \\
+c_{2} \\
+\vdots \\
+c_{d}
+\end{array}\right), \quad \hat{A} \mapsto A=\left(\begin{array}{cccc}
+A_{11} & A_{12} & \ldots & A_{1 d} \\
+A_{21} & A_{22} & \ldots & A_{2 d} \\
+\vdots & \vdots & \ddots & \vdots \\
+A_{d 1} & A_{d 2} & \ldots & A_{d d}
+\end{array}\right) .
+$$
+
+The left and right operations of an operator on a vector then simply translate into matrix vector multiplications,
+
+$$
+\hat{A}|\psi\rangle \mapsto \texttt{np.dot(A, psi)}, \quad \langle \psi| \hat{A} \mapsto \texttt{np.dot(np.conj(psi.T), A)},
+$$
+
+where in Numpy `np.conj(psi.T)` is the hermitian transpose of a matrix or vector.
+
+## Pauli Operators
+The Pauli operators are fundamental in quantum mechanics, especially in the context of qubits. They are represented as matrices in a two-dimensional Hilbert space, which is the simplest non-trivial quantum system.
+
+$$
+\hat{\sigma}_{x} \mapsto\left(\begin{array}{cc}
+0 & 1  \\
+1 & 0
+\end{array}\right), \quad \hat{\sigma}_{y} \mapsto\left(\begin{array}{cc}
+0 & i \\
+-i & 0
+\end{array}\right), \quad \hat{\sigma}_{z} \mapsto\left(\begin{array}{cc}
+1 & 0 \\
+0 & -1
+\end{array}\right) .
+$$
+
+In Numpy we simply define the corresponding matrices
+
+{{< embed /notebooks/lecture1/quantum_objects_numpy.qmd#pauli-operators echo=true >}}
+
+## Harmonic Oscillator
 
 In a Hilbert space of dimension $N$, quantum states can be represented as vectors, and operators as matrices. Here we demonstrate the destroy operator, $a$, which lowers the state by one quantum number. For a detailed discussion on the quantum harmonic oscillator and the bosonic annihilation operator, refer to @sec-quantum-harmonic-oscillator.
 
-The matrix representation of the destroy operator in a Hilbert space of cutoff $N=7$ is:
+For a harmonic oscillator with number states $|n\rangle$ the only nonzero matrix elements of the annihilation operator $\hat{a}$ are given by $\langle n-1| \hat{a}|n\rangle=\sqrt{n}$
 
 $$
-\hat{a} = \begin{pmatrix}
-0 & \sqrt{1} & 0 & 0 & 0 & 0 & 0 \\
-0 & 0 & \sqrt{2} & 0 & 0 & 0 & 0 \\
-0 & 0 & 0 & \sqrt{3} & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & \sqrt{4} & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 & \sqrt{5} & 0 \\
-0 & 0 & 0 & 0 & 0 & 0 & \sqrt{6} \\
-0 & 0 & 0 & 0 & 0 & 0 & 0
-\end{pmatrix}
+\hat{a} \mapsto A=\left(\begin{array}{cccccc}
+0 & 1 & \ldots & \cdots & \ldots & 0  \\
+0 & 0 & \sqrt{2} & \ldots & \cdots & 0 \\
+0 & 0 & 0 & \sqrt{3} & \cdots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \ddots & \vdots \\
+\vdots & \vdots & \vdots & \vdots & 0 & \sqrt{d-1} \\
+0 & 0 & 0 & \cdots & \cdots & 0
+\end{array}\right)
 $$
 
 This operator acts on Fock states to lower their quantum number by one, with a factor of $\sqrt{n}$, where $n$ is the quantum number of the initial state. In other words, $\hat{a}|n\rangle = \sqrt{n}|n-1\rangle$. In the following code, we define the destroy operator by using NumPy, and we also define some Fock states for demonstration.
 
+In Numpy we use the command `np.diag(v, k=r)`, which creates a diagonal matrix with the elements of the vector `v` placed in the $r$-th diagonal $(r=0, \pm 1, \pm 2, \ldots)$.
+
 {{< embed /notebooks/lecture1/quantum_objects_numpy.qmd#destroy-and-fock echo=true >}}
 
-## Action of the Destroy Operator on a Fock State
+Other operators (e.g., $\hat{a}^{\dagger}, \hat{a}^{\dagger} \hat{a}$) can be obtained by a hermitian transpose
+
+$$
+\hat{a}^{\dagger} \mapsto\texttt{np.conj(a.T)}
+$$
+
+and matrix multiplications
+
+$$
+\hat{a}^{\dagger} \hat{a} \mapsto \texttt{np.matmul(np.conj(a.T) , a)} \, .
+$$
+
+Note that in some cases this introduces truncation artifacts. For example, the matrix for the operator $M=\texttt{np.matmul(a, np.conj(a.T))}$ has a zero diagonal element $M[d, d]=0$ inherited from the matrix $\texttt{np.conj(a.T))}$, while the same operator constructed in a different way, $M_2=\texttt{np.conj(a.T) * a + np.eye(d)}$, does not. This can be avoided by constructing this operator explicitly.
+Note that this type of truncation artifacts are related to the fact that in a infinite Hilbert space $\mathrm{Tr}([a, a^{\dagger}])\neq 0$ (actually, striclty speaking, $=\infty$) as a consequence of the canonical commutation relation. On the contrary, in a finite Hilbert space for any two operators $O_1, O_2$, $\mathrm{Tr}([O_1, O_2])= 0$.
+Taking a dimension $d$ large enough allows to make these artifacts a negligible error in the whole computation.
+
+### Action of the Destroy Operator on a Fock State
 
 The action of the destroy operator $a$ on a Fock state $|n\rangle$ lowers the state by one quantum number, multiplied by a factor $\sqrt{n}$. For example, applying $a$ to the state $|3\rangle$ yields:
 
@@ -70,17 +136,14 @@ $$
 $$
 
 {{< embed /notebooks/lecture1/quantum_objects_numpy.qmd#ptrace echo=true >}}
-
-## Why QuTiP?
-
-While NumPy and SciPy are powerful tools for numerical computations, they lack specific functionalities for efficiently handling complex quantum systems. QuTiP is designed to fill this gap, offering features such as:
-
-- Easy manipulation and visualization of quantum objects.
-- Support for operations on states and operators in different Hilbert spaces.
-- Tools for dealing with composite systems, partial traces, and superoperators.
-It is like to have the book "Quantum noise" (by Gardiner and Zoller) already implemented in your laptop!
-
-In the next chapter, we'll explore how QuTiP simplifies these tasks, making it an invaluable tool for quantum optics simulations.
     
+## Conclusions
 
+In this chapter we have seen how finite‐dimensional Hilbert spaces can be encoded with NumPy arrays, turning state kets into vectors and operators into matrices. We defined and manipulated  
 
+- Pauli matrices for qubits,  
+- the bosonic annihilation ($\hat{a}$) and creation ($\hat{a}^{\dagger}$) operators for a truncated harmonic oscillator,  
+- Fock states and the action of $\hat{a}$ on these states,  
+- and the partial trace to extract reduced density matrices from composite systems.
+
+These building blocks demonstrate how fundamental quantum‐mechanical concepts translate into straightforward linear algebra routines in Python. With these tools you can now assemble more complex many‐body Hamiltonians, simulate time evolution, and analyze entanglement in multipartite systems. Future chapters will build on these foundations to explore more advanced topics in quantum mechanics and quantum information theory.

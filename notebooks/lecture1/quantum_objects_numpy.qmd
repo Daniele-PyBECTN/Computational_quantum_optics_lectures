@@ -11,30 +11,44 @@ other-links:
 
 ## Quantum States and Operators in truncated Hilbert Spaces
 
+### Examples
+
+#### Pauli Operators
+
 ```{python}
-#| label: destroy-and-fock
+#| label: pauli-operators
 import numpy as np
 
-N = 7
+sx = np.array([[0, 1], [1, 0]])
+sy = np.array([[0, 1j], [-1j, 0]])
+sz = np.array([[1, 0], [0, -1]])
+```
 
-def destroy(N):
-    a = np.zeros((N, N))
-    for i in range(N-1):
-        a[i, i+1] = np.sqrt(i+1)
+#### Harmonic Oscillator
+
+```{python}
+#| label: destroy-and-fock
+
+def destroy(d):
+    # creates a vector of the d-1 off-diagonal elements
+    v=np.sqrt( np.arange(d-1) )
+    # matrix with the elements of vec placed in the upper diagonal
+    a=np.diag(v,k=1)
     return a
 
 # Define the fock states
-def fock(N, i):
-    res = np.zeros(N)
+def fock(d, i):
+    res = np.zeros(d)
     res[i] = 1
     return res
 
-zero_state = fock(N, 0)
-one_state = fock(N, 1)
-two_state = fock(N, 2)
-three_state = fock(N, 3)
+d = 7
+zero_state = fock(d, 0)
+one_state = fock(d, 1)
+two_state = fock(d, 2)
+three_state = fock(d, 3)
 
-destroy_operator = destroy(N)
+destroy_operator = destroy(d)
 destroy_operator
 ```
 
@@ -71,8 +85,8 @@ Write a function `expect(O, psi)` that calculates the expectation value of an op
 def expect(O, psi):
     return np.dot(np.conj(psi), np.dot(O, psi))
 
-print("Expectation Value 1:", expect(destroy_operator, fock(N, 2)))
-print("Expectation Value 2:", expect(destroy_operator.T.conj().dot(destroy_operator), fock(N, 2)))
+print("Expectation Value 1:", expect(destroy_operator, fock(d, 2)))
+print("Expectation Value 2:", expect(destroy_operator.T.conj().dot(destroy_operator), fock(d, 2)))
 ```
 :::
 
