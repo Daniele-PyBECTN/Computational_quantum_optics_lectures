@@ -7,7 +7,7 @@ other-links:
     href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/quantum_objects_numpy.ipynb"
     icon: google
 ---
-# Representing Quantum States and Operators with NumPy
+# Representing Quantum States and Operators with NumPy {#sec-quantum-objects-numpy}
 
 In quantum mechanics, states and observables are represented using the algebra of Hilbert spaces.
 However, their infinite dimensions is incompatible with numerical simulations, that always requires finite elements. 
@@ -136,14 +136,17 @@ $$
 $$
 
 {{< embed /notebooks/lecture1/quantum_objects_numpy.qmd#ptrace echo=true >}}
+
+## Why QuTiP?
+
+While NumPy and SciPy are powerful tools for numerical computations, they lack specific functionalities for efficiently handling complex quantum systems. QuTiP is designed to fill this gap, offering features such as:
+
+- Easy manipulation and visualization of quantum objects.
+- Support for operations on states and operators in different Hilbert spaces.
+- Tools for dealing with composite systems, partial traces, and superoperators.
+It is like to have the book "Quantum noise" (by Gardiner and Zoller) already implemented in your laptop!
+
+In the next chapters, we'll explore how QuTiP simplifies these tasks, making it an invaluable tool for quantum optics simulations.
     
-## Conclusions
 
-In this chapter we have seen how finite‐dimensional Hilbert spaces can be encoded with NumPy arrays, turning state kets into vectors and operators into matrices. We defined and manipulated  
 
-- Pauli matrices for qubits,  
-- the bosonic annihilation ($\hat{a}$) and creation ($\hat{a}^{\dagger}$) operators for a truncated harmonic oscillator,  
-- Fock states and the action of $\hat{a}$ on these states,  
-- and the partial trace to extract reduced density matrices from composite systems.
-
-These building blocks demonstrate how fundamental quantum‐mechanical concepts translate into straightforward linear algebra routines in Python. With these tools you can now assemble more complex many‐body Hamiltonians, simulate time evolution, and analyze entanglement in multipartite systems. Future chapters will build on these foundations to explore more advanced topics in quantum mechanics and quantum information theory.

@@ -1,0 +1,159 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/qutip_introduction.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/qutip_introduction.ipynb"
+    icon: google
+---
+# Introduction to QuTiP
+
+The QuTiP package can be imported with
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#qutip-import echo=true >}}
+
+It can also be imported with the command `from qutip import *`, that automatically imports all the QuTiP functions. However, here we use the first method, in order to explicitly see the QuTiP functions.
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#qutip-about echo=true >}}
+
+## Quantum Operators
+
+Quantum operators play a crucial role in the formulation of quantum mechanics, representing physical observables and operations on quantum states. In QuTiP, operators are represented as `Qobj` instances, just like quantum states. This section introduces the creation and manipulation of quantum operators.
+
+### Creating Operators
+
+Operators in quantum mechanics can represent measurements, such as position or momentum, and transformations, such as rotation. Let's see how we can define some common operators in QuTiP.
+
+#### The Annihilation Operator of the Quantum Harmonic oscillator
+
+The harmonic oscillator is a fundamental model in quantum mechanics for understanding various physical systems. Its quantization leads to the concept of creation and annihilation operators, which respectively increase and decrease the energy of the system by one quantum of energy.
+
+The annihilation operator, often denoted by $\hat{a}$, acts on a quantum state to reduce its quantum number. The action of $\hat{a}$ on a state $|n\rangle$ is defined as:
+
+$$
+\hat{a} |n\rangle = \sqrt{n} |n-1\rangle
+$$
+
+Here, $|n\rangle$ represents a quantum state with $n$ quanta of energy (also known as a Fock state), and $\sqrt{n}$ is the normalization factor. The matrix representation of the annihilation operator in an $d$-dimensional Hilbert space is given by an upper triangular matrix with the square roots of natural numbers as its off-diagonal elements.
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#annihilation-operator echo=true >}}
+
+#### Pauli Matrices
+
+The Pauli matrices are fundamental in the study of quantum mechanics, representing the spin operators for a spin-1/2 particle and quantum two-level systems.
+
+$$
+\sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \ \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \ \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+$$
+
+We can define these matrices in QuTiP as follows:
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#pauli-matrices echo=true >}}
+
+### Operator Functions and Operations
+
+QuTiP supports various operations on operators, including addition, multiplication (both scalar and matrix), and the commutator. These operations are essential for constructing Hamiltonians, calculating observables, and more.
+
+#### Example: Commutator of Pauli Matrices
+
+The commutator of two operators $A$ and $B$ is defined as $[A, B] = AB - BA$. Let's calculate the commutator of $\sigma_x$ and $\sigma_y$.
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#commutator-example echo=true >}}
+
+## Quantum States
+
+Quantum states describe the state of a quantum system. In QuTiP, states are represented again as `Qobj` instances. This section focuses on the representation and manipulation of quantum states.
+
+### Fock States
+
+The most basic quantum states are the fock states, often denoted as $|n\rangle$ (with $n \in \mathbb{N}$). Let's see how we can create these in QuTiP.
+
+### Superposition States
+
+Quantum mechanics allows particles to be in a superposition of states. Let's create a superposition state.
+
+$$
+\vert \psi \rangle = \frac{1}{\sqrt{2}} \left( \vert 0 \rangle + \vert 1 \rangle \right)
+$$
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#superposition-state echo=true >}}
+
+### Coherent States
+
+Coherent states in QuTiP represent quantum states closest to classical waves, defined as
+$$
+|\alpha\rangle = e^{-|\alpha|^2/2} \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n!}} |n\rangle \, ,
+$$
+
+with minimal uncertainty.
+
+The coherent state is an eigenstate of the annihilation operator
+$$
+\hat{a} \vert \alpha \rangle = \alpha \vert \alpha \rangle
+$$
+
+::: {.callout-warning}
+## Warning!
+Remember that every `Qobj` lives in a truncated Hilbert space. If the $\alpha$ value is too large, the state will become a non-physical state because it will touch the high energy levels of the truncated Hilbert space.
+:::
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#coherent-state echo=true >}}
+
+Let's compute the fidelity between $\vert \alpha \rangle$  and $\hat{a} \vert \alpha \rangle / \alpha$.
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#coherent-state-fidelity echo=true >}}
+
+### Spin States
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#spin-state echo=true >}}
+
+### Density Matrices
+
+Quantum states can also be represented using density matrices, which are useful for describing mixed states.
+
+#### Creating a Density Matrix
+Let's convert our superposition state into a density matrix.
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#density-matrix echo=true >}}
+
+### Partial Trace
+
+The **partial trace** over a subsystem, say $B$, of a composite system $AB$, mathematically expresses as "tracing out" $B$, leaving the reduced state of $A$. For a bipartite state $\rho_{AB}$, the partial trace over $B$ is:
+
+$$
+\text{Tr}_B(\hat{\rho}_{AB}) = \sum_{i \in \mathcal{H}_B} \langle i| \hat{\rho}_{AB} |i\rangle
+$$
+
+where $\{|i\rangle\}$ forms a complete basis for subsystem $B$.
+
+Let's try it with an entangled Bell's state between two qubits:
+
+$$
+\vert \phi^+ \rangle = \frac{1}{\sqrt{2}} \left( \vert 0, 0 \rangle + \vert 1, 1 \rangle \right)
+$$
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#ptrace echo=true >}}
+
+We now apply the partial trace to a more complicated state, that is composed by two bosonic modes and two spins $\vert j_1, m_1 \rangle$ and $\vert j_2, m_2 \rangle$, with $j_1 = 1$ and $j_2 = \frac{1}{2}$, $m_1 = 0$, and $m_2 = 1$.
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#ptrace-complex-state echo=true >}}
+
+## Eigenstates and Eigenvalues
+
+The eigenstates and eigenvalues of a system or an operator provide crucial insights into its properties. Let's explore how to calculate these in QuTiP.
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#eigenstates-eigenvalues echo=true >}}
+
+
+## Computing Expectation Values
+
+The expectation value of an operator provides insight into the average outcome of a quantum measurement. For a quantum state $|\psi\rangle$ and an operator $\hat{O}$, the expectation value is given by:
+
+$$
+\langle \hat{O} \rangle = \langle\psi| \hat{O} |\psi\rangle
+$$
+
+Expectation values are crucial for predicting measurable quantities in quantum mechanics. Let's compute the expectation value of the number operator $\hat{n} = \hat{a}^\dagger \hat{a}$ for a coherent state, which represents a quantum state closest to a classical harmonic oscillator.
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#expectation-value echo=true >}}

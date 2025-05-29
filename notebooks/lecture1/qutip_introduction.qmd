@@ -1,0 +1,319 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/qutip_introduction.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/qutip_introduction.ipynb"
+    icon: google
+---
+# Introduction to QuTiP
+
+The QuTiP package can be imported with
+
+```{python}
+#| label: qutip-import
+import qutip
+```
+
+It can also be imported with the command `from qutip import *`, that automatically imports all the QuTiP functions. However, here we use the first method, in order to explicitly see the QuTiP functions.
+
+```{python}
+#| label: qutip-about
+qutip.about()
+```
+
+## Quantum Operators
+
+### Creating Operators
+
+Operators in quantum mechanics can represent measurements, such as position or momentum, and transformations, such as rotation. Let's see how we can define some common operators in QuTiP.
+
+#### The Annihilation Operator of the Quantum Harmonic oscillator
+
+The matrix representation of the annihilation operator in an $d$-dimensional Hilbert space is given by an upper triangular matrix with the square roots of natural numbers as its off-diagonal elements.
+
+```{python}
+#| label: annihilation-operator
+# Define the annihilation operator for d-dimensional Hilbert space
+d = 10
+
+a = qutip.destroy(d)
+
+print("Annihilation operator (a) for d=7:")
+a
+```
+
+#### Pauli Matrices
+
+We can define the Pauli matrices in QuTiP as follows:
+
+```{python}
+#| label: pauli-matrices
+sigma_x = qutip.sigmax()
+sigma_y = qutip.sigmay()
+sigma_z = qutip.sigmaz()
+
+print("Sigma X:")
+display(sigma_x)
+print("\n")
+print("Sigma Y:")
+display(sigma_y)
+print("\n")
+print("Sigma Z:")
+sigma_z
+```
+
+### Operator Functions and Operations
+
+QuTiP supports various operations on operators, including addition, multiplication (both scalar and matrix), and the commutator.
+
+#### Example: Commutator of Pauli Matrices
+
+Let's calculate the commutator of $\sigma_x$ and $\sigma_y$.
+
+```{python}
+#| label: commutator-example
+commutator_xy = qutip.commutator(sigma_x, sigma_y)
+print("Commutator of Sigma X and Sigma Y:")
+display(commutator_xy)
+commutator_xy == 2j * sigma_z
+```
+
+## Quantum States
+
+This section focuses on the representation and manipulation of quantum states.
+
+### Fock States
+
+The most basic quantum states are the fock states, often denoted as $|n\rangle$ (with $n \in \mathbb{N}$). Let's see how we can create these in QuTiP.
+
+::: {.callout-caution}
+## Exercise!
+
+Taking as an example @sec-quantum-objects-numpy, create two fock states $\vert 0 \rangle$ and $\vert 1 \rangle$ with Hilbert space dimension $d$, using the QuTiP routines instead of a handmade functions. Call them `fock_0` and `fock_1`, respectively.
+:::
+
+```{python}
+# Write your code here...
+
+
+
+```
+
+
+```{python}
+#| code-fold: true
+#| code-summary: Solution
+fock_0 = qutip.fock(d, 0)  # |0>
+fock_1 = qutip.fock(d, 1)  # |1>
+
+print("|0> state:")
+display(fock_0)
+print("\n")
+print("|1> state:")
+display(fock_1)
+```
+
+
+### Superposition States
+
+Quantum mechanics allows particles to be in a superposition of states. Let's create a superposition state.
+
+$$
+\vert \psi \rangle = \frac{1}{\sqrt{2}} \left( \vert 0 \rangle + \vert 1 \rangle \right)
+$$
+
+```{python}
+#| label: superposition-state
+fock_0 = qutip.fock(d, 0)  # Fock state |0>
+fock_1 = qutip.fock(d, 1)  # Fock state |1>
+
+# Creating a superposition state
+superposition_state = (fock_0 + fock_1).unit()  # Normalize the state
+
+print("Superposition state:")
+superposition_state
+```
+
+### Coherent States
+
+Coherent states in QuTiP represent quantum states closest to classical waves, defined as
+$$
+|\alpha\rangle = e^{-|\alpha|^2/2} \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n!}} |n\rangle \, ,
+$$
+
+with minimal uncertainty.
+
+The coherent state is an eigenstate of the annihilation operator
+$$
+\hat{a} \vert \alpha \rangle = \alpha \vert \alpha \rangle
+$$
+
+::: {.callout-warning}
+## Warning!
+Remember that every `Qobj` lives in a truncated Hilbert space. If the $\alpha$ value is too large, the state will become a non-physical state because it will touch the high energy levels of the truncated Hilbert space.
+:::
+
+```{python}
+#| label: coherent-state
+alpha = 0.8
+coherent_state = qutip.coherent(d, alpha)
+
+coherent_state
+```
+
+Let's compute the fidelity between $\vert \alpha \rangle$  and $\hat{a} \vert \alpha \rangle / \alpha$.
+
+```{python}
+#| label: coherent-state-fidelity
+qutip.fidelity(a * coherent_state / alpha, coherent_state)
+```
+
+::: {.callout-caution}
+## Exercise!
+
+The coherent state can be also obtained from the displacement operator $\hat{\mathcal{D}} (\alpha) = {\exp} \left( \alpha \hat{a}^\dagger - \alpha^* \hat{a} \right)$, through its application to the ground state $\vert \alpha \rangle = \hat{\mathcal{D}} (\alpha) \vert 0 \rangle$.
+
+Again, computing the exponential of an operator is very easy with QuTiP, you just need to write `O.expm()`, where `O` is the operator. Write the coherent state $\vert \alpha \rangle$ from your own, and then calculate the fidelity ($\langle \psi_1 \vert \psi_2 \rangle$) with the previous state obtained using the built-in `coherent` function.
+:::
+
+```{python}
+# Write your code here...
+
+
+
+```
+
+```{python}
+#| code-fold: true
+#| code-summary: Solution
+D = (alpha * a.dag() - alpha.conjugate() * a).expm()
+
+coherent_state_2 = D * qutip.fock(d, 0)
+
+coherent_state_2.dag() * coherent_state
+```
+
+### Spin States
+
+```{python}
+#| label: spin-state
+qutip.spin_state(0.5, -1)
+```
+
+### Density Matrices
+
+Quantum states can also be represented using density matrices, which are useful for describing mixed states.
+
+#### Creating a Density Matrix
+Let's convert our superposition state into a density matrix.
+
+```{python}
+#| label: density-matrix
+# Creating a density matrix from a state
+density_matrix = superposition_state * superposition_state.dag()  # Outer product
+
+print("Density matrix of the superposition state:")
+density_matrix
+```
+
+### Partial Trace
+
+The **partial trace** over a subsystem, say $B$, of a composite system $AB$, mathematically expresses as "tracing out" $B$, leaving the reduced state of $A$. For a bipartite state $\rho_{AB}$, the partial trace over $B$ is:
+
+$$
+\text{Tr}_B(\hat{\rho}_{AB}) = \sum_{i \in \mathcal{H}_B} \langle i| \hat{\rho}_{AB} |i\rangle
+$$
+
+where $\{|i\rangle\}$ forms a complete basis for subsystem $B$.
+
+Let's try it with an entangled Bell's state between two qubits:
+
+$$
+\vert \phi^+ \rangle = \frac{1}{\sqrt{2}} \left( \vert 0, 0 \rangle + \vert 1, 1 \rangle \right)
+$$
+
+```{python}
+#| label: ptrace
+# Bell state between two qubits
+phi_plus = ( qutip.tensor(qutip.spin_state(1/2, -1), qutip.spin_state(1/2, -1)) + qutip.tensor(qutip.spin_state(1/2, 1), qutip.spin_state(1/2, 1)) ).unit()
+
+# Reduced density matrix of the first qubit
+rho_1 = qutip.ptrace(phi_plus, 1)
+rho_1
+```
+
+We now apply the partial trace to a more complicated state, that is composed by two bosonic modes and two spins $\vert j_1, m_1 \rangle$ and $\vert j_2, m_2 \rangle$, with $j_1 = 1$ and $j_2 = \frac{1}{2}$, $m_1 = 0$, and $m_2 = 1$.
+
+```{python}
+#| label: ptrace-complex-state
+d = 10
+j1 = 1
+j2 = 1/2
+m1 = 0
+m2 = 1
+
+
+psi = qutip.tensor(qutip.fock(d, 3), qutip.fock(d, 1), qutip.spin_state(j1, 0), qutip.spin_state(j2, 1))
+
+# Trace only the second spin state
+rho_0 = qutip.ptrace(psi, [0, 1, 2])
+display(rho_0)
+
+# Trace only the first bosonic mode and the second spin state
+rho_1 = qutip.ptrace(psi, [1, 2])
+display(rho_1)
+
+# Trace all except the second bosonic mode
+rho_2 = qutip.ptrace(psi, [1])
+rho_2
+```
+
+## Eigenstates and Eigenvalues
+
+The eigenstates and eigenvalues of a system or an operator provide crucial insights into its properties. Let's explore how to calculate these in QuTiP.
+
+```{python}
+#| label: eigenstates-eigenvalues
+# Example: Eigenstates and eigenvalues of Pauli Z
+eigenvalues, eigenstates = sigma_z.eigenstates()
+
+print("Eigenvalues of Sigma Z:")
+display(eigenvalues)
+print("\n")
+print("Eigenstates of Sigma Z:")
+display(eigenstates)
+```
+
+
+## Computing Expectation Values
+
+For a quantum state $|\psi\rangle$ and an operator $\hat{O}$, the expectation value is given by:
+
+$$
+\langle \hat{O} \rangle = \langle\psi| \hat{O} |\psi\rangle
+$$
+
+Let's compute the expectation value of the number operator $\hat{n} = \hat{a}^\dagger \hat{a}$ for a coherent state, which represents a quantum state closest to a classical harmonic oscillator.
+
+```{python}
+#| label: expectation-value
+# Define the coherent state |psi> with alpha=2
+alpha = 0.8
+psi = qutip.coherent(d, alpha)
+
+# Define the number operator n = a.dag() * a
+n = a.dag() * a
+
+# Compute the expectation value of n for the state |psi>
+expectation_value_n = qutip.expect(n, psi)
+
+print("Expectation value of the number operator for |psi>:")
+display(expectation_value_n)
+print("\n")
+print("The squared modulus of alpha is:")
+display(abs(alpha) ** 2)
+```
+
+

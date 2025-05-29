@@ -78,17 +78,15 @@ Write a function `expect(O, psi)` that calculates the expectation value of an op
 
 ```
 
-::: {.callout-tip collapse="true"}
-## Solution
 ```{python}
-# Solution
+#| code-fold: true
+#| code-summary: Solution
 def expect(O, psi):
     return np.dot(np.conj(psi), np.dot(O, psi))
 
 print("Expectation Value 1:", expect(destroy_operator, fock(d, 2)))
 print("Expectation Value 2:", expect(destroy_operator.T.conj().dot(destroy_operator), fock(d, 2)))
 ```
-:::
 
 ---
 
