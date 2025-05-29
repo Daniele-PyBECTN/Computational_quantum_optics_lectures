@@ -4,6 +4,7 @@ librsvg2-bin
 texlive-science
 texlive-latex-extra
 texlive-fonts-recommended
+texlive-fonts-extra
 texlive-xetex
 dvipng
 cm-super
