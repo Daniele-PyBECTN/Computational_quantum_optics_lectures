@@ -1,0 +1,86 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/quantum_objects_numpy.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/quantum_objects_numpy.ipynb"
+    icon: google
+---
+# Representing Quantum States and Operators with NumPy
+
+In quantum mechanics, states and observables are represented using the mathematics of Hilbert spaces.
+However, their infinite dimensions is incompatible with numerical simulations, that always requires finite elements. 
+Hence, we truncate Hilbert spaces to a finite size, allowing us to run the quantum calculation on a computer.
+We can thus say that the whole problem of numerical quantum mechanics is then reduced to a problem of linear algebra.
+
+The art of numerical quantum optics stands almost entirely in finding algorthms that allows us to arrive to the aimed result with the smallest possible truncated Hilbert space.
+However, beside having efficient algorithms, the intricated tensor structures of many-body Hilbert spaces requires also a powerful organization of the code and an easy way to access relevant information.
+
+## Quantum States and Operators in truncated Hilbert Spaces
+
+In a Hilbert space of dimension $N$, quantum states can be represented as vectors, and operators as matrices. Here we demonstrate the destroy operator, $a$, which lowers the state by one quantum number. For a detailed discussion on the quantum harmonic oscillator and the bosonic annihilation operator, refer to @sec-quantum-harmonic-oscillator.
+
+The matrix representation of the destroy operator in a Hilbert space of cutoff $N=7$ is:
+
+$$
+\hat{a} = \begin{pmatrix}
+0 & \sqrt{1} & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \sqrt{2} & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \sqrt{3} & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & \sqrt{4} & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & \sqrt{5} & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \sqrt{6} \\
+0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+$$
+
+This operator acts on Fock states to lower their quantum number by one, with a factor of $\sqrt{n}$, where $n$ is the quantum number of the initial state. In other words, $\hat{a}|n\rangle = \sqrt{n}|n-1\rangle$. In the following code, we define the destroy operator by using NumPy, and we also define some Fock states for demonstration.
+
+{{< embed /notebooks/lecture1/quantum_objects_numpy.qmd#destroy-and-fock echo=true >}}
+
+## Action of the Destroy Operator on a Fock State
+
+The action of the destroy operator $a$ on a Fock state $|n\rangle$ lowers the state by one quantum number, multiplied by a factor $\sqrt{n}$. For example, applying $a$ to the state $|3\rangle$ yields:
+
+$$
+\hat{a}|3\rangle = \sqrt{3}|2\rangle
+$$
+
+This demonstrates the lowering action of the destroy operator with a specific factor, dependent on the quantum number of the state being acted upon.
+
+{{< embed /notebooks/lecture1/quantum_objects_numpy.qmd#destroy-apply echo=true >}}
+
+## Partial Trace
+
+In @sec-kron-product, we have already discussed the concept of tensor products. Here we will introduce the **partial trace**, a crucial operation in quantum mechanics that allows us to focus on a subsystem of a larger composite system.
+
+The **partial trace** over a subsystem, say $B$, of a composite system $AB$, mathematically expresses as "tracing out" $B$, leaving the reduced state of $A$. For a bipartite state $\rho_{AB}$, the partial trace over $B$ is:
+
+$$
+\text{Tr}_B(\hat{\rho}_{AB}) = \sum_{i \in \mathcal{H}_B} \langle i| \hat{\rho}_{AB} |i\rangle
+$$
+
+where $\{|i\rangle\}$ forms a complete basis for subsystem $B$.
+
+Let's try it with an entangled Bell's state between two qubits:
+
+$$
+\vert \phi^+ \rangle = \frac{1}{\sqrt{2}} \left( \vert 0, 0 \rangle + \vert 1, 1 \rangle \right)
+$$
+
+{{< embed /notebooks/lecture1/quantum_objects_numpy.qmd#ptrace echo=true >}}
+
+## Why QuTiP?
+
+While NumPy and SciPy are powerful tools for numerical computations, they lack specific functionalities for efficiently handling complex quantum systems. QuTiP is designed to fill this gap, offering features such as:
+
+- Easy manipulation and visualization of quantum objects.
+- Support for operations on states and operators in different Hilbert spaces.
+- Tools for dealing with composite systems, partial traces, and superoperators.
+It is like to have the book "Quantum noise" (by Gardiner and Zoller) already implemented in your laptop!
+
+In the next chapter, we'll explore how QuTiP simplifies these tasks, making it an invaluable tool for quantum optics simulations.
+    
+
+

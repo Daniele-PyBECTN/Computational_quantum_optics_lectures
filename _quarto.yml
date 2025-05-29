@@ -41,6 +41,7 @@ book:
     - lecture1/numba_and_jax.qmd
     - lecture1/ordinary_differential_equations.qmd
     - lecture1/phase_space_ode.qmd
+    - lecture1/quantum_objects_numpy.qmd
     # - lecture1/ # Representation of Quantum Operators in Numpy
     # - lecture1/ # Closed Quantum Systems - Schrodinger Equation
     # - lecture1/ # Closed Quantum Systems in QuTiP

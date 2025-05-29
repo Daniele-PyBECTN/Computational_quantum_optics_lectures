@@ -1,4 +1,4 @@
-## The quantum harmonic oscillator
+## The quantum harmonic oscillator {#sec-quantum-harmonic-oscillator}
 
 As an example, here we consider the quantum harmonic oscillator. Classically, the harmonic oscillator is defined as a system subject to the force $\mathbf{F} = - k \mathbf{r}$, where $k$ is the elastic constant. In other words, the force is proportional to the displacement from a stable point (in this case the origin).
 

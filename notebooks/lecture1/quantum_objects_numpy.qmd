@@ -1,0 +1,110 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/quantum_objects_numpy.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/quantum_objects_numpy.ipynb"
+    icon: google
+---
+# Representing Quantum States and Operators with NumPy
+
+## Quantum States and Operators in truncated Hilbert Spaces
+
+```{python}
+#| label: destroy-and-fock
+import numpy as np
+
+N = 7
+
+def destroy(N):
+    a = np.zeros((N, N))
+    for i in range(N-1):
+        a[i, i+1] = np.sqrt(i+1)
+    return a
+
+# Define the fock states
+def fock(N, i):
+    res = np.zeros(N)
+    res[i] = 1
+    return res
+
+zero_state = fock(N, 0)
+one_state = fock(N, 1)
+two_state = fock(N, 2)
+three_state = fock(N, 3)
+
+destroy_operator = destroy(N)
+destroy_operator
+```
+
+## Action of the Destroy Operator on a Fock State
+
+```{python}
+#| label: destroy-apply
+# Apply the destroy operator on the one state
+result_state = np.dot(destroy_operator, three_state)
+
+print("Resulting State:")
+result_state
+```
+
+---
+
+::: {.callout-caution}
+## Exercise!
+
+Write a function `expect(O, psi)` that calculates the expectation value of an operator $\hat{O}$ with a given state $\psi$. Then calculate $\langle 2 \vert \hat{a} \vert 2 \rangle$ and $\langle 2 \vert \hat{a}^\dagger \hat{a} \vert 2 \rangle$.
+:::
+
+```{python}
+# Write your code here...
+
+
+
+```
+
+::: {.callout-tip collapse="true"}
+## Solution
+```{python}
+# Solution
+def expect(O, psi):
+    return np.dot(np.conj(psi), np.dot(O, psi))
+
+print("Expectation Value 1:", expect(destroy_operator, fock(N, 2)))
+print("Expectation Value 2:", expect(destroy_operator.T.conj().dot(destroy_operator), fock(N, 2)))
+```
+:::
+
+---
+
+## Partial Trace
+
+```{python}
+#| label: ptrace
+def ptrace(psi, subspace_to_keep, dim_subspace):
+    dim1, dim2 = dim_subspace
+
+    rho = np.outer(psi, psi.conj())
+
+    # Reshape rho to separate the subsystems' degrees of freedom
+    rho_reshaped = rho.reshape(dim1, dim2, dim1, dim2)
+
+    if subspace_to_keep == 1:
+        # Perform the trace over the second subsystem
+        traced_out = np.trace(rho_reshaped, axis1=1, axis2=3)
+    elif subspace_to_keep == 2:
+        # Perform the trace over the first subsystem
+        traced_out = np.trace(rho_reshaped, axis1=0, axis2=2)
+    else:
+        raise ValueError("subspace_to_keep must be either 1 or 2.")
+
+    return traced_out
+
+# Bell state between two qubits
+phi_plus = ( np.kron(fock(2, 1), fock(2, 1)) + np.kron(fock(2, 0), fock(2, 0)) ) / np.sqrt(2)
+
+# Reduced density matrix of the first qubit
+rho_1 = ptrace(phi_plus, 1, (2, 2))
+rho_1
+```

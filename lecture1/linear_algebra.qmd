@@ -82,7 +82,7 @@ In practice, NumPy’s [`np.linalg.eig`](https://numpy.org/doc/stable/reference/
 
 Under the hood, NumPy calls optimized LAPACK routines to diagonalize dense matrices.
 
-### Kronecker Product
+### Kronecker Product {#sec-kron-product}
 
 In quantum mechanics, the state space of a composite system is the tensor product of the state spaces of its subsystems.  If system 1 has Hilbert space $\mathcal H_A$ of dimension $m$ and system 2 has $\mathcal H_B$ of dimension $p$, then the joint space is $\mathcal H_A\otimes\mathcal H_B$ of dimension $m p$.  Operators on the composite system factorize as tensor (Kronecker) products of subsystem operators.  For example, if $A$ acts on system 1 and $B$ on system 2, then
 $$
