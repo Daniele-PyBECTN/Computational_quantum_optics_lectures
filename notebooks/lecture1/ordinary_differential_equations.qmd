@@ -9,7 +9,7 @@ other-links:
 ---
 # Ordinary Differential Equations
 
-{{< include /setup/matplotlib_setup.qmd >}}
+{{< include ../../setup/matplotlib_setup.qmd >}}
 
 In this notebook, we'll explore how to solve ordinary differential equations (ODEs) in practice, focusing on two approaches:
 

@@ -9,7 +9,7 @@ other-links:
 ---
 # Speeding up Python for Linear Algebra Tasks
 
-{{< include /setup/matplotlib_setup.qmd >}}
+{{< include ../../setup/matplotlib_setup.qmd >}}
 
 ## Numba: Just-In-Time Compilation
 

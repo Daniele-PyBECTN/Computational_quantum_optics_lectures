@@ -9,7 +9,7 @@ other-links:
 ---
 # A quartic non-linear oscillator in phase space
 
-{{< include /setup/matplotlib_setup.qmd >}}
+{{< include ../../setup/matplotlib_setup.qmd >}}
 
 Let us keep the algebra to a minimum and pick the potential
 
