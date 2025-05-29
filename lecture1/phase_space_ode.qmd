@@ -214,7 +214,19 @@ We can now compute the time evolution defined by @eq-liouville-ode by using the 
 
 {{< embed /notebooks/lecture1/phase_space_ode.qmd#liouville-euler-method echo=true >}}
 
+::: {.content-visible when-format="html"}
+
 And we can finally visualize the evolution of the phase space density $\rho(x, p, t)$ as a 2D plot animation:
 
 {{< embed /notebooks/lecture1/phase_space_ode.qmd#plot-phase-space-density echo=true >}}
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+And we can visualize the final phase space density $\rho(x, p, t)$ as a 2D plot:
+
+{{< embed /notebooks/lecture1/phase_space_ode.qmd#plot-final-density echo=true >}}
+
+:::
 
