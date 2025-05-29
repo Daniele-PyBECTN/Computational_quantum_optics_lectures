@@ -371,6 +371,24 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../bibliography.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bibliography</span></a>
   </div>
@@ -407,7 +425,7 @@ window.Quarto = {
   <li><a href="#summary-of-core-functions" id="toc-summary-of-core-functions" class="nav-link" data-scroll-target="#summary-of-core-functions"><span class="header-section-number">3.1.1</span> Summary of Core Functions</a></li>
   <li><a href="#matrixmatrix-and-matrixvector-multiplication" id="toc-matrixmatrix-and-matrixvector-multiplication" class="nav-link" data-scroll-target="#matrixmatrix-and-matrixvector-multiplication"><span class="header-section-number">3.1.2</span> Matrix–Matrix and Matrix–Vector Multiplication</a></li>
   <li><a href="#diagonalization" id="toc-diagonalization" class="nav-link" data-scroll-target="#diagonalization"><span class="header-section-number">3.1.3</span> Diagonalization</a></li>
-  <li><a href="#kronecker-product" id="toc-kronecker-product" class="nav-link" data-scroll-target="#kronecker-product"><span class="header-section-number">3.1.4</span> Kronecker Product</a></li>
+  <li><a href="#sec-kron-product" id="toc-sec-kron-product" class="nav-link" data-scroll-target="#sec-kron-product"><span class="header-section-number">3.1.4</span> Kronecker Product</a></li>
   </ul></li>
   <li><a href="#scipy-advanced-algorithms-and-sparse-data" id="toc-scipy-advanced-algorithms-and-sparse-data" class="nav-link" data-scroll-target="#scipy-advanced-algorithms-and-sparse-data"><span class="header-section-number">3.2</span> SciPy: Advanced Algorithms and Sparse Data</a></li>
   <li><a href="#some-useful-functions" id="toc-some-useful-functions" class="nav-link" data-scroll-target="#some-useful-functions"><span class="header-section-number">3.3</span> Some Useful Functions</a></li>
@@ -585,8 +603,8 @@ f(\Lambda) = \mathrm{diag}\bigl(f(\lambda_1),\dots,f(\lambda_n)\bigr).
 </div>
 <p>Under the hood, NumPy calls optimized LAPACK routines to diagonalize dense matrices.</p>
 </section>
-<section id="kronecker-product" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="kronecker-product"><span class="header-section-number">3.1.4</span> Kronecker Product</h3>
+<section id="sec-kron-product" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="sec-kron-product"><span class="header-section-number">3.1.4</span> Kronecker Product</h3>
 <p>In quantum mechanics, the state space of a composite system is the tensor product of the state spaces of its subsystems. If system 1 has Hilbert space <span class="math inline">\(\mathcal H_A\)</span> of dimension <span class="math inline">\(m\)</span> and system 2 has <span class="math inline">\(\mathcal H_B\)</span> of dimension <span class="math inline">\(p\)</span>, then the joint space is <span class="math inline">\(\mathcal H_A\otimes\mathcal H_B\)</span> of dimension <span class="math inline">\(m p\)</span>. Operators on the composite system factorize as tensor (Kronecker) products of subsystem operators. For example, if <span class="math inline">\(A\)</span> acts on system 1 and <span class="math inline">\(B\)</span> on system 2, then <span class="math display">\[
 A\otimes B\;:\;\mathcal H_A\otimes\mathcal H_B\to \mathcal H_A\otimes\mathcal H_B
 \]</span> has matrix elements <span class="math display">\[

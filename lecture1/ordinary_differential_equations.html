@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../bibliography.html" rel="next">
+<link href="../lecture1/phase_space_ode.html" rel="next">
 <link href="../lecture1/numba_and_jax.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -371,6 +371,24 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../bibliography.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bibliography</span></a>
   </div>
@@ -408,7 +426,7 @@ window.Quarto = {
   <li><a href="#eigenvalue-decomposition" id="toc-eigenvalue-decomposition" class="nav-link" data-scroll-target="#eigenvalue-decomposition"><span class="header-section-number">5.2.1</span> Eigenvalue Decomposition</a></li>
   <li><a href="#relation-to-the-schrödinger-equation" id="toc-relation-to-the-schrödinger-equation" class="nav-link" data-scroll-target="#relation-to-the-schrödinger-equation"><span class="header-section-number">5.2.2</span> Relation to the Schrödinger Equation</a></li>
   </ul></li>
-  <li><a href="#numerical-solution-via-the-euler-method" id="toc-numerical-solution-via-the-euler-method" class="nav-link" data-scroll-target="#numerical-solution-via-the-euler-method"><span class="header-section-number">5.3</span> Numerical Solution via the Euler Method</a>
+  <li><a href="#sec-ode-euler-method" id="toc-sec-ode-euler-method" class="nav-link" data-scroll-target="#sec-ode-euler-method"><span class="header-section-number">5.3</span> Numerical Solution via the Euler Method</a>
   <ul class="collapse">
   <li><a href="#forward-euler-method" id="toc-forward-euler-method" class="nav-link" data-scroll-target="#forward-euler-method"><span class="header-section-number">5.3.1</span> Forward Euler Method</a></li>
   <li><a href="#stability-criterion-for-the-euler-method" id="toc-stability-criterion-for-the-euler-method" class="nav-link" data-scroll-target="#stability-criterion-for-the-euler-method"><span class="header-section-number">5.3.2</span> Stability Criterion for the Euler Method</a></li>
@@ -429,7 +447,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></h1>
+<h1 class="title"><span id="sec-ordinary-differential-equations" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></h1>
 </div>
 
 
@@ -556,7 +574,8 @@ i \hbar \,\frac{d}{dt} \mathbf{c}(t) = H \,\mathbf{c}(t),
 \frac{d}{dt} \begin{pmatrix} x \\ v \end{pmatrix} = \begin{pmatrix} 0 &amp; 1 \\ -\omega^2 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ v \end{pmatrix}.
 \]</span></p>
 <p>By diagonalizing the matrix, we can find the solution to this system.</p>
-<div id="harmonic-oscillator" class="cell" data-execution_count="1">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/ordinary_differential_equations.qmd" data-notebook-title="Ordinary Differential Equations" data-notebook-cellid="cell-harmonic-oscillator">
+<div id="harmonic-oscillator" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a>omega <span class="op">=</span> <span class="fl">2.0</span></span>
@@ -591,10 +610,12 @@ i \hbar \,\frac{d}{dt} \mathbf{c}(t) = H \,\mathbf{c}(t),
 <pre><code>x(2) =  [-0.84284424  1.18678318]</code></pre>
 </div>
 </div>
+</div>
 <p>We have: - <code>A</code>: the system matrix. - <code>y0</code>: initial condition <span class="math inline">\(\mathbf{y}(0)\)</span>. - We diagonalize <span class="math inline">\(A\)</span> to find <span class="math inline">\(A = V D V^{-1}\)</span>. - Then <span class="math inline">\(\exp(A t) = V \exp(D t) V^{-1}\)</span>.</p>
 <p>If you run the code, you’ll see the final value of <span class="math inline">\(\mathbf{y}(2)\)</span>.<br>
 We could also visualize the time evolution:</p>
-<div id="cell-plot-harmonic-oscillator" class="cell" data-execution_count="2">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/ordinary_differential_equations.qmd" data-notebook-title="Ordinary Differential Equations" data-notebook-cellid="cell-plot-harmonic-oscillator">
+<div id="cell-plot-harmonic-oscillator" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
@@ -605,20 +626,25 @@ We could also visualize the time evolution:</p>
 <span id="cb3-8"><a href="#cb3-8"></a>ax.set_xlabel(<span class="st">"Time"</span>)</span>
 <span id="cb3-9"><a href="#cb3-9"></a>ax.set_ylabel(<span class="st">"$y(t)$"</span>)</span>
 <span id="cb3-10"><a href="#cb3-10"></a>ax.legend()</span>
-<span id="cb3-11"><a href="#cb3-11"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co"># Show in Quarto</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>plt.savefig(<span class="st">'_tmp_fig.svg'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14"></a>plt.close(fig)</span>
+<span id="cb3-15"><a href="#cb3-15"></a>SVG(filename<span class="op">=</span><span class="st">'_tmp_fig.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ordinary_differential_equations_files/figure-html/plot-harmonic-oscillator-output-1.png" id="plot-harmonic-oscillator" width="747" height="404" class="figure-img"></p>
+<p><img src="ordinary_differential_equations_files/figure-html/-notebooks-lecture1-ordinary_differential_equations-plot-harmonic-oscillator-output-1.svg" id="plot-harmonic-oscillator" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+</div>
 </section>
 </section>
 </section>
-<section id="numerical-solution-via-the-euler-method" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="numerical-solution-via-the-euler-method"><span class="header-section-number">5.3</span> Numerical Solution via the Euler Method</h2>
+<section id="sec-ode-euler-method" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-ode-euler-method"><span class="header-section-number">5.3</span> Numerical Solution via the Euler Method</h2>
 <p>In many realistic situations (e.g., time-dependent Hamiltonians, nonlinear effects, large dissipative systems described by master equations), finding an exact analytic solution can be very challenging or impossible. We then rely on <em>numerical methods</em> to solve ODEs.</p>
 <section id="forward-euler-method" class="level3" data-number="5.3.1">
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="forward-euler-method"><span class="header-section-number">5.3.1</span> Forward Euler Method</h3>
@@ -666,7 +692,8 @@ y_n = (1 + h\,\lambda)^n\, y_0.
 \end{pmatrix},
 \]</span></p>
 <p>where <span class="math inline">\(h\)</span> is the time step.</p>
-<div id="cell-euler-method" class="cell" data-execution_count="3">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/ordinary_differential_equations.qmd" data-notebook-title="Ordinary Differential Equations" data-notebook-cellid="cell-euler-method">
+<div id="cell-euler-method" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>h <span class="op">=</span> <span class="fl">0.01</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a>X_t_euler <span class="op">=</span> np.zeros((<span class="bu">len</span>(t_points), <span class="dv">2</span>))</span>
@@ -682,12 +709,17 @@ y_n = (1 + h\,\lambda)^n\, y_0.
 <span id="cb4-13"><a href="#cb4-13"></a>ax.set_xlabel(<span class="st">"Time"</span>)</span>
 <span id="cb4-14"><a href="#cb4-14"></a>ax.set_ylabel(<span class="st">"$y(t)$"</span>)</span>
 <span id="cb4-15"><a href="#cb4-15"></a>ax.legend()</span>
-<span id="cb4-16"><a href="#cb4-16"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># Show in Quarto</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>plt.savefig(<span class="st">'_tmp_fig.svg'</span>)</span>
+<span id="cb4-19"><a href="#cb4-19"></a>plt.close(fig)</span>
+<span id="cb4-20"><a href="#cb4-20"></a>SVG(filename<span class="op">=</span><span class="st">'_tmp_fig.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ordinary_differential_equations_files/figure-html/euler-method-output-1.png" id="euler-method" width="747" height="404" class="figure-img"></p>
+<p><img src="ordinary_differential_equations_files/figure-html/-notebooks-lecture1-ordinary_differential_equations-euler-method-output-1.svg" id="euler-method" class="img-fluid figure-img"></p>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -1159,8 +1191,8 @@ i\hbar \,\frac{d\mathbf{c}(t)}{dt} = H\,\mathbf{c}(t).
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../bibliography.html" class="pagination-link" aria-label="Bibliography">
-        <span class="nav-page-text">Bibliography</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lecture1/phase_space_ode.html" class="pagination-link" aria-label="From Hamilton's equations to the Liouville equation in phase space">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
