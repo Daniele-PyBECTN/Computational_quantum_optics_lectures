@@ -8,53 +8,15 @@ other-links:
     icon: google
 ---
 
-# Closed Quantum Systems in QuTiP
+# Closed Quantum Systems in QuTiP: The Schrödinger equation
 
 {{< embed /notebooks/lecture1/closed_systems.qmd#imports echo=true >}}
 
-In @sec-quantum-harmonic-oscillator we have already defined the quantum harmonic oscillator, which is a fundamental model in quantum mechanics. In the energy eigenbasis, the quantum harmonic oscillator is described by the Hamiltonian
-
-$$
-\hat{H} = \omega \hat{a}^\dagger \hat{a} \, ,
-$$
-
-where $\omega$ is the resonance frequency and $\hat{a}$ is the bosonic annihilation operator. In this basis, the Hamiltonian is indeed diagonal, with eigenvalues $E_n = \omega n$, where $n \in \mathbb{N}$.
-
-{{< embed /notebooks/lecture1/closed_systems.qmd#hamiltonian echo=true >}}
-
-## Passing in the position basis
-
-From the classical point of view, we are used to describe the harmonic oscillator in terms of position and momentum. In quantum mechanics, we can also express the system in terms of the position and momentum operators, which are related to the annihilation and creation operators as follows ($\hbar = 1$):
-
-\begin{align*}
-\hat{x} &= \frac{1}{\sqrt{2 m \omega}} \left( \hat{a} + \hat{a}^\dagger \right) \, , \\
-\hat{p} &= i \sqrt{\frac{m \omega}{2}} \left( \hat{a}^\dagger - \hat{a} \right) \, .
-\end{align*}
-
-
-We first check that
-
-$$
-\left[ \hat{x}, \hat{p} \right] = i
-$$
-
-{{< embed /notebooks/lecture1/closed_systems.qmd#commutator-check echo=true >}}
-
-We now numerically diagonalize the position operator $\hat{x}$, such that $\hat{U}^\dagger \hat{x} \hat{U}$ is diagonal. Then we plot the eigenstates of the quantum harmonic oscillator in the new basis, obtained with
-
-$$
-\vert \phi_n (x) \rangle = \hat{U}^\dagger \vert \psi_n \rangle
-$$
-
-{{< embed /notebooks/lecture1/closed_systems.qmd#position-eigenbasis echo=true >}}
-
-## Closed Dynamics: The Schrödinger equation
-
-### From wavefunctions to the Schrödinger equation in configuration space
+## From wavefunctions to the Schrödinger equation in configuration space
 
 In @sec-classical-liouville-equation we moved from **Hamilton’s equations** for a single point to **Liouville’s equation** for an ensemble. Quantum mechanics follows a similar path, replacing phase-space densities with **wavefunctions** (or density operators). We now show this parallelism in detail.
 
-#### From a single wavepacket to the quantum continuity law
+### From a single wavepacket to the quantum continuity law
 
 A non-relativistic quantum system in one dimension is described by a complex wavefunction $\psi(x,t)$. Its **probability density** and **current** are
 
@@ -78,7 +40,7 @@ $$ {#eq-continuity}
 
 which plays the same role as Liouville’s incompressibility condition: probability is **transported** in configuration space without being created or destroyed.
 
-#### The Schrödinger equation as a linear ODE in Hilbert space
+### The Schrödinger equation as a linear ODE in Hilbert space
 
 While @eq-schrodinger is a partial differential equation, it is *linear* in $\psi$, exactly like the matrix ODE $\dot{\mathbf y}=A\mathbf y$ used for classical linear systems. Written in Dirac notation
 
@@ -96,17 +58,28 @@ $$ {#eq-vonneumann}
 
 a direct quantum counterpart of the Liouville equation in @eq-liouville-ode-classical.
 
-With these ingredients we now possess a one-to-one map between the **classical Liouville formulation** and the **quantum Schrödinger formulation**, both expressible as sparse linear ODEs ready for numerical treatment. In QuTip, the Schrödinger equation is solved with the function `sesolve`, which stands for "Schrödinger equation solver".
+With these ingredients we now possess a one-to-one map between the **classical Liouville formulation** and the **quantum Schrödinger formulation**, both expressible as sparse linear ODEs ready for numerical treatment. 
+Let's consider a simple example of a harmonic oscillator, which is described by the Hamiltonian
+
+$$
+\hat{H} = \hbar \omega \hat{a}^\dagger \hat{a} \, ,
+$$
+
+where $\hat{a}$ and $\hat{a}^\dagger$ are the annihilation and creation operators, respectively, and $\omega$ is the angular frequency of the oscillator.
+
+{{< embed /notebooks/lecture1/closed_systems.qmd#harmonic-oscillator echo=true >}}
+
+In QuTip, the Schrödinger equation is solved with the function `sesolve`, which stands for "Schrödinger equation solver".
 
 {{< embed /notebooks/lecture1/closed_systems.qmd#sesolve echo=true >}}
 
-### Plot the expectation values
+## Plot the expectation values
 
 We can access to the expectation values with the command `sol.expect[i]`, where `i` is the index of the $i$-th operator for which we want to calculate te expectation value as a function of time.
 
 {{< embed /notebooks/lecture1/closed_systems.qmd#sesolve-plot echo=true >}}
 
-### Access directly to the evolution of the state
+## Access directly to the evolution of the state
 
 We can also access directly to the wavefunction at each `tlist`. This can be done by simply calling `sol.states` to the solver without the `e_ops` operators.
 
