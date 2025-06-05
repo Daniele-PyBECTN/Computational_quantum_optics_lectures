@@ -36,7 +36,7 @@ The matrix representation of the annihilation operator in an $d$-dimensional Hil
 ```{python}
 #| label: annihilation-operator
 # Define the annihilation operator for d-dimensional Hilbert space
-d = 10
+d = 7
 
 a = qutip.destroy(d)
 
@@ -248,7 +248,6 @@ We now apply the partial trace to a more complicated state, that is composed by 
 
 ```{python}
 #| label: ptrace-complex-state
-d = 10
 j1 = 1
 j2 = 1/2
 m1 = 0

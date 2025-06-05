@@ -7,7 +7,7 @@ other-links:
     href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/phase_space_ode.ipynb"
     icon: google
 ---
-# From Hamilton's equations to the Liouville equation in phase space
+# From Hamilton's equations to the Liouville equation in phase space {#sec-classical-liouville-equation}
 
 In the previous chapter we showed that many *linear* ordinary differential equations (ODEs) that appear in quantum mechanics can be solved elegantly by writing them in **matrix form** and diagonalising the matrix. In classical mechanics, however, the equations of motion
 
@@ -103,7 +103,7 @@ $$
 \{ H, \rho \} = \frac{\partial H}{\partial x} \frac{\partial \rho}{\partial p} - \frac{\partial H}{\partial p} \frac{\partial \rho}{\partial x} = \frac{\partial V}{\partial x} \frac{\partial \rho}{\partial p} - \frac{p}{m} \frac{\partial \rho}{\partial x}
 $$
 
-### Discretizing Phase Space
+### Discretizing Phase Space {#sec-discretizing-phase-space-classical}
 
 We define a **uniform grid** of $N_x$ points over $x$ and $N_p$ points over $p$:
 
@@ -169,7 +169,7 @@ This is a sparse matrix acting on $\vec{\rho}$, and encodes the total effect of 
 We can evolve the discretized density using an ODE solver:
 $$
 \frac{d \vec{\rho}}{dt} = L \vec{\rho}
-$$ {#eq-liouville-ode}
+$$ {#eq-liouville-ode-classical}
 
 Thus, we have reduced the problem to a linear ordinary differential equation (ODE) system, which can be solved using the standard tools discussed in @sec-ordinary-differential-equations.
 
@@ -210,7 +210,7 @@ And then we define the grid and the operators for the phase space:
 
 {{< embed /notebooks/lecture1/phase_space_ode.qmd#define-operators echo=true >}}
 
-We can now compute the time evolution defined by @eq-liouville-ode by using the Euler method described in @sec-ode-euler-method:
+We can now compute the time evolution defined by @eq-liouville-ode-classical by using the Euler method described in @sec-ode-euler-method:
 
 {{< embed /notebooks/lecture1/phase_space_ode.qmd#liouville-euler-method echo=true >}}
 

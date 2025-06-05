@@ -1,0 +1,281 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/closed_systems.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/closed_systems.ipynb"
+    icon: google
+---
+
+# Closed Quantum Systems in QuTiP
+
+{{< include ../../setup/matplotlib_setup.qmd >}}
+
+```{python}
+#| label: imports
+import numpy as np
+import matplotlib.pyplot as plt
+from qutip import *
+```
+
+In the energy eigenbasis, the quantum harmonic oscillator is described by the Hamiltonian
+
+$$
+\hat{H} = \omega \hat{a}^\dagger \hat{a} \, ,
+$$
+
+where $\omega$ is the resonance frequency and $\hat{a}$ is the bosonic annihilation operator. In this basis, the Hamiltonian is indeed diagonal, with eigenvalues $E_n = \omega n$, where $n \in \mathbb{N}$.
+
+```{python}
+#| label: hamiltonian
+N = 120 # Hilbert space cutoff
+w = 1 # Resonance frequency of the harmonic oscillator
+
+a = destroy(N)
+
+H = w * a.dag() * a
+
+H
+```
+
+## Passing in the position basis
+
+From the classical point of view, we are used to describe the harmonic oscillator in terms of position and momentum. In quantum mechanics, we can also express the system in terms of the position and momentum operators, which are related to the annihilation and creation operators as follows ($\hbar = 1$):
+
+\begin{align*}
+\hat{x} &= \frac{1}{\sqrt{2 m \omega}} \left( \hat{a} + \hat{a}^\dagger \right) \, , \\
+\hat{p} &= i \sqrt{\frac{m \omega}{2}} \left( \hat{a}^\dagger - \hat{a} \right) \, .
+\end{align*}
+
+
+We first check that
+
+$$
+\left[ \hat{x}, \hat{p} \right] = i
+$$
+
+```{python}
+#| label: commutator-check
+m = 0.5
+
+x = (a + a.dag()) / np.sqrt(2 * m * w)
+y = - 1j * (a - a.dag()) * np.sqrt(m * w / 2)
+
+commutator(x, y)
+```
+
+We now numerically diagonalize the position operator $\hat{x}$, such that $\hat{U}^\dagger \hat{x} \hat{U}$ is diagonal. Then we plot the eigenstates of the quantum harmonic oscillator in the new basis, obtained with
+
+$$
+\vert \phi_n (x) \rangle = \hat{U}^\dagger \vert \psi_n \rangle
+$$
+
+```{python}
+#| label: position-eigenbasis
+E, T = x.eigenstates()
+
+U = np.zeros((N, N)).astype(np.complex128)
+for i in range(N):
+    U[:,i] = T[i].full().flatten()
+
+U = Qobj(U)
+
+xlist = ( U.dag() * x * U ).diag()
+dx = xlist[1] - xlist[0]
+
+# Harmonic potential
+V = w**2 / 2 * xlist**2
+
+fig, ax = plt.subplots()
+
+ax.plot(xlist, V, color="black", ls="--", lw=2)
+for i in range(5):
+    factor = 5 # The purpose of this factor is to only make more visible the states
+    ax.plot(xlist, factor * np.abs( (U.dag() * fock(N, i)).full() )**2 + i * w + w/2, lw=2)
+
+ax.set_xlabel(r"$x$")
+ax.set_xlim(-5, 5)
+ax.set_ylim(0, 5)
+
+# Show in Quarto
+plt.savefig('_tmp_fig.svg')
+plt.close(fig)
+SVG(filename='_tmp_fig.svg')
+```
+
+## Closed Dynamics: The Schrödinger equation
+
+In QuTip, the Schrödinger equation is solved with the function `sesolve`, which stands for "Schrödinger equation solver".
+
+```{python}
+#| label: sesolve
+alpha = 3 # Coherence of the initial state
+
+# We start from a coherent state the most classic-like state
+psi0 = coherent(N, alpha)
+
+# List of the times for the time evolution
+tlist = np.linspace(0, 2 * 2*np.pi/w, 100)
+
+e_ops = [H, a + a.dag()]
+
+sol = sesolve(H, psi0, tlist, e_ops)
+```
+
+### Plot the expectation values
+
+We can access to the expectation values with the command `sol.expect[i]`, where `i` is the index of the $i$-th operator for which we want to calculate te expectation value as a function of time.
+
+```{python}
+#| label: sesolve-plot
+fig, ax = plt.subplots()
+
+ax.plot(tlist, sol.expect[0], label=r"$\langle \hat{H} \rangle$", lw=2)
+ax.plot(tlist, sol.expect[1], label=r"$\langle \hat{a} + \hat{a}^\dagger \rangle$", lw=2)
+ax.legend()
+ax.set_xlabel(r"$t$")
+ax.set_xlim(tlist[0], tlist[-1])
+ax.set_ylim(None, 16)
+
+# Show in Quarto
+plt.savefig('_tmp_fig.svg')
+plt.close(fig)
+SVG(filename='_tmp_fig.svg')
+```
+
+### Access directly to the evolution of the state
+
+We can also access directly to the wavefunction at each `tlist`. This can be done by simply calling `sol.states` to the solver without the `e_ops` operators.
+
+To check this feature, let's see if after $10$ cycles we get still the initial state, by calculating the fidelity
+
+$$
+\langle \psi \left(t = 10 T\right) \vert \psi \left( t = 0 \right) \rangle
+$$
+
+where $T = \frac{2 \pi}{\omega}$.
+
+```{python}
+#| label: sesolve-fidelity
+sol = sesolve(H, psi0, tlist)
+
+sol.states[0].dag() * sol.states[-1]
+```
+
+We then switch to the position eigenbasis. Thus, we need to diagonalize the position operator. This in general involves the *Laguerre* functions, but here we limit ourselves to numerically diagonalize the position operator.
+
+We now show the wavefunctions in the position basis at three different times: $t_0$, $t_1$ and $t_2$, with
+
+$$
+t_0 = 0 \, , \quad t_1 = \frac{\pi}{\omega} \, , \quad t_2 = \frac{2 \pi}{\omega} \, ,
+$$
+
+showing the exact periodicity of this system.
+
+```{python}
+#| label: sesolve-position-plot
+idx_t0 = 0
+idx_t1 = np.where(tlist >= np.pi/w)[0][0]
+idx_t2 = np.where(tlist >= 2*np.pi/w)[0][0]
+
+psi0_x = U.dag() * sol.states[idx_t0]
+psi1_x = U.dag() * sol.states[idx_t1]
+psi2_x = U.dag() * sol.states[idx_t2]
+
+fig, ax = plt.subplots()
+
+ax.plot(xlist, 700 * np.abs(psi0_x.full())**2, label=r"$\vert \langle \psi (t_0) \vert \psi (t_0) \rangle \vert^2$", lw=2)
+ax.plot(xlist, 700 * np.abs(psi1_x.full())**2, label=r"$\vert \langle \psi (t_1) \vert \psi (t_1) \rangle \vert^2$", ls="--", lw=2)
+ax.plot(xlist, 700 * np.abs(psi2_x.full())**2, label=r"$\vert \langle \psi (t_2) \vert \psi (t_2) \rangle \vert^2$", ls="-.", lw=2)
+ax.plot(xlist, V, color="black", ls="--")
+ax.legend()
+ax.set_xlabel(r"$x$")
+ax.set_xlim(xlist[0], xlist[-1])
+ax.set_ylim(0, 120)
+
+# Show in Quarto
+plt.savefig('_tmp_fig.svg')
+plt.close(fig)
+SVG(filename='_tmp_fig.svg')
+```
+
+We can also export an animation, showing more easily the time evolution of the state
+
+```{python}
+#| label: sesolve-animation
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
+
+plt.rcParams.update({'font.size': 8})
+fig, ax = plt.subplots(figsize=(4.6, 2.8))
+
+line, = ax.plot(xlist, 700 * np.abs(psi0_x.full())**2, lw=2)
+ax.plot(xlist, V, color="black", ls="--")
+ax.set_xlabel(r"$x$")
+ax.set_xlim(xlist[0], xlist[-1])
+ax.set_ylim(0, 120)
+
+plt.close(fig) # Otherwise the static figure also appears
+
+def update(frame):
+    psi_t = U.dag() * sol.states[frame]
+    line.set_ydata( 700 * np.abs(psi_t.full())**2 )
+    return line,
+
+fps = 25
+ani = FuncAnimation(fig, update, frames=len(tlist), blit=True, interval=1000 / fps)
+
+HTML(ani.to_jshtml())
+```
+
+::: callout-caution
+## Exercise!
+
+What happens if we start from the following superposition state?
+
+$$
+\vert \psi (0) \rangle = \frac{1}{\sqrt{2}} \left( \vert 2 \rangle + \vert 5 \rangle \right)
+$$
+
+Write a code that generates the animation of the wavefunction
+:::
+
+```{python}
+# Write your code here...
+
+
+
+```
+
+```{python}
+#| code-fold: true
+#| code-summary: Solution
+psi0 = (fock(N, 2) + fock(N, 5)).unit()
+
+# List of the times for the time evolution
+tlist = np.linspace(0, 2 * 2*np.pi/w, 100)
+
+sol = sesolve(H, psi0, tlist)
+
+plt.rcParams.update({'font.size': 8})
+fig, ax = plt.subplots(figsize=(4.6, 2.8))
+
+line, = ax.plot(xlist, 700 * np.abs(psi0_x.full())**2, lw=2)
+ax.plot(xlist, V, color="black", ls="--")
+ax.set_xlabel(r"$x$")
+ax.set_xlim(xlist[0], xlist[-1])
+ax.set_ylim(0, 120)
+
+plt.close(fig) # Otherwise the static figure also appears
+
+def update(frame):
+    psi_t = U.dag() * sol.states[frame]
+    line.set_ydata( 700 * np.abs(psi_t.full())**2 )
+    return line,
+
+fps = 25
+ani = FuncAnimation(fig, update, frames=len(tlist), blit=True, interval=1000 / fps)
+
+HTML(ani.to_jshtml())
+```
