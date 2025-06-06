@@ -133,13 +133,13 @@ And we can finally visualize the evolution of the phase space density $\rho(x, p
 from IPython.display import HTML
 from matplotlib.animation import FuncAnimation
 
-plt.rcParams.update({'font.size': 8})
+plt.rcParams.update({"font.size": 8})
 fig, ax = plt.subplots(figsize=(4.6, 2.8))
 
-fig.suptitle(r'Phase space density $\rho(x, p, t)$ evolution')
+fig.suptitle(r"Phase space density $\rho(x, p, t)$ evolution")
 
 img = ax.pcolormesh(x_list, px_list, rho_t[0].reshape(N_x, N_px),
-                    shading='gouraud', rasterized=True,
+                    shading="gouraud", rasterized=True,
                     vmin=-0.3, vmax=0.3, cmap="PuOr")
 ax.set_xlabel("Position $x$")
 ax.set_ylabel("Momentum $p_x$")
@@ -150,7 +150,7 @@ def animate(i):
     img.set_array(rho_t[i])
     return img,
 
-ani = FuncAnimation(fig, animate, frames=range(0, len(t_list), 500), interval=50, blit=True)
+ani = FuncAnimation(fig, animate, frames=range(0, len(t_list), 2000), interval=50, blit=True)
 
 plt.close(fig)
 HTML(ani.to_jshtml())
@@ -159,24 +159,23 @@ HTML(ani.to_jshtml())
 Or can visualize the final phase space density $\rho(x, p, t)$ as a 2D plot:
 
 ```{python}
-plt.rcParams.update({'font.size': 12})
+plt.rcParams.update({"font.size": 12})
 ```
 
 ```{python}
 #| label: plot-final-density
-
 fig, ax = plt.subplots()
 
-fig.suptitle(r'Phase space density $\rho(x, p, t)$ evolution')
+fig.suptitle(r"Phase space density $\rho(x, p, t)$ evolution")
 
-img = ax.pcolormesh(x_list, px_list, rho_t[-1].reshape(N_x, N_px)**2, 
-                    shading='gouraud', rasterized=True,
+img = ax.pcolormesh(x_list, px_list, rho_t[-1].reshape(N_x, N_px), 
+                    shading="gouraud", rasterized=True,
                     vmin=-0.3, vmax=0.3, cmap="PuOr")
 ax.set_xlabel("Position $x$")
 ax.set_ylabel("Momentum $p_x$")
 
 # Show in Quarto
-plt.savefig('_tmp_fig.svg')
+plt.savefig("_tmp_fig.svg")
 plt.close(fig)
-SVG(filename='_tmp_fig.svg')
+SVG(filename="_tmp_fig.svg")
 ```

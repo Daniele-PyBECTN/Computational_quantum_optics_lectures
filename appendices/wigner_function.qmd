@@ -119,6 +119,18 @@ We now combine these two approaches to study the **quantum nonlinear oscillator*
 
 {{< embed /notebooks/appendices/wigner_function.qmd#sesolve echo=true >}}
 
+::: {.content-visible when-format="html"}
+
 The Wigner function can be computed from the resulting state using QuTiP's `wigner` function. Let's plot its evolution over time:
 
 {{< embed /notebooks/appendices/wigner_function.qmd#wigner-animation echo=true >}}
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+The Wigner function can be computed from the resulting state using QuTiP's `wigner` function. Let's plot the Wigner function at the final time step:
+
+{{< embed /notebooks/appendices/wigner_function.qmd#plot-final-wigner echo=true >}}
+
+:::

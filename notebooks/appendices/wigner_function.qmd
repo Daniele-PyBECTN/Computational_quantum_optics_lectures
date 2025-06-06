@@ -61,13 +61,13 @@ from matplotlib.animation import FuncAnimation
 x_list = np.linspace(-5, 5, 120)
 px_list = np.linspace(-5, 5, 120)
 
-plt.rcParams.update({'font.size': 8})
+plt.rcParams.update({"font.size": 8})
 fig, ax = plt.subplots(figsize=(4.6, 2.8))
 
-fig.suptitle(r'Phase space density $\rho(x, p, t)$ evolution')
+fig.suptitle(r"Phase space density $\rho(x, p, t)$ evolution")
 
 img = ax.pcolormesh(x_list, px_list, wigner(result.states[0], x_list, px_list),
-                    shading='gouraud', rasterized=True,
+                    shading="gouraud", rasterized=True,
                     vmin=-0.3, vmax=0.3, cmap="PuOr")
 ax.set_xlabel("Position $x$")
 ax.set_ylabel("Momentum $p_x$")
@@ -81,5 +81,27 @@ ani = FuncAnimation(fig, animate, frames=range(0, len(tlist), 10), interval=200,
 
 plt.close(fig)
 HTML(ani.to_jshtml())
+```
+
+Or we plot the final Wigner function as a 2D plot:
+
+```{python}
+plt.rcParams.update({"font.size": 12})
+```
+
+```{python}
+#| label: plot-final-wigner
+fig, ax = plt.subplots()
+
+img = ax.pcolormesh(x_list, px_list, wigner(result.states[-1], x_list, px_list),
+                    shading="gouraud", rasterized=True,
+                    vmin=-0.3, vmax=0.3, cmap="PuOr")
+ax.set_xlabel("Position $x$")
+ax.set_ylabel("Momentum $p_x$")
+
+# Show in Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close(fig)
+SVG(filename="_tmp_fig.svg")
 ```
 
