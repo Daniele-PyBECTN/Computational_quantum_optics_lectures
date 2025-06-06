@@ -1,10 +1,10 @@
 ---
 other-links:
   - text: Run notebook in Binder
-    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/wigner_function.ipynb"
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/appendices/wigner_function.ipynb"
     icon: file-code
   - text: Run notebook in Google Colab
-    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/wigner_function.ipynb"
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/appendices/wigner_function.ipynb"
     icon: google
 ---
 # From classical densities to the Wigner function {#sec-wigner-function}
