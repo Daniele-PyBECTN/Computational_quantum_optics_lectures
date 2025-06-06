@@ -1,0 +1,85 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/wigner_function.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/wigner_function.ipynb"
+    icon: google
+---
+# From classical densities to the Wigner function {#sec-wigner-function}
+
+{{< include ../../setup/matplotlib_setup.qmd >}}
+
+## Example: the nonlinear oscillator
+
+We have already solved the Liouville equation for a classical nonlinear oscillator with Hamiltonian
+
+$$
+H = \frac{p^2}{2m} + \frac{1}{2} k x^2 + g x^4.
+$$ {#eq-nonlinear-oscillator-classical}
+
+Moreover, we have also solved the Schrödinger equation using QuTiP for a simple harmonic oscillator.
+We now combine these two approaches to study the **quantum nonlinear oscillator** with Hamiltonian @eq-nonlinear-oscillator-classical, but with the **quantum operator** $\hat x$ and $\hat p$ instead of the classical variables $x$ and $p$.
+
+```{python}
+#| label: sesolve
+import numpy as np
+from qutip import *
+
+N = 120
+m = 0.5 # Mass of the particle
+k = 2.0 # Spring constant
+G = 0.15 # Nonlinear constant
+w = np.sqrt(k/m) # Angular frequency
+
+a = destroy(N)
+
+x = np.sqrt(m * w / 2) * (a + a.dag())
+p = 1j * np.sqrt(m * w / 2) * (a.dag() - a)
+
+H = p**2 / (2 * m) + k * x**2 / 2 + G * x**4
+
+# Initial state: coherent state
+alpha = np.sqrt(1 / (2 * m * w)) * 1 + 1j * np.sqrt(m * w / 2) * 0.1
+psi_0 = coherent(N, alpha)
+
+tlist = np.linspace(0, 2, 500)
+result = sesolve(H, psi_0, tlist)
+result
+```
+
+The Wigner function can be computed from the resulting state using QuTiP's `wigner` function. Let's plot its evolution over time:
+
+```{python}
+#| label: wigner-animation
+import matplotlib.pyplot as plt
+from IPython.display import HTML
+from matplotlib.animation import FuncAnimation
+
+# Phase space grid
+x_list = np.linspace(-5, 5, 120)
+px_list = np.linspace(-5, 5, 120)
+
+plt.rcParams.update({'font.size': 8})
+fig, ax = plt.subplots(figsize=(4.6, 2.8))
+
+fig.suptitle(r'Phase space density $\rho(x, p, t)$ evolution')
+
+img = ax.pcolormesh(x_list, px_list, wigner(result.states[0], x_list, px_list),
+                    shading='gouraud', rasterized=True,
+                    vmin=-0.3, vmax=0.3, cmap="PuOr")
+ax.set_xlabel("Position $x$")
+ax.set_ylabel("Momentum $p_x$")
+
+def animate(i):
+  wig_i = wigner(result.states[i], x_list, px_list)
+  img.set_array(wig_i.ravel())
+  return img,
+
+ani = FuncAnimation(fig, animate, frames=range(0, len(tlist), 10), interval=200, blit=True)
+
+plt.close(fig)
+HTML(ani.to_jshtml())
+```
+

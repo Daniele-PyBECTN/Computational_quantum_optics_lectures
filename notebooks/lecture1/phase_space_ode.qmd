@@ -52,8 +52,8 @@ And then we define the grid and the operators for the phase space:
 ```{python}
 #| label: define-operators
 
-N_x = 101 # Number of grid points in position space
-N_px = 101 # Number of grid points in momentum space
+N_x = 150 # Number of grid points in position space
+N_px = 150 # Number of grid points in momentum space
 x_bound = 5 # Position space boundary
 px_bound = 5 # Momentum space boundary
 
@@ -92,7 +92,7 @@ We can now compute the time evolution defined by @eq-liouville-ode by using the 
 
 m = 0.5 # Mass of the particle
 k = 2.0 # Spring constant
-G = 0.3 # Nonlinear constant
+G = 0.15 # Nonlinear constant
 
 dV_dx = k * x + 4 * G * x @ x @ x
 
@@ -102,8 +102,8 @@ L = dV_dx @ d_px - (px / m) @ d_x
 t_list = np.linspace(0, 2, 100000)
 
 # Initial state: we will use a Gaussian wave packet to avoid singularities
-x_0 = gaussian(x_list, 1.0, 0.5)
-p_0 = gaussian(px_list, 0.1, 0.5)
+x_0 = gaussian(x_list, 1.0, np.sqrt(0.5))
+p_0 = gaussian(px_list, 0.1, np.sqrt(0.5))
 rho_0 = np.kron(p_0, x_0)
 
 x_t = np.zeros(t_list.shape[0])
@@ -130,7 +130,6 @@ And we can finally visualize the evolution of the phase space density $\rho(x, p
 
 ```{python}
 #| label: plot-phase-space-density
-
 from IPython.display import HTML
 from matplotlib.animation import FuncAnimation
 
@@ -139,14 +138,16 @@ fig, ax = plt.subplots(figsize=(4.6, 2.8))
 
 fig.suptitle(r'Phase space density $\rho(x, p, t)$ evolution')
 
-img = ax.pcolormesh(x_list, px_list, rho_t[0].reshape(N_x, N_px)**2,
+img = ax.pcolormesh(x_list, px_list, rho_t[0].reshape(N_x, N_px),
                     shading='gouraud', rasterized=True,
-                    cmap="PuOr")
+                    vmin=-0.3, vmax=0.3, cmap="PuOr")
 ax.set_xlabel("Position $x$")
 ax.set_ylabel("Momentum $p_x$")
+ax.set_xlim(-5, 5)
+ax.set_ylim(-5, 5)
 
 def animate(i):
-    img.set_array(rho_t[i]**2)
+    img.set_array(rho_t[i])
     return img,
 
 ani = FuncAnimation(fig, animate, frames=range(0, len(t_list), 500), interval=50, blit=True)
@@ -169,7 +170,8 @@ fig, ax = plt.subplots()
 fig.suptitle(r'Phase space density $\rho(x, p, t)$ evolution')
 
 img = ax.pcolormesh(x_list, px_list, rho_t[-1].reshape(N_x, N_px)**2, 
-                    shading='gouraud', rasterized=True)
+                    shading='gouraud', rasterized=True,
+                    vmin=-0.3, vmax=0.3, cmap="PuOr")
 ax.set_xlabel("Position $x$")
 ax.set_ylabel("Momentum $p_x$")
 
