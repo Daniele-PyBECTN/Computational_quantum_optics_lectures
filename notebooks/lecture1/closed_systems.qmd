@@ -1,0 +1,238 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/closed_systems.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/closed_systems.ipynb"
+    icon: google
+---
+
+# Closed Quantum Systems in QuTiP: The Schrödinger equation
+
+{{< include ../../setup/matplotlib_setup.qmd >}}
+
+```{python}
+#| label: imports
+import numpy as np
+import matplotlib.pyplot as plt
+from qutip import *
+```
+
+Let's consider a simple example of a harmonic oscillator, which is described by the Hamiltonian
+
+$$
+\hat{H} = \hbar \omega \hat{a}^\dagger \hat{a} \, ,
+$$
+
+where $\hat{a}$ and $\hat{a}^\dagger$ are the annihilation and creation operators, respectively, and $\omega$ is the angular frequency of the oscillator.
+
+```{python}
+#| label: harmonic-oscillator
+N = 120 # Number of Fock states
+w = 1 # Angular frequency of the oscillator
+
+a = destroy(N) # Annihilation operator
+H = w * a.dag() * a # Hamiltonian of the harmonic oscillator
+
+H
+```
+
+In QuTip, the Schrödinger equation is solved with the function `sesolve`, which stands for "Schrödinger equation solver".
+
+```{python}
+#| label: sesolve
+alpha = 3 # Coherence of the initial state
+
+# We start from a coherent state the most classic-like state
+psi0 = coherent(N, alpha)
+
+# List of the times for the time evolution
+tlist = np.linspace(0, 2 * 2*np.pi/w, 100)
+
+e_ops = [H, a + a.dag()]
+
+sol = sesolve(H, psi0, tlist, e_ops)
+```
+
+## Plot the expectation values
+
+We can access to the expectation values with the command `sol.expect[i]`, where `i` is the index of the $i$-th operator for which we want to calculate te expectation value as a function of time.
+
+```{python}
+#| label: sesolve-plot
+fig, ax = plt.subplots()
+
+ax.plot(tlist, sol.expect[0], label=r"$\langle \hat{H} \rangle$", lw=2)
+ax.plot(tlist, sol.expect[1], label=r"$\langle \hat{a} + \hat{a}^\dagger \rangle$", lw=2)
+ax.legend()
+ax.set_xlabel(r"$t$")
+ax.set_xlim(tlist[0], tlist[-1])
+ax.set_ylim(None, 16)
+
+# Show in Quarto
+plt.savefig('_tmp_fig.svg')
+plt.close(fig)
+SVG(filename='_tmp_fig.svg')
+```
+
+## Access directly to the evolution of the state
+
+We can also access directly to the wavefunction at each `tlist`. This can be done by simply calling `sol.states` to the solver without the `e_ops` operators.
+
+To check this feature, let's see if after $10$ cycles we get still the initial state, by calculating the fidelity
+
+$$
+\langle \psi \left(t = 10 T\right) \vert \psi \left( t = 0 \right) \rangle
+$$
+
+where $T = \frac{2 \pi}{\omega}$.
+
+```{python}
+#| label: sesolve-fidelity
+sol = sesolve(H, psi0, tlist)
+
+sol.states[0].dag() * sol.states[-1]
+```
+
+We then switch to the position eigenbasis. Thus, we need to diagonalize the position operator. This in general involves the *Laguerre* functions, but here we limit ourselves to numerically diagonalize the position operator.
+
+We now show the wavefunctions in the position basis at three different times: $t_0$, $t_1$ and $t_2$, with
+
+$$
+t_0 = 0 \, , \quad t_1 = \frac{\pi}{\omega} \, , \quad t_2 = \frac{2 \pi}{\omega} \, ,
+$$
+
+showing the exact periodicity of this system.
+First, we need to define the position operator $\hat{x}$ and the transformation operator $U$ that allows us to switch from the Fock basis to the position basis.
+
+```{python}
+#| label: sesolve-fock-to-position
+m = 0.5
+
+# Position operator in the Fock basis
+x = (a + a.dag()) / np.sqrt(2 * m * w)
+
+E, T = x.eigenstates()
+
+U = np.zeros((N, N)).astype(np.complex128)
+for i in range(N):
+    U[:,i] = T[i].full().flatten()
+
+U = qutip.Qobj(U)
+
+# Discretization of the position
+xlist = ( U.dag() * x * U ).diag()
+```
+
+Now, we can plot the wavefunctions in the position basis at the three different times.
+
+```{python}
+#| label: sesolve-position-plot
+idx_t0 = 0
+idx_t1 = np.where(tlist >= np.pi/w)[0][0]
+idx_t2 = np.where(tlist >= 2*np.pi/w)[0][0]
+
+psi0_x = U.dag() * sol.states[idx_t0]
+psi1_x = U.dag() * sol.states[idx_t1]
+psi2_x = U.dag() * sol.states[idx_t2]
+
+# We define the potential for the harmonic oscillator
+V = 0.5 * m * w**2 * xlist**2
+
+fig, ax = plt.subplots()
+
+ax.plot(xlist, 700 * np.abs(psi0_x.full())**2, label=r"$\vert \langle \psi (t_0) \vert \psi (t_0) \rangle \vert^2$", lw=2)
+ax.plot(xlist, 700 * np.abs(psi1_x.full())**2, label=r"$\vert \langle \psi (t_1) \vert \psi (t_1) \rangle \vert^2$", ls="--", lw=2)
+ax.plot(xlist, 700 * np.abs(psi2_x.full())**2, label=r"$\vert \langle \psi (t_2) \vert \psi (t_2) \rangle \vert^2$", ls="-.", lw=2)
+ax.plot(xlist, V, color="black", ls="--")
+ax.legend()
+ax.set_xlabel(r"$x$")
+ax.set_xlim(xlist[0], xlist[-1])
+ax.set_ylim(0, 120)
+
+# Show in Quarto
+plt.savefig('_tmp_fig.svg')
+plt.close(fig)
+SVG(filename='_tmp_fig.svg')
+```
+
+We can also export an animation, showing more easily the time evolution of the state
+
+```{python}
+#| label: sesolve-animation
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
+
+plt.rcParams.update({'font.size': 8})
+fig, ax = plt.subplots(figsize=(4.6, 2.8))
+
+line, = ax.plot(xlist, 700 * np.abs(psi0_x.full())**2, lw=2)
+ax.plot(xlist, V, color="black", ls="--")
+ax.set_xlabel(r"$x$")
+ax.set_xlim(xlist[0], xlist[-1])
+ax.set_ylim(0, 120)
+
+plt.close(fig) # Otherwise the static figure also appears
+
+def update(frame):
+    psi_t = U.dag() * sol.states[frame]
+    line.set_ydata( 700 * np.abs(psi_t.full())**2 )
+    return line,
+
+fps = 25
+ani = FuncAnimation(fig, update, frames=len(tlist), blit=True, interval=1000 / fps)
+
+HTML(ani.to_jshtml())
+```
+
+::: callout-caution
+## Exercise!
+
+What happens if we start from the following superposition state?
+
+$$
+\vert \psi (0) \rangle = \frac{1}{\sqrt{2}} \left( \vert 2 \rangle + \vert 5 \rangle \right)
+$$
+
+Write a code that generates the animation of the wavefunction
+:::
+
+```{python}
+# Write your code here...
+
+
+
+```
+
+```{python}
+#| code-fold: true
+#| code-summary: Solution
+psi0 = (fock(N, 2) + fock(N, 5)).unit()
+
+# List of the times for the time evolution
+tlist = np.linspace(0, 2 * 2*np.pi/w, 100)
+
+sol = sesolve(H, psi0, tlist)
+
+plt.rcParams.update({'font.size': 8})
+fig, ax = plt.subplots(figsize=(4.6, 2.8))
+
+line, = ax.plot(xlist, 700 * np.abs(psi0_x.full())**2, lw=2)
+ax.plot(xlist, V, color="black", ls="--")
+ax.set_xlabel(r"$x$")
+ax.set_xlim(xlist[0], xlist[-1])
+ax.set_ylim(0, 120)
+
+plt.close(fig) # Otherwise the static figure also appears
+
+def update(frame):
+    psi_t = U.dag() * sol.states[frame]
+    line.set_ydata( 700 * np.abs(psi_t.full())**2 )
+    return line,
+
+fps = 25
+ani = FuncAnimation(fig, update, frames=len(tlist), blit=True, interval=1000 / fps)
+
+HTML(ani.to_jshtml())
+```

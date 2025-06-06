@@ -9,11 +9,14 @@ other-links:
 ---
 # Introduction to QuTiP
 
+{{< include ../../setup/matplotlib_setup.qmd >}}
+
 The QuTiP package can be imported with
 
 ```{python}
 #| label: qutip-import
 import qutip
+import numpy as np
 ```
 
 It can also be imported with the command `from qutip import *`, that automatically imports all the QuTiP functions. However, here we use the first method, in order to explicitly see the QuTiP functions.
@@ -36,7 +39,7 @@ The matrix representation of the annihilation operator in an $d$-dimensional Hil
 ```{python}
 #| label: annihilation-operator
 # Define the annihilation operator for d-dimensional Hilbert space
-d = 10
+d = 7
 
 a = qutip.destroy(d)
 
@@ -248,7 +251,6 @@ We now apply the partial trace to a more complicated state, that is composed by 
 
 ```{python}
 #| label: ptrace-complex-state
-d = 10
 j1 = 1
 j2 = 1/2
 m1 = 0
@@ -314,6 +316,95 @@ display(expectation_value_n)
 print("\n")
 print("The squared modulus of alpha is:")
 display(abs(alpha) ** 2)
+```
+
+## A complete example: the Quantum Harmonic Oscillator
+
+In the energy eigenbasis, the quantum harmonic oscillator is described by the Hamiltonian
+
+$$
+\hat{H} = \omega \hat{a}^\dagger \hat{a} \, ,
+$$
+
+where $\omega$ is the resonance frequency and $\hat{a}$ is the bosonic annihilation operator. In this basis, the Hamiltonian is indeed diagonal, with eigenvalues $E_n = \omega n$, where $n \in \mathbb{N}$.
+
+```{python}
+#| label: hamiltonian
+N = 120 # Hilbert space cutoff
+w = 1 # Resonance frequency of the harmonic oscillator
+
+a = qutip.destroy(N)
+
+H = w * a.dag() * a
+
+H
+```
+
+## Passing in the position basis
+
+From the classical point of view, we are used to describe the harmonic oscillator in terms of position and momentum. In quantum mechanics, we can also express the system in terms of the position and momentum operators, which are related to the annihilation and creation operators as follows ($\hbar = 1$):
+
+\begin{align*}
+\hat{x} &= \frac{1}{\sqrt{2 m \omega}} \left( \hat{a} + \hat{a}^\dagger \right) \, , \\
+\hat{p} &= i \sqrt{\frac{m \omega}{2}} \left( \hat{a}^\dagger - \hat{a} \right) \, .
+\end{align*}
+
+
+We first check that
+
+$$
+\left[ \hat{x}, \hat{p} \right] = i
+$$
+
+```{python}
+#| label: commutator-check
+m = 0.5
+
+x = (a + a.dag()) / np.sqrt(2 * m * w)
+p = - 1j * (a - a.dag()) * np.sqrt(m * w / 2)
+
+qutip.commutator(x, p)
+```
+
+We now numerically diagonalize the position operator $\hat{x}$, such that $\hat{U}^\dagger \hat{x} \hat{U}$ is diagonal. Then we plot the eigenstates of the quantum harmonic oscillator in the new basis, obtained with
+
+$$
+\vert \phi_n (x) \rangle = \hat{U}^\dagger \vert \psi_n \rangle
+$$
+
+```{python}
+#| label: position-eigenbasis
+import matplotlib.pyplot as plt
+
+E, T = x.eigenstates()
+
+U = np.zeros((N, N)).astype(np.complex128)
+for i in range(N):
+    U[:,i] = T[i].full().flatten()
+
+U = qutip.Qobj(U)
+
+xlist = ( U.dag() * x * U ).diag()
+dx = xlist[1] - xlist[0]
+
+# Harmonic potential
+V = w**2 / 2 * xlist**2
+
+fig, ax = plt.subplots()
+
+ax.plot(xlist, V, color="black", ls="--", lw=2)
+for i in range(5):
+    factor = 5 # The purpose of this factor is to only make more visible the states
+    ax.plot(xlist, factor * np.abs( (U.dag() * qutip.fock(N, i)).full() )**2 + i * w + w/2, lw=2)
+
+ax.set_xlabel(r"$x$")
+ax.set_xlim(-5, 5)
+ax.set_ylim(0, 5)
+
+# Show in Quarto
+plt.savefig('_tmp_fig.svg')
+plt.close(fig)
+SVG(filename='_tmp_fig.svg')
 ```
 
 

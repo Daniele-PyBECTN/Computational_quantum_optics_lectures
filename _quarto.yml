@@ -43,9 +43,7 @@ book:
     - lecture1/phase_space_ode.qmd
     - lecture1/quantum_objects_numpy.qmd
     - lecture1/qutip_introduction.qmd
-    # - lecture1/ # Representation of Quantum Operators in Numpy
-    # - lecture1/ # Closed Quantum Systems - Schrodinger Equation
-    # - lecture1/ # Closed Quantum Systems in QuTiP
+    - lecture1/closed_systems.qmd
     # - lecture2/ # Open Quantum Systems - Lindblad Equation
     # - lecture2/ # Open Quantum Systems in QuTiP
     # - lecture3/ # Quantum Observables and Correlation Functions
@@ -56,6 +54,7 @@ book:
     - bibliography.qmd
   appendices: 
     - appendices/quantum-harmonic-oscillator.qmd
+    - appendices/wigner_function.qmd
 
 number-depth: 3
 bibliography: bibliography.bib

@@ -277,22 +277,14 @@ Hence, the same techniques (matrix diagonalization for analytical solutions, or 
 
 In summary:
 
-- An Ordinary Differential Equation (ODE) involves a function of one
-  variable and its derivatives.
-- When an ODE is linear and time-independent, one can analytically solve
-  it by diagonalizing the system matrix.
-- For more complicated (time-dependent or nonlinear) problems, numerical
-  integration methods such as the Euler method can be applied.
-- The Euler method is conceptually simple but demands careful choice of
-  time step to ensure stability, particularly when the system matrix has
-  eigenvalues with large negative real parts or when fast
-  decaying/oscillatory modes are present.
-- These ideas are directly applicable to quantum mechanical systems such
-  as the Schrödinger equation or master equations for open systems. In
-  the Schrödinger equation, diagonalization corresponds to finding
-  energy eigenstates and frequencies, while in open quantum systems,
-  vectorization plus diagonalization or numerical iteration handles both
-  coherent and dissipative dynamics.
+- An Ordinary Differential Equation (ODE) involves a function of one variable and its derivatives.
+- When an ODE is linear and time-independent, one can analytically solve it by diagonalizing the system matrix.
+- For more complicated (time-dependent or nonlinear) problems, numerical integration methods such as the Euler method can be applied.
+- The Euler method is conceptually simple but demands careful choice of time step to ensure stability, particularly when the system matrix has
+  eigenvalues with large negative real parts or when fast decaying/oscillatory modes are present.
+- These ideas are directly applicable to quantum mechanical systems such as the Schrödinger equation or master equations for open systems. In
+  the Schrödinger equation, diagonalization corresponds to finding energy eigenstates and frequencies, while in open quantum systems,
+  vectorization plus diagonalization or numerical iteration handles both coherent and dissipative dynamics.
 
 Throughout the course, we will leverage these fundamental methods---both
 analytical techniques (e.g., diagonalization) and numerical approaches

@@ -1,0 +1,110 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/closed_systems.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/closed_systems.ipynb"
+    icon: google
+---
+# Closed Quantum Systems in QuTiP: The Schrödinger equation {#sec-closed-quantum-systems}
+
+{{< embed /notebooks/lecture1/closed_systems.qmd#imports echo=true >}}
+
+## From wavefunctions to the Schrödinger equation in configuration space
+
+In @sec-classical-liouville-equation we moved from **Hamilton’s equations** for a single point to **Liouville’s equation** for an ensemble. Quantum mechanics follows a similar path, replacing phase-space densities with **wavefunctions** (or density operators). We now show this parallelism in detail.
+
+### From a single wavepacket to the quantum continuity law
+
+A non-relativistic quantum system in one dimension is described by a complex wavefunction $\psi(x,t)$. Its **probability density** and **current** are
+
+$$
+\rho(x,t) \;=\; |\psi(x,t)|^2, \qquad
+j(x,t) \;=\; \frac{\hbar}{m}\,\Im\!\bigl[\psi^{\!*}(x,t)\,\partial_x \psi(x,t)\bigr].
+$$
+
+Starting from the **time-dependent Schrödinger equation**
+
+$$
+i\hbar\,\partial_t \psi(x,t) \;=\; \hat H\,\psi(x,t) \quad\text{with}\quad
+\hat H \;=\; -\frac{\hbar^2}{2m}\,\partial_x^2 + V(x)
+$$ {#eq-schrodinger}
+
+and its complex conjugate, a short calculation yields the **continuity equation**
+
+$$
+\partial_t \rho + \partial_x j \;=\; 0,
+$$ {#eq-continuity}
+
+which plays the same role as Liouville’s incompressibility condition: probability is **transported** in configuration space without being created or destroyed.
+
+### The Schrödinger equation as a linear ODE in Hilbert space
+
+While @eq-schrodinger is a partial differential equation, it is *linear* in $\psi$, exactly like the matrix ODE $\dot{\mathbf y}=A\mathbf y$ used for classical linear systems. Written in Dirac notation
+
+$$
+i\hbar\,\frac{d}{dt}\,|\psi(t)\rangle \;=\; \hat H\,|\psi(t)\rangle,
+$$
+
+the resemblance becomes explicit: **replace** the classical matrix $A$ by the quantum Hamiltonian operator $\hat H$ and the state vector $\mathbf y$ by a ket $|\psi\rangle$.
+
+For statistical mixtures one introduces the **density operator** $\hat\rho$ and obtains the **von Neumann equation**
+
+$$
+i\hbar\,\partial_t \hat\rho \;=\; [\hat H,\,\hat\rho],
+$$ {#eq-vonneumann}
+
+a direct quantum counterpart of the Liouville equation in @eq-liouville-ode-classical.
+
+With these ingredients we now possess a one-to-one map between the **classical Liouville formulation** and the **quantum Schrödinger formulation**, both expressible as sparse linear ODEs ready for numerical treatment. 
+Let's consider a simple example of a harmonic oscillator, which is described by the Hamiltonian
+
+$$
+\hat{H} = \hbar \omega \hat{a}^\dagger \hat{a} \, ,
+$$
+
+where $\hat{a}$ and $\hat{a}^\dagger$ are the annihilation and creation operators, respectively, and $\omega$ is the angular frequency of the oscillator.
+
+{{< embed /notebooks/lecture1/closed_systems.qmd#harmonic-oscillator echo=true >}}
+
+In QuTip, the Schrödinger equation is solved with the function `sesolve`, which stands for "Schrödinger equation solver".
+
+{{< embed /notebooks/lecture1/closed_systems.qmd#sesolve echo=true >}}
+
+## Plot the expectation values
+
+We can access to the expectation values with the command `sol.expect[i]`, where `i` is the index of the $i$-th operator for which we want to calculate te expectation value as a function of time.
+
+{{< embed /notebooks/lecture1/closed_systems.qmd#sesolve-plot echo=true >}}
+
+## Access directly to the evolution of the state
+
+We can also access directly to the wavefunction at each `tlist`. This can be done by simply calling `sol.states` to the solver without the `e_ops` operators.
+
+To check this feature, let's see if after $10$ cycles we get still the initial state, by calculating the fidelity
+
+$$
+\langle \psi \left(t = 10 T\right) \vert \psi \left( t = 0 \right) \rangle
+$$
+
+where $T = \frac{2 \pi}{\omega}$.
+
+{{< embed /notebooks/lecture1/closed_systems.qmd#sesolve-fidelity echo=true >}}
+
+We then switch to the position eigenbasis. Thus, we need to diagonalize the position operator. This in general involves the *Laguerre* functions, but here we limit ourselves to numerically diagonalize the position operator.
+
+We now show the wavefunctions in the position basis at three different times: $t_0$, $t_1$ and $t_2$, with
+
+$$
+t_0 = 0 \, , \quad t_1 = \frac{\pi}{\omega} \, , \quad t_2 = \frac{2 \pi}{\omega} \, ,
+$$
+
+showing the exact periodicity of this system.
+
+{{< embed /notebooks/lecture1/closed_systems.qmd#sesolve-position-plot echo=true >}}
+
+We can also export an animation, showing more easily the time evolution of the state
+
+{{< embed /notebooks/lecture1/closed_systems.qmd#sesolve-animation echo=true >}}
+

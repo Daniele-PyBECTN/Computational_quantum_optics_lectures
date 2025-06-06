@@ -157,3 +157,41 @@ $$
 Expectation values are crucial for predicting measurable quantities in quantum mechanics. Let's compute the expectation value of the number operator $\hat{n} = \hat{a}^\dagger \hat{a}$ for a coherent state, which represents a quantum state closest to a classical harmonic oscillator.
 
 {{< embed /notebooks/lecture1/qutip_introduction.qmd#expectation-value echo=true >}}
+
+## A complete example: the Quantum Harmonic Oscillator
+
+In @sec-quantum-harmonic-oscillator we have already defined the quantum harmonic oscillator, which is a fundamental model in quantum mechanics. In the energy eigenbasis, the quantum harmonic oscillator is described by the Hamiltonian
+
+$$
+\hat{H} = \omega \hat{a}^\dagger \hat{a} \, ,
+$$
+
+where $\omega$ is the resonance frequency and $\hat{a}$ is the bosonic annihilation operator. In this basis, the Hamiltonian is indeed diagonal, with eigenvalues $E_n = \omega n$, where $n \in \mathbb{N}$.
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#hamiltonian echo=true >}}
+
+## Passing in the position basis
+
+From the classical point of view, we are used to describe the harmonic oscillator in terms of position and momentum. In quantum mechanics, we can also express the system in terms of the position and momentum operators, which are related to the annihilation and creation operators as follows ($\hbar = 1$):
+
+\begin{align*}
+\hat{x} &= \frac{1}{\sqrt{2 m \omega}} \left( \hat{a} + \hat{a}^\dagger \right) \, , \\
+\hat{p} &= i \sqrt{\frac{m \omega}{2}} \left( \hat{a}^\dagger - \hat{a} \right) \, .
+\end{align*}
+
+
+We first check that
+
+$$
+\left[ \hat{x}, \hat{p} \right] = i
+$$
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#commutator-check echo=true >}}
+
+We now numerically diagonalize the position operator $\hat{x}$, such that $\hat{U}^\dagger \hat{x} \hat{U}$ is diagonal. Then we plot the eigenstates of the quantum harmonic oscillator in the new basis, obtained with
+
+$$
+\vert \phi_n (x) \rangle = \hat{U}^\dagger \vert \psi_n \rangle
+$$
+
+{{< embed /notebooks/lecture1/qutip_introduction.qmd#position-eigenbasis echo=true >}}
