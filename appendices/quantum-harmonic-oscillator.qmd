@@ -38,12 +38,6 @@ $$
 \hat{H} = \hbar \omega \left( \hat{a}^\dagger \hat{a} + \frac{1}{2} \right) \, .
 $$
 
-<!-- ![First eigenstates of one-dimensional the quantum harmonic oscillator,
-each of them vertically shifted by the corresponding eigenvalue. The
-grey-filled curve corresponds to a coherent state with
-$\alpha=-\sqrt{2}$. The used parameter are $m=1$, $\omega=1$, and
-$\hbar=1$.](/assets/appendices/quantum_harmonic_oscillator.pdf){#fig-harmonic-oscillator-eigenstates width=100%} -->
-
 ```{python}
 #| code-fold: true
 #| label: fig-harmonic-oscillator-eigenstates
