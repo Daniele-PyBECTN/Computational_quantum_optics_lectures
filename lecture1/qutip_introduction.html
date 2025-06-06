@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../bibliography.html" rel="next">
+<link href="../lecture1/closed_systems.html" rel="next">
 <link href="../lecture1/quantum_objects_numpy.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -389,6 +389,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/closed_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../bibliography.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bibliography</span></a>
   </div>
@@ -406,6 +412,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../appendices/quantum-harmonic-oscillator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">The quantum harmonic oscillator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/wigner_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">From classical densities to the Wigner function</span></span></a>
   </div>
 </li>
       </ul>
@@ -436,6 +448,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#eigenstates-and-eigenvalues" id="toc-eigenstates-and-eigenvalues" class="nav-link" data-scroll-target="#eigenstates-and-eigenvalues"><span class="header-section-number">8.3</span> Eigenstates and Eigenvalues</a></li>
   <li><a href="#computing-expectation-values" id="toc-computing-expectation-values" class="nav-link" data-scroll-target="#computing-expectation-values"><span class="header-section-number">8.4</span> Computing Expectation Values</a></li>
+  <li><a href="#a-complete-example-the-quantum-harmonic-oscillator" id="toc-a-complete-example-the-quantum-harmonic-oscillator" class="nav-link" data-scroll-target="#a-complete-example-the-quantum-harmonic-oscillator"><span class="header-section-number">8.5</span> A complete example: the Quantum Harmonic Oscillator</a></li>
+  <li><a href="#passing-in-the-position-basis" id="toc-passing-in-the-position-basis" class="nav-link" data-scroll-target="#passing-in-the-position-basis"><span class="header-section-number">8.6</span> Passing in the position basis</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/qutip_introduction.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/qutip_introduction.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
@@ -464,13 +478,14 @@ window.Quarto = {
 
 <p>The QuTiP package can be imported with</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-qutip-import">
-<div id="qutip-import" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> qutip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="qutip-import" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> qutip</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>It can also be imported with the command <code>from qutip import *</code>, that automatically imports all the QuTiP functions. However, here we use the first method, in order to explicitly see the QuTiP functions.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-qutip-about">
-<div id="qutip-about" class="cell" data-execution_count="2">
+<div id="qutip-about" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>qutip.about()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -522,9 +537,9 @@ For your convenience a bibtex reference can be easily generated using `qutip.cit
 \]</span></p>
 <p>Here, <span class="math inline">\(|n\rangle\)</span> represents a quantum state with <span class="math inline">\(n\)</span> quanta of energy (also known as a Fock state), and <span class="math inline">\(\sqrt{n}\)</span> is the normalization factor. The matrix representation of the annihilation operator in an <span class="math inline">\(d\)</span>-dimensional Hilbert space is given by an upper triangular matrix with the square roots of natural numbers as its off-diagonal elements.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-annihilation-operator">
-<div id="cell-annihilation-operator" class="cell" data-execution_count="3">
+<div id="cell-annihilation-operator" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Define the annihilation operator for d-dimensional Hilbert space</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>d <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>d <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
 <span id="cb4-4"><a href="#cb4-4"></a>a <span class="op">=</span> qutip.destroy(d)</span>
 <span id="cb4-5"><a href="#cb4-5"></a></span>
@@ -534,28 +549,22 @@ For your convenience a bibtex reference can be easily generated using `qutip.cit
 <pre><code>Annihilation operator (a) for d=7:</code></pre>
 </div>
 <div id="annihilation-operator" class="cell-output cell-output-display">
-<pre><code>Quantum object: dims=[[10], [10]], shape=(10, 10), type='oper', dtype=Dia, isherm=False
+<pre><code>Quantum object: dims=[[7], [7]], shape=(7, 7), type='oper', dtype=Dia, isherm=False
 Qobj data =
 [[0.         1.         0.         0.         0.         0.
-  0.         0.         0.         0.        ]
+  0.        ]
  [0.         0.         1.41421356 0.         0.         0.
-  0.         0.         0.         0.        ]
+  0.        ]
  [0.         0.         0.         1.73205081 0.         0.
-  0.         0.         0.         0.        ]
+  0.        ]
  [0.         0.         0.         0.         2.         0.
-  0.         0.         0.         0.        ]
+  0.        ]
  [0.         0.         0.         0.         0.         2.23606798
-  0.         0.         0.         0.        ]
+  0.        ]
  [0.         0.         0.         0.         0.         0.
-  2.44948974 0.         0.         0.        ]
+  2.44948974]
  [0.         0.         0.         0.         0.         0.
-  0.         2.64575131 0.         0.        ]
- [0.         0.         0.         0.         0.         0.
-  0.         0.         2.82842712 0.        ]
- [0.         0.         0.         0.         0.         0.
-  0.         0.         0.         3.        ]
- [0.         0.         0.         0.         0.         0.
-  0.         0.         0.         0.        ]]</code></pre>
+  0.        ]]</code></pre>
 </div>
 </div>
 </div>
@@ -568,7 +577,7 @@ Qobj data =
 \]</span></p>
 <p>We can define these matrices in QuTiP as follows:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-pauli-matrices">
-<div id="pauli-matrices" class="cell" data-execution_count="4">
+<div id="pauli-matrices" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>sigma_x <span class="op">=</span> qutip.sigmax()</span>
 <span id="cb7-2"><a href="#cb7-2"></a>sigma_y <span class="op">=</span> qutip.sigmay()</span>
 <span id="cb7-3"><a href="#cb7-3"></a>sigma_z <span class="op">=</span> qutip.sigmaz()</span>
@@ -623,7 +632,7 @@ Qobj data =
 <h4 class="anchored" data-anchor-id="example-commutator-of-pauli-matrices">Example: Commutator of Pauli Matrices</h4>
 <p>The commutator of two operators <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as <span class="math inline">\([A, B] = AB - BA\)</span>. Let’s calculate the commutator of <span class="math inline">\(\sigma_x\)</span> and <span class="math inline">\(\sigma_y\)</span>.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-commutator-example">
-<div id="commutator-example" class="cell" data-execution_count="5">
+<div id="commutator-example" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>commutator_xy <span class="op">=</span> qutip.commutator(sigma_x, sigma_y)</span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="bu">print</span>(<span class="st">"Commutator of Sigma X and Sigma Y:"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3"></a>display(commutator_xy)</span>
@@ -659,7 +668,7 @@ Qobj data =
 \vert \psi \rangle = \frac{1}{\sqrt{2}} \left( \vert 0 \rangle + \vert 1 \rangle \right)
 \]</span></p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-superposition-state">
-<div id="cell-superposition-state" class="cell" data-execution_count="8">
+<div id="cell-superposition-state" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>fock_0 <span class="op">=</span> qutip.fock(d, <span class="dv">0</span>)  <span class="co"># Fock state |0&gt;</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a>fock_1 <span class="op">=</span> qutip.fock(d, <span class="dv">1</span>)  <span class="co"># Fock state |1&gt;</span></span>
 <span id="cb18-3"><a href="#cb18-3"></a></span>
@@ -672,13 +681,10 @@ Qobj data =
 <pre><code>Superposition state:</code></pre>
 </div>
 <div id="superposition-state" class="cell-output cell-output-display">
-<pre><code>Quantum object: dims=[[10], [1]], shape=(10, 1), type='ket', dtype=Dense
+<pre><code>Quantum object: dims=[[7], [1]], shape=(7, 1), type='ket', dtype=Dense
 Qobj data =
 [[0.70710678]
  [0.70710678]
- [0.        ]
- [0.        ]
- [0.        ]
  [0.        ]
  [0.        ]
  [0.        ]
@@ -711,33 +717,30 @@ Warning!
 </div>
 </div>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-coherent-state">
-<div id="cell-coherent-state" class="cell" data-execution_count="9">
+<div id="cell-coherent-state" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>alpha <span class="op">=</span> <span class="fl">0.8</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a>coherent_state <span class="op">=</span> qutip.coherent(d, alpha)</span>
 <span id="cb21-3"><a href="#cb21-3"></a></span>
 <span id="cb21-4"><a href="#cb21-4"></a>coherent_state</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="coherent-state" class="cell-output cell-output-display">
-<pre><code>Quantum object: dims=[[10], [1]], shape=(10, 1), type='ket', dtype=Dense
+<pre><code>Quantum object: dims=[[7], [1]], shape=(7, 1), type='ket', dtype=Dense
 Qobj data =
-[[7.26149037e-01]
- [5.80919230e-01]
- [3.28617541e-01]
- [1.51781941e-01]
- [6.07127755e-02]
- [2.17212702e-02]
- [7.09408207e-03]
- [2.14540751e-03]
- [6.04780881e-04]
- [1.71316475e-04]]</code></pre>
+[[0.72614904]
+ [0.58091919]
+ [0.32861796]
+ [0.1517784 ]
+ [0.06073653]
+ [0.02159193]
+ [0.00767346]]</code></pre>
 </div>
 </div>
 </div>
 <p>Let’s compute the fidelity between <span class="math inline">\(\vert \alpha \rangle\)</span> and <span class="math inline">\(\hat{a} \vert \alpha \rangle / \alpha\)</span>.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-coherent-state-fidelity">
-<div id="cell-coherent-state-fidelity" class="cell" data-execution_count="10">
+<div id="cell-coherent-state-fidelity" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>qutip.fidelity(a <span class="op">*</span> coherent_state <span class="op">/</span> alpha, coherent_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="coherent-state-fidelity" class="cell-output cell-output-display">
-<pre><code>np.float64(0.9999999837403134)</code></pre>
+<pre><code>np.float64(0.9999661194274998)</code></pre>
 </div>
 </div>
 </div>
@@ -745,7 +748,7 @@ Qobj data =
 <section id="spin-states" class="level3" data-number="8.2.4">
 <h3 data-number="8.2.4" class="anchored" data-anchor-id="spin-states"><span class="header-section-number">8.2.4</span> Spin States</h3>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-spin-state">
-<div id="cell-spin-state" class="cell" data-execution_count="13">
+<div id="cell-spin-state" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>qutip.spin_state(<span class="fl">0.5</span>, <span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="spin-state" class="cell-output cell-output-display">
 <pre><code>Quantum object: dims=[[2], [1]], shape=(2, 1), type='ket', dtype=Dense
@@ -763,7 +766,7 @@ Qobj data =
 <h4 class="anchored" data-anchor-id="creating-a-density-matrix">Creating a Density Matrix</h4>
 <p>Let’s convert our superposition state into a density matrix.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-density-matrix">
-<div id="cell-density-matrix" class="cell" data-execution_count="14">
+<div id="cell-density-matrix" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Creating a density matrix from a state</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a>density_matrix <span class="op">=</span> superposition_state <span class="op">*</span> superposition_state.dag()  <span class="co"># Outer product</span></span>
 <span id="cb27-3"><a href="#cb27-3"></a></span>
@@ -773,18 +776,15 @@ Qobj data =
 <pre><code>Density matrix of the superposition state:</code></pre>
 </div>
 <div id="density-matrix" class="cell-output cell-output-display">
-<pre><code>Quantum object: dims=[[10], [10]], shape=(10, 10), type='oper', dtype=Dense, isherm=True
+<pre><code>Quantum object: dims=[[7], [7]], shape=(7, 7), type='oper', dtype=Dense, isherm=True
 Qobj data =
-[[0.5 0.5 0.  0.  0.  0.  0.  0.  0.  0. ]
- [0.5 0.5 0.  0.  0.  0.  0.  0.  0.  0. ]
- [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
- [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
- [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
- [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
- [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
- [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
- [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
- [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]]</code></pre>
+[[0.5 0.5 0.  0.  0.  0.  0. ]
+ [0.5 0.5 0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0. ]]</code></pre>
 </div>
 </div>
 </div>
@@ -802,7 +802,7 @@ Qobj data =
 \vert \phi^+ \rangle = \frac{1}{\sqrt{2}} \left( \vert 0, 0 \rangle + \vert 1, 1 \rangle \right)
 \]</span></p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-ptrace">
-<div id="cell-ptrace" class="cell" data-execution_count="15">
+<div id="cell-ptrace" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># Bell state between two qubits</span></span>
 <span id="cb30-2"><a href="#cb30-2"></a>phi_plus <span class="op">=</span> ( qutip.tensor(qutip.spin_state(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>), qutip.spin_state(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>)) <span class="op">+</span> qutip.tensor(qutip.spin_state(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>), qutip.spin_state(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>)) ).unit()</span>
 <span id="cb30-3"><a href="#cb30-3"></a></span>
@@ -819,29 +819,28 @@ Qobj data =
 </div>
 <p>We now apply the partial trace to a more complicated state, that is composed by two bosonic modes and two spins <span class="math inline">\(\vert j_1, m_1 \rangle\)</span> and <span class="math inline">\(\vert j_2, m_2 \rangle\)</span>, with <span class="math inline">\(j_1 = 1\)</span> and <span class="math inline">\(j_2 = \frac{1}{2}\)</span>, <span class="math inline">\(m_1 = 0\)</span>, and <span class="math inline">\(m_2 = 1\)</span>.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-ptrace-complex-state">
-<div id="ptrace-complex-state" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>d <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>j1 <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a>j2 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
-<span id="cb32-4"><a href="#cb32-4"></a>m1 <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb32-5"><a href="#cb32-5"></a>m2 <span class="op">=</span> <span class="dv">1</span></span>
+<div id="ptrace-complex-state" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>j1 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>j2 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>m1 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>m2 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a></span>
 <span id="cb32-6"><a href="#cb32-6"></a></span>
-<span id="cb32-7"><a href="#cb32-7"></a></span>
-<span id="cb32-8"><a href="#cb32-8"></a>psi <span class="op">=</span> qutip.tensor(qutip.fock(d, <span class="dv">3</span>), qutip.fock(d, <span class="dv">1</span>), qutip.spin_state(j1, <span class="dv">0</span>), qutip.spin_state(j2, <span class="dv">1</span>))</span>
-<span id="cb32-9"><a href="#cb32-9"></a></span>
-<span id="cb32-10"><a href="#cb32-10"></a><span class="co"># Trace only the second spin state</span></span>
-<span id="cb32-11"><a href="#cb32-11"></a>rho_0 <span class="op">=</span> qutip.ptrace(psi, [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>])</span>
-<span id="cb32-12"><a href="#cb32-12"></a>display(rho_0)</span>
-<span id="cb32-13"><a href="#cb32-13"></a></span>
-<span id="cb32-14"><a href="#cb32-14"></a><span class="co"># Trace only the first bosonic mode and the second spin state</span></span>
-<span id="cb32-15"><a href="#cb32-15"></a>rho_1 <span class="op">=</span> qutip.ptrace(psi, [<span class="dv">1</span>, <span class="dv">2</span>])</span>
-<span id="cb32-16"><a href="#cb32-16"></a>display(rho_1)</span>
-<span id="cb32-17"><a href="#cb32-17"></a></span>
-<span id="cb32-18"><a href="#cb32-18"></a><span class="co"># Trace all except the second bosonic mode</span></span>
-<span id="cb32-19"><a href="#cb32-19"></a>rho_2 <span class="op">=</span> qutip.ptrace(psi, [<span class="dv">1</span>])</span>
-<span id="cb32-20"><a href="#cb32-20"></a>rho_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-7"><a href="#cb32-7"></a>psi <span class="op">=</span> qutip.tensor(qutip.fock(d, <span class="dv">3</span>), qutip.fock(d, <span class="dv">1</span>), qutip.spin_state(j1, <span class="dv">0</span>), qutip.spin_state(j2, <span class="dv">1</span>))</span>
+<span id="cb32-8"><a href="#cb32-8"></a></span>
+<span id="cb32-9"><a href="#cb32-9"></a><span class="co"># Trace only the second spin state</span></span>
+<span id="cb32-10"><a href="#cb32-10"></a>rho_0 <span class="op">=</span> qutip.ptrace(psi, [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb32-11"><a href="#cb32-11"></a>display(rho_0)</span>
+<span id="cb32-12"><a href="#cb32-12"></a></span>
+<span id="cb32-13"><a href="#cb32-13"></a><span class="co"># Trace only the first bosonic mode and the second spin state</span></span>
+<span id="cb32-14"><a href="#cb32-14"></a>rho_1 <span class="op">=</span> qutip.ptrace(psi, [<span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb32-15"><a href="#cb32-15"></a>display(rho_1)</span>
+<span id="cb32-16"><a href="#cb32-16"></a></span>
+<span id="cb32-17"><a href="#cb32-17"></a><span class="co"># Trace all except the second bosonic mode</span></span>
+<span id="cb32-18"><a href="#cb32-18"></a>rho_2 <span class="op">=</span> qutip.ptrace(psi, [<span class="dv">1</span>])</span>
+<span id="cb32-19"><a href="#cb32-19"></a>rho_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="ptrace-complex-state-1" class="cell-output cell-output-display">
-<pre><code>Quantum object: dims=[[10, 10, 3], [10, 10, 3]], shape=(300, 300), type='oper', dtype=Dense, isherm=True
+<pre><code>Quantum object: dims=[[7, 7, 3], [7, 7, 3]], shape=(147, 147), type='oper', dtype=Dense, isherm=True
 Qobj data =
 [[0. 0. 0. ... 0. 0. 0.]
  [0. 0. 0. ... 0. 0. 0.]
@@ -852,82 +851,40 @@ Qobj data =
  [0. 0. 0. ... 0. 0. 0.]]</code></pre>
 </div>
 <div id="ptrace-complex-state-2" class="cell-output cell-output-display">
-<pre><code>Quantum object: dims=[[10, 3], [10, 3]], shape=(30, 30), type='oper', dtype=Dense, isherm=True
+<pre><code>Quantum object: dims=[[7, 3], [7, 3]], shape=(21, 21), type='oper', dtype=Dense, isherm=True
 Qobj data =
-[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-  0. 0. 0. 0. 0. 0.]]</code></pre>
+[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]</code></pre>
 </div>
 <div id="ptrace-complex-state-3" class="cell-output cell-output-display">
-<pre><code>Quantum object: dims=[[10], [10]], shape=(10, 10), type='oper', dtype=Dense, isherm=True
+<pre><code>Quantum object: dims=[[7], [7]], shape=(7, 7), type='oper', dtype=Dense, isherm=True
 Qobj data =
-[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
- [0. 1. 0. 0. 0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]</code></pre>
+[[0. 0. 0. 0. 0. 0. 0.]
+ [0. 1. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0.]]</code></pre>
 </div>
 </div>
 </div>
@@ -937,7 +894,7 @@ Qobj data =
 <h2 data-number="8.3" class="anchored" data-anchor-id="eigenstates-and-eigenvalues"><span class="header-section-number">8.3</span> Eigenstates and Eigenvalues</h2>
 <p>The eigenstates and eigenvalues of a system or an operator provide crucial insights into its properties. Let’s explore how to calculate these in QuTiP.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-eigenstates-eigenvalues">
-<div id="eigenstates-eigenvalues" class="cell" data-execution_count="17">
+<div id="eigenstates-eigenvalues" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># Example: Eigenstates and eigenvalues of Pauli Z</span></span>
 <span id="cb36-2"><a href="#cb36-2"></a>eigenvalues, eigenstates <span class="op">=</span> sigma_z.eigenstates()</span>
 <span id="cb36-3"><a href="#cb36-3"></a></span>
@@ -979,7 +936,7 @@ Eigenstates of Sigma Z:</code></pre>
 \]</span></p>
 <p>Expectation values are crucial for predicting measurable quantities in quantum mechanics. Let’s compute the expectation value of the number operator <span class="math inline">\(\hat{n} = \hat{a}^\dagger \hat{a}\)</span> for a coherent state, which represents a quantum state closest to a classical harmonic oscillator.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-expectation-value">
-<div id="expectation-value" class="cell" data-execution_count="18">
+<div id="expectation-value" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># Define the coherent state |psi&gt; with alpha=2</span></span>
 <span id="cb41-2"><a href="#cb41-2"></a>alpha <span class="op">=</span> <span class="fl">0.8</span></span>
 <span id="cb41-3"><a href="#cb41-3"></a>psi <span class="op">=</span> qutip.coherent(d, alpha)</span>
@@ -999,7 +956,7 @@ Eigenstates of Sigma Z:</code></pre>
 <pre><code>Expectation value of the number operator for |psi&gt;:</code></pre>
 </div>
 <div id="expectation-value-1" class="cell-output cell-output-display">
-<pre><code>0.6399999989126254</code></pre>
+<pre><code>0.639996733025295</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1008,6 +965,116 @@ The squared modulus of alpha is:</code></pre>
 </div>
 <div id="expectation-value-2" class="cell-output cell-output-display">
 <pre><code>0.6400000000000001</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="a-complete-example-the-quantum-harmonic-oscillator" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="a-complete-example-the-quantum-harmonic-oscillator"><span class="header-section-number">8.5</span> A complete example: the Quantum Harmonic Oscillator</h2>
+<p>In <a href="../appendices/quantum-harmonic-oscillator.html" class="quarto-xref"><span>Appendix A</span></a> we have already defined the quantum harmonic oscillator, which is a fundamental model in quantum mechanics. In the energy eigenbasis, the quantum harmonic oscillator is described by the Hamiltonian</p>
+<p><span class="math display">\[
+\hat{H} = \omega \hat{a}^\dagger \hat{a} \, ,
+\]</span></p>
+<p>where <span class="math inline">\(\omega\)</span> is the resonance frequency and <span class="math inline">\(\hat{a}\)</span> is the bosonic annihilation operator. In this basis, the Hamiltonian is indeed diagonal, with eigenvalues <span class="math inline">\(E_n = \omega n\)</span>, where <span class="math inline">\(n \in \mathbb{N}\)</span>.</p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-hamiltonian">
+<div id="cell-hamiltonian" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>N <span class="op">=</span> <span class="dv">120</span> <span class="co"># Hilbert space cutoff</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>w <span class="op">=</span> <span class="dv">1</span> <span class="co"># Resonance frequency of the harmonic oscillator</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a></span>
+<span id="cb46-4"><a href="#cb46-4"></a>a <span class="op">=</span> qutip.destroy(N)</span>
+<span id="cb46-5"><a href="#cb46-5"></a></span>
+<span id="cb46-6"><a href="#cb46-6"></a>H <span class="op">=</span> w <span class="op">*</span> a.dag() <span class="op">*</span> a</span>
+<span id="cb46-7"><a href="#cb46-7"></a></span>
+<span id="cb46-8"><a href="#cb46-8"></a>H</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="hamiltonian" class="cell-output cell-output-display">
+<pre><code>Quantum object: dims=[[120], [120]], shape=(120, 120), type='oper', dtype=Dia, isherm=True
+Qobj data =
+[[  0.   0.   0. ...   0.   0.   0.]
+ [  0.   1.   0. ...   0.   0.   0.]
+ [  0.   0.   2. ...   0.   0.   0.]
+ ...
+ [  0.   0.   0. ... 117.   0.   0.]
+ [  0.   0.   0. ...   0. 118.   0.]
+ [  0.   0.   0. ...   0.   0. 119.]]</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="passing-in-the-position-basis" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="passing-in-the-position-basis"><span class="header-section-number">8.6</span> Passing in the position basis</h2>
+<p>From the classical point of view, we are used to describe the harmonic oscillator in terms of position and momentum. In quantum mechanics, we can also express the system in terms of the position and momentum operators, which are related to the annihilation and creation operators as follows (<span class="math inline">\(\hbar = 1\)</span>):</p>
+<p><span class="math display">\[\begin{align*}
+\hat{x} &amp;= \frac{1}{\sqrt{2 m \omega}} \left( \hat{a} + \hat{a}^\dagger \right) \, , \\
+\hat{p} &amp;= i \sqrt{\frac{m \omega}{2}} \left( \hat{a}^\dagger - \hat{a} \right) \, .
+\end{align*}\]</span></p>
+<p>We first check that</p>
+<p><span class="math display">\[
+\left[ \hat{x}, \hat{p} \right] = i
+\]</span></p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-commutator-check">
+<div id="cell-commutator-check" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>m <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a></span>
+<span id="cb48-3"><a href="#cb48-3"></a>x <span class="op">=</span> (a <span class="op">+</span> a.dag()) <span class="op">/</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> m <span class="op">*</span> w)</span>
+<span id="cb48-4"><a href="#cb48-4"></a>p <span class="op">=</span> <span class="op">-</span> <span class="ot">1j</span> <span class="op">*</span> (a <span class="op">-</span> a.dag()) <span class="op">*</span> np.sqrt(m <span class="op">*</span> w <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb48-5"><a href="#cb48-5"></a></span>
+<span id="cb48-6"><a href="#cb48-6"></a>qutip.commutator(x, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="commutator-check" class="cell-output cell-output-display">
+<pre><code>Quantum object: dims=[[120], [120]], shape=(120, 120), type='oper', dtype=Dia, isherm=False
+Qobj data =
+[[0.  +1.j 0.  +0.j 0.  +0.j ... 0.  +0.j 0.  +0.j 0.  +0.j]
+ [0.  +0.j 0.  +1.j 0.  +0.j ... 0.  +0.j 0.  +0.j 0.  +0.j]
+ [0.  +0.j 0.  +0.j 0.  +1.j ... 0.  +0.j 0.  +0.j 0.  +0.j]
+ ...
+ [0.  +0.j 0.  +0.j 0.  +0.j ... 0.  +1.j 0.  +0.j 0.  +0.j]
+ [0.  +0.j 0.  +0.j 0.  +0.j ... 0.  +0.j 0.  +1.j 0.  +0.j]
+ [0.  +0.j 0.  +0.j 0.  +0.j ... 0.  +0.j 0.  +0.j 0.-119.j]]</code></pre>
+</div>
+</div>
+</div>
+<p>We now numerically diagonalize the position operator <span class="math inline">\(\hat{x}\)</span>, such that <span class="math inline">\(\hat{U}^\dagger \hat{x} \hat{U}\)</span> is diagonal. Then we plot the eigenstates of the quantum harmonic oscillator in the new basis, obtained with</p>
+<p><span class="math display">\[
+\vert \phi_n (x) \rangle = \hat{U}^\dagger \vert \psi_n \rangle
+\]</span></p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-position-eigenbasis">
+<div id="cell-position-eigenbasis" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb50-2"><a href="#cb50-2"></a></span>
+<span id="cb50-3"><a href="#cb50-3"></a>E, T <span class="op">=</span> x.eigenstates()</span>
+<span id="cb50-4"><a href="#cb50-4"></a></span>
+<span id="cb50-5"><a href="#cb50-5"></a>U <span class="op">=</span> np.zeros((N, N)).astype(np.complex128)</span>
+<span id="cb50-6"><a href="#cb50-6"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb50-7"><a href="#cb50-7"></a>    U[:,i] <span class="op">=</span> T[i].full().flatten()</span>
+<span id="cb50-8"><a href="#cb50-8"></a></span>
+<span id="cb50-9"><a href="#cb50-9"></a>U <span class="op">=</span> qutip.Qobj(U)</span>
+<span id="cb50-10"><a href="#cb50-10"></a></span>
+<span id="cb50-11"><a href="#cb50-11"></a>xlist <span class="op">=</span> ( U.dag() <span class="op">*</span> x <span class="op">*</span> U ).diag()</span>
+<span id="cb50-12"><a href="#cb50-12"></a>dx <span class="op">=</span> xlist[<span class="dv">1</span>] <span class="op">-</span> xlist[<span class="dv">0</span>]</span>
+<span id="cb50-13"><a href="#cb50-13"></a></span>
+<span id="cb50-14"><a href="#cb50-14"></a><span class="co"># Harmonic potential</span></span>
+<span id="cb50-15"><a href="#cb50-15"></a>V <span class="op">=</span> w<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> xlist<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb50-16"><a href="#cb50-16"></a></span>
+<span id="cb50-17"><a href="#cb50-17"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb50-18"><a href="#cb50-18"></a></span>
+<span id="cb50-19"><a href="#cb50-19"></a>ax.plot(xlist, V, color<span class="op">=</span><span class="st">"black"</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb50-20"><a href="#cb50-20"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb50-21"><a href="#cb50-21"></a>    factor <span class="op">=</span> <span class="dv">5</span> <span class="co"># The purpose of this factor is to only make more visible the states</span></span>
+<span id="cb50-22"><a href="#cb50-22"></a>    ax.plot(xlist, factor <span class="op">*</span> np.<span class="bu">abs</span>( (U.dag() <span class="op">*</span> qutip.fock(N, i)).full() )<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> i <span class="op">*</span> w <span class="op">+</span> w<span class="op">/</span><span class="dv">2</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb50-23"><a href="#cb50-23"></a></span>
+<span id="cb50-24"><a href="#cb50-24"></a>ax.set_xlabel(<span class="vs">r"</span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb50-25"><a href="#cb50-25"></a>ax.set_xlim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb50-26"><a href="#cb50-26"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">5</span>)</span>
+<span id="cb50-27"><a href="#cb50-27"></a></span>
+<span id="cb50-28"><a href="#cb50-28"></a><span class="co"># Show in Quarto</span></span>
+<span id="cb50-29"><a href="#cb50-29"></a>plt.savefig(<span class="st">'_tmp_fig.svg'</span>)</span>
+<span id="cb50-30"><a href="#cb50-30"></a>plt.close(fig)</span>
+<span id="cb50-31"><a href="#cb50-31"></a>SVG(filename<span class="op">=</span><span class="st">'_tmp_fig.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="qutip_introduction_files/figure-html/-notebooks-lecture1-qutip_introduction-position-eigenbasis-output-1.svg" id="position-eigenbasis" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1435,8 +1502,8 @@ The squared modulus of alpha is:</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../bibliography.html" class="pagination-link" aria-label="Bibliography">
-        <span class="nav-page-text">Bibliography</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lecture1/closed_systems.html" class="pagination-link" aria-label="Closed Quantum Systems in QuTiP: The Schrödinger equation">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
