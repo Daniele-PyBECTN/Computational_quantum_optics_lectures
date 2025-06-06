@@ -54,6 +54,7 @@ book:
     - bibliography.qmd
   appendices: 
     - appendices/quantum-harmonic-oscillator.qmd
+    - appendices/wigner_function.qmd
 
 number-depth: 3
 bibliography: bibliography.bib

@@ -182,7 +182,7 @@ Before concluding this section, let us summarize some important points:
 - Boundary conditions (periodic, reflecting, absorbing) must be chosen according to the physics.
 - This approach is analogous to how quantum Hamiltonians are discretized into matrices using finite differences.
 
-## Running example: a quartic non-linear oscillator
+## Running example: a quartic non-linear oscillator {#sec-classical-nonlinear-oscillator}
 
 Let us keep the algebra to a minimum and pick the potential
 
@@ -229,4 +229,6 @@ And we can visualize the final phase space density $\rho(x, p, t)$ as a 2D plot:
 {{< embed /notebooks/lecture1/phase_space_ode.qmd#plot-final-density echo=true >}}
 
 :::
+
+It is instructive to compare the results of this simulation with the quantum case, as shown in @sec-wigner-function. Notice how in the quantum case the Wigner (which is the quantum analogue of the phase space density) can take negative values, while in the classical case the phase space density is always non-negative.
 
