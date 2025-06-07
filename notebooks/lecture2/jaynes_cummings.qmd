@@ -17,12 +17,12 @@ import matplotlib.pyplot as plt
 from qutip import *
 
 # Parameters
-ωc   = 5.0   # cavity
-ωq   = 5.0   # atom (on resonance)
-g    = 0.1   # coupling
-κ    = 0.01 # cavity decay
-γ    = 0.00 # atomic T1 (suppressed)
-N    = 20    # Fock cutoff
+wc    = 5.0   # cavity
+wq    = 5.0   # atom (on resonance)
+g     = 0.1   # coupling
+kappa = 0.01  # cavity decay
+gamma = 0.00  # atomic T1 (suppressed)
+N     = 20    # Fock cutoff
 
 # Operators
 a  = tensor(destroy(N), qeye(2))
@@ -30,10 +30,10 @@ sp = tensor(qeye(N), sigmap())
 sm = tensor(qeye(N), sigmam())
 sz = tensor(qeye(N), sigmaz())
 
-H = ωc * a.dag() * a + 0.5*ωq * sz + g * (a.dag() * sm + a * sp)
+H = wc * a.dag() * a + 0.5*wq * sz + g * (a.dag() * sm + a * sp)
 
 # Dissipators
-c_ops = [np.sqrt(κ) * a, np.sqrt(γ) * sm]
+c_ops = [np.sqrt(kappa) * a, np.sqrt(gamma) * sm]
 ```
 
 ## Damped vacuum Rabi oscillations: The *hello‑world* of cavity QED
@@ -103,7 +103,7 @@ Each Fock state $|n\rangle$ drives the atom at $\Omega_n = 2g\sqrt{n+1}$, so the
 from numpy.fft import fft, fftfreq
 
 # We remove the exponential decay factor to make the peaks more visible
-exp_factor = np.exp(-κ * tlist / 2)
+exp_factor = np.exp(-kappa * tlist / 2)
 fft_sig = fft(pop / exp_factor)[0:len(pop)//2]
 
 freq = fftfreq(len(pop), (tlist[1]-tlist[0]))[:len(pop)//2] * 2 * np.pi

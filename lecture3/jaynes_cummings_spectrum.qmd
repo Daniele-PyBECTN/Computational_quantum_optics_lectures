@@ -1,0 +1,59 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture3/jaynes_cummings_spectrum.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture3/jaynes_cummings_spectrum.ipynb"
+    icon: google
+---
+# The Emission Spectrum of the Jaynes–Cummings Model
+
+In @sec-jaynes-cummings, we introduced the Jaynes–Cummings (JC) model as a cornerstone of quantum optics and cavity QED. Here we focus on the emission spectrum of the JC system, exploring how the interaction between a single atom and a single cavity mode manifests in the frequency domain.  We will see how the spectral lines reflect the dressed–state structure of the system and how dissipation modifies this picture.
+
+## Analytic Analysis
+
+Under the condition of zero detuning $\Delta = \omega_c - \omega_q = 0$, the Jaynes–Cummings dressed‐state energies simplify.  For the $n$-th excitation manifold, the two eigenvalues become:
+
+$$
+E_{n,\pm} = n\,\omega_c \pm g \sqrt{n+1} \,.
+$$
+
+Here:
+
+- $\omega_c$ is the cavity frequency.
+- $g$ is the single‐photon coupling strength.
+- $n = 0,1,2,\dots$ counts the total number of excitations shared between atom and field.
+
+Whenever the system loses a photon, it jumps from the $n$-th manifold down to the $(n-1)$-th. Each of the two states at level $n$ ($E_{n,+}$ or $E_{n,-}$) can decay into either of the two states at level $n-1$. Concretely, the four allowed decay channels are:
+
+- $E_{n,+} \to E_{n-1,+}$
+- $E_{n,+} \to E_{n-1,-}$
+- $E_{n,-} \to E_{n-1,+}$
+- $E_{n,-} \to E_{n-1,-}$
+
+Each channel corresponds to a distinct emission line in the spectrum, with its frequency given by the energy difference between initial and final states.
+
+### Case of Small Population
+
+When the system is weakly excited, it rarely climbs above the first excitation manifold.  Practically, only $n=0$ (the vacuum) and $n=1$ are occupied.  In this regime:
+
+1. **Manifolds populated:**  Only $n=0$ and $n=1$.
+2. **Transitions:** From $E_{1,+}$ and $E_{1,-}$ down to the vacuum at $E_{0}=0$.
+3. **Observed lines:** Exactly two, located at:
+
+   $$
+   \omega = \omega_c \pm g
+   $$
+
+These two peaks form the well‐known **vacuum Rabi splitting**.  As soon as you start populating higher manifolds, the spectrum becomes richer, with more lines appearing at frequencies $\omega_c \pm g(\sqrt{n+1} \pm \sqrt{n})$ for $n=0,1,2,\dots$.
+
+## Numerical simulation with QuTiP
+
+We now simulate the emission spectrum of the JC model using QuTiP, focusing on the weak and strong coupling regimes.  We will compute the emission spectrum $S (\omega)$ of the cavity field using the `spectrum` function. We first define the system and its parameters.
+
+{{< embed /notebooks/lecture3/jaynes_cummings_spectrum.qmd#system-definition echo=true >}}
+
+And we finally compute the emission spectrum.
+
+{{< embed /notebooks/lecture3/jaynes_cummings_spectrum.qmd#compute-spectrum echo=true >}}

@@ -1,4 +1,13 @@
-# The Jaynes–Cummings model: The Prove of Field Quantization
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture2/jaynes_cummings.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture2/jaynes_cummings.ipynb"
+    icon: google
+---
+# The Jaynes–Cummings model: The Prove of Field Quantization {#sec-jaynes-cummings}
 
 At the crossroads of **quantum optics** and **cavity QED**, the **Jaynes–Cummings (JC) model** stands out as the simplest non‑trivial arena in which a *single* photon mode interacts with a *single* two‑level atom. Despite – or perhaps because of – its austerity, it captures phenomena that range from vacuum Rabi oscillations to Schrödinger‑cat states.  In what follows I weave together the *story* of the model, its mathematics, and its experimental vindication, culminating in Serge Haroche’s celebrated observation of field quantisation.
 
@@ -30,14 +39,14 @@ $$
 The eigenvalues of this matrix are
 
 $$
-E_{n, \pm} = \omega_c n \pm \frac{1}{2} \Omega_n \, .
-$$
+E_{n, \pm} = (n + \frac{1}{2}) \omega_c \pm \frac{1}{2} \Omega_n
+$$ {#eq-jc-eigenvalues}
 
 where
 
 $$
-\Omega_n = \sqrt{\omega_q^2 + 4g^2(n+1)}
-$$
+\Omega_n = \sqrt{(\omega_c - \omega_q)^2 + 4g^2(n+1)}
+$$ {#eq-jc-rabi-frequency}
 
 is the Rabi frequency.
 
