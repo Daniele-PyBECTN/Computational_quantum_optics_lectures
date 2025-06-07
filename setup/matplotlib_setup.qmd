@@ -7,7 +7,9 @@ from IPython.display import SVG
 matplotlib.rcParams.update({
     "figure.figsize": (8.0, 4.0),
     "figure.dpi": 160,
+    "figure.autolayout": True,
     "savefig.dpi": 160,
+    "savefig.bbox": "tight",
     "lines.linewidth": 1.5,
     "font.size": 12.0,
     "text.usetex": True,

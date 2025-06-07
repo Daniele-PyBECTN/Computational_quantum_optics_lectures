@@ -142,9 +142,12 @@ V = 0.5 * m * w**2 * xlist**2
 
 fig, ax = plt.subplots()
 
-ax.plot(xlist, 700 * np.abs(psi0_x.full())**2, label=r"$\vert \langle \psi (t_0) \vert \psi (t_0) \rangle \vert^2$", lw=2)
-ax.plot(xlist, 700 * np.abs(psi1_x.full())**2, label=r"$\vert \langle \psi (t_1) \vert \psi (t_1) \rangle \vert^2$", ls="--", lw=2)
-ax.plot(xlist, 700 * np.abs(psi2_x.full())**2, label=r"$\vert \langle \psi (t_2) \vert \psi (t_2) \rangle \vert^2$", ls="-.", lw=2)
+ax.plot(xlist, 700 * np.abs(psi0_x.full())**2, 
+        label=r"$\vert \langle \psi (t_0) \vert \psi (t_0) \rangle \vert^2$", lw=2)
+ax.plot(xlist, 700 * np.abs(psi1_x.full())**2,
+        label=r"$\vert \langle \psi (t_1) \vert \psi (t_1) \rangle \vert^2$", ls="--", lw=2)
+ax.plot(xlist, 700 * np.abs(psi2_x.full())**2,
+        label=r"$\vert \langle \psi (t_2) \vert \psi (t_2) \rangle \vert^2$", ls="-.", lw=2)
 ax.plot(xlist, V, color="black", ls="--")
 ax.legend()
 ax.set_xlabel(r"$x$")

@@ -1,0 +1,116 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture2/master_equation_qutip.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture2/master_equation_qutip.ipynb"
+    icon: google
+---
+# Open Dynamics in QuTiP: The Master Equation
+
+In @sec-closed-quantum-systems, we discussed the evolution of closed quantum systems, where the dynamics is governed by the Schrödinger equation. The evolution of the state vector $\ket{\psi(t)}$ is given by:
+
+$$
+\frac{d \ket{\psi(t)}}{dt} = -\frac{i}{\hbar} \hat{H} \ket{\psi(t)}
+$$
+
+where $\hat{H}$ is the Hamiltonian operator of the system. The solution to this equation leads to unitary evolution.
+In contrast to the closed case, open quantum systems interact with their environment, leading to non-unitary evolution described by the Master equation:
+
+$$
+\frac{d \hat{\rho}}{dt} = -\frac{i}{\hbar}[\hat{H}, \hat{\rho}] + \sum_k \left( \hat{L}_k \hat{\rho} \hat{L}_k^\dagger - \frac{1}{2} \{\hat{L}_k^\dagger \hat{L}_k, \hat{\rho}\} \right)
+$$
+
+Here, $\hat{\rho}$ represents the density matrix of the system, $\hat{L}_k$ are the Lindblad operators representing different dissipation processes. and $\{\hat{A}, \hat{B} \} = \hat{A} \hat{B} + \hat{B} \hat{A}$ is the anti-commutator between the operators $\hat{A}$ and $\hat{B}$.
+
+## Example: the damped harmonic oscillator
+
+We can use the Master equation to study the dynamics of a damped harmonic oscillator. The Hamiltonian for a harmonic oscillator is given by:
+
+$$
+\hat{H} = \omega_0 \hat{a}^\dagger \hat{a}
+$$
+
+where $\hat{a}$ and $\hat{a}^\dagger$ are the annihilation and creation operators, respectively, and $\omega_0$ is the angular frequency of the oscillator.
+
+{{< embed /notebooks/lecture2/master_equation_qutip.qmd#hamiltonian echo=true >}}
+
+To model the damping, we can introduce a Lindblad operator that represents the interaction with the environment. In the case of the interaction with a zero-temperature bath, the Lindblad operator can be defined as:
+
+$$
+\hat{L} = \sqrt{\gamma} \hat{a}
+$$
+
+where $\gamma$ is the damping rate.
+Let's now initialize the system in a coherent state and evolve it using the Master equation. We will also visualize the evolution of the position and energy expectation values over time.
+
+{{< embed /notebooks/lecture2/master_equation_qutip.qmd#damped-harmonic-oscillator echo=true >}}
+
+### Plotting the results
+
+{{< embed /notebooks/lecture2/master_equation_qutip.qmd#damped-harmonic-oscillator-plot echo=true >}}
+
+## Time-dependent parameters: the case of logical quantum gates
+
+In classical computing, logical gates such as AND, OR, and NOT process bits (0 or 1) to perform basic operations. For example:
+
+- AND outputs 1 only if both inputs are 1.
+- OR outputs 1 if at least one input is 1.
+- NOT inverts its input bit.
+
+These gates form the building blocks of all classical algorithms and digital circuits.
+
+Quantum computing generalizes this idea by using qubits, which can exist in superpositions of 0 and 1. Quantum gates act on these superposed states via time-dependent Hamiltonians, enabling phenomena like entanglement and interference. This richer behaviour unlocks powerful algorithms (e.g., Shor’s factoring, Grover’s search) that have no efficient classical equivalent.
+
+As an example, we consider a combination of gates that generates a bell state
+
+$$
+| \Phi^+ \rangle = \frac{1}{\sqrt{2}} (| 00 \rangle + | 11 \rangle).
+$$ {#eq-bell-state}
+
+To achieve this, we can use a sequence of quantum gates:
+
+1. **Hadamard gate**: Applies a Hadamard gate to the first qubit, transforming $| 0 \rangle$ into $\frac{1}{\sqrt{2}} (| 0 \rangle + | 1 \rangle)$.
+2. **CNOT gate**: Applies a controlled-NOT gate, where the first qubit controls the second. This flips the second qubit if the first is in state $| 1 \rangle$.
+
+{{< embed /notebooks/lecture2/master_equation_qutip.qmd#bell-state-circuit >}}
+
+Each gate can be represented by a time-dependent Hamiltonian. For example, the Hadamard gate can be implemented using a Hamiltonian
+
+$$
+\hat{H}_\mathrm{H}^{(1)} (t_0, t) = \Theta (t - t_0) \Theta ( t_0 + \pi / 2 - t) \frac{1}{\sqrt{2}} \left( \hat{\sigma}_x^{(1)} - \hat{\sigma}_z^{(1)} \right)
+$$
+
+where $\Theta(t)$ is the Heaviside step function, and $\hat{\sigma}_x^{(1)}$ and $\hat{\sigma}_z^{(1)}$ are the Pauli operators acting on the first qubit. The Heaviside function ensures that the Hamiltonian is non-zero only during the time interval $[t_0, t_0 + \pi / 2]$, where $t_0$ is the time at which the gate is applied.
+
+The CNOT gate can be implemented using a Hamiltonian that couples the two qubits
+
+$$
+\hat{H}_\mathrm{CNOT} (t_0, t) = \Theta (t - t_0) \Theta ( t_0 + \pi / 2 - t) \ \left(\hat{\mathbb{1}} + \hat{\sigma}_z^{(1)} \right) \otimes \left( \hat{\mathbb{1}} - \hat{\sigma}_x^{(2)} \right)
+$$
+
+where $\hat{\sigma}_x^{(2)}$ acts on the second qubit, and $\hat{\mathbb{1}}$ is the identity operator. The Heaviside function again ensures that the Hamiltonian is non-zero only during the time interval $[t_0, t_0 + \pi / 2]$.
+
+In absence of losses, the output state after applying these gates is exactly the Bell state $|\Phi^+\rangle$ defined in @eq-bell-state. However, in a realistic scenario, we need to account for the effects of decoherence and dissipation, which can be modeled using the Master equation. This poses a challenge for quantum computing, as the coherence of the qubits must be maintained during the gate operations to ensure the correct output state.
+
+To simulate the effects of decoherence, we consider the case where the qubits are in interaction with a finite-temperature environment, which can lead to energy dissipation and dephasing. In this case, the Master equation can be used to describe the dynamics of the system. We can introduce a Lindblad operator that represents the interaction with the environment. For example, we can use a Lindblad operator that describes the decay of the qubits:
+
+\begin{align*}
+\hat{L}_1 &= \sqrt{\gamma (n_\mathrm{th} + 1)} \hat{\sigma}_-^{(1)}, \quad \hat{L}_2 = \sqrt{\gamma (n_\mathrm{th} + 1)} \hat{\sigma}_-^{(2)} \\
+\hat{L}_3 &= \sqrt{\gamma n_\mathrm{th}} \hat{\sigma}_+^{(1)}, \quad \hat{L}_4 = \sqrt{\gamma n_\mathrm{th}} \hat{\sigma}_+^{(2)}
+\end{align*}
+
+where $\hat{\sigma}_+^{(i)}$ and $\hat{\sigma}_-^{(i)}$ are the raising and lowering operators for the $i$-th qubit, respectively, $n_\mathrm{th}$ is the average number of thermal excitations in the environment, and $\gamma$ is the decay rate. The Lindblad operators describe both energy dissipation (via $\hat{\sigma}_-$) and thermal excitation (via $\hat{\sigma}_+$) of the qubits.
+
+We can use the ability of QuTiP to define time-dependent Hamiltonians to simulate the evolution of the system under the influence of these gates and the Lindblad operators.
+
+{{< embed /notebooks/lecture2/master_equation_qutip.qmd#master-equation-gates echo=true >}}
+
+We now plot the following quantities as a function of time:
+
+- The probability of finding the first qubit in state $| 1 \rangle$.
+- The probability of finding the second qubit in state $| 1 \rangle$.
+- The fidelity with the target Bell state $|\Phi^+\rangle$.
+
+{{< embed /notebooks/lecture2/master_equation_qutip.qmd#master-equation-gates-plot echo=true >}}

@@ -1,0 +1,88 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture3/mollow_triplet.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture3/mollow_triplet.ipynb"
+    icon: google
+---
+# Resonance Fluorescence and the Mollow Triplet {#sec-mollow-triplet}
+
+When a *resonant* laser drives a two‑level atom strongly, its resonance‑fluorescence spectrum splits into **three** Lorentzian peaks: a central line at the laser frequency and two symmetric sidebands.  Predicted by B.R. Mollow in 1969 (@Mollow1969Power) and first observed soon after, this *Mollow triplet* is a hallmark of light–matter interaction in the strong‑drive (dressed‑state) regime.
+
+## Physical picture
+
+Consider a two‑level atom with energy separation $\omega_0$ driven by a coherent laser at frequency $\omega_L$. 
+
+$$
+H = \frac{\omega_0}{2}\,\hat{\sigma}_z + \frac{\Omega}{2}\,(\hat{\sigma}_+e^{-i\omega_L t} + \hat{\sigma}_-e^{+i\omega_L t}).
+$$
+
+Transforming to the laser rotating frame with $U(t)=\exp [-i \tfrac{\omega_L t}{2}\hat{\sigma}_z]$ removes the explicit time dependence and shifts the zero of energy, yielding the textbook Hamiltonian used below
+
+$$
+H = \frac{\Delta}{2}\,\hat{\sigma}_z + \frac{\Omega}{2}\,(\hat{\sigma}_+ + \hat{\sigma}_-),
+$$
+
+with detuning $\Delta = \omega_0 - \omega_L$ and on‑resonance Rabi frequency $\Omega = \mu E_0/\hbar$.  This semiclassical model, combined with a Lindblad dissipator for spontaneous emission at rate $\gamma$, fully captures the triplet.
+
+## Analytic spectrum
+
+In order to analyse the properties of the emitted light, we can compute the **power spectrum** of the scattered photons, defined as the Fourier transform of the correlation function $\langle \hat{E}^{(-)}(t) \hat{E}^{(+)}(0) \rangle$, where $\hat{E}^{(-)}$ and $\hat{E}^{(+)}$ are the negative and positive frequency parts of the electric field operator.  In the rotating frame, these operators are related to the atom's raising and lowering operators $\hat{\sigma}_+$ and $\hat{\sigma}_-$ as [@Walls2008Quantum]
+
+$$
+\hat{E}^{(-)}(t) \propto \hat{\sigma}_+(t) \quad \text{and} \quad \hat{E}^{(+)}(t) \propto \hat{\sigma}_-(t) \, .
+$$
+
+The power spectrum is then given by
+
+$$
+S(\omega) = \int_{-\infty}^{\infty} e^{i\omega t} \langle \hat{E}^{(-)}(t) \hat{E}^{(+)}(0) \rangle dt \, .
+$$ {#eq-power-spectrum}
+
+Treating spontaneous emission at rate $\gamma$ with a Lindblad term $\hat{L} = \sqrt{\gamma},\hat{\sigma}_-$, the power spectrum of scattered photons is [@Walls2008Quantum]
+
+$$
+S(\omega) \propto \frac{\tfrac{\gamma}{2}}{(\omega-\omega_L)^2 + (\tfrac{\gamma}{2})^2}
+            + \frac{3\gamma/8}{(\omega-\omega_L-\Omega_R)^2 + (3\gamma/4)^2}
+            + \frac{3\gamma/8}{(\omega-\omega_L+\Omega_R)^2 + (3\gamma/4)^2}.
+$$
+
+with a central peak at $\omega_L$ and two sidebands at $\omega_L \pm \Omega_R$, where $\Omega_R = \sqrt{\Delta^2 + \Omega^2}$ is the Rabi frequency in the rotating frame.
+
+## Numerical spectrum in QuTiP
+
+Below is a minimal QuTiP script that reproduces the triplet for a resonantly driven atom ($\Delta = 0$). The code computes the emission spectrum $S(\omega)$ in @eq-power-spectrum by using the `spectrum` function to compute the Fourier transform of the correlation function of the emission operators.
+
+{{< embed /notebooks/lecture3/mollow_triplet.qmd#mollow-spectrum echo=true >}}
+
+Running the code with $\Omega = 5,\gamma$ reproduces the canonical spectrum: a narrow central line and two broader sidebands at $\pm\Omega$.
+
+## Photon statistics and antibunching {#sec-photon-stats}
+
+Given the emission spectrum, we may ask if the emitted light is *classical* or *quantum*.  The answer can be found in the **photon statistics** of the resonance fluorescence, which can be probed by measuring the **second‑order correlation function**
+
+$$
+g^{(2)}(\tau) \;=\; \frac{\langle\hat{E}^{(-)}(0)\,\hat{E}^{(-)}(\tau)\,\hat{E}^{(+)}(\tau)\,\hat{E}^{(+)}(0)\rangle}{\langle\hat{E}^{(-)}\hat{E}^{(+)}\rangle^{2}} \;\propto\; \frac{\langle\sigma^\dagger(0)\,\sigma^\dagger(\tau)\,\sigma^-(\tau)\,\sigma^-(0)\rangle}{\langle\sigma^\dagger\sigma^-\rangle^{2}} .
+$$ {#eq-g2-def}
+
+where $\hat{E}^{(+)}$ and $\hat{E}^{(-)}$ are the positive and negative frequency parts of the electric field operator, and $\sigma^\dagger$, $\sigma^-$ are the raising and lowering operators of the two‑level atom. The quantity $g^{(2)}(\tau)$ measures the probability of detecting one photon at time $0$ and another at time $\tau$, normalised by the square of the average number of photons emitted.
+
+For *classical* light $g^{(2)}(0) \ge 1$ (photon bunching), whereas a single quantum emitter produces **antibunching** with $g^{(2)}(0)=0$: once a photon is emitted, the atom is in its ground state and cannot emit another immediately, so the probability of detecting two photons with zero delay vanishes.
+
+Under strong driving $g^{(2)}(\tau)$ also displays damped Rabi oscillations at $\Omega_R$—a direct time‑domain analogue of the sidebands.
+
+### QuTiP example
+
+{{< embed /notebooks/lecture3/mollow_triplet.qmd#g2-corr echo=true >}}
+
+The plot shows $g^{(2)}(0) \approx 0$ (perfect antibunching in the ideal model).  As $\tau$ increases the function overshoots above 1 and undergoes damped oscillations at the Rabi frequency before relaxing to the Poissonian value $g^{(2)}(\infty)=1$.
+
+![The second order correlation function of the fluorescent light form a single mercury ion in a trap versus delay time $\tau$. The antibunching at $\tau=0$ is clearly visible, as well as the Rabi oscillations at longer delays. Figure taken from [@Walther1998Single].](/assets/lecture3/g2_experimental.png)
+
+## Discussion
+
+* **Antibunching ⇒** unambiguously indicates a single quantum emitter or sub‑Poissonian light.
+* **Rabi oscillations in $g^{(2)}$ ⇒** time‑domain fingerprint of the dressed‑state splitting that generates the Mollow sidebands.
+* **Technological relevance ⇒** Resonance‑fluorescence photons combine single‑photon purity (antibunching) with high brightness and tunable frequency via the drive laser.

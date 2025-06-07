@@ -1,0 +1,292 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture2/master_equation_qutip.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture2/master_equation_qutip.ipynb"
+    icon: google
+---
+# Open Dynamics in QuTiP: The Master Equation
+
+{{< include ../../setup/matplotlib_setup.qmd >}}
+
+Open quantum systems interact with their environment, leading to non-unitary evolution described by the Master equation:
+
+$$
+\frac{d \hat{\rho}}{dt} = -\frac{i}{\hbar}[\hat{H}, \hat{\rho}] + \sum_k \left( \hat{L}_k \hat{\rho} \hat{L}_k^\dagger - \frac{1}{2} \{\hat{L}_k^\dagger \hat{L}_k, \hat{\rho}\} \right)
+$$
+
+## Example: the damped harmonic oscillator
+
+We can use the Master equation to study the dynamics of a damped harmonic oscillator. The Hamiltonian for a harmonic oscillator is given by:
+
+$$
+\hat{H} = \omega_0 \hat{a}^\dagger \hat{a}
+$$
+
+```{python}
+#| label: hamiltonian
+import numpy as np
+from qutip import *
+
+# Parameters
+N = 30  # Number of Fock states
+omega_0 = 1.0  # Angular frequency of the oscillator
+
+a = destroy(N)  # Annihilation operator
+
+# Hamiltonian
+H = omega_0 * a.dag() * a
+```
+
+In the case of the interaction with a zero-temperature bath, the Lindblad operator can be defined as $\hat{L} = \sqrt{\gamma} \hat{a}$, where $\gamma$ is the damping rate. 
+Let's now initialize the system in a coherent state and evolve it using the Master equation. We will also visualize the evolution of the position and energy expectation values over time.
+
+```{python}
+#| label: damped-harmonic-oscillator
+# Damping rate
+gamma = 0.1
+
+# Lindblad operator
+L = np.sqrt(gamma) * a
+
+# Initial state: coherent state
+alpha = 3.0
+psi_0 = coherent(N, alpha)
+
+tlist = np.linspace(0, 50, 500)
+
+# Solve the Master equation
+result = mesolve(H, psi_0, tlist, [L], e_ops=[a.dag() * a, a + a.dag()])
+result
+```
+
+### Plotting the results
+
+```{python}
+#| label: damped-harmonic-oscillator-plot
+import matplotlib.pyplot as plt
+
+# Plot the expectation values
+fig, ax = plt.subplots()
+
+ax.plot(tlist, result.expect[0], label=r"Energy $\langle \hat{H} \rangle$")
+ax.plot(tlist, result.expect[1].real, label=r"Position $\langle \hat{x} \rangle$")
+ax.set_xlabel(r"Time $t$")
+ax.set_ylabel("Expectation values")
+ax.legend()
+ax.set_title("Damped Harmonic Oscillator Dynamics")
+
+# Show on Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close()
+SVG("_tmp_fig.svg")
+```
+
+## Time-dependent parameters: the case of logical quantum gates
+
+We now consider a combination of quantum gates that generates a bell state
+
+$$
+| \Phi^+ \rangle = \frac{1}{\sqrt{2}} (| 00 \rangle + | 11 \rangle).
+$$ {#eq-bell-state}
+
+To achieve this, we can use a sequence of quantum gates:
+
+1. **Hadamard gate**: Applies a Hadamard gate to the first qubit, transforming $| 0 \rangle$ into $\frac{1}{\sqrt{2}} (| 0 \rangle + | 1 \rangle)$.
+2. **CNOT gate**: Applies a controlled-NOT gate, where the first qubit controls the second. This flips the second qubit if the first is in state $| 1 \rangle$.
+
+
+```{python}
+#| label: bell-state-circuit
+#| code-fold: true
+from qiskit import QuantumCircuit
+
+# Create a quantum circuit with 2 qubits
+qc = QuantumCircuit(2)
+
+# Apply Hadamard to qubit 0
+qc.h(0)
+
+# Apply CNOT with control=0 and target=1
+qc.cx(0, 1)
+
+# Draw the circuit
+fig = qc.draw('mpl', initial_state=True, style={"fontsize": 9,}, scale=3)
+
+# fig.subplots_adjust(right=1)
+
+# Add final state annotation
+fig.text(1.01, 0.47, r"$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$",
+         fontsize=9*3, ha='left', va='center', transform=fig.transFigure)
+
+fig.tight_layout()
+
+# Show on Quarto
+fig.savefig("_tmp_fig.svg")
+SVG("_tmp_fig.svg")
+```
+
+Each gate can be represented by a time-dependent Hamiltonian. For example, the Hadamard gate can be implemented using a Hamiltonian
+
+$$
+\hat{H}_\mathrm{H}^{(1)} (t_0, t) = \Theta (t - t_0) \Theta ( t_0 + \pi / 2 - t) \frac{1}{\sqrt{2}} \left( \hat{\sigma}_x^{(1)} - \hat{\sigma}_z^{(1)} \right)
+$$
+
+where $\Theta(t)$ is the Heaviside step function.
+
+The CNOT gate can be implemented using a Hamiltonian that couples the two qubits
+
+$$
+\hat{H}_\mathrm{CNOT} (t_0, t) = \Theta (t - t_0) \Theta ( t_0 + \pi / 2 - t) \ \left(\hat{\mathbb{1}} + \hat{\sigma}_z^{(1)} \right) \otimes \left( \hat{\mathbb{1}} - \hat{\sigma}_x^{(2)} \right)
+$$
+
+where $\hat{\sigma}_x^{(2)}$ acts on the second qubit.
+
+We can use a Lindblad operator that describes the decay of the qubits in the presence of a thermal environment:
+
+\begin{align*}
+\hat{L}_1 &= \sqrt{\gamma (n_\mathrm{th} + 1)} \hat{\sigma}_-^{(1)}, \quad \hat{L}_2 = \sqrt{\gamma (n_\mathrm{th} + 1)} \hat{\sigma}_-^{(2)} \\
+\hat{L}_3 &= \sqrt{\gamma n_\mathrm{th}} \hat{\sigma}_+^{(1)}, \quad \hat{L}_4 = \sqrt{\gamma n_\mathrm{th}} \hat{\sigma}_+^{(2)}
+\end{align*}
+
+where $n_\mathrm{th}$ is the average number of thermal excitations in the environment, and $\gamma$ is the decay rate. The Lindblad operators describe both energy dissipation (via $\hat{\sigma}_-$) and thermal excitation (via $\hat{\sigma}_+$) of the qubits.
+
+We can use the ability of QuTiP to define time-dependent Hamiltonians to simulate the evolution of the system under the influence of these gates and the Lindblad operators.
+
+```{python}
+#| label: master-equation-gates
+def heaviside(t, t0):
+    return t >= t0
+
+def hadamard_coeff(t):
+    t0 = 0  # Start time of the Hadamard gate
+    return heaviside(t, t0) * heaviside(t0 + np.pi / 2, t)
+
+def cnot_coeff(t):
+    t0 = np.pi / 2  # Start time of the CNOT gate
+    return heaviside(t, t0) * heaviside(t0 + np.pi / 2, t)
+
+sm1 = tensor(sigmam(), qeye(2))  # Lowering operator for qubit 1
+sm2 = tensor(qeye(2), sigmam())  # Lowering operator for qubit 2
+sx1 = tensor(sigmax(), qeye(2))  # Pauli X for qubit 1
+sz1 = tensor(sigmaz(), qeye(2))  # Pauli Z for qubit 1
+sx2 = tensor(qeye(2), sigmax())  # Pauli X for qubit 2
+
+# Parameters
+gamma = 0.1  # Decay rate
+T = 0.1  # Temperature (arbitrary units)
+n_th = 1 / (np.exp(1 / T) - 1)  # Average number of thermal excitations
+
+# Hadamard gate Hamiltonian
+H_hadamard = (sx1 - sz1) / np.sqrt(2)
+
+# CNOT gate Hamiltonian
+H_cnot = (1 + sz1) * (1 - sx2) / 2
+
+# Time-dependent Hamiltonian
+H = [[H_hadamard, hadamard_coeff],
+     [H_cnot, cnot_coeff]]
+
+# Lindblad dissipation operators
+L1 = np.sqrt(gamma * (n_th + 1)) * sm1
+L2 = np.sqrt(gamma * (n_th + 1)) * sm2
+L3 = np.sqrt(gamma * n_th) * sm1.dag()
+L4 = np.sqrt(gamma * n_th) * sm2.dag()
+
+c_ops = [L1, L2, L3, L4]
+
+# Initial state: |00>
+psi_0 = tensor(basis(2, 1), basis(2, 1))
+
+# Time list
+tlist = np.linspace(0, np.pi, 500)
+
+# Solve the Master equation
+result = mesolve(H, psi_0, tlist, c_ops)
+result
+```
+
+We now plot the following quantities as a function of time:
+
+- The probability of finding the first qubit in state $| 1 \rangle$.
+- The probability of finding the second qubit in state $| 1 \rangle$.
+- The fidelity with the target Bell state $|\Phi^+\rangle$.
+
+```{python}
+#| label: master-equation-gates-plot
+# Bell state
+bell_state = (tensor(basis(2, 0), basis(2, 0)) + tensor(basis(2, 1), basis(2, 1))).unit()
+
+P0_1 = expect(sm1.dag() * sm1, result.states)
+P0_2 = expect(sm2.dag() * sm2, result.states)
+fid = [fidelity(bell_state, s) for s in result.states]
+
+fig, ax = plt.subplots()
+
+ax.plot(tlist, P0_1, label=r"$P_1^{(1)}$")
+ax.plot(tlist, P0_2, label=r"$P_1^{(2)}$")
+ax.plot(tlist, fid, label=r"Fidelity with $|\Phi^+\rangle$")
+ax.set_xlabel(r"Time $t$")
+ax.set_ylabel("Probability / Fidelity")
+ax.set_ylim(0, 1)
+ax.legend()
+
+# Show on Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close()
+SVG("_tmp_fig.svg")
+```
+
+::: {.callout-caution}
+## Exercise!
+
+Plot the fidelity of the final state with the target Bell state $|\Phi^+\rangle$ as a function of the temperature $T$ of the environment. Use a logarithmic range of temperatures from $10^{-1}$ to $10^1$ in 100 points.
+
+**Hints**
+- Use `np.geomspace(0.1, 10, 100)` to create a logarithmic range of temperatures.
+- Make a function `f(T)` that returns the fidelity for a given temperature $T$, so that you can use it in a list comprehension `[f(T) for T in T_list]`.
+- The last state of the simulation is `result.states[-1]`, which you can use to compute the fidelity with the target Bell state.
+- The log scale can be set using `ax.set_xscale('log')`.
+:::
+
+```{python}
+# Write your code here...
+
+
+
+```
+
+```{python}
+#| code-fold: true
+#| code-summary: Solution
+def fidelity_with_bell_state(T):
+    n_th = 1 / (np.exp(1 / T) - 1)  # Average number of thermal excitations
+    L1 = np.sqrt(gamma * (n_th + 1)) * sm1
+    L2 = np.sqrt(gamma * (n_th + 1)) * sm2
+    L3 = np.sqrt(gamma * n_th) * sm1.dag()
+    L4 = np.sqrt(gamma * n_th) * sm2.dag()
+    
+    c_ops = [L1, L2, L3, L4]
+    
+    result = mesolve(H, psi_0, tlist, c_ops)
+    
+    return fidelity(bell_state, result.states[-1])
+
+T_list = np.geomspace(0.1, 10, 100)
+
+fid_list = [fidelity_with_bell_state(T) for T in T_list]
+
+fig, ax = plt.subplots()
+
+ax.plot(T_list, fid_list)
+ax.set_xscale('log')
+ax.set_xlabel(r"Temperature $T$")
+ax.set_ylabel(r"Fidelity with $|\Phi^+\rangle$")
+
+# Show on Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close()
+SVG("_tmp_fig.svg")
+```
