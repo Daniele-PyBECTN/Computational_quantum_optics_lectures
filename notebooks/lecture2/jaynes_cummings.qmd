@@ -1,6 +1,6 @@
 # The Jaynes–Cummings model: The Prove of Field Quantization
 
-{{< include /setup/matplotlib_setup.qmd >}}
+{{< include ../../setup/matplotlib_setup.qmd >}}
 
 In the rotating‑wave approximation, the Hamiltonian reads
 

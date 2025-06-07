@@ -9,6 +9,8 @@ other-links:
 ---
 # The Emission Spectrum of the Jaynes–Cummings Model
 
+{{< include ../../setup/matplotlib_setup.qmd >}}
+
 ## Numerical simulation with QuTiP
 
 We now simulate the emission spectrum of the JC model using QuTiP, focusing on the weak and strong coupling regimes.  We will compute the emission spectrum $S (\omega)$ of the cavity field using the `spectrum` function. We first define the system and its parameters.
@@ -54,6 +56,11 @@ fig, ax = plt.subplots()
 ax.plot(w_list, spec.real)
 ax.set_xlabel("Frequency (MHz)")
 ax.set_ylabel(r"$S(ω)$ (arb. units)")
+
+# Show in Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close(fig)
+SVG("_tmp_fig.svg")
 ```
 
 ::: {.callout-note}
