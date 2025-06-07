@@ -46,6 +46,7 @@ book:
     - lecture1/closed_systems.qmd
     # - lecture2/ # Open Quantum Systems - Lindblad Equation
     - lecture2/master_equation_qutip.qmd
+    - lecture2/jaynes_cummings.qmd
     # - lecture3/ # Quantum Observables and Correlation Functions
     - lecture3/mollow_triplet.qmd # Quantum Observables and Correlation Functions in QuTiP
     # - lecture3/ # Applications on several systems (trapped ion, optomechanics, etc.)
