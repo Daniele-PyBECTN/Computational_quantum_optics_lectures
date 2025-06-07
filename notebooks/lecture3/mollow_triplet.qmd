@@ -1,0 +1,98 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture3/mollow_triplet.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture3/mollow_triplet.ipynb"
+    icon: google
+---
+# Resonance Fluorescence and the Mollow Triplet {#sec-mollow-triplet}
+
+{{< include ../../setup/matplotlib_setup.qmd >}}
+
+## Physical picture
+
+Consider a two‑level atom with energy separation $\omega_0$ driven by a laser at frequency $\omega_L$.  The atom–laser interaction can be described in the rotating frame of the laser, where the Hamiltonian reads
+
+$$
+H = \frac{\Delta}{2}\,\hat{\sigma}_z + \frac{\Omega}{2}\,(\hat{\sigma}_+ + \hat{\sigma}_-),
+$$
+
+with detuning $\Delta = \omega_0 - \omega_L$ and on‑resonance Rabi frequency $\Omega = \mu E_0/\hbar$.
+
+## Numerical spectrum in QuTiP
+
+Below is a minimal QuTiP script that reproduces the triplet for a resonantly driven atom ($\Delta = 0$).
+
+```{python}
+#| label: mollow-spectrum
+import numpy as np
+import matplotlib.pyplot as plt
+from qutip import *
+
+gamma = 1.0          # spontaneous emission rate
+Omega = 5.0 * gamma   # Rabi frequency (drive strength)
+Delta = 0.0           # laser detuning
+
+sm = sigmam()
+sp = sigmap()
+sz = sigmaz()
+
+H = 0.5 * Delta * sz + 0.5 * Omega * (sp + sm)
+c_ops = [np.sqrt(gamma) * sm]
+
+rho_ss = steadystate(H, c_ops)
+
+wlist = np.linspace(-10 * gamma, 10 * gamma, 2000)
+S = spectrum(H, wlist, c_ops, sp, sm)
+S /= np.max(S)
+
+plt.plot(wlist / gamma, S)
+plt.xlabel(r"$(\omega - \omega_L)/\gamma$")
+plt.ylabel(r"$S(\omega)$ (arb. units)")
+plt.title("Mollow triplet")
+plt.xlim(-10, 10)
+
+# Show on Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close()
+SVG("_tmp_fig.svg")
+```
+
+Running the code with $\Omega = 5,\gamma$ reproduces the canonical spectrum: a narrow central line and two broader sidebands at $\pm\Omega$.
+
+## Photon statistics and antibunching {#sec-photon-stats}
+
+Given the emission spectrum, we may ask if the emitted light is *classical* or *quantum*.  The answer can be found in the **photon statistics** of the resonance fluorescence, which can be probed by measuring the **second‑order correlation function**
+
+$$
+g^{(2)}(\tau) \propto \frac{\langle\sigma^\dagger(0)\,\sigma^\dagger(\tau)\,\sigma^-(\tau)\,\sigma^-(0)\rangle}{\langle\sigma^\dagger\sigma^-\rangle^{2}} .
+$$ {#eq-g2-def}
+
+### QuTiP example
+
+```{python}
+#| label: g2-corr
+tau_list = np.linspace(0, 10 / gamma, 400)  # time delays
+
+rho_ss = steadystate(H, c_ops)
+
+corr = correlation_3op_1t(H, None, tau_list, c_ops, sp, sp*sm, sm)
+
+n_ss = expect(sp * sm, rho_ss) # steady‑state population
+g2 = np.real(corr) / (n_ss ** 2) # normalized
+
+plt.plot(tau_list, g2)
+plt.xlabel(r"$\tau$")
+plt.ylabel(r"$g^{(2)}(\tau)$")
+plt.title("Photon antibunching and Rabi oscillations")
+plt.ylim(0, None)
+
+# Show on Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close()
+SVG("_tmp_fig.svg")
+```
+
+The plot shows $g^{(2)}(0) \approx 0$ (perfect antibunching in the ideal model).  As $\tau$ increases the function overshoots above 1 and undergoes damped oscillations at the Rabi frequency before relaxing to the Poissonian value $g^{(2)}(\infty)=1$.

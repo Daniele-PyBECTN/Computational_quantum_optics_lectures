@@ -150,7 +150,7 @@ def animate(i):
     img.set_array(rho_t[i])
     return img,
 
-ani = FuncAnimation(fig, animate, frames=range(0, len(t_list), 2000), interval=50, blit=True)
+ani = FuncAnimation(fig, animate, frames=range(0, len(t_list), 2000), interval=100, blit=True)
 
 plt.close(fig)
 HTML(ani.to_jshtml())
