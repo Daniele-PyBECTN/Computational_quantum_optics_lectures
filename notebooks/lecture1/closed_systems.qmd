@@ -52,7 +52,7 @@ tlist = np.linspace(0, 2 * 2*np.pi/w, 100)
 
 e_ops = [H, a + a.dag()]
 
-sol = sesolve(H, psi0, tlist, e_ops)
+sol = sesolve(H, psi0, tlist, e_ops=e_ops)
 ```
 
 ## Plot the expectation values
@@ -71,9 +71,9 @@ ax.set_xlim(tlist[0], tlist[-1])
 ax.set_ylim(None, 16)
 
 # Show in Quarto
-plt.savefig('_tmp_fig.svg')
+plt.savefig("_tmp_fig.svg")
 plt.close(fig)
-SVG(filename='_tmp_fig.svg')
+SVG("_tmp_fig.svg")
 ```
 
 ## Access directly to the evolution of the state
@@ -155,9 +155,9 @@ ax.set_xlim(xlist[0], xlist[-1])
 ax.set_ylim(0, 120)
 
 # Show in Quarto
-plt.savefig('_tmp_fig.svg')
+plt.savefig("_tmp_fig.svg")
 plt.close(fig)
-SVG(filename='_tmp_fig.svg')
+SVG("_tmp_fig.svg")
 ```
 
 We can also export an animation, showing more easily the time evolution of the state

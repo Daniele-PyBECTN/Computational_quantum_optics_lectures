@@ -54,7 +54,7 @@ plt.ylabel(r"$S(\omega)$ (arb. units)")
 plt.title("Mollow triplet")
 plt.xlim(-10, 10)
 
-# Show on Quarto
+# Show in Quarto
 plt.savefig("_tmp_fig.svg")
 plt.close()
 SVG("_tmp_fig.svg")
@@ -89,7 +89,7 @@ plt.ylabel(r"$g^{(2)}(\tau)$")
 plt.title("Photon antibunching and Rabi oscillations")
 plt.ylim(0, None)
 
-# Show on Quarto
+# Show in Quarto
 plt.savefig("_tmp_fig.svg")
 plt.close()
 SVG("_tmp_fig.svg")

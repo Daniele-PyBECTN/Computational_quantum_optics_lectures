@@ -177,5 +177,5 @@ ax.set_ylabel("Momentum $p_x$")
 # Show in Quarto
 plt.savefig("_tmp_fig.svg")
 plt.close(fig)
-SVG(filename="_tmp_fig.svg")
+SVG("_tmp_fig.svg")
 ```
