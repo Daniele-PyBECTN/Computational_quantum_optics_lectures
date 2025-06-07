@@ -78,7 +78,7 @@ ax.set_ylabel("Expectation values")
 ax.legend()
 ax.set_title("Damped Harmonic Oscillator Dynamics")
 
-# Show on Quarto
+# Show in Quarto
 plt.savefig("_tmp_fig.svg")
 plt.close()
 SVG("_tmp_fig.svg")
@@ -123,7 +123,6 @@ fig.text(1.01, 0.47, r"$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\ran
 
 fig.tight_layout()
 
-# Show on Quarto
 fig.savefig("_tmp_fig.svg")
 SVG("_tmp_fig.svg")
 ```
@@ -233,7 +232,7 @@ ax.set_ylabel("Probability / Fidelity")
 ax.set_ylim(0, 1)
 ax.legend()
 
-# Show on Quarto
+# Show in Quarto
 plt.savefig("_tmp_fig.svg")
 plt.close()
 SVG("_tmp_fig.svg")
@@ -285,7 +284,7 @@ ax.set_xscale('log')
 ax.set_xlabel(r"Temperature $T$")
 ax.set_ylabel(r"Fidelity with $|\Phi^+\rangle$")
 
-# Show on Quarto
+# Show in Quarto
 plt.savefig("_tmp_fig.svg")
 plt.close()
 SVG("_tmp_fig.svg")

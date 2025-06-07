@@ -1,0 +1,126 @@
+# The Jaynes–Cummings model: The Prove of Field Quantization
+
+{{< include /setup/matplotlib_setup.qmd >}}
+
+In the rotating‑wave approximation, the Hamiltonian reads
+
+$$
+\hat H = \omega_c  \hat a^{\dagger}\hat a + \frac{\omega_q}{2} \hat\sigma_z +  g\bigl(\hat a^{\dagger}\hat\sigma_{-}+\hat a \hat\sigma_{+}\bigr).
+$$
+
+where $\hat a$ is the cavity field’s annihilation operator, $\hat\sigma_z$ is the atom’s Pauli operator, and $g$ is the coupling strength. 
+
+```{python}
+#| label: system-definition
+import numpy as np
+import matplotlib.pyplot as plt
+from qutip import *
+
+# Parameters
+wc    = 5.0   # cavity
+wq    = 5.0   # atom (on resonance)
+g     = 0.1   # coupling
+kappa = 0.01  # cavity decay
+gamma = 0.00  # atomic T1 (suppressed)
+N     = 20    # Fock cutoff
+
+# Operators
+a  = tensor(destroy(N), qeye(2))
+sp = tensor(qeye(N), sigmap())
+sm = tensor(qeye(N), sigmam())
+sz = tensor(qeye(N), sigmaz())
+
+H = wc * a.dag() * a + 0.5*wq * sz + g * (a.dag() * sm + a * sp)
+
+# Dissipators
+c_ops = [np.sqrt(kappa) * a, np.sqrt(gamma) * sm]
+```
+
+## Damped vacuum Rabi oscillations: The *hello‑world* of cavity QED
+
+We now simulate the open system dynamics of the JC model, starting from the $|\psi(0)\rangle = |0,e\rangle$ state and watch excitation watch the atomic population in time.
+
+```{python}
+#| label: damped-vacuum-rabi-oscillations
+ψ0 = tensor(basis(N, 0), basis(2, 0))
+tlist  = np.linspace(0, 200, 500)
+
+result = mesolve(H, ψ0, tlist, c_ops, e_ops=[sp*sm])
+P_e = result.expect[0]
+
+fig, ax = plt.subplots()
+ax.plot(tlist, P_e)
+ax.set_xlabel("Time")
+ax.set_ylabel(r"$P_{e}$")
+
+# Show in Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close(fig)
+SVG("_tmp_fig.svg")
+```
+
+## Demonstration of Electromagnetic Field Quantization: The Haroche Experiment
+
+### Preparing the coherent field
+
+To simulate Haroche’s experiment, we need to prepare a coherent state $|\alpha\rangle$ in the cavity and a two-level atom in its ground state.
+
+```{python}
+#| label: coherent-state-preparation
+α = 2.0
+ψ_fld = coherent(N, α)
+ψ_atm = basis(2, 1)
+ψ0 = tensor(ψ_fld, ψ_atm)
+```
+
+We can now use the `mesolve` function to evolve the system in time, while measuring the atomic population.
+
+```{python}
+#| label: collapse-revival
+tlist  = np.linspace(0, 1000, 500)
+
+out = mesolve(H, ψ0, tlist, c_ops, e_ops=[sp*sm])
+pop = out.expect[0]
+
+fig, ax = plt.subplots()
+ax.plot(tlist, pop)
+ax.set_xlabel("Time")
+ax.set_ylabel(r"$\langle\hat\sigma_+ \hat\sigma_-\rangle$")
+
+# Show in Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close(fig)
+SVG("_tmp_fig.svg")
+```
+
+
+### Fourier spectroscopy: The signature of Fock states
+
+Each Fock state $|n\rangle$ drives the atom at $\Omega_n = 2g\sqrt{n+1}$, so the Fourier transform of $\langle \hat\sigma_z(t)\rangle$ must exhibit a comb at precisely those spacings.
+
+```{python}
+#| label: fourier-spectroscopy
+from numpy.fft import fft, fftfreq
+
+# We remove the exponential decay factor to make the peaks more visible
+exp_factor = np.exp(-kappa * tlist / 2)
+fft_sig = fft(pop / exp_factor)[0:len(pop)//2]
+
+freq = fftfreq(len(pop), (tlist[1]-tlist[0]))[:len(pop)//2] * 2 * np.pi
+
+fig, ax = plt.subplots()
+ax.plot(freq, np.abs(fft_sig))
+ax.vlines(2*g*np.sqrt(np.arange(1, 5)), 20, 100, color="black", linestyles="--")
+ax.text(2*g*np.sqrt(1), 110, r"$2g\sqrt{n+1}$", fontsize=12, ha="left", va="bottom")
+ax.set_yscale("log")
+ax.set_xlabel("Frequency")
+ax.set_ylabel("FFT")
+ax.set_title("Spectral lines at $2g\sqrt{n+1}$")
+
+# Show in Quarto
+plt.savefig("_tmp_fig.svg")
+plt.close(fig)
+SVG("_tmp_fig.svg")
+```
+
+This plot worths the Nobel prize in 2012, as it shows the quantization of the electromagnetic field. Indeed, the peaks at $2g\sqrt{n+1}$ are a direct signature of the Fock states $|n\rangle$ in the coherent state $|\alpha\rangle$. Each peak corresponds to a different photon number, and their spacing reflects the quantized nature of the electromagnetic field.

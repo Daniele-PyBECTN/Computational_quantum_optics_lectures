@@ -1,0 +1,71 @@
+---
+other-links:
+  - text: Run notebook in Binder
+    href: "https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture3/jaynes_cummings_spectrum.ipynb"
+    icon: file-code
+  - text: Run notebook in Google Colab
+    href: "https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture3/jaynes_cummings_spectrum.ipynb"
+    icon: google
+---
+# The Emission Spectrum of the Jaynes–Cummings Model
+
+## Numerical simulation with QuTiP
+
+We now simulate the emission spectrum of the JC model using QuTiP, focusing on the weak and strong coupling regimes.  We will compute the emission spectrum $S (\omega)$ of the cavity field using the `spectrum` function. We first define the system and its parameters.
+
+```{python}
+#| label: system-definition
+import numpy as np
+import matplotlib.pyplot as plt
+from qutip import *
+
+# Parameters
+wc    = 5.0   # cavity
+wq    = 5.0   # atom (on resonance)
+g     = 0.1   # coupling
+kappa = 0.03  # cavity decay
+gamma = 0.00  # atomic T1 (suppressed)
+n_th  = 0.01  # thermal photons of the environment
+N     = 20    # Fock cutoff
+
+# Operators
+a  = tensor(destroy(N), qeye(2))
+sp = tensor(qeye(N), sigmap())
+sm = tensor(qeye(N), sigmam())
+sz = tensor(qeye(N), sigmaz())
+
+H = wc * a.dag() * a + 0.5*wq * sz + g * (a.dag() * sm + a * sp)
+
+# Dissipators
+c_ops = [np.sqrt(kappa * (n_th + 1)) * a, np.sqrt(gamma * (n_th + 1)) * sm,
+        np.sqrt(kappa * n_th) * a.dag(), np.sqrt(gamma * n_th) * sp]
+```
+
+And we finally compute the emission spectrum.
+
+```{python}
+#| label: compute-spectrum
+w_list = np.linspace(wc-6*g, wc+6*g, 1000)
+
+spec = spectrum(H, w_list, c_ops, a.dag(), a)
+
+fig, ax = plt.subplots()
+
+ax.plot(w_list, spec.real)
+ax.set_xlabel("Frequency (MHz)")
+ax.set_ylabel(r"$S(ω)$ (arb. units)")
+```
+
+::: {.callout-note}
+## Exercise!
+
+1. What happens to the spectrum when we decrease the coupling strength to reach the weak coupling regime $g \ll \kappa$? You can either decrease the coupling strength $g$ or increase the cavity decay rate $\kappa$.
+2. How does the spectrum change when we increase the thermal population $n_{th}$ of the environment? Can you identify the other peaks in the spectrum?
+:::
+
+```{python}
+# Write your code here...
+
+
+
+```

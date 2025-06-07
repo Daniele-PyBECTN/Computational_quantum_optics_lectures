@@ -402,9 +402,9 @@ ax.set_xlim(-5, 5)
 ax.set_ylim(0, 5)
 
 # Show in Quarto
-plt.savefig('_tmp_fig.svg')
+plt.savefig("_tmp_fig.svg")
 plt.close(fig)
-SVG(filename='_tmp_fig.svg')
+SVG("_tmp_fig.svg")
 ```
 
 

@@ -103,9 +103,9 @@ ax.set_ylabel("$y(t)$")
 ax.legend()
 
 # Show in Quarto
-plt.savefig('_tmp_fig.svg')
+plt.savefig("_tmp_fig.svg")
 plt.close(fig)
-SVG(filename='_tmp_fig.svg')
+SVG("_tmp_fig.svg")
 ```
 
 ## 2. Numerical Integration via the Forward Euler Method
@@ -148,9 +148,9 @@ ax.set_ylabel("$y(t)$")
 ax.legend()
 
 # Show in Quarto
-plt.savefig('_tmp_fig.svg')
+plt.savefig("_tmp_fig.svg")
 plt.close(fig)
-SVG(filename='_tmp_fig.svg')
+SVG("_tmp_fig.svg")
 ```
 
 Here we see how the Euler solution compares to the exact solution obtained via diagonalization. Notice that using a large time step $h$ can cause the Euler solution to deviate significantly from the exact decay (and may even diverge if $|1 - \lambda h| \ge 1$).

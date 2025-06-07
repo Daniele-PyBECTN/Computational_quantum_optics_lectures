@@ -114,7 +114,7 @@ ax.set_xlabel("Step size $h$")
 ax.set_ylabel("Error of Finite Differences")
 
 # Show in Quarto
-plt.savefig('_tmp_fig.svg')
+plt.savefig("_tmp_fig.svg")
 plt.close(fig)
-SVG(filename='_tmp_fig.svg')
+SVG("_tmp_fig.svg")
 ```
