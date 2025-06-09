@@ -55,7 +55,7 @@ fig, ax = plt.subplots()
 
 ax.plot(w_list, spec.real)
 ax.set_xlabel("Frequency (MHz)")
-ax.set_ylabel(r"$S(ω)$ (arb. units)")
+ax.set_ylabel(r"$S(\omega)$ (arb. units)")
 
 # Show in Quarto
 plt.savefig("_tmp_fig.svg")
