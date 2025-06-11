@@ -421,8 +421,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -552,8 +564,8 @@ window.Quarto = {
 <span id="cb1-32"><a href="#cb1-32"></a>end <span class="op">=</span> time.time()</span>
 <span id="cb1-33"><a href="#cb1-33"></a><span class="bu">print</span>(<span class="st">"Numba time (ms): "</span>, <span class="fl">1e3</span><span class="op">*</span>(end <span class="op">-</span> start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumPy time (ms):  0.33974647521972656
-Numba time (ms):  0.2894401550292969</code></pre>
+<pre><code>NumPy time (ms):  0.3037452697753906
+Numba time (ms):  0.31113624572753906</code></pre>
 </div>
 </div>
 </div>
@@ -651,9 +663,9 @@ v = h(u),\quad u = g(x),\quad y = f(v),
 <span id="cb3-36"><a href="#cb3-36"></a>ax.set_ylabel(<span class="st">"Error of Finite Differences"</span>)</span>
 <span id="cb3-37"><a href="#cb3-37"></a></span>
 <span id="cb3-38"><a href="#cb3-38"></a><span class="co"># Show in Quarto</span></span>
-<span id="cb3-39"><a href="#cb3-39"></a>plt.savefig(<span class="st">'_tmp_fig.svg'</span>)</span>
+<span id="cb3-39"><a href="#cb3-39"></a>plt.savefig(<span class="st">"_tmp_fig.svg"</span>)</span>
 <span id="cb3-40"><a href="#cb3-40"></a>plt.close(fig)</span>
-<span id="cb3-41"><a href="#cb3-41"></a>SVG(filename<span class="op">=</span><span class="st">'_tmp_fig.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-41"><a href="#cb3-41"></a>SVG(<span class="st">"_tmp_fig.svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>AD error: 0.0
 FD minimum error: 7.006839553014288e-12</code></pre>

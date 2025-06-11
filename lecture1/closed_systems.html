@@ -404,8 +404,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -560,7 +572,7 @@ Qobj data =
 <span id="cb4-8"><a href="#cb4-8"></a></span>
 <span id="cb4-9"><a href="#cb4-9"></a>e_ops <span class="op">=</span> [H, a <span class="op">+</span> a.dag()]</span>
 <span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a>sol <span class="op">=</span> sesolve(H, psi0, tlist, e_ops)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-11"><a href="#cb4-11"></a>sol <span class="op">=</span> sesolve(H, psi0, tlist, e_ops<span class="op">=</span>e_ops)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -580,9 +592,9 @@ Qobj data =
 <span id="cb5-8"><a href="#cb5-8"></a>ax.set_ylim(<span class="va">None</span>, <span class="dv">16</span>)</span>
 <span id="cb5-9"><a href="#cb5-9"></a></span>
 <span id="cb5-10"><a href="#cb5-10"></a><span class="co"># Show in Quarto</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>plt.savefig(<span class="st">'_tmp_fig.svg'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11"></a>plt.savefig(<span class="st">"_tmp_fig.svg"</span>)</span>
 <span id="cb5-12"><a href="#cb5-12"></a>plt.close(fig)</span>
-<span id="cb5-13"><a href="#cb5-13"></a>SVG(filename<span class="op">=</span><span class="st">'_tmp_fig.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-13"><a href="#cb5-13"></a>SVG(<span class="st">"_tmp_fig.svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -645,9 +657,9 @@ t_0 = 0 \, , \quad t_1 = \frac{\pi}{\omega} \, , \quad t_2 = \frac{2 \pi}{\omega
 <span id="cb8-24"><a href="#cb8-24"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">120</span>)</span>
 <span id="cb8-25"><a href="#cb8-25"></a></span>
 <span id="cb8-26"><a href="#cb8-26"></a><span class="co"># Show in Quarto</span></span>
-<span id="cb8-27"><a href="#cb8-27"></a>plt.savefig(<span class="st">'_tmp_fig.svg'</span>)</span>
+<span id="cb8-27"><a href="#cb8-27"></a>plt.savefig(<span class="st">"_tmp_fig.svg"</span>)</span>
 <span id="cb8-28"><a href="#cb8-28"></a>plt.close(fig)</span>
-<span id="cb8-29"><a href="#cb8-29"></a>SVG(filename<span class="op">=</span><span class="st">'_tmp_fig.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-29"><a href="#cb8-29"></a>SVG(<span class="st">"_tmp_fig.svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -868,36 +880,36 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img40310f7e669541789483ad96d6e99115">
+  <img id="_anim_img5b6261340f2f4d73a20e15453d667a8e">
   <div class="anim-controls">
-    <input id="_anim_slider40310f7e669541789483ad96d6e99115" type="range" class="anim-slider" name="points" min="0" max="1" step="1" value="0" oninput="anim40310f7e669541789483ad96d6e99115.set_frame(parseInt(this.value));">
+    <input id="_anim_slider5b6261340f2f4d73a20e15453d667a8e" type="range" class="anim-slider" name="points" min="0" max="1" step="1" value="0" oninput="anim5b6261340f2f4d73a20e15453d667a8e.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim40310f7e669541789483ad96d6e99115.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim5b6261340f2f4d73a20e15453d667a8e.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim40310f7e669541789483ad96d6e99115.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim5b6261340f2f4d73a20e15453d667a8e.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim40310f7e669541789483ad96d6e99115.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim5b6261340f2f4d73a20e15453d667a8e.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim40310f7e669541789483ad96d6e99115.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim5b6261340f2f4d73a20e15453d667a8e.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim40310f7e669541789483ad96d6e99115.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim5b6261340f2f4d73a20e15453d667a8e.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim40310f7e669541789483ad96d6e99115.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim5b6261340f2f4d73a20e15453d667a8e.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim40310f7e669541789483ad96d6e99115.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim5b6261340f2f4d73a20e15453d667a8e.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim40310f7e669541789483ad96d6e99115.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim5b6261340f2f4d73a20e15453d667a8e.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim40310f7e669541789483ad96d6e99115.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim5b6261340f2f4d73a20e15453d667a8e.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select40310f7e669541789483ad96d6e99115" class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_40310f7e669541789483ad96d6e99115">
-      <label for="_anim_radio1_40310f7e669541789483ad96d6e99115">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_40310f7e669541789483ad96d6e99115" checked="">
-      <label for="_anim_radio2_40310f7e669541789483ad96d6e99115">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_40310f7e669541789483ad96d6e99115">
-      <label for="_anim_radio3_40310f7e669541789483ad96d6e99115">Reflect</label>
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select5b6261340f2f4d73a20e15453d667a8e" class="anim-state">
+      <input type="radio" name="state" value="once" id="_anim_radio1_5b6261340f2f4d73a20e15453d667a8e">
+      <label for="_anim_radio1_5b6261340f2f4d73a20e15453d667a8e">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_5b6261340f2f4d73a20e15453d667a8e" checked="">
+      <label for="_anim_radio2_5b6261340f2f4d73a20e15453d667a8e">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_5b6261340f2f4d73a20e15453d667a8e">
+      <label for="_anim_radio3_5b6261340f2f4d73a20e15453d667a8e">Reflect</label>
     </form>
   </div>
 </div>
@@ -907,9 +919,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img40310f7e669541789483ad96d6e99115";
-    var slider_id = "_anim_slider40310f7e669541789483ad96d6e99115";
-    var loop_select_id = "_anim_loop_select40310f7e669541789483ad96d6e99115";
+    var img_id = "_anim_img5b6261340f2f4d73a20e15453d667a8e";
+    var slider_id = "_anim_slider5b6261340f2f4d73a20e15453d667a8e";
+    var loop_select_id = "_anim_loop_select5b6261340f2f4d73a20e15453d667a8e";
     var frames = new Array(100);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuAAAAHACAYAAADjmt2iAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -47246,7 +47258,7 @@ AAAAAElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim40310f7e669541789483ad96d6e99115 = new Animation(frames, img_id, slider_id, 40.0,
+        anim5b6261340f2f4d73a20e15453d667a8e = new Animation(frames, img_id, slider_id, 40.0,
                                  loop_select_id);
     }, 0);
   })()
