@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Resonance Fluorescence and the Mollow Triplet – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>13&nbsp; Resonance Fluorescence and the Mollow Triplet – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,14 +93,14 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25bb2ec88b96ab004d13ad1d1924df4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9f1aa53ba50352805ba78653d73b174c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0f4dc18409c8cdf6ba22a617749a6af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -347,7 +347,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture3/mollow_triplet.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture3/mollow_triplet.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -367,74 +367,80 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/intro_heisenberg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to quantum mechanics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">About the course</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/closed_systems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/master_equation_qutip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -476,14 +482,14 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#physical-picture" id="toc-physical-picture" class="nav-link active" data-scroll-target="#physical-picture"><span class="header-section-number">12.1</span> Physical picture</a></li>
-  <li><a href="#analytic-spectrum" id="toc-analytic-spectrum" class="nav-link" data-scroll-target="#analytic-spectrum"><span class="header-section-number">12.2</span> Analytic spectrum</a></li>
-  <li><a href="#numerical-spectrum-in-qutip" id="toc-numerical-spectrum-in-qutip" class="nav-link" data-scroll-target="#numerical-spectrum-in-qutip"><span class="header-section-number">12.3</span> Numerical spectrum in QuTiP</a></li>
-  <li><a href="#sec-photon-stats" id="toc-sec-photon-stats" class="nav-link" data-scroll-target="#sec-photon-stats"><span class="header-section-number">12.4</span> Photon statistics and antibunching</a>
+  <li><a href="#physical-picture" id="toc-physical-picture" class="nav-link active" data-scroll-target="#physical-picture"><span class="header-section-number">13.1</span> Physical picture</a></li>
+  <li><a href="#analytic-spectrum" id="toc-analytic-spectrum" class="nav-link" data-scroll-target="#analytic-spectrum"><span class="header-section-number">13.2</span> Analytic spectrum</a></li>
+  <li><a href="#numerical-spectrum-in-qutip" id="toc-numerical-spectrum-in-qutip" class="nav-link" data-scroll-target="#numerical-spectrum-in-qutip"><span class="header-section-number">13.3</span> Numerical spectrum in QuTiP</a></li>
+  <li><a href="#sec-photon-stats" id="toc-sec-photon-stats" class="nav-link" data-scroll-target="#sec-photon-stats"><span class="header-section-number">13.4</span> Photon statistics and antibunching</a>
   <ul class="collapse">
-  <li><a href="#qutip-example" id="toc-qutip-example" class="nav-link" data-scroll-target="#qutip-example"><span class="header-section-number">12.4.1</span> QuTiP example</a></li>
+  <li><a href="#qutip-example" id="toc-qutip-example" class="nav-link" data-scroll-target="#qutip-example"><span class="header-section-number">13.4.1</span> QuTiP example</a></li>
   </ul></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">12.5</span> Discussion</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">13.5</span> Discussion</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture3/mollow_triplet.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture3/mollow_triplet.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
@@ -493,7 +499,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-mollow-triplet" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></h1>
+<h1 class="title"><span id="sec-mollow-triplet" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></h1>
 </div>
 
 
@@ -511,8 +517,8 @@ window.Quarto = {
 
 
 <p>When a <em>resonant</em> laser drives a two‑level atom strongly, its resonance‑fluorescence spectrum splits into <strong>three</strong> Lorentzian peaks: a central line at the laser frequency and two symmetric sidebands. Predicted by B.R.&nbsp;Mollow in 1969 (<span class="citation" data-cites="Mollow1969Power">Mollow (<a href="../bibliography.html#ref-Mollow1969Power" role="doc-biblioref">1969</a>)</span>) and first observed soon after, this <em>Mollow triplet</em> is a hallmark of light–matter interaction in the strong‑drive (dressed‑state) regime.</p>
-<section id="physical-picture" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="physical-picture"><span class="header-section-number">12.1</span> Physical picture</h2>
+<section id="physical-picture" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="physical-picture"><span class="header-section-number">13.1</span> Physical picture</h2>
 <p>Consider a two‑level atom with energy separation <span class="math inline">\(\omega_0\)</span> driven by a coherent laser at frequency <span class="math inline">\(\omega_L\)</span>.</p>
 <p><span class="math display">\[
 H = \frac{\omega_0}{2}\,\hat{\sigma}_z + \frac{\Omega}{2}\,(\hat{\sigma}_+e^{-i\omega_L t} + \hat{\sigma}_-e^{+i\omega_L t}).
@@ -523,8 +529,8 @@ H = \frac{\Delta}{2}\,\hat{\sigma}_z + \frac{\Omega}{2}\,(\hat{\sigma}_+ + \hat{
 \]</span></p>
 <p>with detuning <span class="math inline">\(\Delta = \omega_0 - \omega_L\)</span> and on‑resonance Rabi frequency <span class="math inline">\(\Omega = \mu E_0/\hbar\)</span>. This semiclassical model, combined with a Lindblad dissipator for spontaneous emission at rate <span class="math inline">\(\gamma\)</span>, fully captures the triplet.</p>
 </section>
-<section id="analytic-spectrum" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="analytic-spectrum"><span class="header-section-number">12.2</span> Analytic spectrum</h2>
+<section id="analytic-spectrum" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="analytic-spectrum"><span class="header-section-number">13.2</span> Analytic spectrum</h2>
 <p>In order to analyse the properties of the emitted light, we can compute the <strong>power spectrum</strong> of the scattered photons, defined as the Fourier transform of the correlation function <span class="math inline">\(\langle \hat{E}^{(-)}(t) \hat{E}^{(+)}(0) \rangle\)</span>, where <span class="math inline">\(\hat{E}^{(-)}\)</span> and <span class="math inline">\(\hat{E}^{(+)}\)</span> are the negative and positive frequency parts of the electric field operator. In the rotating frame, these operators are related to the atom’s raising and lowering operators <span class="math inline">\(\hat{\sigma}_+\)</span> and <span class="math inline">\(\hat{\sigma}_-\)</span> as <span class="citation" data-cites="Walls2008Quantum">(<a href="../bibliography.html#ref-Walls2008Quantum" role="doc-biblioref">Walls and Milburn 2008</a>)</span></p>
 <p><span class="math display">\[
 \hat{E}^{(-)}(t) \propto \hat{\sigma}_+(t) \quad \text{and} \quad \hat{E}^{(+)}(t) \propto \hat{\sigma}_-(t) \, .
@@ -532,7 +538,7 @@ H = \frac{\Delta}{2}\,\hat{\sigma}_z + \frac{\Omega}{2}\,(\hat{\sigma}_+ + \hat{
 <p>The power spectrum is then given by</p>
 <p><span id="eq-power-spectrum"><span class="math display">\[
 S(\omega) = \int_{-\infty}^{\infty} e^{i\omega t} \langle \hat{E}^{(-)}(t) \hat{E}^{(+)}(0) \rangle dt \, .
-\tag{12.1}\]</span></span></p>
+\tag{13.1}\]</span></span></p>
 <p>Treating spontaneous emission at rate <span class="math inline">\(\gamma\)</span> with a Lindblad term <span class="math inline">\(\hat{L} = \sqrt{\gamma},\hat{\sigma}_-\)</span>, the power spectrum of scattered photons is <span class="citation" data-cites="Walls2008Quantum">(<a href="../bibliography.html#ref-Walls2008Quantum" role="doc-biblioref">Walls and Milburn 2008</a>)</span></p>
 <p><span class="math display">\[
 S(\omega) \propto \frac{\tfrac{\gamma}{2}}{(\omega-\omega_L)^2 + (\tfrac{\gamma}{2})^2}
@@ -541,9 +547,9 @@ S(\omega) \propto \frac{\tfrac{\gamma}{2}}{(\omega-\omega_L)^2 + (\tfrac{\gamma}
 \]</span></p>
 <p>with a central peak at <span class="math inline">\(\omega_L\)</span> and two sidebands at <span class="math inline">\(\omega_L \pm \Omega_R\)</span>, where <span class="math inline">\(\Omega_R = \sqrt{\Delta^2 + \Omega^2}\)</span> is the Rabi frequency in the rotating frame.</p>
 </section>
-<section id="numerical-spectrum-in-qutip" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="numerical-spectrum-in-qutip"><span class="header-section-number">12.3</span> Numerical spectrum in QuTiP</h2>
-<p>Below is a minimal QuTiP script that reproduces the triplet for a resonantly driven atom (<span class="math inline">\(\Delta = 0\)</span>). The code computes the emission spectrum <span class="math inline">\(S(\omega)\)</span> in <a href="#eq-power-spectrum" class="quarto-xref">Equation&nbsp;<span>12.1</span></a> by using the <code>spectrum</code> function to compute the Fourier transform of the correlation function of the emission operators.</p>
+<section id="numerical-spectrum-in-qutip" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="numerical-spectrum-in-qutip"><span class="header-section-number">13.3</span> Numerical spectrum in QuTiP</h2>
+<p>Below is a minimal QuTiP script that reproduces the triplet for a resonantly driven atom (<span class="math inline">\(\Delta = 0\)</span>). The code computes the emission spectrum <span class="math inline">\(S(\omega)\)</span> in <a href="#eq-power-spectrum" class="quarto-xref">Equation&nbsp;<span>13.1</span></a> by using the <code>spectrum</code> function to compute the Fourier transform of the correlation function of the emission operators.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture3/mollow_triplet.qmd" data-notebook-title="Resonance Fluorescence and the Mollow Triplet" data-notebook-cellid="cell-mollow-spectrum">
 <div id="cell-mollow-spectrum" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -588,17 +594,17 @@ S(\omega) \propto \frac{\tfrac{\gamma}{2}}{(\omega-\omega_L)^2 + (\tfrac{\gamma}
 </div>
 <p>Running the code with <span class="math inline">\(\Omega = 5,\gamma\)</span> reproduces the canonical spectrum: a narrow central line and two broader sidebands at <span class="math inline">\(\pm\Omega\)</span>.</p>
 </section>
-<section id="sec-photon-stats" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="sec-photon-stats"><span class="header-section-number">12.4</span> Photon statistics and antibunching</h2>
+<section id="sec-photon-stats" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="sec-photon-stats"><span class="header-section-number">13.4</span> Photon statistics and antibunching</h2>
 <p>Given the emission spectrum, we may ask if the emitted light is <em>classical</em> or <em>quantum</em>. The answer can be found in the <strong>photon statistics</strong> of the resonance fluorescence, which can be probed by measuring the <strong>second‑order correlation function</strong></p>
 <p><span id="eq-g2-def"><span class="math display">\[
 g^{(2)}(\tau) \;=\; \frac{\langle\hat{E}^{(-)}(0)\,\hat{E}^{(-)}(\tau)\,\hat{E}^{(+)}(\tau)\,\hat{E}^{(+)}(0)\rangle}{\langle\hat{E}^{(-)}\hat{E}^{(+)}\rangle^{2}} \;\propto\; \frac{\langle\sigma^\dagger(0)\,\sigma^\dagger(\tau)\,\sigma^-(\tau)\,\sigma^-(0)\rangle}{\langle\sigma^\dagger\sigma^-\rangle^{2}} .
-\tag{12.2}\]</span></span></p>
+\tag{13.2}\]</span></span></p>
 <p>where <span class="math inline">\(\hat{E}^{(+)}\)</span> and <span class="math inline">\(\hat{E}^{(-)}\)</span> are the positive and negative frequency parts of the electric field operator, and <span class="math inline">\(\sigma^\dagger\)</span>, <span class="math inline">\(\sigma^-\)</span> are the raising and lowering operators of the two‑level atom. The quantity <span class="math inline">\(g^{(2)}(\tau)\)</span> measures the probability of detecting one photon at time <span class="math inline">\(0\)</span> and another at time <span class="math inline">\(\tau\)</span>, normalised by the square of the average number of photons emitted.</p>
 <p>For <em>classical</em> light <span class="math inline">\(g^{(2)}(0) \ge 1\)</span> (photon bunching), whereas a single quantum emitter produces <strong>antibunching</strong> with <span class="math inline">\(g^{(2)}(0)=0\)</span>: once a photon is emitted, the atom is in its ground state and cannot emit another immediately, so the probability of detecting two photons with zero delay vanishes.</p>
 <p>Under strong driving <span class="math inline">\(g^{(2)}(\tau)\)</span> also displays damped Rabi oscillations at <span class="math inline">\(\Omega_R\)</span>—a direct time‑domain analogue of the sidebands.</p>
-<section id="qutip-example" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="qutip-example"><span class="header-section-number">12.4.1</span> QuTiP example</h3>
+<section id="qutip-example" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="qutip-example"><span class="header-section-number">13.4.1</span> QuTiP example</h3>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture3/mollow_triplet.qmd" data-notebook-title="Resonance Fluorescence and the Mollow Triplet" data-notebook-cellid="cell-g2-corr">
 <div id="cell-g2-corr" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>tau_list <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span> <span class="op">/</span> gamma, <span class="dv">400</span>)  <span class="co"># time delays</span></span>
@@ -638,8 +644,8 @@ g^{(2)}(\tau) \;=\; \frac{\langle\hat{E}^{(-)}(0)\,\hat{E}^{(-)}(\tau)\,\hat{E}^
 </div>
 </section>
 </section>
-<section id="discussion" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="discussion"><span class="header-section-number">12.5</span> Discussion</h2>
+<section id="discussion" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="discussion"><span class="header-section-number">13.5</span> Discussion</h2>
 <ul>
 <li><strong>Antibunching ⇒</strong> unambiguously indicates a single quantum emitter or sub‑Poissonian light.</li>
 <li><strong>Rabi oscillations in <span class="math inline">\(g^{(2)}\)</span> ⇒</strong> time‑domain fingerprint of the dressed‑state splitting that generates the Mollow sidebands.</li>
@@ -1076,12 +1082,12 @@ Walther, H. 1998. <span>“<span class="nocase">Single atom experiments in cavit
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lecture2/jaynes_cummings.html" class="pagination-link" aria-label="The Jaynes–Cummings model: The Prove of Field Quantization">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lecture3/jaynes_cummings_spectrum.html" class="pagination-link" aria-label="The Emission Spectrum of the Jaynes–Cummings Model">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

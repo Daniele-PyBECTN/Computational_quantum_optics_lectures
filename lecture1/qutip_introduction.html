@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Introduction to QuTiP – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>9&nbsp; Introduction to QuTiP – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,14 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25bb2ec88b96ab004d13ad1d1924df4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9f1aa53ba50352805ba78653d73b174c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0f4dc18409c8cdf6ba22a617749a6af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -327,7 +327,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/qutip_introduction.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/qutip_introduction.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -347,74 +347,80 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/intro_heisenberg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to quantum mechanics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">About the course</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/closed_systems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/master_equation_qutip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -456,24 +462,24 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#quantum-operators" id="toc-quantum-operators" class="nav-link active" data-scroll-target="#quantum-operators"><span class="header-section-number">8.1</span> Quantum Operators</a>
+  <li><a href="#quantum-operators" id="toc-quantum-operators" class="nav-link active" data-scroll-target="#quantum-operators"><span class="header-section-number">9.1</span> Quantum Operators</a>
   <ul class="collapse">
-  <li><a href="#creating-operators" id="toc-creating-operators" class="nav-link" data-scroll-target="#creating-operators"><span class="header-section-number">8.1.1</span> Creating Operators</a></li>
-  <li><a href="#operator-functions-and-operations" id="toc-operator-functions-and-operations" class="nav-link" data-scroll-target="#operator-functions-and-operations"><span class="header-section-number">8.1.2</span> Operator Functions and Operations</a></li>
+  <li><a href="#creating-operators" id="toc-creating-operators" class="nav-link" data-scroll-target="#creating-operators"><span class="header-section-number">9.1.1</span> Creating Operators</a></li>
+  <li><a href="#operator-functions-and-operations" id="toc-operator-functions-and-operations" class="nav-link" data-scroll-target="#operator-functions-and-operations"><span class="header-section-number">9.1.2</span> Operator Functions and Operations</a></li>
   </ul></li>
-  <li><a href="#quantum-states" id="toc-quantum-states" class="nav-link" data-scroll-target="#quantum-states"><span class="header-section-number">8.2</span> Quantum States</a>
+  <li><a href="#quantum-states" id="toc-quantum-states" class="nav-link" data-scroll-target="#quantum-states"><span class="header-section-number">9.2</span> Quantum States</a>
   <ul class="collapse">
-  <li><a href="#fock-states" id="toc-fock-states" class="nav-link" data-scroll-target="#fock-states"><span class="header-section-number">8.2.1</span> Fock States</a></li>
-  <li><a href="#superposition-states" id="toc-superposition-states" class="nav-link" data-scroll-target="#superposition-states"><span class="header-section-number">8.2.2</span> Superposition States</a></li>
-  <li><a href="#coherent-states" id="toc-coherent-states" class="nav-link" data-scroll-target="#coherent-states"><span class="header-section-number">8.2.3</span> Coherent States</a></li>
-  <li><a href="#spin-states" id="toc-spin-states" class="nav-link" data-scroll-target="#spin-states"><span class="header-section-number">8.2.4</span> Spin States</a></li>
-  <li><a href="#density-matrices" id="toc-density-matrices" class="nav-link" data-scroll-target="#density-matrices"><span class="header-section-number">8.2.5</span> Density Matrices</a></li>
-  <li><a href="#partial-trace" id="toc-partial-trace" class="nav-link" data-scroll-target="#partial-trace"><span class="header-section-number">8.2.6</span> Partial Trace</a></li>
+  <li><a href="#fock-states" id="toc-fock-states" class="nav-link" data-scroll-target="#fock-states"><span class="header-section-number">9.2.1</span> Fock States</a></li>
+  <li><a href="#superposition-states" id="toc-superposition-states" class="nav-link" data-scroll-target="#superposition-states"><span class="header-section-number">9.2.2</span> Superposition States</a></li>
+  <li><a href="#coherent-states" id="toc-coherent-states" class="nav-link" data-scroll-target="#coherent-states"><span class="header-section-number">9.2.3</span> Coherent States</a></li>
+  <li><a href="#spin-states" id="toc-spin-states" class="nav-link" data-scroll-target="#spin-states"><span class="header-section-number">9.2.4</span> Spin States</a></li>
+  <li><a href="#density-matrices" id="toc-density-matrices" class="nav-link" data-scroll-target="#density-matrices"><span class="header-section-number">9.2.5</span> Density Matrices</a></li>
+  <li><a href="#partial-trace" id="toc-partial-trace" class="nav-link" data-scroll-target="#partial-trace"><span class="header-section-number">9.2.6</span> Partial Trace</a></li>
   </ul></li>
-  <li><a href="#eigenstates-and-eigenvalues" id="toc-eigenstates-and-eigenvalues" class="nav-link" data-scroll-target="#eigenstates-and-eigenvalues"><span class="header-section-number">8.3</span> Eigenstates and Eigenvalues</a></li>
-  <li><a href="#computing-expectation-values" id="toc-computing-expectation-values" class="nav-link" data-scroll-target="#computing-expectation-values"><span class="header-section-number">8.4</span> Computing Expectation Values</a></li>
-  <li><a href="#a-complete-example-the-quantum-harmonic-oscillator" id="toc-a-complete-example-the-quantum-harmonic-oscillator" class="nav-link" data-scroll-target="#a-complete-example-the-quantum-harmonic-oscillator"><span class="header-section-number">8.5</span> A complete example: the Quantum Harmonic Oscillator</a></li>
-  <li><a href="#passing-in-the-position-basis" id="toc-passing-in-the-position-basis" class="nav-link" data-scroll-target="#passing-in-the-position-basis"><span class="header-section-number">8.6</span> Passing in the position basis</a></li>
+  <li><a href="#eigenstates-and-eigenvalues" id="toc-eigenstates-and-eigenvalues" class="nav-link" data-scroll-target="#eigenstates-and-eigenvalues"><span class="header-section-number">9.3</span> Eigenstates and Eigenvalues</a></li>
+  <li><a href="#computing-expectation-values" id="toc-computing-expectation-values" class="nav-link" data-scroll-target="#computing-expectation-values"><span class="header-section-number">9.4</span> Computing Expectation Values</a></li>
+  <li><a href="#a-complete-example-the-quantum-harmonic-oscillator" id="toc-a-complete-example-the-quantum-harmonic-oscillator" class="nav-link" data-scroll-target="#a-complete-example-the-quantum-harmonic-oscillator"><span class="header-section-number">9.5</span> A complete example: the Quantum Harmonic Oscillator</a></li>
+  <li><a href="#passing-in-the-position-basis" id="toc-passing-in-the-position-basis" class="nav-link" data-scroll-target="#passing-in-the-position-basis"><span class="header-section-number">9.6</span> Passing in the position basis</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/qutip_introduction.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/qutip_introduction.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
@@ -483,7 +489,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></h1>
 </div>
 
 
@@ -527,12 +533,12 @@ Numpy Version:      2.2.6
 Scipy Version:      1.15.3
 Cython Version:     3.1.1
 Matplotlib Version: 3.10.3
-Python Version:     3.13.3
+Python Version:     3.13.4
 Number of CPUs:     4
 BLAS Info:          Generic
 INTEL MKL Ext:      None
 Platform Info:      Linux (x86_64)
-Installation path:  /opt/hostedtoolcache/Python/3.13.3/x64/lib/python3.13/site-packages/qutip
+Installation path:  /opt/hostedtoolcache/Python/3.13.4/x64/lib/python3.13/site-packages/qutip
 
 Installed QuTiP family packages
 -------------------------------
@@ -546,11 +552,11 @@ For your convenience a bibtex reference can be easily generated using `qutip.cit
 </div>
 </div>
 </div>
-<section id="quantum-operators" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="quantum-operators"><span class="header-section-number">8.1</span> Quantum Operators</h2>
+<section id="quantum-operators" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="quantum-operators"><span class="header-section-number">9.1</span> Quantum Operators</h2>
 <p>Quantum operators play a crucial role in the formulation of quantum mechanics, representing physical observables and operations on quantum states. In QuTiP, operators are represented as <code>Qobj</code> instances, just like quantum states. This section introduces the creation and manipulation of quantum operators.</p>
-<section id="creating-operators" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="creating-operators"><span class="header-section-number">8.1.1</span> Creating Operators</h3>
+<section id="creating-operators" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="creating-operators"><span class="header-section-number">9.1.1</span> Creating Operators</h3>
 <p>Operators in quantum mechanics can represent measurements, such as position or momentum, and transformations, such as rotation. Let’s see how we can define some common operators in QuTiP.</p>
 <section id="the-annihilation-operator-of-the-quantum-harmonic-oscillator" class="level4">
 <h4 class="anchored" data-anchor-id="the-annihilation-operator-of-the-quantum-harmonic-oscillator">The Annihilation Operator of the Quantum Harmonic oscillator</h4>
@@ -649,8 +655,8 @@ Qobj data =
 </div>
 </section>
 </section>
-<section id="operator-functions-and-operations" class="level3" data-number="8.1.2">
-<h3 data-number="8.1.2" class="anchored" data-anchor-id="operator-functions-and-operations"><span class="header-section-number">8.1.2</span> Operator Functions and Operations</h3>
+<section id="operator-functions-and-operations" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="operator-functions-and-operations"><span class="header-section-number">9.1.2</span> Operator Functions and Operations</h3>
 <p>QuTiP supports various operations on operators, including addition, multiplication (both scalar and matrix), and the commutator. These operations are essential for constructing Hamiltonians, calculating observables, and more.</p>
 <section id="example-commutator-of-pauli-matrices" class="level4">
 <h4 class="anchored" data-anchor-id="example-commutator-of-pauli-matrices">Example: Commutator of Pauli Matrices</h4>
@@ -678,15 +684,15 @@ Qobj data =
 </section>
 </section>
 </section>
-<section id="quantum-states" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="quantum-states"><span class="header-section-number">8.2</span> Quantum States</h2>
+<section id="quantum-states" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="quantum-states"><span class="header-section-number">9.2</span> Quantum States</h2>
 <p>Quantum states describe the state of a quantum system. In QuTiP, states are represented again as <code>Qobj</code> instances. This section focuses on the representation and manipulation of quantum states.</p>
-<section id="fock-states" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="fock-states"><span class="header-section-number">8.2.1</span> Fock States</h3>
+<section id="fock-states" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="fock-states"><span class="header-section-number">9.2.1</span> Fock States</h3>
 <p>The most basic quantum states are the fock states, often denoted as <span class="math inline">\(|n\rangle\)</span> (with <span class="math inline">\(n \in \mathbb{N}\)</span>). Let’s see how we can create these in QuTiP.</p>
 </section>
-<section id="superposition-states" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="superposition-states"><span class="header-section-number">8.2.2</span> Superposition States</h3>
+<section id="superposition-states" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="superposition-states"><span class="header-section-number">9.2.2</span> Superposition States</h3>
 <p>Quantum mechanics allows particles to be in a superposition of states. Let’s create a superposition state.</p>
 <p><span class="math display">\[
 \vert \psi \rangle = \frac{1}{\sqrt{2}} \left( \vert 0 \rangle + \vert 1 \rangle \right)
@@ -718,8 +724,8 @@ Qobj data =
 </div>
 </div>
 </section>
-<section id="coherent-states" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="coherent-states"><span class="header-section-number">8.2.3</span> Coherent States</h3>
+<section id="coherent-states" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="coherent-states"><span class="header-section-number">9.2.3</span> Coherent States</h3>
 <p>Coherent states in QuTiP represent quantum states closest to classical waves, defined as <span class="math display">\[
 |\alpha\rangle = e^{-|\alpha|^2/2} \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n!}} |n\rangle \, ,
 \]</span></p>
@@ -769,8 +775,8 @@ Qobj data =
 </div>
 </div>
 </section>
-<section id="spin-states" class="level3" data-number="8.2.4">
-<h3 data-number="8.2.4" class="anchored" data-anchor-id="spin-states"><span class="header-section-number">8.2.4</span> Spin States</h3>
+<section id="spin-states" class="level3" data-number="9.2.4">
+<h3 data-number="9.2.4" class="anchored" data-anchor-id="spin-states"><span class="header-section-number">9.2.4</span> Spin States</h3>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-spin-state">
 <div id="cell-spin-state" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>qutip.spin_state(<span class="fl">0.5</span>, <span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -783,8 +789,8 @@ Qobj data =
 </div>
 </div>
 </section>
-<section id="density-matrices" class="level3" data-number="8.2.5">
-<h3 data-number="8.2.5" class="anchored" data-anchor-id="density-matrices"><span class="header-section-number">8.2.5</span> Density Matrices</h3>
+<section id="density-matrices" class="level3" data-number="9.2.5">
+<h3 data-number="9.2.5" class="anchored" data-anchor-id="density-matrices"><span class="header-section-number">9.2.5</span> Density Matrices</h3>
 <p>Quantum states can also be represented using density matrices, which are useful for describing mixed states.</p>
 <section id="creating-a-density-matrix" class="level4">
 <h4 class="anchored" data-anchor-id="creating-a-density-matrix">Creating a Density Matrix</h4>
@@ -814,8 +820,8 @@ Qobj data =
 </div>
 </section>
 </section>
-<section id="partial-trace" class="level3" data-number="8.2.6">
-<h3 data-number="8.2.6" class="anchored" data-anchor-id="partial-trace"><span class="header-section-number">8.2.6</span> Partial Trace</h3>
+<section id="partial-trace" class="level3" data-number="9.2.6">
+<h3 data-number="9.2.6" class="anchored" data-anchor-id="partial-trace"><span class="header-section-number">9.2.6</span> Partial Trace</h3>
 <p>The <strong>partial trace</strong> over a subsystem, say <span class="math inline">\(B\)</span>, of a composite system <span class="math inline">\(AB\)</span>, mathematically expresses as “tracing out” <span class="math inline">\(B\)</span>, leaving the reduced state of <span class="math inline">\(A\)</span>. For a bipartite state <span class="math inline">\(\rho_{AB}\)</span>, the partial trace over <span class="math inline">\(B\)</span> is:</p>
 <p><span class="math display">\[
 \text{Tr}_B(\hat{\rho}_{AB}) = \sum_{i \in \mathcal{H}_B} \langle i| \hat{\rho}_{AB} |i\rangle
@@ -914,8 +920,8 @@ Qobj data =
 </div>
 </section>
 </section>
-<section id="eigenstates-and-eigenvalues" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="eigenstates-and-eigenvalues"><span class="header-section-number">8.3</span> Eigenstates and Eigenvalues</h2>
+<section id="eigenstates-and-eigenvalues" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="eigenstates-and-eigenvalues"><span class="header-section-number">9.3</span> Eigenstates and Eigenvalues</h2>
 <p>The eigenstates and eigenvalues of a system or an operator provide crucial insights into its properties. Let’s explore how to calculate these in QuTiP.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/qutip_introduction.qmd" data-notebook-title="Introduction to QuTiP" data-notebook-cellid="cell-eigenstates-eigenvalues">
 <div id="eigenstates-eigenvalues" class="cell" data-execution_count="18">
@@ -952,8 +958,8 @@ Eigenstates of Sigma Z:</code></pre>
 </div>
 </div>
 </section>
-<section id="computing-expectation-values" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="computing-expectation-values"><span class="header-section-number">8.4</span> Computing Expectation Values</h2>
+<section id="computing-expectation-values" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="computing-expectation-values"><span class="header-section-number">9.4</span> Computing Expectation Values</h2>
 <p>The expectation value of an operator provides insight into the average outcome of a quantum measurement. For a quantum state <span class="math inline">\(|\psi\rangle\)</span> and an operator <span class="math inline">\(\hat{O}\)</span>, the expectation value is given by:</p>
 <p><span class="math display">\[
 \langle \hat{O} \rangle = \langle\psi| \hat{O} |\psi\rangle
@@ -993,8 +999,8 @@ The squared modulus of alpha is:</code></pre>
 </div>
 </div>
 </section>
-<section id="a-complete-example-the-quantum-harmonic-oscillator" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="a-complete-example-the-quantum-harmonic-oscillator"><span class="header-section-number">8.5</span> A complete example: the Quantum Harmonic Oscillator</h2>
+<section id="a-complete-example-the-quantum-harmonic-oscillator" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="a-complete-example-the-quantum-harmonic-oscillator"><span class="header-section-number">9.5</span> A complete example: the Quantum Harmonic Oscillator</h2>
 <p>In <a href="../appendices/quantum-harmonic-oscillator.html" class="quarto-xref"><span>Appendix A</span></a> we have already defined the quantum harmonic oscillator, which is a fundamental model in quantum mechanics. In the energy eigenbasis, the quantum harmonic oscillator is described by the Hamiltonian</p>
 <p><span class="math display">\[
 \hat{H} = \omega \hat{a}^\dagger \hat{a} \, ,
@@ -1024,8 +1030,8 @@ Qobj data =
 </div>
 </div>
 </section>
-<section id="passing-in-the-position-basis" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="passing-in-the-position-basis"><span class="header-section-number">8.6</span> Passing in the position basis</h2>
+<section id="passing-in-the-position-basis" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="passing-in-the-position-basis"><span class="header-section-number">9.6</span> Passing in the position basis</h2>
 <p>From the classical point of view, we are used to describe the harmonic oscillator in terms of position and momentum. In quantum mechanics, we can also express the system in terms of the position and momentum operators, which are related to the annihilation and creation operators as follows (<span class="math inline">\(\hbar = 1\)</span>):</p>
 <p><span class="math display">\[\begin{align*}
 \hat{x} &amp;= \frac{1}{\sqrt{2 m \omega}} \left( \hat{a} + \hat{a}^\dagger \right) \, , \\
@@ -1522,12 +1528,12 @@ Qobj data =
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lecture1/quantum_objects_numpy.html" class="pagination-link" aria-label="Representing Quantum States and Operators with NumPy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lecture1/closed_systems.html" class="pagination-link" aria-label="Closed Quantum Systems in QuTiP: The Schrödinger equation">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

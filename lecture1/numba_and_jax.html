@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Speeding up Python for Linear Algebra Tasks – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>5&nbsp; Speeding up Python for Linear Algebra Tasks – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,14 +93,14 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25bb2ec88b96ab004d13ad1d1924df4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9f1aa53ba50352805ba78653d73b174c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0f4dc18409c8cdf6ba22a617749a6af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -347,7 +347,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/numba_and_jax.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/numba_and_jax.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -367,74 +367,80 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/intro_heisenberg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to quantum mechanics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">About the course</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/closed_systems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/master_equation_qutip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -476,13 +482,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#numba-just-in-time-compilation" id="toc-numba-just-in-time-compilation" class="nav-link active" data-scroll-target="#numba-just-in-time-compilation"><span class="header-section-number">4.1</span> Numba: Just-In-Time Compilation</a></li>
-  <li><a href="#jax-xla-compilation-and-automatic-differentiation" id="toc-jax-xla-compilation-and-automatic-differentiation" class="nav-link" data-scroll-target="#jax-xla-compilation-and-automatic-differentiation"><span class="header-section-number">4.2</span> JAX: XLA Compilation and Automatic Differentiation</a>
+  <li><a href="#numba-just-in-time-compilation" id="toc-numba-just-in-time-compilation" class="nav-link active" data-scroll-target="#numba-just-in-time-compilation"><span class="header-section-number">5.1</span> Numba: Just-In-Time Compilation</a></li>
+  <li><a href="#jax-xla-compilation-and-automatic-differentiation" id="toc-jax-xla-compilation-and-automatic-differentiation" class="nav-link" data-scroll-target="#jax-xla-compilation-and-automatic-differentiation"><span class="header-section-number">5.2</span> JAX: XLA Compilation and Automatic Differentiation</a>
   <ul class="collapse">
-  <li><a href="#a-quick-overview-of-automatic-differentiation" id="toc-a-quick-overview-of-automatic-differentiation" class="nav-link" data-scroll-target="#a-quick-overview-of-automatic-differentiation"><span class="header-section-number">4.2.1</span> A Quick Overview of Automatic Differentiation</a></li>
+  <li><a href="#a-quick-overview-of-automatic-differentiation" id="toc-a-quick-overview-of-automatic-differentiation" class="nav-link" data-scroll-target="#a-quick-overview-of-automatic-differentiation"><span class="header-section-number">5.2.1</span> A Quick Overview of Automatic Differentiation</a></li>
   </ul></li>
-  <li><a href="#why-computing-gradients-is-important-in-quantum-physics" id="toc-why-computing-gradients-is-important-in-quantum-physics" class="nav-link" data-scroll-target="#why-computing-gradients-is-important-in-quantum-physics"><span class="header-section-number">4.3</span> Why Computing Gradients Is Important in Quantum Physics</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.4</span> Summary</a></li>
+  <li><a href="#why-computing-gradients-is-important-in-quantum-physics" id="toc-why-computing-gradients-is-important-in-quantum-physics" class="nav-link" data-scroll-target="#why-computing-gradients-is-important-in-quantum-physics"><span class="header-section-number">5.3</span> Why Computing Gradients Is Important in Quantum Physics</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.4</span> Summary</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/numba_and_jax.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/numba_and_jax.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
@@ -492,7 +498,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></h1>
 </div>
 
 
@@ -510,8 +516,8 @@ window.Quarto = {
 
 
 <p>Python is easy to read, but pure-Python loops can be slow if you do not leverage optimized libraries (BLAS, LAPACK). Here we explore two tools—Numba and JAX—to accelerate common linear algebra operations.</p>
-<section id="numba-just-in-time-compilation" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="numba-just-in-time-compilation"><span class="header-section-number">4.1</span> Numba: Just-In-Time Compilation</h2>
+<section id="numba-just-in-time-compilation" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="numba-just-in-time-compilation"><span class="header-section-number">5.1</span> Numba: Just-In-Time Compilation</h2>
 <p>Numba uses LLVM to compile Python functions to machine code at runtime. Key points:</p>
 <ul>
 <li><strong>Decorators</strong>: Use <code>@njit</code> (nopython mode) for best speed.<br>
@@ -564,19 +570,19 @@ window.Quarto = {
 <span id="cb1-32"><a href="#cb1-32"></a>end <span class="op">=</span> time.time()</span>
 <span id="cb1-33"><a href="#cb1-33"></a><span class="bu">print</span>(<span class="st">"Numba time (ms): "</span>, <span class="fl">1e3</span><span class="op">*</span>(end <span class="op">-</span> start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumPy time (ms):  0.3037452697753906
-Numba time (ms):  0.31113624572753906</code></pre>
+<pre><code>NumPy time (ms):  0.3027915954589844
+Numba time (ms):  0.29087066650390625</code></pre>
 </div>
 </div>
 </div>
 <p>In practice, Numba can speed up this looped version by 10×–100× compared to pure Python, approaching the speed of NumPy’s optimized routines. The reader is encouraged to try the code without the <code>@njit</code> decorator to see the difference in performance.</p>
 </section>
-<section id="jax-xla-compilation-and-automatic-differentiation" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="jax-xla-compilation-and-automatic-differentiation"><span class="header-section-number">4.2</span> JAX: XLA Compilation and Automatic Differentiation</h2>
+<section id="jax-xla-compilation-and-automatic-differentiation" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="jax-xla-compilation-and-automatic-differentiation"><span class="header-section-number">5.2</span> JAX: XLA Compilation and Automatic Differentiation</h2>
 <p>JAX is a high-performance library from Google Research that extends NumPy with just-in-time compilation and automatic differentiation. It - Compiles array operations via XLA, fusing kernels and reducing Python overhead. - Supports GPU and TPU backends with minimal code changes. - Provides <code>grad</code> for gradients of scalar functions, enabling optimisation and machine-learning tasks. - Offers advanced transformations like <code>vmap</code> (vectorisation) and <code>pmap</code> (parallelism on multiple devices).</p>
 <p>JAX is widely used in deep learning frameworks (e.g.&nbsp;Flax, Haiku), reinforcement learning, and scientific research (including physics simulations), thanks to its blend of speed and flexibility.</p>
-<section id="a-quick-overview-of-automatic-differentiation" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="a-quick-overview-of-automatic-differentiation"><span class="header-section-number">4.2.1</span> A Quick Overview of Automatic Differentiation</h3>
+<section id="a-quick-overview-of-automatic-differentiation" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="a-quick-overview-of-automatic-differentiation"><span class="header-section-number">5.2.1</span> A Quick Overview of Automatic Differentiation</h3>
 <p>Automatic differentiation (AD) is a family of techniques to compute exact derivatives of functions defined by computer programs. Unlike symbolic differentiation (which can lead to expression swell) or numerical finite-difference (which suffers from truncation and round-off error), AD exploits the fact that any complex function is ultimately composed of a finite set of elementary operations (addition, multiplication, sin, exp, …) whose derivatives are known exactly.</p>
 <section id="limitations-of-finite-differences" class="level4">
 <h4 class="anchored" data-anchor-id="limitations-of-finite-differences">Limitations of Finite Differences</h4>
@@ -683,8 +689,8 @@ FD minimum error: 7.006839553014288e-12</code></pre>
 </section>
 </section>
 </section>
-<section id="why-computing-gradients-is-important-in-quantum-physics" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="why-computing-gradients-is-important-in-quantum-physics"><span class="header-section-number">4.3</span> Why Computing Gradients Is Important in Quantum Physics</h2>
+<section id="why-computing-gradients-is-important-in-quantum-physics" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="why-computing-gradients-is-important-in-quantum-physics"><span class="header-section-number">5.3</span> Why Computing Gradients Is Important in Quantum Physics</h2>
 <p>In quantum physics, many problems reduce to optimizing parameters in a model or a control protocol. Computing gradients of a cost function with respect to these parameters is essential for efficient and reliable optimization.</p>
 <ol type="1">
 <li><p><strong>Variational quantum algorithms</strong>: In methods like the variational quantum eigensolver (VQE)<span class="citation" data-cites="Peruzzo2014A">(<a href="../bibliography.html#ref-Peruzzo2014A" role="doc-biblioref">Peruzzo et al. 2014</a>)</span>, a parametrised quantum state <span class="math inline">\(|\psi(\boldsymbol{\theta})\rangle\)</span> depends on parameters <span class="math inline">\(\boldsymbol{\theta}=(\theta_1,\dots,\theta_n)\)</span>. One minimises the expectation <span class="math display">\[
@@ -707,8 +713,8 @@ J[u] = 1 - |\langle\psi_T|\mathcal U_T[u]|\psi_0\rangle|^2,
 </ol>
 <p>By providing exact, efficient gradients even through complex quantum simulations (time evolution, measurement models, noise), automatic differentiation (via JAX or similar frameworks) has become a key tool in modern quantum physics research.</p>
 </section>
-<section id="summary" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.4</span> Summary</h2>
+<section id="summary" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.4</span> Summary</h2>
 <ul>
 <li><strong>Numba</strong>: Best for speeding up existing NumPy loops with minimal code changes. Ideal when you do not need gradients or accelerators.</li>
 <li><strong>JAX</strong>: Ideal for optimisation tasks requiring gradients, large-scale batch operations, or GPU/TPU acceleration. The XLA compiler often outperforms loop-based JIT for fused kernels.</li>
@@ -1147,12 +1153,12 @@ Peruzzo, Alberto, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, P
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lecture1/linear_algebra.html" class="pagination-link" aria-label="Linear Algebra with NumPy and SciPy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lecture1/ordinary_differential_equations.html" class="pagination-link" aria-label="Ordinary Differential Equations">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

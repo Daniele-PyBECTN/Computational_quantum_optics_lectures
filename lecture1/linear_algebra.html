@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Linear Algebra with NumPy and SciPy – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>4&nbsp; Linear Algebra with NumPy and SciPy – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,14 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25bb2ec88b96ab004d13ad1d1924df4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9f1aa53ba50352805ba78653d73b174c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0f4dc18409c8cdf6ba22a617749a6af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -327,7 +327,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/linear_algebra.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/linear_algebra.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -347,74 +347,80 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/intro_heisenberg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to quantum mechanics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">About the course</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/closed_systems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/master_equation_qutip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -456,19 +462,19 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#numpy-the-foundation-of-dense-linear-algebra" id="toc-numpy-the-foundation-of-dense-linear-algebra" class="nav-link active" data-scroll-target="#numpy-the-foundation-of-dense-linear-algebra"><span class="header-section-number">3.1</span> NumPy: The Foundation of Dense Linear Algebra</a>
+  <li><a href="#numpy-the-foundation-of-dense-linear-algebra" id="toc-numpy-the-foundation-of-dense-linear-algebra" class="nav-link active" data-scroll-target="#numpy-the-foundation-of-dense-linear-algebra"><span class="header-section-number">4.1</span> NumPy: The Foundation of Dense Linear Algebra</a>
   <ul class="collapse">
-  <li><a href="#summary-of-core-functions" id="toc-summary-of-core-functions" class="nav-link" data-scroll-target="#summary-of-core-functions"><span class="header-section-number">3.1.1</span> Summary of Core Functions</a></li>
-  <li><a href="#matrixmatrix-and-matrixvector-multiplication" id="toc-matrixmatrix-and-matrixvector-multiplication" class="nav-link" data-scroll-target="#matrixmatrix-and-matrixvector-multiplication"><span class="header-section-number">3.1.2</span> Matrix–Matrix and Matrix–Vector Multiplication</a></li>
-  <li><a href="#diagonalization" id="toc-diagonalization" class="nav-link" data-scroll-target="#diagonalization"><span class="header-section-number">3.1.3</span> Diagonalization</a></li>
-  <li><a href="#sec-kron-product" id="toc-sec-kron-product" class="nav-link" data-scroll-target="#sec-kron-product"><span class="header-section-number">3.1.4</span> Kronecker Product</a></li>
+  <li><a href="#summary-of-core-functions" id="toc-summary-of-core-functions" class="nav-link" data-scroll-target="#summary-of-core-functions"><span class="header-section-number">4.1.1</span> Summary of Core Functions</a></li>
+  <li><a href="#matrixmatrix-and-matrixvector-multiplication" id="toc-matrixmatrix-and-matrixvector-multiplication" class="nav-link" data-scroll-target="#matrixmatrix-and-matrixvector-multiplication"><span class="header-section-number">4.1.2</span> Matrix–Matrix and Matrix–Vector Multiplication</a></li>
+  <li><a href="#diagonalization" id="toc-diagonalization" class="nav-link" data-scroll-target="#diagonalization"><span class="header-section-number">4.1.3</span> Diagonalization</a></li>
+  <li><a href="#sec-kron-product" id="toc-sec-kron-product" class="nav-link" data-scroll-target="#sec-kron-product"><span class="header-section-number">4.1.4</span> Kronecker Product</a></li>
   </ul></li>
-  <li><a href="#scipy-advanced-algorithms-and-sparse-data" id="toc-scipy-advanced-algorithms-and-sparse-data" class="nav-link" data-scroll-target="#scipy-advanced-algorithms-and-sparse-data"><span class="header-section-number">3.2</span> SciPy: Advanced Algorithms and Sparse Data</a></li>
-  <li><a href="#some-useful-functions" id="toc-some-useful-functions" class="nav-link" data-scroll-target="#some-useful-functions"><span class="header-section-number">3.3</span> Some Useful Functions</a></li>
-  <li><a href="#solving-linear-systems" id="toc-solving-linear-systems" class="nav-link" data-scroll-target="#solving-linear-systems"><span class="header-section-number">3.4</span> Solving Linear Systems</a></li>
-  <li><a href="#sparse-matrices" id="toc-sparse-matrices" class="nav-link" data-scroll-target="#sparse-matrices"><span class="header-section-number">3.5</span> Sparse Matrices</a>
+  <li><a href="#scipy-advanced-algorithms-and-sparse-data" id="toc-scipy-advanced-algorithms-and-sparse-data" class="nav-link" data-scroll-target="#scipy-advanced-algorithms-and-sparse-data"><span class="header-section-number">4.2</span> SciPy: Advanced Algorithms and Sparse Data</a></li>
+  <li><a href="#some-useful-functions" id="toc-some-useful-functions" class="nav-link" data-scroll-target="#some-useful-functions"><span class="header-section-number">4.3</span> Some Useful Functions</a></li>
+  <li><a href="#solving-linear-systems" id="toc-solving-linear-systems" class="nav-link" data-scroll-target="#solving-linear-systems"><span class="header-section-number">4.4</span> Solving Linear Systems</a></li>
+  <li><a href="#sparse-matrices" id="toc-sparse-matrices" class="nav-link" data-scroll-target="#sparse-matrices"><span class="header-section-number">4.5</span> Sparse Matrices</a>
   <ul class="collapse">
-  <li><a href="#eigenvalues-of-sparse-matrices" id="toc-eigenvalues-of-sparse-matrices" class="nav-link" data-scroll-target="#eigenvalues-of-sparse-matrices"><span class="header-section-number">3.5.1</span> Eigenvalues of Sparse Matrices</a></li>
+  <li><a href="#eigenvalues-of-sparse-matrices" id="toc-eigenvalues-of-sparse-matrices" class="nav-link" data-scroll-target="#eigenvalues-of-sparse-matrices"><span class="header-section-number">4.5.1</span> Eigenvalues of Sparse Matrices</a></li>
   </ul></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/linear_algebra.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/linear_algebra.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
@@ -479,7 +485,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></h1>
 </div>
 
 
@@ -499,8 +505,8 @@ window.Quarto = {
 <p>Quantum systems are described by vectors and operators in complex Hilbert spaces. States <span class="math inline">\(\vert \psi \rangle\)</span> correspond to column vectors, and observables—like the Hamiltonian <span class="math inline">\(\hat{H}\)</span> or spin operators—are represented by matrices. Tasks such as finding energy spectra via eigenvalue decompositions, simulating time evolution through operator exponentials, and building composite systems with tensor (Kronecker) products all reduce to core linear‐algebra operations.</p>
 <p>In this chapter, we will leverage NumPy’s and SciPy’s routines (backed by optimized BLAS/LAPACK) to perform matrix–matrix products, eigen-decompositions, vector norms, and more. When system size grows, SciPy’s sparse data structures and Krylov‐subspace solvers will let us handle very large, structured operators efficiently.</p>
 <p>By blending physical intuition (Schrödinger’s equation, expectation values, operator algebra) with hands‐on Python code, you’ll see how powerful and intuitive modern linear‐algebra libraries can be for quantum‐mechanics simulations. Let’s get started!</p>
-<section id="numpy-the-foundation-of-dense-linear-algebra" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="numpy-the-foundation-of-dense-linear-algebra"><span class="header-section-number">3.1</span> NumPy: The Foundation of Dense Linear Algebra</h2>
+<section id="numpy-the-foundation-of-dense-linear-algebra" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="numpy-the-foundation-of-dense-linear-algebra"><span class="header-section-number">4.1</span> NumPy: The Foundation of Dense Linear Algebra</h2>
 <p>NumPy provides the <code>ndarray</code> type, an efficient, N-dimensional array stored in contiguous memory. This layout makes vectorized operations and low-level BLAS calls blazing fast. At its simplest, a 2D <code>ndarray</code> represents a matrix:</p>
 <p><span class="math display">\[
 A = \begin{pmatrix}a_{11} &amp; a_{12}\\ a_{21} &amp; a_{22}\end{pmatrix},
@@ -510,8 +516,8 @@ A = \begin{pmatrix}a_{11} &amp; a_{12}\\ a_{21} &amp; a_{22}\end{pmatrix},
 \mathbf{v} = \begin{pmatrix}v_1\\ v_2\end{pmatrix}.
 \]</span></p>
 <p>NumPy’s dense arrays form the backbone of many quantum‐simulation tasks—building Hamiltonians, computing overlaps, and propagating states all reduce to these core operations. Having a quick reference for them can speed up both writing and reading simulation code.</p>
-<section id="summary-of-core-functions" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="summary-of-core-functions"><span class="header-section-number">3.1.1</span> Summary of Core Functions</h3>
+<section id="summary-of-core-functions" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="summary-of-core-functions"><span class="header-section-number">4.1.1</span> Summary of Core Functions</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 31%">
@@ -565,8 +571,8 @@ A = \begin{pmatrix}a_{11} &amp; a_{12}\\ a_{21} &amp; a_{22}\end{pmatrix},
 </table>
 <p>In the table above, each abstract operation is paired with its NumPy call. Notice how intuitive the syntax is: the <code>@</code> operator reads like the usual linear-algebra notation.</p>
 </section>
-<section id="matrixmatrix-and-matrixvector-multiplication" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="matrixmatrix-and-matrixvector-multiplication"><span class="header-section-number">3.1.2</span> Matrix–Matrix and Matrix–Vector Multiplication</h3>
+<section id="matrixmatrix-and-matrixvector-multiplication" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="matrixmatrix-and-matrixvector-multiplication"><span class="header-section-number">4.1.2</span> Matrix–Matrix and Matrix–Vector Multiplication</h3>
 <p>Let’s consider a simple example of a 2×2 matrix <span class="math inline">\(A\)</span> and a 2-vector <span class="math inline">\(\mathbf{v}\)</span>. This captures key ideas: operator composition via matrix–matrix products and state evolution via matrix–vector products. Indeed, in quantum mechanics, applying one operator after another corresponds to a matrix–matrix product, while acting on a quantum state uses a matrix–vector product. Consider the following:</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/linear_algebra.qmd" data-notebook-title="Linear Algebra with NumPy and SciPy" data-notebook-cellid="cell-numpy-matrix-matrix-vector">
 <div id="numpy-matrix-matrix-vector" class="cell" data-execution_count="1">
@@ -600,8 +606,8 @@ A = \begin{pmatrix}a_{11} &amp; a_{12}\\ a_{21} &amp; a_{22}\end{pmatrix},
 </div>
 <p>Here, <code>A @ A</code> computes <span class="math inline">\(A^2\)</span>, and <code>A @ v</code> computes <span class="math inline">\(A\mathbf{v}\)</span>.</p>
 </section>
-<section id="diagonalization" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="diagonalization"><span class="header-section-number">3.1.3</span> Diagonalization</h3>
+<section id="diagonalization" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="diagonalization"><span class="header-section-number">4.1.3</span> Diagonalization</h3>
 <p>The eigenvalue problem is one of the cornerstones of both applied mathematics and quantum mechanics. Given a square matrix <span class="math inline">\(A \in \mathbb{C}^{n\times n}\)</span>, we seek scalars <span class="math inline">\(\lambda\in\mathbb{C}\)</span> (eigenvalues) and nonzero vectors <span class="math inline">\(\mathbf{x}\in\mathbb{C}^n\)</span> (eigenvectors) such that</p>
 <p><span class="math display">\[
 A \,\mathbf{x} = \lambda\,\mathbf{x}.
@@ -639,8 +645,8 @@ f(\Lambda) = \mathrm{diag}\bigl(f(\lambda_1),\dots,f(\lambda_n)\bigr).
 </div>
 <p>Under the hood, NumPy calls optimized LAPACK routines to diagonalize dense matrices.</p>
 </section>
-<section id="sec-kron-product" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="sec-kron-product"><span class="header-section-number">3.1.4</span> Kronecker Product</h3>
+<section id="sec-kron-product" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="sec-kron-product"><span class="header-section-number">4.1.4</span> Kronecker Product</h3>
 <p>In quantum mechanics, the state space of a composite system is the tensor product of the state spaces of its subsystems. If system 1 has Hilbert space <span class="math inline">\(\mathcal H_A\)</span> of dimension <span class="math inline">\(m\)</span> and system 2 has <span class="math inline">\(\mathcal H_B\)</span> of dimension <span class="math inline">\(p\)</span>, then the joint space is <span class="math inline">\(\mathcal H_A\otimes\mathcal H_B\)</span> of dimension <span class="math inline">\(m p\)</span>. Operators on the composite system factorize as tensor (Kronecker) products of subsystem operators. For example, if <span class="math inline">\(A\)</span> acts on system 1 and <span class="math inline">\(B\)</span> on system 2, then <span class="math display">\[
 A\otimes B\;:\;\mathcal H_A\otimes\mathcal H_B\to \mathcal H_A\otimes\mathcal H_B
 \]</span> has matrix elements <span class="math display">\[
@@ -675,8 +681,8 @@ A \otimes B
 <p>Kronecker products build composite quantum-system operators from single-subsystem operators.</p>
 </section>
 </section>
-<section id="scipy-advanced-algorithms-and-sparse-data" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="scipy-advanced-algorithms-and-sparse-data"><span class="header-section-number">3.2</span> SciPy: Advanced Algorithms and Sparse Data</h2>
+<section id="scipy-advanced-algorithms-and-sparse-data" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="scipy-advanced-algorithms-and-sparse-data"><span class="header-section-number">4.2</span> SciPy: Advanced Algorithms and Sparse Data</h2>
 <p>While NumPy covers dense linear algebra, SciPy complements it with:</p>
 <table class="caption-top table">
 <colgroup>
@@ -718,8 +724,8 @@ A \otimes B
 </table>
 <p>Compared to NumPy, SciPy’s routines often expose extra options (e.g.&nbsp;choosing solvers) and can handle very large, sparse systems efficiently.</p>
 </section>
-<section id="some-useful-functions" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="some-useful-functions"><span class="header-section-number">3.3</span> Some Useful Functions</h2>
+<section id="some-useful-functions" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="some-useful-functions"><span class="header-section-number">4.3</span> Some Useful Functions</h2>
 <p>Below are a few handy SciPy routines:</p>
 <ul>
 <li>Determinant: <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.det.html#scipy.linalg.det"><code>scipy.linalg.det</code></a></li>
@@ -747,8 +753,8 @@ A \otimes B
 </div>
 </div>
 </section>
-<section id="solving-linear-systems" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="solving-linear-systems"><span class="header-section-number">3.4</span> Solving Linear Systems</h2>
+<section id="solving-linear-systems" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="solving-linear-systems"><span class="header-section-number">4.4</span> Solving Linear Systems</h2>
 <p>A linear system has the form</p>
 <p><span class="math display">\[
 A\,\mathbf{x} = \mathbf{b},
@@ -780,8 +786,8 @@ A = \begin{pmatrix}1 &amp; 2\\ 3 &amp; 4\end{pmatrix},\;
 </div>
 <p>SciPy’s sparse module also offers <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.spsolve.html#scipy.sparse.linalg.spsolve"><code>scipy.sparse.linalg.spsolve</code></a> for large, sparse <span class="math inline">\(A\)</span>.</p>
 </section>
-<section id="sparse-matrices" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="sparse-matrices"><span class="header-section-number">3.5</span> Sparse Matrices</h2>
+<section id="sparse-matrices" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sparse-matrices"><span class="header-section-number">4.5</span> Sparse Matrices</h2>
 <p>As quantum systems scale to many degrees of freedom, the underlying operators—such as Hamiltonians or Liouvillian superoperators—grow exponentially in dimension but often remain highly structured and sparse. Instead of storing dense arrays with mostly zeros, sparse-matrix formats only record nonzero entries and their indices, dramatically reducing memory requirements. Common physical models, like spin chains with nearest-neighbor couplings or lattice Hamiltonians, have only <span class="math inline">\(\mathcal{O}(N)\)</span> or <span class="math inline">\(\mathcal{O}(N \log N)\)</span> nonzero elements, making sparse representations essential for large-scale simulations.</p>
 <p>In the following sections, we will:</p>
 <ul>
@@ -841,8 +847,8 @@ A = \begin{pmatrix}
 </div>
 </div>
 </div>
-<section id="eigenvalues-of-sparse-matrices" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="eigenvalues-of-sparse-matrices"><span class="header-section-number">3.5.1</span> Eigenvalues of Sparse Matrices</h3>
+<section id="eigenvalues-of-sparse-matrices" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="eigenvalues-of-sparse-matrices"><span class="header-section-number">4.5.1</span> Eigenvalues of Sparse Matrices</h3>
 <p>Even with sparse storage, direct methods (dense diagonalization or full factorization) become intractable when the matrix dimension exceeds millions. To extract a few extremal eigenvalues or approximate time evolution, Krylov-subspace approaches (like the Arnoldi algorithm) build a low-dimensional orthonormal basis that captures the action of the operator on a subspace. By repeatedly applying the sparse matrix to basis vectors and orthogonalizing, Arnoldi produces a small Hessenberg matrix whose eigenpairs approximate those of the full operator. This hybrid strategy leverages both memory-efficient storage and iterative linear algebra to access spectral properties of huge quantum systems.</p>
 <p>To approximate a few eigenvalues of a large, sparse matrix <span class="math inline">\(A\)</span>, SciPy’s <code>eigs</code> implements the Arnoldi algorithm. Under the hood it builds an <span class="math inline">\(m\)</span>-dimensional Krylov basis. More precisely, given a starting vector <span class="math inline">\(v_1\)</span> with <span class="math inline">\(\|v_1\|_2 = 1\)</span>, the <span class="math inline">\(m\)</span>‑dimensional Krylov subspace is</p>
 <p><span class="math display">\[
@@ -1308,13 +1314,13 @@ A V_m = V_m H_m + h_{m+1,m}\, v_{m+1} e_m^{\top},
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lecture1/introduction.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="../lecture1/introduction.html" class="pagination-link" aria-label="About the course">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">About the course</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lecture1/numba_and_jax.html" class="pagination-link" aria-label="Speeding up Python for Linear Algebra Tasks">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

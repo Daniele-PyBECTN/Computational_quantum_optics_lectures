@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Closed Quantum Systems in QuTiP: The Schrödinger equation – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>10&nbsp; Closed Quantum Systems in QuTiP: The Schrödinger equation – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,14 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25bb2ec88b96ab004d13ad1d1924df4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9f1aa53ba50352805ba78653d73b174c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0f4dc18409c8cdf6ba22a617749a6af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -330,7 +330,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/closed_systems.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/closed_systems.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -350,74 +350,80 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/intro_heisenberg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to quantum mechanics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">About the course</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/closed_systems.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/master_equation_qutip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -459,13 +465,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#from-wavefunctions-to-the-schrödinger-equation-in-configuration-space" id="toc-from-wavefunctions-to-the-schrödinger-equation-in-configuration-space" class="nav-link active" data-scroll-target="#from-wavefunctions-to-the-schrödinger-equation-in-configuration-space"><span class="header-section-number">9.1</span> From wavefunctions to the Schrödinger equation in configuration space</a>
+  <li><a href="#from-wavefunctions-to-the-schrödinger-equation-in-configuration-space" id="toc-from-wavefunctions-to-the-schrödinger-equation-in-configuration-space" class="nav-link active" data-scroll-target="#from-wavefunctions-to-the-schrödinger-equation-in-configuration-space"><span class="header-section-number">10.1</span> From wavefunctions to the Schrödinger equation in configuration space</a>
   <ul class="collapse">
-  <li><a href="#from-a-single-wavepacket-to-the-quantum-continuity-law" id="toc-from-a-single-wavepacket-to-the-quantum-continuity-law" class="nav-link" data-scroll-target="#from-a-single-wavepacket-to-the-quantum-continuity-law"><span class="header-section-number">9.1.1</span> From a single wavepacket to the quantum continuity law</a></li>
-  <li><a href="#the-schrödinger-equation-as-a-linear-ode-in-hilbert-space" id="toc-the-schrödinger-equation-as-a-linear-ode-in-hilbert-space" class="nav-link" data-scroll-target="#the-schrödinger-equation-as-a-linear-ode-in-hilbert-space"><span class="header-section-number">9.1.2</span> The Schrödinger equation as a linear ODE in Hilbert space</a></li>
+  <li><a href="#from-a-single-wavepacket-to-the-quantum-continuity-law" id="toc-from-a-single-wavepacket-to-the-quantum-continuity-law" class="nav-link" data-scroll-target="#from-a-single-wavepacket-to-the-quantum-continuity-law"><span class="header-section-number">10.1.1</span> From a single wavepacket to the quantum continuity law</a></li>
+  <li><a href="#the-schrödinger-equation-as-a-linear-ode-in-hilbert-space" id="toc-the-schrödinger-equation-as-a-linear-ode-in-hilbert-space" class="nav-link" data-scroll-target="#the-schrödinger-equation-as-a-linear-ode-in-hilbert-space"><span class="header-section-number">10.1.2</span> The Schrödinger equation as a linear ODE in Hilbert space</a></li>
   </ul></li>
-  <li><a href="#plot-the-expectation-values" id="toc-plot-the-expectation-values" class="nav-link" data-scroll-target="#plot-the-expectation-values"><span class="header-section-number">9.2</span> Plot the expectation values</a></li>
-  <li><a href="#access-directly-to-the-evolution-of-the-state" id="toc-access-directly-to-the-evolution-of-the-state" class="nav-link" data-scroll-target="#access-directly-to-the-evolution-of-the-state"><span class="header-section-number">9.3</span> Access directly to the evolution of the state</a></li>
+  <li><a href="#plot-the-expectation-values" id="toc-plot-the-expectation-values" class="nav-link" data-scroll-target="#plot-the-expectation-values"><span class="header-section-number">10.2</span> Plot the expectation values</a></li>
+  <li><a href="#access-directly-to-the-evolution-of-the-state" id="toc-access-directly-to-the-evolution-of-the-state" class="nav-link" data-scroll-target="#access-directly-to-the-evolution-of-the-state"><span class="header-section-number">10.3</span> Access directly to the evolution of the state</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/closed_systems.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/closed_systems.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
@@ -475,7 +481,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-closed-quantum-systems" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></h1>
+<h1 class="title"><span id="sec-closed-quantum-systems" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></h1>
 </div>
 
 
@@ -499,11 +505,11 @@ window.Quarto = {
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> qutip <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<section id="from-wavefunctions-to-the-schrödinger-equation-in-configuration-space" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="from-wavefunctions-to-the-schrödinger-equation-in-configuration-space"><span class="header-section-number">9.1</span> From wavefunctions to the Schrödinger equation in configuration space</h2>
-<p>In <a href="phase_space_ode.html" class="quarto-xref"><span>Chapter 6</span></a> we moved from <strong>Hamilton’s equations</strong> for a single point to <strong>Liouville’s equation</strong> for an ensemble. Quantum mechanics follows a similar path, replacing phase-space densities with <strong>wavefunctions</strong> (or density operators). We now show this parallelism in detail.</p>
-<section id="from-a-single-wavepacket-to-the-quantum-continuity-law" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="from-a-single-wavepacket-to-the-quantum-continuity-law"><span class="header-section-number">9.1.1</span> From a single wavepacket to the quantum continuity law</h3>
+<section id="from-wavefunctions-to-the-schrödinger-equation-in-configuration-space" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="from-wavefunctions-to-the-schrödinger-equation-in-configuration-space"><span class="header-section-number">10.1</span> From wavefunctions to the Schrödinger equation in configuration space</h2>
+<p>In <a href="phase_space_ode.html" class="quarto-xref"><span>Chapter 7</span></a> we moved from <strong>Hamilton’s equations</strong> for a single point to <strong>Liouville’s equation</strong> for an ensemble. Quantum mechanics follows a similar path, replacing phase-space densities with <strong>wavefunctions</strong> (or density operators). We now show this parallelism in detail.</p>
+<section id="from-a-single-wavepacket-to-the-quantum-continuity-law" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="from-a-single-wavepacket-to-the-quantum-continuity-law"><span class="header-section-number">10.1.1</span> From a single wavepacket to the quantum continuity law</h3>
 <p>A non-relativistic quantum system in one dimension is described by a complex wavefunction <span class="math inline">\(\psi(x,t)\)</span>. Its <strong>probability density</strong> and <strong>current</strong> are</p>
 <p><span class="math display">\[
 \rho(x,t) \;=\; |\psi(x,t)|^2, \qquad
@@ -513,16 +519,16 @@ j(x,t) \;=\; \frac{\hbar}{m}\,\Im\!\bigl[\psi^{\!*}(x,t)\,\partial_x \psi(x,t)\b
 <p><span id="eq-schrodinger"><span class="math display">\[
 i\hbar\,\partial_t \psi(x,t) \;=\; \hat H\,\psi(x,t) \quad\text{with}\quad
 \hat H \;=\; -\frac{\hbar^2}{2m}\,\partial_x^2 + V(x)
-\tag{9.1}\]</span></span></p>
+\tag{10.1}\]</span></span></p>
 <p>and its complex conjugate, a short calculation yields the <strong>continuity equation</strong></p>
 <p><span id="eq-continuity"><span class="math display">\[
 \partial_t \rho + \partial_x j \;=\; 0,
-\tag{9.2}\]</span></span></p>
+\tag{10.2}\]</span></span></p>
 <p>which plays the same role as Liouville’s incompressibility condition: probability is <strong>transported</strong> in configuration space without being created or destroyed.</p>
 </section>
-<section id="the-schrödinger-equation-as-a-linear-ode-in-hilbert-space" class="level3" data-number="9.1.2">
-<h3 data-number="9.1.2" class="anchored" data-anchor-id="the-schrödinger-equation-as-a-linear-ode-in-hilbert-space"><span class="header-section-number">9.1.2</span> The Schrödinger equation as a linear ODE in Hilbert space</h3>
-<p>While <a href="#eq-schrodinger" class="quarto-xref">Equation&nbsp;<span>9.1</span></a> is a partial differential equation, it is <em>linear</em> in <span class="math inline">\(\psi\)</span>, exactly like the matrix ODE <span class="math inline">\(\dot{\mathbf y}=A\mathbf y\)</span> used for classical linear systems. Written in Dirac notation</p>
+<section id="the-schrödinger-equation-as-a-linear-ode-in-hilbert-space" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="the-schrödinger-equation-as-a-linear-ode-in-hilbert-space"><span class="header-section-number">10.1.2</span> The Schrödinger equation as a linear ODE in Hilbert space</h3>
+<p>While <a href="#eq-schrodinger" class="quarto-xref">Equation&nbsp;<span>10.1</span></a> is a partial differential equation, it is <em>linear</em> in <span class="math inline">\(\psi\)</span>, exactly like the matrix ODE <span class="math inline">\(\dot{\mathbf y}=A\mathbf y\)</span> used for classical linear systems. Written in Dirac notation</p>
 <p><span class="math display">\[
 i\hbar\,\frac{d}{dt}\,|\psi(t)\rangle \;=\; \hat H\,|\psi(t)\rangle,
 \]</span></p>
@@ -530,8 +536,8 @@ i\hbar\,\frac{d}{dt}\,|\psi(t)\rangle \;=\; \hat H\,|\psi(t)\rangle,
 <p>For statistical mixtures one introduces the <strong>density operator</strong> <span class="math inline">\(\hat\rho\)</span> and obtains the <strong>von Neumann equation</strong></p>
 <p><span id="eq-vonneumann"><span class="math display">\[
 i\hbar\,\partial_t \hat\rho \;=\; [\hat H,\,\hat\rho],
-\tag{9.3}\]</span></span></p>
-<p>a direct quantum counterpart of the Liouville equation in <a href="phase_space_ode.html#eq-liouville-ode-classical" class="quarto-xref">Equation&nbsp;<span>6.5</span></a>.</p>
+\tag{10.3}\]</span></span></p>
+<p>a direct quantum counterpart of the Liouville equation in <a href="phase_space_ode.html#eq-liouville-ode-classical" class="quarto-xref">Equation&nbsp;<span>7.5</span></a>.</p>
 <p>With these ingredients we now possess a one-to-one map between the <strong>classical Liouville formulation</strong> and the <strong>quantum Schrödinger formulation</strong>, both expressible as sparse linear ODEs ready for numerical treatment. Let’s consider a simple example of a harmonic oscillator, which is described by the Hamiltonian</p>
 <p><span class="math display">\[
 \hat{H} = \hbar \omega \hat{a}^\dagger \hat{a} \, ,
@@ -577,8 +583,8 @@ Qobj data =
 </div>
 </section>
 </section>
-<section id="plot-the-expectation-values" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="plot-the-expectation-values"><span class="header-section-number">9.2</span> Plot the expectation values</h2>
+<section id="plot-the-expectation-values" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="plot-the-expectation-values"><span class="header-section-number">10.2</span> Plot the expectation values</h2>
 <p>We can access to the expectation values with the command <code>sol.expect[i]</code>, where <code>i</code> is the index of the <span class="math inline">\(i\)</span>-th operator for which we want to calculate te expectation value as a function of time.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/closed_systems.qmd" data-notebook-title="Closed Quantum Systems in QuTiP: The Schrödinger equation" data-notebook-cellid="cell-sesolve-plot">
 <div id="cell-sesolve-plot" class="cell" data-execution_count="5">
@@ -605,8 +611,8 @@ Qobj data =
 </div>
 </div>
 </section>
-<section id="access-directly-to-the-evolution-of-the-state" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="access-directly-to-the-evolution-of-the-state"><span class="header-section-number">9.3</span> Access directly to the evolution of the state</h2>
+<section id="access-directly-to-the-evolution-of-the-state" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="access-directly-to-the-evolution-of-the-state"><span class="header-section-number">10.3</span> Access directly to the evolution of the state</h2>
 <p>We can also access directly to the wavefunction at each <code>tlist</code>. This can be done by simply calling <code>sol.states</code> to the solver without the <code>e_ops</code> operators.</p>
 <p>To check this feature, let’s see if after <span class="math inline">\(10\)</span> cycles we get still the initial state, by calculating the fidelity</p>
 <p><span class="math display">\[
@@ -880,36 +886,36 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img5b6261340f2f4d73a20e15453d667a8e">
+  <img id="_anim_imgd98e8dfe304a477fbc6e9e940bd9144e">
   <div class="anim-controls">
-    <input id="_anim_slider5b6261340f2f4d73a20e15453d667a8e" type="range" class="anim-slider" name="points" min="0" max="1" step="1" value="0" oninput="anim5b6261340f2f4d73a20e15453d667a8e.set_frame(parseInt(this.value));">
+    <input id="_anim_sliderd98e8dfe304a477fbc6e9e940bd9144e" type="range" class="anim-slider" name="points" min="0" max="1" step="1" value="0" oninput="animd98e8dfe304a477fbc6e9e940bd9144e.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim5b6261340f2f4d73a20e15453d667a8e.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="animd98e8dfe304a477fbc6e9e940bd9144e.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim5b6261340f2f4d73a20e15453d667a8e.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="animd98e8dfe304a477fbc6e9e940bd9144e.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim5b6261340f2f4d73a20e15453d667a8e.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="animd98e8dfe304a477fbc6e9e940bd9144e.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim5b6261340f2f4d73a20e15453d667a8e.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="animd98e8dfe304a477fbc6e9e940bd9144e.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim5b6261340f2f4d73a20e15453d667a8e.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="animd98e8dfe304a477fbc6e9e940bd9144e.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim5b6261340f2f4d73a20e15453d667a8e.play_animation()">
+      <button title="Play" aria-label="Play" onclick="animd98e8dfe304a477fbc6e9e940bd9144e.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim5b6261340f2f4d73a20e15453d667a8e.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="animd98e8dfe304a477fbc6e9e940bd9144e.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim5b6261340f2f4d73a20e15453d667a8e.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="animd98e8dfe304a477fbc6e9e940bd9144e.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim5b6261340f2f4d73a20e15453d667a8e.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="animd98e8dfe304a477fbc6e9e940bd9144e.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select5b6261340f2f4d73a20e15453d667a8e" class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_5b6261340f2f4d73a20e15453d667a8e">
-      <label for="_anim_radio1_5b6261340f2f4d73a20e15453d667a8e">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_5b6261340f2f4d73a20e15453d667a8e" checked="">
-      <label for="_anim_radio2_5b6261340f2f4d73a20e15453d667a8e">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_5b6261340f2f4d73a20e15453d667a8e">
-      <label for="_anim_radio3_5b6261340f2f4d73a20e15453d667a8e">Reflect</label>
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectd98e8dfe304a477fbc6e9e940bd9144e" class="anim-state">
+      <input type="radio" name="state" value="once" id="_anim_radio1_d98e8dfe304a477fbc6e9e940bd9144e">
+      <label for="_anim_radio1_d98e8dfe304a477fbc6e9e940bd9144e">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_d98e8dfe304a477fbc6e9e940bd9144e" checked="">
+      <label for="_anim_radio2_d98e8dfe304a477fbc6e9e940bd9144e">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_d98e8dfe304a477fbc6e9e940bd9144e">
+      <label for="_anim_radio3_d98e8dfe304a477fbc6e9e940bd9144e">Reflect</label>
     </form>
   </div>
 </div>
@@ -919,9 +925,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img5b6261340f2f4d73a20e15453d667a8e";
-    var slider_id = "_anim_slider5b6261340f2f4d73a20e15453d667a8e";
-    var loop_select_id = "_anim_loop_select5b6261340f2f4d73a20e15453d667a8e";
+    var img_id = "_anim_imgd98e8dfe304a477fbc6e9e940bd9144e";
+    var slider_id = "_anim_sliderd98e8dfe304a477fbc6e9e940bd9144e";
+    var loop_select_id = "_anim_loop_selectd98e8dfe304a477fbc6e9e940bd9144e";
     var frames = new Array(100);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuAAAAHACAYAAADjmt2iAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -47258,7 +47264,7 @@ AAAAAElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim5b6261340f2f4d73a20e15453d667a8e = new Animation(frames, img_id, slider_id, 40.0,
+        animd98e8dfe304a477fbc6e9e940bd9144e = new Animation(frames, img_id, slider_id, 40.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -47686,12 +47692,12 @@ AAAAAElFTkSuQmCC\
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lecture1/qutip_introduction.html" class="pagination-link" aria-label="Introduction to QuTiP">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lecture2/master_equation_qutip.html" class="pagination-link" aria-label="Open Dynamics in QuTiP: The Master Equation">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

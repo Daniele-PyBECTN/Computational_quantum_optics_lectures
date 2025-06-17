@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>13&nbsp; The Emission Spectrum of the Jaynes–Cummings Model – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>14&nbsp; The Emission Spectrum of the Jaynes–Cummings Model – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,14 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25bb2ec88b96ab004d13ad1d1924df4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9f1aa53ba50352805ba78653d73b174c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0f4dc18409c8cdf6ba22a617749a6af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -327,7 +327,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture3/jaynes_cummings_spectrum.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture3/jaynes_cummings_spectrum.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -347,74 +347,80 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/intro_heisenberg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to quantum mechanics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">About the course</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/closed_systems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/master_equation_qutip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -456,11 +462,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#analytic-analysis" id="toc-analytic-analysis" class="nav-link active" data-scroll-target="#analytic-analysis"><span class="header-section-number">13.1</span> Analytic Analysis</a>
+  <li><a href="#analytic-analysis" id="toc-analytic-analysis" class="nav-link active" data-scroll-target="#analytic-analysis"><span class="header-section-number">14.1</span> Analytic Analysis</a>
   <ul class="collapse">
-  <li><a href="#case-of-small-population" id="toc-case-of-small-population" class="nav-link" data-scroll-target="#case-of-small-population"><span class="header-section-number">13.1.1</span> Case of Small Population</a></li>
+  <li><a href="#case-of-small-population" id="toc-case-of-small-population" class="nav-link" data-scroll-target="#case-of-small-population"><span class="header-section-number">14.1.1</span> Case of Small Population</a></li>
   </ul></li>
-  <li><a href="#numerical-simulation-with-qutip" id="toc-numerical-simulation-with-qutip" class="nav-link" data-scroll-target="#numerical-simulation-with-qutip"><span class="header-section-number">13.2</span> Numerical simulation with QuTiP</a></li>
+  <li><a href="#numerical-simulation-with-qutip" id="toc-numerical-simulation-with-qutip" class="nav-link" data-scroll-target="#numerical-simulation-with-qutip"><span class="header-section-number">14.2</span> Numerical simulation with QuTiP</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture3/jaynes_cummings_spectrum.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture3/jaynes_cummings_spectrum.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
@@ -470,7 +476,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></h1>
 </div>
 
 
@@ -487,9 +493,9 @@ window.Quarto = {
 </header>
 
 
-<p>In <a href="../lecture2/jaynes_cummings.html" class="quarto-xref"><span>Chapter 11</span></a>, we introduced the Jaynes–Cummings (JC) model as a cornerstone of quantum optics and cavity QED. Here we focus on the emission spectrum of the JC system, exploring how the interaction between a single atom and a single cavity mode manifests in the frequency domain. We will see how the spectral lines reflect the dressed–state structure of the system and how dissipation modifies this picture.</p>
-<section id="analytic-analysis" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="analytic-analysis"><span class="header-section-number">13.1</span> Analytic Analysis</h2>
+<p>In <a href="../lecture2/jaynes_cummings.html" class="quarto-xref"><span>Chapter 12</span></a>, we introduced the Jaynes–Cummings (JC) model as a cornerstone of quantum optics and cavity QED. Here we focus on the emission spectrum of the JC system, exploring how the interaction between a single atom and a single cavity mode manifests in the frequency domain. We will see how the spectral lines reflect the dressed–state structure of the system and how dissipation modifies this picture.</p>
+<section id="analytic-analysis" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="analytic-analysis"><span class="header-section-number">14.1</span> Analytic Analysis</h2>
 <p>Under the condition of zero detuning <span class="math inline">\(\Delta = \omega_c - \omega_q = 0\)</span>, the Jaynes–Cummings dressed‐state energies simplify. For the <span class="math inline">\(n\)</span>-th excitation manifold, the two eigenvalues become:</p>
 <p><span class="math display">\[
 E_{n,\pm} = n\,\omega_c \pm g \sqrt{n+1} \,.
@@ -508,8 +514,8 @@ E_{n,\pm} = n\,\omega_c \pm g \sqrt{n+1} \,.
 <li><span class="math inline">\(E_{n,-} \to E_{n-1,-}\)</span></li>
 </ul>
 <p>Each channel corresponds to a distinct emission line in the spectrum, with its frequency given by the energy difference between initial and final states.</p>
-<section id="case-of-small-population" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="case-of-small-population"><span class="header-section-number">13.1.1</span> Case of Small Population</h3>
+<section id="case-of-small-population" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="case-of-small-population"><span class="header-section-number">14.1.1</span> Case of Small Population</h3>
 <p>When the system is weakly excited, it rarely climbs above the first excitation manifold. Practically, only <span class="math inline">\(n=0\)</span> (the vacuum) and <span class="math inline">\(n=1\)</span> are occupied. In this regime:</p>
 <ol type="1">
 <li><p><strong>Manifolds populated:</strong> Only <span class="math inline">\(n=0\)</span> and <span class="math inline">\(n=1\)</span>.</p></li>
@@ -522,8 +528,8 @@ E_{n,\pm} = n\,\omega_c \pm g \sqrt{n+1} \,.
 <p>These two peaks form the well‐known <strong>vacuum Rabi splitting</strong>. As soon as you start populating higher manifolds, the spectrum becomes richer, with more lines appearing at frequencies <span class="math inline">\(\omega_c \pm g(\sqrt{n+1} \pm \sqrt{n})\)</span> for <span class="math inline">\(n=0,1,2,\dots\)</span>.</p>
 </section>
 </section>
-<section id="numerical-simulation-with-qutip" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="numerical-simulation-with-qutip"><span class="header-section-number">13.2</span> Numerical simulation with QuTiP</h2>
+<section id="numerical-simulation-with-qutip" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="numerical-simulation-with-qutip"><span class="header-section-number">14.2</span> Numerical simulation with QuTiP</h2>
 <p>We now simulate the emission spectrum of the JC model using QuTiP, focusing on the weak and strong coupling regimes. We will compute the emission spectrum <span class="math inline">\(S (\omega)\)</span> of the cavity field using the <code>spectrum</code> function. We first define the system and its parameters.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture3/jaynes_cummings_spectrum.qmd" data-notebook-title="The Emission Spectrum of the Jaynes–Cummings Model" data-notebook-cellid="cell-system-definition">
 <div id="system-definition" class="cell" data-execution_count="2">
@@ -999,7 +1005,7 @@ E_{n,\pm} = n\,\omega_c \pm g \sqrt{n+1} \,.
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lecture3/mollow_triplet.html" class="pagination-link" aria-label="Resonance Fluorescence and the Mollow Triplet">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

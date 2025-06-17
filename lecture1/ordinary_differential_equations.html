@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Ordinary Differential Equations – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>6&nbsp; Ordinary Differential Equations – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,14 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25bb2ec88b96ab004d13ad1d1924df4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9f1aa53ba50352805ba78653d73b174c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0f4dc18409c8cdf6ba22a617749a6af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -327,7 +327,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/ordinary_differential_equations.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/ordinary_differential_equations.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -347,74 +347,80 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/intro_heisenberg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to quantum mechanics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">About the course</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/closed_systems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/master_equation_qutip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -456,24 +462,24 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#general-definition-and-examples" id="toc-general-definition-and-examples" class="nav-link active" data-scroll-target="#general-definition-and-examples"><span class="header-section-number">5.1</span> General Definition and Examples</a></li>
-  <li><a href="#solving-linear-odes-by-diagonalizing-the-system-matrix" id="toc-solving-linear-odes-by-diagonalizing-the-system-matrix" class="nav-link" data-scroll-target="#solving-linear-odes-by-diagonalizing-the-system-matrix"><span class="header-section-number">5.2</span> Solving Linear ODEs by Diagonalizing the System Matrix</a>
+  <li><a href="#general-definition-and-examples" id="toc-general-definition-and-examples" class="nav-link active" data-scroll-target="#general-definition-and-examples"><span class="header-section-number">6.1</span> General Definition and Examples</a></li>
+  <li><a href="#solving-linear-odes-by-diagonalizing-the-system-matrix" id="toc-solving-linear-odes-by-diagonalizing-the-system-matrix" class="nav-link" data-scroll-target="#solving-linear-odes-by-diagonalizing-the-system-matrix"><span class="header-section-number">6.2</span> Solving Linear ODEs by Diagonalizing the System Matrix</a>
   <ul class="collapse">
-  <li><a href="#eigenvalue-decomposition" id="toc-eigenvalue-decomposition" class="nav-link" data-scroll-target="#eigenvalue-decomposition"><span class="header-section-number">5.2.1</span> Eigenvalue Decomposition</a></li>
-  <li><a href="#relation-to-the-schrödinger-equation" id="toc-relation-to-the-schrödinger-equation" class="nav-link" data-scroll-target="#relation-to-the-schrödinger-equation"><span class="header-section-number">5.2.2</span> Relation to the Schrödinger Equation</a></li>
+  <li><a href="#eigenvalue-decomposition" id="toc-eigenvalue-decomposition" class="nav-link" data-scroll-target="#eigenvalue-decomposition"><span class="header-section-number">6.2.1</span> Eigenvalue Decomposition</a></li>
+  <li><a href="#relation-to-the-schrödinger-equation" id="toc-relation-to-the-schrödinger-equation" class="nav-link" data-scroll-target="#relation-to-the-schrödinger-equation"><span class="header-section-number">6.2.2</span> Relation to the Schrödinger Equation</a></li>
   </ul></li>
-  <li><a href="#sec-ode-euler-method" id="toc-sec-ode-euler-method" class="nav-link" data-scroll-target="#sec-ode-euler-method"><span class="header-section-number">5.3</span> Numerical Solution via the Euler Method</a>
+  <li><a href="#sec-ode-euler-method" id="toc-sec-ode-euler-method" class="nav-link" data-scroll-target="#sec-ode-euler-method"><span class="header-section-number">6.3</span> Numerical Solution via the Euler Method</a>
   <ul class="collapse">
-  <li><a href="#forward-euler-method" id="toc-forward-euler-method" class="nav-link" data-scroll-target="#forward-euler-method"><span class="header-section-number">5.3.1</span> Forward Euler Method</a></li>
-  <li><a href="#stability-criterion-for-the-euler-method" id="toc-stability-criterion-for-the-euler-method" class="nav-link" data-scroll-target="#stability-criterion-for-the-euler-method"><span class="header-section-number">5.3.2</span> Stability Criterion for the Euler Method</a></li>
+  <li><a href="#forward-euler-method" id="toc-forward-euler-method" class="nav-link" data-scroll-target="#forward-euler-method"><span class="header-section-number">6.3.1</span> Forward Euler Method</a></li>
+  <li><a href="#stability-criterion-for-the-euler-method" id="toc-stability-criterion-for-the-euler-method" class="nav-link" data-scroll-target="#stability-criterion-for-the-euler-method"><span class="header-section-number">6.3.2</span> Stability Criterion for the Euler Method</a></li>
   </ul></li>
-  <li><a href="#applying-these-methods-to-the-schrödinger-equation" id="toc-applying-these-methods-to-the-schrödinger-equation" class="nav-link" data-scroll-target="#applying-these-methods-to-the-schrödinger-equation"><span class="header-section-number">5.4</span> Applying These Methods to the Schrödinger Equation</a>
+  <li><a href="#applying-these-methods-to-the-schrödinger-equation" id="toc-applying-these-methods-to-the-schrödinger-equation" class="nav-link" data-scroll-target="#applying-these-methods-to-the-schrödinger-equation"><span class="header-section-number">6.4</span> Applying These Methods to the Schrödinger Equation</a>
   <ul class="collapse">
   <li><a href="#time-independent-hamiltonian" id="toc-time-independent-hamiltonian" class="nav-link" data-scroll-target="#time-independent-hamiltonian">Time-Independent Hamiltonian</a></li>
-  <li><a href="#time-dependent-hamiltonian" id="toc-time-dependent-hamiltonian" class="nav-link" data-scroll-target="#time-dependent-hamiltonian"><span class="header-section-number">5.4.1</span> Time-Dependent Hamiltonian</a></li>
-  <li><a href="#open-quantum-systems" id="toc-open-quantum-systems" class="nav-link" data-scroll-target="#open-quantum-systems"><span class="header-section-number">5.4.2</span> Open Quantum Systems</a></li>
+  <li><a href="#time-dependent-hamiltonian" id="toc-time-dependent-hamiltonian" class="nav-link" data-scroll-target="#time-dependent-hamiltonian"><span class="header-section-number">6.4.1</span> Time-Dependent Hamiltonian</a></li>
+  <li><a href="#open-quantum-systems" id="toc-open-quantum-systems" class="nav-link" data-scroll-target="#open-quantum-systems"><span class="header-section-number">6.4.2</span> Open Quantum Systems</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.5</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6.5</span> Conclusion</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/ordinary_differential_equations.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/ordinary_differential_equations.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
@@ -483,7 +489,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ordinary-differential-equations" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></h1>
+<h1 class="title"><span id="sec-ordinary-differential-equations" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></h1>
 </div>
 
 
@@ -505,8 +511,8 @@ window.Quarto = {
 \frac{dy(t)}{dt} = f\bigl(y(t), t\bigr),
 \]</span></p>
 <p>where <span class="math inline">\(f\)</span> is a known function, and <span class="math inline">\(y(t)\)</span> is the unknown to be determined. Higher-order ODEs can often be recast as systems of first-order ODEs by introducing additional variables for the higher derivatives.</p>
-<section id="general-definition-and-examples" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="general-definition-and-examples"><span class="header-section-number">5.1</span> General Definition and Examples</h2>
+<section id="general-definition-and-examples" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="general-definition-and-examples"><span class="header-section-number">6.1</span> General Definition and Examples</h2>
 <p>To see how ODEs arise in physical scenarios, consider Newton’s second law, <span class="math inline">\(m\,\frac{d^2 x}{dt^2} = F(x,t)\)</span>. This second-order ODE can be reduced to a system of two first-order ODEs by introducing an auxiliary variable for velocity <span class="math inline">\(v(t) = \frac{dx}{dt}\)</span>. Then we have:</p>
 <p><span class="math display">\[
 \begin{cases}
@@ -520,18 +526,18 @@ i\hbar \,\frac{d}{dt}\ket{\psi(t)} = \hat{H}\,\ket{\psi(t)}
 \]</span> can be viewed as a first-order ODE in the Hilbert space: the role of <span class="math inline">\(\ket{\psi(t)}\)</span> is analogous to <span class="math inline">\(y(t)\)</span>, and <span class="math inline">\(-\frac{i}{\hbar}\,\hat{H}\)</span> plays the role of <span class="math inline">\(f(\,\cdot\,,t)\)</span> (assuming a time-independent <span class="math inline">\(\hat{H}\)</span>). This analogy suggests that the Schrödinger equation can be treated using standard ODE solution techniques or, in more complicated cases, numerical integration.</p>
 <p>A <strong>linear</strong> ODE has the form: <span class="math inline">\(\frac{d\mathbf{y}(t)}{dt} = A\,\mathbf{y}(t) + \mathbf{b}(t),\)</span> where <span class="math inline">\(\mathbf{y}(t)\)</span> is a vector function of time, <span class="math inline">\(A\)</span> is a constant (or possibly time-dependent) matrix, and <span class="math inline">\(\mathbf{b}(t)\)</span> is a known inhomogeneous term. If <span class="math inline">\(\mathbf{b}(t) = \mathbf{0}\)</span>, the equation is said to be homogeneous.</p>
 </section>
-<section id="solving-linear-odes-by-diagonalizing-the-system-matrix" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="solving-linear-odes-by-diagonalizing-the-system-matrix"><span class="header-section-number">5.2</span> Solving Linear ODEs by Diagonalizing the System Matrix</h2>
+<section id="solving-linear-odes-by-diagonalizing-the-system-matrix" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="solving-linear-odes-by-diagonalizing-the-system-matrix"><span class="header-section-number">6.2</span> Solving Linear ODEs by Diagonalizing the System Matrix</h2>
 <p>A common case in quantum mechanics and in classical physics is the linear homogeneous system:</p>
 <p><span id="eq-homogeneous-system"><span class="math display">\[
 \frac{d\mathbf{y}(t)}{dt} = A\,\mathbf{y}(t),
 \quad
 \mathbf{y}(0) = \mathbf{y}_0,
-\tag{5.1}\]</span></span></p>
+\tag{6.1}\]</span></span></p>
 <p>where <span class="math inline">\(A\)</span> is a constant <span class="math inline">\(n\times n\)</span> matrix, and <span class="math inline">\(\mathbf{y}_0\)</span> is the initial condition.</p>
-<section id="eigenvalue-decomposition" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="eigenvalue-decomposition"><span class="header-section-number">5.2.1</span> Eigenvalue Decomposition</h3>
-<p>If <span class="math inline">\(A\)</span> is diagonalizable, we can write: <span class="math display">\[A = V \, D \, V^{-1},\]</span> where <span class="math inline">\(D\)</span> is a diagonal matrix whose entries are the eigenvalues <span class="math inline">\(\lambda_i\)</span> of <span class="math inline">\(A\)</span>, and the columns of <span class="math inline">\(V\)</span> are the corresponding eigenvectors. Define: <span class="math display">\[\mathbf{z}(t) = V^{-1}\,\mathbf{y}(t).\]</span> Then, plugging this into <a href="#eq-homogeneous-system" class="quarto-xref">Equation&nbsp;<span>5.1</span></a>, we get</p>
+<section id="eigenvalue-decomposition" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="eigenvalue-decomposition"><span class="header-section-number">6.2.1</span> Eigenvalue Decomposition</h3>
+<p>If <span class="math inline">\(A\)</span> is diagonalizable, we can write: <span class="math display">\[A = V \, D \, V^{-1},\]</span> where <span class="math inline">\(D\)</span> is a diagonal matrix whose entries are the eigenvalues <span class="math inline">\(\lambda_i\)</span> of <span class="math inline">\(A\)</span>, and the columns of <span class="math inline">\(V\)</span> are the corresponding eigenvectors. Define: <span class="math display">\[\mathbf{z}(t) = V^{-1}\,\mathbf{y}(t).\]</span> Then, plugging this into <a href="#eq-homogeneous-system" class="quarto-xref">Equation&nbsp;<span>6.1</span></a>, we get</p>
 <p><span class="math display">\[
 \frac{d\mathbf{z}(t)}{dt}
   = V^{-1}\, \frac{d\mathbf{y}(t)}{dt}
@@ -581,8 +587,8 @@ z_i(t) = z_i(0)\,e^{\lambda_i t}.
 \]</span></p>
 <p>where <span class="math inline">\(\mathbf{v}_i\)</span> are the eigenvectors of the matrix.</p>
 </section>
-<section id="relation-to-the-schrödinger-equation" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="relation-to-the-schrödinger-equation"><span class="header-section-number">5.2.2</span> Relation to the Schrödinger Equation</h3>
+<section id="relation-to-the-schrödinger-equation" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="relation-to-the-schrödinger-equation"><span class="header-section-number">6.2.2</span> Relation to the Schrödinger Equation</h3>
 <p>When dealing with the time-dependent Schrödinger equation for a <em>time-independent</em> Hamiltonian <span class="math inline">\(\hat{H}\)</span>, we can represent <span class="math inline">\(\ket{\psi(t)}\)</span> in a certain basis, turning the Schrödinger equation into:</p>
 <p><span class="math display">\[
 i \hbar \,\frac{d}{dt} \mathbf{c}(t) = H \,\mathbf{c}(t),
@@ -679,11 +685,11 @@ We could also visualize the time evolution:</p>
 </section>
 </section>
 </section>
-<section id="sec-ode-euler-method" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="sec-ode-euler-method"><span class="header-section-number">5.3</span> Numerical Solution via the Euler Method</h2>
+<section id="sec-ode-euler-method" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-ode-euler-method"><span class="header-section-number">6.3</span> Numerical Solution via the Euler Method</h2>
 <p>In many realistic situations (e.g., time-dependent Hamiltonians, nonlinear effects, large dissipative systems described by master equations), finding an exact analytic solution can be very challenging or impossible. We then rely on <em>numerical methods</em> to solve ODEs.</p>
-<section id="forward-euler-method" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="forward-euler-method"><span class="header-section-number">5.3.1</span> Forward Euler Method</h3>
+<section id="forward-euler-method" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="forward-euler-method"><span class="header-section-number">6.3.1</span> Forward Euler Method</h3>
 <p>One of the simplest methods is the <strong>forward Euler method</strong>. Suppose we want to solve: <span class="math display">\[
 \frac{d\mathbf{y}(t)}{dt} = \mathbf{f}(\mathbf{y}(t), t),
   \quad
@@ -699,8 +705,8 @@ We could also visualize the time evolution:</p>
 \]</span></p>
 <p>with <span class="math inline">\(\mathbf{y}_0\)</span> known. After iterating this rule for <span class="math inline">\(n=0,1,2,\dots\)</span>, we obtain an approximate solution at discrete times <span class="math inline">\(t_n\)</span>.</p>
 </section>
-<section id="stability-criterion-for-the-euler-method" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="stability-criterion-for-the-euler-method"><span class="header-section-number">5.3.2</span> Stability Criterion for the Euler Method</h3>
+<section id="stability-criterion-for-the-euler-method" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="stability-criterion-for-the-euler-method"><span class="header-section-number">6.3.2</span> Stability Criterion for the Euler Method</h3>
 <p>While the Euler method is straightforward, it can be susceptible to numerical instability when the system has rapidly decaying or oscillatory modes. For example, consider the test equation <span class="math inline">\(\frac{dy}{dt} = \lambda\, y,\)</span> where <span class="math inline">\(\lambda\)</span> is a (possibly complex) constant. The exact solution is <span class="math inline">\(y(t) = y(0)\,e^{\lambda t}\)</span>. In the Euler scheme, we get</p>
 <p><span class="math display">\[
 y_{n+1} = y_n + h\,\lambda\,y_n = (1 + h\,\lambda)\, y_n.
@@ -763,8 +769,8 @@ y_n = (1 + h\,\lambda)^n\, y_0.
 </section>
 </section>
 </section>
-<section id="applying-these-methods-to-the-schrödinger-equation" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="applying-these-methods-to-the-schrödinger-equation"><span class="header-section-number">5.4</span> Applying These Methods to the Schrödinger Equation</h2>
+<section id="applying-these-methods-to-the-schrödinger-equation" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="applying-these-methods-to-the-schrödinger-equation"><span class="header-section-number">6.4</span> Applying These Methods to the Schrödinger Equation</h2>
 <section id="time-independent-hamiltonian" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="time-independent-hamiltonian">Time-Independent Hamiltonian</h3>
 <p>For a time-independent Hamiltonian <span class="math inline">\(\hat{H}\)</span>, the Schrödinger equation in vector form reads:</p>
@@ -776,12 +782,12 @@ i\hbar \,\frac{d\mathbf{c}(t)}{dt} = H\,\mathbf{c}(t).
 \mathbf{c}(t) = e^{-\tfrac{i}{\hbar}H t} \,\mathbf{c}(0).
 \]</span></p>
 </section>
-<section id="time-dependent-hamiltonian" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="time-dependent-hamiltonian"><span class="header-section-number">5.4.1</span> Time-Dependent Hamiltonian</h3>
+<section id="time-dependent-hamiltonian" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="time-dependent-hamiltonian"><span class="header-section-number">6.4.1</span> Time-Dependent Hamiltonian</h3>
 <p>When <span class="math inline">\(\hat{H}(t)\)</span> varies explicitly with time, one no longer has a simple exponential solution. Instead, one can divide the time interval of interest into many small sub-intervals and approximate <span class="math inline">\(\hat{H}(t)\)</span> as constant in each interval. This procedure is related to the <em>time-ordered exponential</em>, but from a numerical perspective, we can simply implement a step-by-step integration (e.g., Euler, Runge–Kutta, or other higher-order methods) to construct <span class="math inline">\(\ket{\psi(t_{n+1})}\)</span> from <span class="math inline">\(\ket{\psi(t_n)}\)</span>.</p>
 </section>
-<section id="open-quantum-systems" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="open-quantum-systems"><span class="header-section-number">5.4.2</span> Open Quantum Systems</h3>
+<section id="open-quantum-systems" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="open-quantum-systems"><span class="header-section-number">6.4.2</span> Open Quantum Systems</h3>
 <p>In open quantum systems, the evolution of the density matrix <span class="math inline">\(\rho(t)\)</span> is often governed by the master equation:</p>
 <p><span class="math display">\[
 \frac{d\rho(t)}{dt} = \mathcal{L}[\rho(t)],
@@ -792,8 +798,8 @@ i\hbar \,\frac{d\mathbf{c}(t)}{dt} = H\,\mathbf{c}(t).
 <p>Hence, the same techniques (matrix diagonalization for analytical solutions, or time stepping methods like Euler, Runge–Kutta, etc.&nbsp;for numerical solutions) remain valid.</p>
 </section>
 </section>
-<section id="conclusion" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.5</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6.5</span> Conclusion</h2>
 <p>In summary:</p>
 <ul>
 <li>An Ordinary Differential Equation (ODE) involves a function of one variable and its derivatives.</li>
@@ -1223,12 +1229,12 @@ i\hbar \,\frac{d\mathbf{c}(t)}{dt} = H\,\mathbf{c}(t).
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lecture1/numba_and_jax.html" class="pagination-link" aria-label="Speeding up Python for Linear Algebra Tasks">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lecture1/phase_space_ode.html" class="pagination-link" aria-label="From Hamilton's equations to the Liouville equation in phase space">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

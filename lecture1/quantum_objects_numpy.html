@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Representing Quantum States and Operators with NumPy – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
+<title>8&nbsp; Representing Quantum States and Operators with NumPy – Numerical Methods for Quantum Optics and Open Quantum Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,14 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25bb2ec88b96ab004d13ad1d1924df4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9f1aa53ba50352805ba78653d73b174c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-a05c414534bf92e6e9143109a8b81349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0f4dc18409c8cdf6ba22a617749a6af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d3bfbbef162137c92838cc489ea96151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -327,7 +327,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/quantum_objects_numpy.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture1/quantum_objects_numpy.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -347,74 +347,80 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lecture1/intro_heisenberg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to quantum mechanics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lecture1/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">About the course</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/linear_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Algebra with NumPy and SciPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/numba_and_jax.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Speeding up Python for Linear Algebra Tasks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/ordinary_differential_equations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/phase_space_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/quantum_objects_numpy.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/qutip_introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture1/closed_systems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closed Quantum Systems in QuTiP: The Schrödinger equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/master_equation_qutip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Open Dynamics in QuTiP: The Master Equation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture2/jaynes_cummings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Jaynes–Cummings model: The Prove of Field Quantization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/mollow_triplet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resonance Fluorescence and the Mollow Triplet</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lecture3/jaynes_cummings_spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Emission Spectrum of the Jaynes–Cummings Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -456,13 +462,14 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pauli-operators" id="toc-pauli-operators" class="nav-link active" data-scroll-target="#pauli-operators"><span class="header-section-number">7.1</span> Pauli Operators</a></li>
-  <li><a href="#harmonic-oscillator" id="toc-harmonic-oscillator" class="nav-link" data-scroll-target="#harmonic-oscillator"><span class="header-section-number">7.2</span> Harmonic Oscillator</a>
+  <li><a href="#pauli-operators" id="toc-pauli-operators" class="nav-link active" data-scroll-target="#pauli-operators"><span class="header-section-number">8.1</span> Pauli Operators</a></li>
+  <li><a href="#spin-s-systems" id="toc-spin-s-systems" class="nav-link" data-scroll-target="#spin-s-systems"><span class="header-section-number">8.2</span> Spin S Systems</a></li>
+  <li><a href="#harmonic-oscillator" id="toc-harmonic-oscillator" class="nav-link" data-scroll-target="#harmonic-oscillator"><span class="header-section-number">8.3</span> Harmonic Oscillator</a>
   <ul class="collapse">
-  <li><a href="#action-of-the-destroy-operator-on-a-fock-state" id="toc-action-of-the-destroy-operator-on-a-fock-state" class="nav-link" data-scroll-target="#action-of-the-destroy-operator-on-a-fock-state"><span class="header-section-number">7.2.1</span> Action of the Destroy Operator on a Fock State</a></li>
+  <li><a href="#action-of-the-destroy-operator-on-a-fock-state" id="toc-action-of-the-destroy-operator-on-a-fock-state" class="nav-link" data-scroll-target="#action-of-the-destroy-operator-on-a-fock-state"><span class="header-section-number">8.3.1</span> Action of the Destroy Operator on a Fock State</a></li>
   </ul></li>
-  <li><a href="#partial-trace" id="toc-partial-trace" class="nav-link" data-scroll-target="#partial-trace"><span class="header-section-number">7.3</span> Partial Trace</a></li>
-  <li><a href="#why-qutip" id="toc-why-qutip" class="nav-link" data-scroll-target="#why-qutip"><span class="header-section-number">7.4</span> Why QuTiP?</a></li>
+  <li><a href="#partial-trace" id="toc-partial-trace" class="nav-link" data-scroll-target="#partial-trace"><span class="header-section-number">8.4</span> Partial Trace</a></li>
+  <li><a href="#why-qutip" id="toc-why-qutip" class="nav-link" data-scroll-target="#why-qutip"><span class="header-section-number">8.5</span> Why QuTiP?</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://mybinder.org/v2/gh/Daniele-PyBECTN/Computational_quantum_optics_lectures/notebooks/?urlpath=lab/tree/notebooks/lecture1/quantum_objects_numpy.ipynb"><i class="bi bi-file-code"></i>Run notebook in Binder</a></li><li><a href="https://colab.research.google.com/github/Daniele-PyBECTN/Computational_quantum_optics_lectures/blob/notebooks/notebooks/lecture1/quantum_objects_numpy.ipynb"><i class="bi bi-google"></i>Run notebook in Google Colab</a></li></ul></div></nav>
     </div>
@@ -472,7 +479,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-quantum-objects-numpy" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></h1>
+<h1 class="title"><span id="sec-quantum-objects-numpy" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Representing Quantum States and Operators with NumPy</span></span></h1>
 </div>
 
 
@@ -513,8 +520,8 @@ A_{d 1} &amp; A_{d 2} &amp; \ldots &amp; A_{d d}
 \hat{A}|\psi\rangle \mapsto \texttt{np.dot(A, psi)}, \quad \langle \psi| \hat{A} \mapsto \texttt{np.dot(np.conj(psi.T), A)},
 \]</span></p>
 <p>where in Numpy <code>np.conj(psi.T)</code> is the hermitian transpose of a matrix or vector.</p>
-<section id="pauli-operators" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="pauli-operators"><span class="header-section-number">7.1</span> Pauli Operators</h2>
+<section id="pauli-operators" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="pauli-operators"><span class="header-section-number">8.1</span> Pauli Operators</h2>
 <p>The Pauli operators are fundamental in quantum mechanics, especially in the context of qubits. They are represented as matrices in a two-dimensional Hilbert space, which is the simplest non-trivial quantum system.</p>
 <p><span class="math display">\[
 \hat{\sigma}_{x} \mapsto\left(\begin{array}{cc}
@@ -539,8 +546,51 @@ A_{d 1} &amp; A_{d 2} &amp; \ldots &amp; A_{d d}
 </div>
 </div>
 </section>
-<section id="harmonic-oscillator" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="harmonic-oscillator"><span class="header-section-number">7.2</span> Harmonic Oscillator</h2>
+<section id="spin-s-systems" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="spin-s-systems"><span class="header-section-number">8.2</span> Spin S Systems</h2>
+<p>A system with a fixed total spin <span class="math inline">\(S\)</span> is described by the three collective spin operators <span class="math inline">\(S_{x}, S_{y}, S_{z}\)</span>, which obey <span class="math inline">\(\left[S_{x}, S_{y}\right]=i S_{z}\)</span>. The <span class="math inline">\(d=2 S+1\)</span> basis states can be labeled as <span class="math inline">\(|s, m\rangle\)</span>, where <span class="math inline">\(m=S, S-1, \ldots,-S\)</span>. By introducing spin raising and lowering operators <span class="math inline">\(S_{ \pm}=S_{x} \pm i S_{y}\)</span>, where <span class="math inline">\(S_{-}^{\dagger}=S_{+}\)</span>, all matrix elements can be obtained from the two relations</p>
+<p><span class="math display">\[
+S_{z}|s, m\rangle=m|s, m\rangle, \quad S_{-}|s, m\rangle=\sqrt{S(S+1)-m(m-1)}|s, m-1\rangle=: s_{-}^{m}|s, m-1\rangle \, .
+\]</span></p>
+<p>Explicitly,</p>
+<p><span class="math display">\[
+\hat{S}_{z} \mapsto S Z=\left(\begin{array}{cccc}
+S &amp; 0 &amp; \ldots &amp; 0 \\
+0 &amp; S-1 &amp; \ldots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \ldots &amp; -S
+\end{array}\right), \quad \hat{S}_{-} \mapsto S M=\left(\begin{array}{cccc}
+0 &amp; 0 &amp; \ldots &amp; 0 \\
+s_{-}^{S / 2} &amp; 0 &amp; \ldots &amp; 0 \\
+0 &amp; s_{-}^{S / 2-1} &amp; \ddots &amp; \vdots \\
+\vdots &amp; 0 &amp; \ldots &amp; 0
+\end{array}\right) .
+\]</span></p>
+<p>All other operators can be obtained using <span class="math inline">\(S_{x}=\left(S_{+}+S_{-}\right) / 2\)</span> and <span class="math inline">\(S_{y}=i\left(S_{+}-S_{-}\right) / 2\)</span>. Example for a spin <span class="math inline">\(S=1\)</span> system</p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/quantum_objects_numpy.qmd" data-notebook-title="Representing Quantum States and Operators with NumPy" data-notebook-cellid="cell-spin-operators">
+<div id="spin-operators" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>s <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>d <span class="op">=</span> <span class="bu">int</span>(<span class="dv">2</span> <span class="op">*</span> s <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Vector of the diagonal elements for the SZ operator</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>vecm <span class="op">=</span> np.flip(np.arange(<span class="op">-</span>s, s <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>SZ <span class="op">=</span> np.diag(vecm, <span class="dv">0</span>)</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># Vector for SM operator (ladder down)</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>vec2 <span class="op">=</span> vecm[:d<span class="op">-</span><span class="dv">1</span>]  <span class="co"># remove the last entry</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>vec3 <span class="op">=</span> np.sqrt(s <span class="op">*</span> (s <span class="op">+</span> <span class="dv">1</span>) <span class="op">-</span> vec2 <span class="op">*</span> (vec2 <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb2-12"><a href="#cb2-12"></a>SM <span class="op">=</span> np.diag(vec3, k<span class="op">=-</span><span class="dv">1</span>)  <span class="co"># place vec3 in lower diagonal</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># Construct SX and SY</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>SX <span class="op">=</span> (SM <span class="op">+</span> SM.T) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>SY <span class="op">=</span> <span class="ot">1j</span> <span class="op">*</span> (SM.T <span class="op">-</span> SM) <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Note that in Numpy the command <code>A * B</code> is a element-wise multiplication of two matrices, while <code>A @ B</code> would implement the usual matrix multiplication.</p>
+</section>
+<section id="harmonic-oscillator" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="harmonic-oscillator"><span class="header-section-number">8.3</span> Harmonic Oscillator</h2>
 <p>In a Hilbert space of dimension <span class="math inline">\(N\)</span>, quantum states can be represented as vectors, and operators as matrices. Here we demonstrate the destroy operator, <span class="math inline">\(a\)</span>, which lowers the state by one quantum number. For a detailed discussion on the quantum harmonic oscillator and the bosonic annihilation operator, refer to <a href="../appendices/quantum-harmonic-oscillator.html" class="quarto-xref"><span>Appendix A</span></a>.</p>
 <p>For a harmonic oscillator with number states <span class="math inline">\(|n\rangle\)</span> the only nonzero matrix elements of the annihilation operator <span class="math inline">\(\hat{a}\)</span> are given by <span class="math inline">\(\langle n-1| \hat{a}|n\rangle=\sqrt{n}\)</span></p>
 <p><span class="math display">\[
@@ -556,28 +606,28 @@ A_{d 1} &amp; A_{d 2} &amp; \ldots &amp; A_{d d}
 <p>This operator acts on Fock states to lower their quantum number by one, with a factor of <span class="math inline">\(\sqrt{n}\)</span>, where <span class="math inline">\(n\)</span> is the quantum number of the initial state. In other words, <span class="math inline">\(\hat{a}|n\rangle = \sqrt{n}|n-1\rangle\)</span>. In the following code, we define the destroy operator by using NumPy, and we also define some Fock states for demonstration.</p>
 <p>In Numpy we use the command <code>np.diag(v, k=r)</code>, which creates a diagonal matrix with the elements of the vector <code>v</code> placed in the <span class="math inline">\(r\)</span>-th diagonal <span class="math inline">\((r=0, \pm 1, \pm 2, \ldots)\)</span>.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/quantum_objects_numpy.qmd" data-notebook-title="Representing Quantum States and Operators with NumPy" data-notebook-cellid="cell-destroy-and-fock">
-<div id="cell-destroy-and-fock" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> destroy(d):</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="co"># creates a vector of the d-1 off-diagonal elements</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    v<span class="op">=</span>np.sqrt( np.arange(d<span class="op">-</span><span class="dv">1</span>) )</span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="co"># matrix with the elements of vec placed in the upper diagonal</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    a<span class="op">=</span>np.diag(v,k<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="cf">return</span> a</span>
-<span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co"># Define the fock states</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="kw">def</span> fock(d, i):</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    res <span class="op">=</span> np.zeros(d)</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    res[i] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>    <span class="cf">return</span> res</span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a>d <span class="op">=</span> <span class="dv">7</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>zero_state <span class="op">=</span> fock(d, <span class="dv">0</span>)</span>
-<span id="cb2-16"><a href="#cb2-16"></a>one_state <span class="op">=</span> fock(d, <span class="dv">1</span>)</span>
-<span id="cb2-17"><a href="#cb2-17"></a>two_state <span class="op">=</span> fock(d, <span class="dv">2</span>)</span>
-<span id="cb2-18"><a href="#cb2-18"></a>three_state <span class="op">=</span> fock(d, <span class="dv">3</span>)</span>
-<span id="cb2-19"><a href="#cb2-19"></a></span>
-<span id="cb2-20"><a href="#cb2-20"></a>destroy_operator <span class="op">=</span> destroy(d)</span>
-<span id="cb2-21"><a href="#cb2-21"></a>destroy_operator</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-destroy-and-fock" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> destroy(d):</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="co"># creates a vector of the d-1 off-diagonal elements</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    v<span class="op">=</span>np.sqrt( np.arange(d<span class="op">-</span><span class="dv">1</span>) )</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="co"># matrix with the elements of vec placed in the upper diagonal</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    a<span class="op">=</span>np.diag(v,k<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="cf">return</span> a</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co"># Define the fock states</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">def</span> fock(d, i):</span>
+<span id="cb3-10"><a href="#cb3-10"></a>    res <span class="op">=</span> np.zeros(d)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    res[i] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="cf">return</span> res</span>
+<span id="cb3-13"><a href="#cb3-13"></a></span>
+<span id="cb3-14"><a href="#cb3-14"></a>d <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>zero_state <span class="op">=</span> fock(d, <span class="dv">0</span>)</span>
+<span id="cb3-16"><a href="#cb3-16"></a>one_state <span class="op">=</span> fock(d, <span class="dv">1</span>)</span>
+<span id="cb3-17"><a href="#cb3-17"></a>two_state <span class="op">=</span> fock(d, <span class="dv">2</span>)</span>
+<span id="cb3-18"><a href="#cb3-18"></a>three_state <span class="op">=</span> fock(d, <span class="dv">3</span>)</span>
+<span id="cb3-19"><a href="#cb3-19"></a></span>
+<span id="cb3-20"><a href="#cb3-20"></a>destroy_operator <span class="op">=</span> destroy(d)</span>
+<span id="cb3-21"><a href="#cb3-21"></a>destroy_operator</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="destroy-and-fock" class="cell-output cell-output-display">
 <pre><code>array([[0.        , 0.        , 0.        , 0.        , 0.        ,
         0.        , 0.        ],
@@ -605,20 +655,20 @@ A_{d 1} &amp; A_{d 2} &amp; \ldots &amp; A_{d d}
 \hat{a}^{\dagger} \hat{a} \mapsto \texttt{np.matmul(np.conj(a.T) , a)} \, .
 \]</span></p>
 <p>Note that in some cases this introduces truncation artifacts. For example, the matrix for the operator <span class="math inline">\(M=\texttt{np.matmul(a, np.conj(a.T))}\)</span> has a zero diagonal element <span class="math inline">\(M[d, d]=0\)</span> inherited from the matrix <span class="math inline">\(\texttt{np.conj(a.T))}\)</span>, while the same operator constructed in a different way, <span class="math inline">\(M_2=\texttt{np.conj(a.T) * a + np.eye(d)}\)</span>, does not. This can be avoided by constructing this operator explicitly. Note that this type of truncation artifacts are related to the fact that in a infinite Hilbert space <span class="math inline">\(\mathrm{Tr}([a, a^{\dagger}])\neq 0\)</span> (actually, striclty speaking, <span class="math inline">\(=\infty\)</span>) as a consequence of the canonical commutation relation. On the contrary, in a finite Hilbert space for any two operators <span class="math inline">\(O_1, O_2\)</span>, <span class="math inline">\(\mathrm{Tr}([O_1, O_2])= 0\)</span>. Taking a dimension <span class="math inline">\(d\)</span> large enough allows to make these artifacts a negligible error in the whole computation.</p>
-<section id="action-of-the-destroy-operator-on-a-fock-state" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="action-of-the-destroy-operator-on-a-fock-state"><span class="header-section-number">7.2.1</span> Action of the Destroy Operator on a Fock State</h3>
+<section id="action-of-the-destroy-operator-on-a-fock-state" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="action-of-the-destroy-operator-on-a-fock-state"><span class="header-section-number">8.3.1</span> Action of the Destroy Operator on a Fock State</h3>
 <p>The action of the destroy operator <span class="math inline">\(a\)</span> on a Fock state <span class="math inline">\(|n\rangle\)</span> lowers the state by one quantum number, multiplied by a factor <span class="math inline">\(\sqrt{n}\)</span>. For example, applying <span class="math inline">\(a\)</span> to the state <span class="math inline">\(|3\rangle\)</span> yields:</p>
 <p><span class="math display">\[
 \hat{a}|3\rangle = \sqrt{3}|2\rangle
 \]</span></p>
 <p>This demonstrates the lowering action of the destroy operator with a specific factor, dependent on the quantum number of the state being acted upon.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/quantum_objects_numpy.qmd" data-notebook-title="Representing Quantum States and Operators with NumPy" data-notebook-cellid="cell-destroy-apply">
-<div id="cell-destroy-apply" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Apply the destroy operator on the one state</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>result_state <span class="op">=</span> np.dot(destroy_operator, three_state)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="bu">print</span>(<span class="st">"Resulting State:"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5"></a>result_state</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-destroy-apply" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Apply the destroy operator on the one state</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>result_state <span class="op">=</span> np.dot(destroy_operator, three_state)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="bu">print</span>(<span class="st">"Resulting State:"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>result_state</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Resulting State:</code></pre>
 </div>
@@ -630,9 +680,9 @@ A_{d 1} &amp; A_{d 2} &amp; \ldots &amp; A_{d d}
 </div>
 </section>
 </section>
-<section id="partial-trace" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="partial-trace"><span class="header-section-number">7.3</span> Partial Trace</h2>
-<p>In <a href="linear_algebra.html#sec-kron-product" class="quarto-xref"><span>Section 3.1.4</span></a>, we have already discussed the concept of tensor products. Here we will introduce the <strong>partial trace</strong>, a crucial operation in quantum mechanics that allows us to focus on a subsystem of a larger composite system.</p>
+<section id="partial-trace" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="partial-trace"><span class="header-section-number">8.4</span> Partial Trace</h2>
+<p>In <a href="linear_algebra.html#sec-kron-product" class="quarto-xref"><span>Section 4.1.4</span></a>, we have already discussed the concept of tensor products. Here we will introduce the <strong>partial trace</strong>, a crucial operation in quantum mechanics that allows us to focus on a subsystem of a larger composite system.</p>
 <p>The <strong>partial trace</strong> over a subsystem, say <span class="math inline">\(B\)</span>, of a composite system <span class="math inline">\(AB\)</span>, mathematically expresses as “tracing out” <span class="math inline">\(B\)</span>, leaving the reduced state of <span class="math inline">\(A\)</span>. For a bipartite state <span class="math inline">\(\rho_{AB}\)</span>, the partial trace over <span class="math inline">\(B\)</span> is:</p>
 <p><span class="math display">\[
 \text{Tr}_B(\hat{\rho}_{AB}) = \sum_{i \in \mathcal{H}_B} \langle i| \hat{\rho}_{AB} |i\rangle
@@ -643,32 +693,32 @@ A_{d 1} &amp; A_{d 2} &amp; \ldots &amp; A_{d d}
 \vert \phi^+ \rangle = \frac{1}{\sqrt{2}} \left( \vert 0, 0 \rangle + \vert 1, 1 \rangle \right)
 \]</span></p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/Computational_quantum_optics_lectures/Computational_quantum_optics_lectures/notebooks/lecture1/quantum_objects_numpy.qmd" data-notebook-title="Representing Quantum States and Operators with NumPy" data-notebook-cellid="cell-ptrace">
-<div id="cell-ptrace" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> ptrace(psi, subspace_to_keep, dim_subspace):</span>
-<span id="cb7-2"><a href="#cb7-2"></a>    dim1, dim2 <span class="op">=</span> dim_subspace</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a>    rho <span class="op">=</span> np.outer(psi, psi.conj())</span>
-<span id="cb7-5"><a href="#cb7-5"></a></span>
-<span id="cb7-6"><a href="#cb7-6"></a>    <span class="co"># Reshape rho to separate the subsystems' degrees of freedom</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>    rho_reshaped <span class="op">=</span> rho.reshape(dim1, dim2, dim1, dim2)</span>
-<span id="cb7-8"><a href="#cb7-8"></a></span>
-<span id="cb7-9"><a href="#cb7-9"></a>    <span class="cf">if</span> subspace_to_keep <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb7-10"><a href="#cb7-10"></a>        <span class="co"># Perform the trace over the second subsystem</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>        traced_out <span class="op">=</span> np.trace(rho_reshaped, axis1<span class="op">=</span><span class="dv">1</span>, axis2<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb7-12"><a href="#cb7-12"></a>    <span class="cf">elif</span> subspace_to_keep <span class="op">==</span> <span class="dv">2</span>:</span>
-<span id="cb7-13"><a href="#cb7-13"></a>        <span class="co"># Perform the trace over the first subsystem</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>        traced_out <span class="op">=</span> np.trace(rho_reshaped, axis1<span class="op">=</span><span class="dv">0</span>, axis2<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb7-15"><a href="#cb7-15"></a>    <span class="cf">else</span>:</span>
-<span id="cb7-16"><a href="#cb7-16"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"subspace_to_keep must be either 1 or 2."</span>)</span>
-<span id="cb7-17"><a href="#cb7-17"></a></span>
-<span id="cb7-18"><a href="#cb7-18"></a>    <span class="cf">return</span> traced_out</span>
-<span id="cb7-19"><a href="#cb7-19"></a></span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="co"># Bell state between two qubits</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a>phi_plus <span class="op">=</span> ( np.kron(fock(<span class="dv">2</span>, <span class="dv">1</span>), fock(<span class="dv">2</span>, <span class="dv">1</span>)) <span class="op">+</span> np.kron(fock(<span class="dv">2</span>, <span class="dv">0</span>), fock(<span class="dv">2</span>, <span class="dv">0</span>)) ) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)</span>
-<span id="cb7-22"><a href="#cb7-22"></a></span>
-<span id="cb7-23"><a href="#cb7-23"></a><span class="co"># Reduced density matrix of the first qubit</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a>rho_1 <span class="op">=</span> ptrace(phi_plus, <span class="dv">1</span>, (<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb7-25"><a href="#cb7-25"></a>rho_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-ptrace" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> ptrace(psi, subspace_to_keep, dim_subspace):</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    dim1, dim2 <span class="op">=</span> dim_subspace</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    rho <span class="op">=</span> np.outer(psi, psi.conj())</span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="co"># Reshape rho to separate the subsystems' degrees of freedom</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>    rho_reshaped <span class="op">=</span> rho.reshape(dim1, dim2, dim1, dim2)</span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="cf">if</span> subspace_to_keep <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb8-10"><a href="#cb8-10"></a>        <span class="co"># Perform the trace over the second subsystem</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>        traced_out <span class="op">=</span> np.trace(rho_reshaped, axis1<span class="op">=</span><span class="dv">1</span>, axis2<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="cf">elif</span> subspace_to_keep <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb8-13"><a href="#cb8-13"></a>        <span class="co"># Perform the trace over the first subsystem</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>        traced_out <span class="op">=</span> np.trace(rho_reshaped, axis1<span class="op">=</span><span class="dv">0</span>, axis2<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="cf">else</span>:</span>
+<span id="cb8-16"><a href="#cb8-16"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"subspace_to_keep must be either 1 or 2."</span>)</span>
+<span id="cb8-17"><a href="#cb8-17"></a></span>
+<span id="cb8-18"><a href="#cb8-18"></a>    <span class="cf">return</span> traced_out</span>
+<span id="cb8-19"><a href="#cb8-19"></a></span>
+<span id="cb8-20"><a href="#cb8-20"></a><span class="co"># Bell state between two qubits</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a>phi_plus <span class="op">=</span> ( np.kron(fock(<span class="dv">2</span>, <span class="dv">1</span>), fock(<span class="dv">2</span>, <span class="dv">1</span>)) <span class="op">+</span> np.kron(fock(<span class="dv">2</span>, <span class="dv">0</span>), fock(<span class="dv">2</span>, <span class="dv">0</span>)) ) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb8-22"><a href="#cb8-22"></a></span>
+<span id="cb8-23"><a href="#cb8-23"></a><span class="co"># Reduced density matrix of the first qubit</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a>rho_1 <span class="op">=</span> ptrace(phi_plus, <span class="dv">1</span>, (<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb8-25"><a href="#cb8-25"></a>rho_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="ptrace" class="cell-output cell-output-display">
 <pre><code>array([[0.5, 0. ],
        [0. , 0.5]])</code></pre>
@@ -676,8 +726,8 @@ A_{d 1} &amp; A_{d 2} &amp; \ldots &amp; A_{d d}
 </div>
 </div>
 </section>
-<section id="why-qutip" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="why-qutip"><span class="header-section-number">7.4</span> Why QuTiP?</h2>
+<section id="why-qutip" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="why-qutip"><span class="header-section-number">8.5</span> Why QuTiP?</h2>
 <p>While NumPy and SciPy are powerful tools for numerical computations, they lack specific functionalities for efficiently handling complex quantum systems. QuTiP is designed to fill this gap, offering features such as:</p>
 <ul>
 <li>Easy manipulation and visualization of quantum objects.</li>
@@ -1105,12 +1155,12 @@ A_{d 1} &amp; A_{d 2} &amp; \ldots &amp; A_{d d}
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lecture1/phase_space_ode.html" class="pagination-link" aria-label="From Hamilton's equations to the Liouville equation in phase space">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">From Hamilton’s equations to the Liouville equation in phase space</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lecture1/qutip_introduction.html" class="pagination-link" aria-label="Introduction to QuTiP">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to QuTiP</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
