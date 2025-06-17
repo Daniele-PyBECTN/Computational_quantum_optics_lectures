@@ -97,6 +97,8 @@ equations $\dot q = \partial_P H$, $\dot P = -\partial_q H$. However he
 noticed that we never observe $q,P$ of \[e.g.\] an atom or an electron,
 but rather the light emitted/scattered by these microscopic particles.
 
+![A man walking at night under the street lights of the Munich's Englischer Garten. Werner could determine his position only when he's under the spot light.](/assets/lecture1/heisenberglampioni.png)
+
 In particular he knew the Balmer-Lyman-Paschen-Brackett series of the
 lines of the hydrogen atom. These series say that the frequency of each
 emission/absorption line of the hydrogen atom is given by the formula
@@ -143,6 +145,8 @@ q \longmapsto
         \vdots & \vdots & \vdots & \vdots & \ddots \\
     \end{pmatrix}
 $$
+
+![What we see is only tables of frequencies. If we postulate that a classical mechanics trajectory exists it must be linked to these tables, since they are the only possible observable. The trajectory must be expressed as a table as well.](/assets/lecture1/heisenbergmatrix.png)
 
 
 These tables are not only a convenient way to visualize the
