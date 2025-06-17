@@ -35,7 +35,7 @@ book:
         href:  https://github.com/Daniele-PyBECTN/Computational_quantum_optics_lectures
   chapters:
     - index.qmd
-    # - lecture1/ # Introduction to Quantum Systems. The concept of matrices
+    - lecture1/intro_heisenberg.qmd
     - lecture1/introduction.qmd # Introduction to Python
     - lecture1/linear_algebra.qmd
     - lecture1/numba_and_jax.qmd
