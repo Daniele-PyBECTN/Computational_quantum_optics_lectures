@@ -1,5 +1,5 @@
 ```{python}
-#| echo: false
+#| echo: true
 
 import matplotlib
 from IPython.display import SVG
