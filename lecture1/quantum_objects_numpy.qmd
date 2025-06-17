@@ -66,6 +66,36 @@ In Numpy we simply define the corresponding matrices
 
 {{< embed /notebooks/lecture1/quantum_objects_numpy.qmd#pauli-operators echo=true >}}
 
+## Spin S Systems
+
+A system with a fixed total spin $S$ is described by the three collective spin operators $S_{x}, S_{y}, S_{z}$, which obey $\left[S_{x}, S_{y}\right]=i S_{z}$. The $d=2 S+1$ basis states can be labeled as $|s, m\rangle$, where $m=S, S-1, \ldots,-S$. By introducing spin raising and lowering operators $S_{ \pm}=S_{x} \pm i S_{y}$, where $S_{-}^{\dagger}=S_{+}$, all matrix elements can be obtained from the two relations
+
+$$
+S_{z}|s, m\rangle=m|s, m\rangle, \quad S_{-}|s, m\rangle=\sqrt{S(S+1)-m(m-1)}|s, m-1\rangle=: s_{-}^{m}|s, m-1\rangle \, .
+$$
+
+Explicitly,
+
+$$
+\hat{S}_{z} \mapsto S Z=\left(\begin{array}{cccc}
+S & 0 & \ldots & 0 \\
+0 & S-1 & \ldots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \ldots & -S
+\end{array}\right), \quad \hat{S}_{-} \mapsto S M=\left(\begin{array}{cccc}
+0 & 0 & \ldots & 0 \\
+s_{-}^{S / 2} & 0 & \ldots & 0 \\
+0 & s_{-}^{S / 2-1} & \ddots & \vdots \\
+\vdots & 0 & \ldots & 0
+\end{array}\right) .
+$$
+
+All other operators can be obtained using $S_{x}=\left(S_{+}+S_{-}\right) / 2$ and $S_{y}=i\left(S_{+}-S_{-}\right) / 2$. Example for a spin $S=1$ system
+
+{{< embed /notebooks/lecture1/quantum_objects_numpy.qmd#spin-operators echo=true >}}
+
+Note that in Numpy the command `A * B` is a element-wise multiplication of two matrices, while `A @ B` would implement the usual matrix multiplication.
+
 ## Harmonic Oscillator
 
 In a Hilbert space of dimension $N$, quantum states can be represented as vectors, and operators as matrices. Here we demonstrate the destroy operator, $a$, which lowers the state by one quantum number. For a detailed discussion on the quantum harmonic oscillator and the bosonic annihilation operator, refer to @sec-quantum-harmonic-oscillator.

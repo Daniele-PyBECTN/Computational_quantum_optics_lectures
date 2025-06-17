@@ -24,6 +24,28 @@ sy = np.array([[0, 1j], [-1j, 0]])
 sz = np.array([[1, 0], [0, -1]])
 ```
 
+#### Spin S Systems
+
+```{python}
+#| label: spin-operators
+s = 1
+d = int(2 * s + 1)
+
+# Vector of the diagonal elements for the SZ operator
+vecm = np.flip(np.arange(-s, s + 1))
+
+SZ = np.diag(vecm, 0)
+
+# Vector for SM operator (ladder down)
+vec2 = vecm[:d-1]  # remove the last entry
+vec3 = np.sqrt(s * (s + 1) - vec2 * (vec2 - 1))
+SM = np.diag(vec3, k=-1)  # place vec3 in lower diagonal
+
+# Construct SX and SY
+SX = (SM + SM.T) / 2
+SY = 1j * (SM.T - SM) / 2
+```
+
 #### Harmonic Oscillator
 
 ```{python}
